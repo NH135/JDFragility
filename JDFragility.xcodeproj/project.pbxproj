@@ -1,0 +1,828 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
+		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
+		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
+		18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02ED2599A32B007FC8C8 /* Assets.xcassets */; };
+		18FD02F12599A32B007FC8C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EF2599A32B007FC8C8 /* LaunchScreen.storyboard */; };
+		18FD02FC2599A32B007FC8C8 /* JDFragilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02FB2599A32B007FC8C8 /* JDFragilityTests.swift */; };
+		18FD03072599A32B007FC8C8 /* JDFragilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03062599A32B007FC8C8 /* JDFragilityUITests.swift */; };
+		18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD032D2599C3F0007FC8C8 /* JDBaseViewController.swift */; };
+		18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03412599CF4B007FC8C8 /* JDLoginController.swift */; };
+		18FD03442599CF4B007FC8C8 /* JDLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FD03422599CF4B007FC8C8 /* JDLoginController.xib */; };
+		18FD034F2599D3E0007FC8C8 /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03482599D3DF007FC8C8 /* UIView-Extension.swift */; };
+		18FD03502599D3E0007FC8C8 /* NHMBProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */; };
+		18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034A2599D3DF007FC8C8 /* UIColor-Extention.swift */; };
+		18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034B2599D3DF007FC8C8 /* UITextField-Extension.swift */; };
+		18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */; };
+		18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034D2599D3E0007FC8C8 /* UIImage-Extension.swift */; };
+		18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034E2599D3E0007FC8C8 /* String+Extension.swift */; };
+		18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03592599D3FB007FC8C8 /* pch.swift */; };
+		18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03842599D8DE007FC8C8 /* LSTTimer.m */; };
+		18FD038B2599D90B007FC8C8 /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03892599D90B007FC8C8 /* UIButton+Extend.m */; };
+		18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03B8259C4F11007FC8C8 /* NetManager.swift */; };
+		18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03C9259C5248007FC8C8 /* BaseModel.swift */; };
+		18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03D6259C560A007FC8C8 /* JDWebClient.swift */; };
+		18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD0405259C6190007FC8C8 /* JDMainController.swift */; };
+		18FD0408259C6190007FC8C8 /* JDMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FD0406259C6190007FC8C8 /* JDMainController.xib */; };
+		18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */; };
+		18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */; };
+		18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041F259C769E007FC8C8 /* JDNavViewController.swift */; };
+		836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18FD02F82599A32B007FC8C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18FD02D92599A329007FC8C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18FD02E02599A329007FC8C8;
+			remoteInfo = JDFragility;
+		};
+		18FD03032599A32B007FC8C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18FD02D92599A329007FC8C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18FD02E02599A329007FC8C8;
+			remoteInfo = JDFragility;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18FD02EB2599A329007FC8C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18FD02ED2599A32B007FC8C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18FD02F02599A32B007FC8C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18FD02F22599A32B007FC8C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FD02F72599A32B007FC8C8 /* JDFragilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDFragilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FD02FB2599A32B007FC8C8 /* JDFragilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDFragilityTests.swift; sourceTree = "<group>"; };
+		18FD02FD2599A32B007FC8C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FD03022599A32B007FC8C8 /* JDFragilityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDFragilityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FD03062599A32B007FC8C8 /* JDFragilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDFragilityUITests.swift; sourceTree = "<group>"; };
+		18FD03082599A32B007FC8C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FD032D2599C3F0007FC8C8 /* JDBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDBaseViewController.swift; sourceTree = "<group>"; };
+		18FD03412599CF4B007FC8C8 /* JDLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLoginController.swift; sourceTree = "<group>"; };
+		18FD03422599CF4B007FC8C8 /* JDLoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDLoginController.xib; sourceTree = "<group>"; };
+		18FD03482599D3DF007FC8C8 /* UIView-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-Extension.swift"; sourceTree = "<group>"; };
+		18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NHMBProgressHud.swift; sourceTree = "<group>"; };
+		18FD034A2599D3DF007FC8C8 /* UIColor-Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extention.swift"; sourceTree = "<group>"; };
+		18FD034B2599D3DF007FC8C8 /* UITextField-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonLtem-Extension.swift"; sourceTree = "<group>"; };
+		18FD034D2599D3E0007FC8C8 /* UIImage-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
+		18FD034E2599D3E0007FC8C8 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		18FD03592599D3FB007FC8C8 /* pch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
+		18FD035E2599D48E007FC8C8 /* JDFragility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDFragility-Bridging-Header.h"; sourceTree = "<group>"; };
+		18FD03832599D8DE007FC8C8 /* LSTTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTimer.h; sourceTree = "<group>"; };
+		18FD03842599D8DE007FC8C8 /* LSTTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTimer.m; sourceTree = "<group>"; };
+		18FD03892599D90B007FC8C8 /* UIButton+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extend.m"; sourceTree = "<group>"; };
+		18FD038A2599D90B007FC8C8 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
+		18FD03B8259C4F11007FC8C8 /* NetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetManager.swift; sourceTree = "<group>"; };
+		18FD03C9259C5248007FC8C8 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		18FD03D6259C560A007FC8C8 /* JDWebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDWebClient.swift; sourceTree = "<group>"; };
+		18FD0405259C6190007FC8C8 /* JDMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDMainController.swift; sourceTree = "<group>"; };
+		18FD0406259C6190007FC8C8 /* JDMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDMainController.xib; sourceTree = "<group>"; };
+		18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+HWExtension.swift"; sourceTree = "<group>"; };
+		18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDUserInfo.swift; sourceTree = "<group>"; };
+		18FD041F259C769E007FC8C8 /* JDNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDNavViewController.swift; sourceTree = "<group>"; };
+		3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDFragility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.release.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.release.xcconfig"; sourceTree = "<group>"; };
+		CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.debug.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18FD02DE2599A329007FC8C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD02F42599A32B007FC8C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD02FF2599A32B007FC8C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18FD02D82599A329007FC8C8 = {
+			isa = PBXGroup;
+			children = (
+				18FD02E32599A329007FC8C8 /* JDFragility */,
+				18FD02FA2599A32B007FC8C8 /* JDFragilityTests */,
+				18FD03052599A32B007FC8C8 /* JDFragilityUITests */,
+				18FD02E22599A329007FC8C8 /* Products */,
+				65A0BD7DFE4EA77E764A5DBF /* Pods */,
+				602609C53B2C60249C7AFEA8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		18FD02E22599A329007FC8C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18FD02E12599A329007FC8C8 /* JDFragility.app */,
+				18FD02F72599A32B007FC8C8 /* JDFragilityTests.xctest */,
+				18FD03022599A32B007FC8C8 /* JDFragilityUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18FD02E32599A329007FC8C8 /* JDFragility */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03202599B5BC007FC8C8 /* Class */,
+				18FD02E42599A329007FC8C8 /* AppDelegate.swift */,
+				18FD02E82599A329007FC8C8 /* ViewController.swift */,
+				18FD03592599D3FB007FC8C8 /* pch.swift */,
+				18FD035E2599D48E007FC8C8 /* JDFragility-Bridging-Header.h */,
+				18FD02EA2599A329007FC8C8 /* Main.storyboard */,
+				18FD02ED2599A32B007FC8C8 /* Assets.xcassets */,
+				18FD02EF2599A32B007FC8C8 /* LaunchScreen.storyboard */,
+				18FD02F22599A32B007FC8C8 /* Info.plist */,
+			);
+			path = JDFragility;
+			sourceTree = "<group>";
+		};
+		18FD02FA2599A32B007FC8C8 /* JDFragilityTests */ = {
+			isa = PBXGroup;
+			children = (
+				18FD02FB2599A32B007FC8C8 /* JDFragilityTests.swift */,
+				18FD02FD2599A32B007FC8C8 /* Info.plist */,
+			);
+			path = JDFragilityTests;
+			sourceTree = "<group>";
+		};
+		18FD03052599A32B007FC8C8 /* JDFragilityUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03062599A32B007FC8C8 /* JDFragilityUITests.swift */,
+				18FD03082599A32B007FC8C8 /* Info.plist */,
+			);
+			path = JDFragilityUITests;
+			sourceTree = "<group>";
+		};
+		18FD03202599B5BC007FC8C8 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03212599B5BC007FC8C8 /* Tools */,
+				18FD03222599B5BC007FC8C8 /* UILib */,
+				18FD03232599B5BC007FC8C8 /* Main */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		18FD03212599B5BC007FC8C8 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03832599D8DE007FC8C8 /* LSTTimer.h */,
+				18FD03842599D8DE007FC8C8 /* LSTTimer.m */,
+				18FD038A2599D90B007FC8C8 /* UIButton+Extend.h */,
+				18FD03892599D90B007FC8C8 /* UIButton+Extend.m */,
+				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
+				18FD034E2599D3E0007FC8C8 /* String+Extension.swift */,
+				18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */,
+				18FD034A2599D3DF007FC8C8 /* UIColor-Extention.swift */,
+				18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */,
+				18FD034D2599D3E0007FC8C8 /* UIImage-Extension.swift */,
+				18FD034B2599D3DF007FC8C8 /* UITextField-Extension.swift */,
+				18FD03482599D3DF007FC8C8 /* UIView-Extension.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		18FD03222599B5BC007FC8C8 /* UILib */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03B7259C4F11007FC8C8 /* NetWork */,
+				18FD03D6259C560A007FC8C8 /* JDWebClient.swift */,
+			);
+			path = UILib;
+			sourceTree = "<group>";
+		};
+		18FD03232599B5BC007FC8C8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18FD032B2599C33D007FC8C8 /* Controller */,
+				18FD032C2599C33D007FC8C8 /* Model */,
+				18FD032A2599C33D007FC8C8 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		18FD032A2599C33D007FC8C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18FD032B2599C33D007FC8C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18FD032D2599C3F0007FC8C8 /* JDBaseViewController.swift */,
+				18FD041F259C769E007FC8C8 /* JDNavViewController.swift */,
+				18FD03412599CF4B007FC8C8 /* JDLoginController.swift */,
+				18FD03422599CF4B007FC8C8 /* JDLoginController.xib */,
+				18FD0405259C6190007FC8C8 /* JDMainController.swift */,
+				18FD0406259C6190007FC8C8 /* JDMainController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18FD032C2599C33D007FC8C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03C9259C5248007FC8C8 /* BaseModel.swift */,
+				18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18FD03B7259C4F11007FC8C8 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				18FD03B8259C4F11007FC8C8 /* NetManager.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		602609C53B2C60249C7AFEA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65A0BD7DFE4EA77E764A5DBF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */,
+				BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18FD02E02599A329007FC8C8 /* JDFragility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FD030B2599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragility" */;
+			buildPhases = (
+				BB80859F1736606103EBC48F /* [CP] Check Pods Manifest.lock */,
+				18FD02DD2599A329007FC8C8 /* Sources */,
+				18FD02DE2599A329007FC8C8 /* Frameworks */,
+				18FD02DF2599A329007FC8C8 /* Resources */,
+				0850C5E183A64B0DC339ABDD /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JDFragility;
+			productName = JDFragility;
+			productReference = 18FD02E12599A329007FC8C8 /* JDFragility.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18FD02F62599A32B007FC8C8 /* JDFragilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FD030E2599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragilityTests" */;
+			buildPhases = (
+				18FD02F32599A32B007FC8C8 /* Sources */,
+				18FD02F42599A32B007FC8C8 /* Frameworks */,
+				18FD02F52599A32B007FC8C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18FD02F92599A32B007FC8C8 /* PBXTargetDependency */,
+			);
+			name = JDFragilityTests;
+			productName = JDFragilityTests;
+			productReference = 18FD02F72599A32B007FC8C8 /* JDFragilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18FD03012599A32B007FC8C8 /* JDFragilityUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18FD03112599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragilityUITests" */;
+			buildPhases = (
+				18FD02FE2599A32B007FC8C8 /* Sources */,
+				18FD02FF2599A32B007FC8C8 /* Frameworks */,
+				18FD03002599A32B007FC8C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18FD03042599A32B007FC8C8 /* PBXTargetDependency */,
+			);
+			name = JDFragilityUITests;
+			productName = JDFragilityUITests;
+			productReference = 18FD03022599A32B007FC8C8 /* JDFragilityUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18FD02D92599A329007FC8C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JD;
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					18FD02E02599A329007FC8C8 = {
+						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
+					};
+					18FD02F62599A32B007FC8C8 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 18FD02E02599A329007FC8C8;
+					};
+					18FD03012599A32B007FC8C8 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 18FD02E02599A329007FC8C8;
+					};
+				};
+			};
+			buildConfigurationList = 18FD02DC2599A329007FC8C8 /* Build configuration list for PBXProject "JDFragility" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18FD02D82599A329007FC8C8;
+			productRefGroup = 18FD02E22599A329007FC8C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18FD02E02599A329007FC8C8 /* JDFragility */,
+				18FD02F62599A32B007FC8C8 /* JDFragilityTests */,
+				18FD03012599A32B007FC8C8 /* JDFragilityUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18FD02DF2599A329007FC8C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FD02F12599A32B007FC8C8 /* LaunchScreen.storyboard in Resources */,
+				18FD03442599CF4B007FC8C8 /* JDLoginController.xib in Resources */,
+				18FD0408259C6190007FC8C8 /* JDMainController.xib in Resources */,
+				18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */,
+				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD02F52599A32B007FC8C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD03002599A32B007FC8C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0850C5E183A64B0DC339ABDD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDFragility/Pods-JDFragility-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JDFragility/Pods-JDFragility-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDFragility/Pods-JDFragility-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB80859F1736606103EBC48F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JDFragility-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18FD02DD2599A329007FC8C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */,
+				18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */,
+				18FD03502599D3E0007FC8C8 /* NHMBProgressHud.swift in Sources */,
+				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
+				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
+				18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */,
+				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
+				18FD034F2599D3E0007FC8C8 /* UIView-Extension.swift in Sources */,
+				18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */,
+				18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */,
+				18FD038B2599D90B007FC8C8 /* UIButton+Extend.m in Sources */,
+				18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */,
+				18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */,
+				18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */,
+				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
+				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
+				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
+				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
+				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
+				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
+				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD02F32599A32B007FC8C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FD02FC2599A32B007FC8C8 /* JDFragilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FD02FE2599A32B007FC8C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18FD03072599A32B007FC8C8 /* JDFragilityUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18FD02F92599A32B007FC8C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18FD02E02599A329007FC8C8 /* JDFragility */;
+			targetProxy = 18FD02F82599A32B007FC8C8 /* PBXContainerItemProxy */;
+		};
+		18FD03042599A32B007FC8C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18FD02E02599A329007FC8C8 /* JDFragility */;
+			targetProxy = 18FD03032599A32B007FC8C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18FD02EA2599A329007FC8C8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FD02EB2599A329007FC8C8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18FD02EF2599A32B007FC8C8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18FD02F02599A32B007FC8C8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18FD03092599A32B007FC8C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		18FD030A2599A32B007FC8C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18FD030C2599A32B007FC8C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragility/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jingdian.JDFragility;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/JDFragility/JDFragility/JDFragility-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		18FD030D2599A32B007FC8C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragility/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jingdian.JDFragility;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/JDFragility/JDFragility/JDFragility-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		18FD030F2599A32B007FC8C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragilityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JD.JDFragilityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JDFragility.app/JDFragility";
+			};
+			name = Debug;
+		};
+		18FD03102599A32B007FC8C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragilityTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JD.JDFragilityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JDFragility.app/JDFragility";
+			};
+			name = Release;
+		};
+		18FD03122599A32B007FC8C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragilityUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JD.JDFragilityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JDFragility;
+			};
+			name = Debug;
+		};
+		18FD03132599A32B007FC8C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P336AQ7M3A;
+				INFOPLIST_FILE = JDFragilityUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = JD.JDFragilityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JDFragility;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18FD02DC2599A329007FC8C8 /* Build configuration list for PBXProject "JDFragility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FD03092599A32B007FC8C8 /* Debug */,
+				18FD030A2599A32B007FC8C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FD030B2599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FD030C2599A32B007FC8C8 /* Debug */,
+				18FD030D2599A32B007FC8C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FD030E2599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragilityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FD030F2599A32B007FC8C8 /* Debug */,
+				18FD03102599A32B007FC8C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18FD03112599A32B007FC8C8 /* Build configuration list for PBXNativeTarget "JDFragilityUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18FD03122599A32B007FC8C8 /* Debug */,
+				18FD03132599A32B007FC8C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18FD02D92599A329007FC8C8 /* Project object */;
+}
