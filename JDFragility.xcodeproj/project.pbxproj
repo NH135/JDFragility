@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B882A259CB73F00998BB1 /* JDReservedController.swift */; };
+		184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B882B259CB73F00998BB1 /* JDReservedController.xib */; };
+		184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B8834259CB76300998BB1 /* JDCourseController.swift */; };
+		184B8837259CB76300998BB1 /* JDCourseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B8835259CB76300998BB1 /* JDCourseController.xib */; };
+		184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B883B259CB77F00998BB1 /* JDMemberController.swift */; };
+		184B883E259CB77F00998BB1 /* JDMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B883C259CB77F00998BB1 /* JDMemberController.xib */; };
+		184B8844259CB79400998BB1 /* JDAttendanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B8842259CB79400998BB1 /* JDAttendanceController.swift */; };
+		184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B8843259CB79400998BB1 /* JDAttendanceController.xib */; };
+		184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B884C259CB7CE00998BB1 /* JDManagementController.swift */; };
+		184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B884D259CB7CE00998BB1 /* JDManagementController.xib */; };
 		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
 		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
 		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
@@ -56,6 +66,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184B882A259CB73F00998BB1 /* JDReservedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDReservedController.swift; sourceTree = "<group>"; };
+		184B882B259CB73F00998BB1 /* JDReservedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDReservedController.xib; sourceTree = "<group>"; };
+		184B8834259CB76300998BB1 /* JDCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseController.swift; sourceTree = "<group>"; };
+		184B8835259CB76300998BB1 /* JDCourseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDCourseController.xib; sourceTree = "<group>"; };
+		184B883B259CB77F00998BB1 /* JDMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDMemberController.swift; sourceTree = "<group>"; };
+		184B883C259CB77F00998BB1 /* JDMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDMemberController.xib; sourceTree = "<group>"; };
+		184B8842259CB79400998BB1 /* JDAttendanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDAttendanceController.swift; sourceTree = "<group>"; };
+		184B8843259CB79400998BB1 /* JDAttendanceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDAttendanceController.xib; sourceTree = "<group>"; };
+		184B884C259CB7CE00998BB1 /* JDManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDManagementController.swift; sourceTree = "<group>"; };
+		184B884D259CB7CE00998BB1 /* JDManagementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDManagementController.xib; sourceTree = "<group>"; };
 		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +144,171 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184B8819259CB6E300998BB1 /* Attendance（考勤） */ = {
+			isa = PBXGroup;
+			children = (
+				184B881A259CB6E400998BB1 /* Controller */,
+				184B881B259CB6E400998BB1 /* Model */,
+				184B881C259CB6E400998BB1 /* View */,
+			);
+			path = "Attendance（考勤）";
+			sourceTree = "<group>";
+		};
+		184B881A259CB6E400998BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				184B8842259CB79400998BB1 /* JDAttendanceController.swift */,
+				184B8843259CB79400998BB1 /* JDAttendanceController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184B881B259CB6E400998BB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184B881C259CB6E400998BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184B881D259CB6F000998BB1 /* Management（店长管理） */ = {
+			isa = PBXGroup;
+			children = (
+				184B884A259CB7AD00998BB1 /* Controller */,
+				184B8849259CB7AD00998BB1 /* Model */,
+				184B884B259CB7AD00998BB1 /* View */,
+			);
+			path = "Management（店长管理）";
+			sourceTree = "<group>";
+		};
+		184B881E259CB6FA00998BB1 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				184B881F259CB6FA00998BB1 /* Controller */,
+				184B8820259CB6FA00998BB1 /* Model */,
+				184B8821259CB6FA00998BB1 /* View */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		184B881F259CB6FA00998BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				184B883B259CB77F00998BB1 /* JDMemberController.swift */,
+				184B883C259CB77F00998BB1 /* JDMemberController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184B8820259CB6FA00998BB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184B8821259CB6FA00998BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184B8822259CB70300998BB1 /* Course(课程购买) */ = {
+			isa = PBXGroup;
+			children = (
+				184B8823259CB70300998BB1 /* Controller */,
+				184B8824259CB70300998BB1 /* Model */,
+				184B8825259CB70300998BB1 /* View */,
+			);
+			path = "Course(课程购买)";
+			sourceTree = "<group>";
+		};
+		184B8823259CB70300998BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				184B8834259CB76300998BB1 /* JDCourseController.swift */,
+				184B8835259CB76300998BB1 /* JDCourseController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184B8824259CB70300998BB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184B8825259CB70300998BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184B8826259CB70A00998BB1 /* Reserved */ = {
+			isa = PBXGroup;
+			children = (
+				184B8827259CB70A00998BB1 /* Controller */,
+				184B8828259CB70A00998BB1 /* Model */,
+				184B8829259CB70A00998BB1 /* View */,
+			);
+			path = Reserved;
+			sourceTree = "<group>";
+		};
+		184B8827259CB70A00998BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				184B882A259CB73F00998BB1 /* JDReservedController.swift */,
+				184B882B259CB73F00998BB1 /* JDReservedController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184B8828259CB70A00998BB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184B8829259CB70A00998BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184B8849259CB7AD00998BB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184B884A259CB7AD00998BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				184B884C259CB7CE00998BB1 /* JDManagementController.swift */,
+				184B884D259CB7CE00998BB1 /* JDManagementController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184B884B259CB7AD00998BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18FD02D82599A329007FC8C8 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +368,11 @@
 		18FD03202599B5BC007FC8C8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				184B8826259CB70A00998BB1 /* Reserved */,
+				184B8822259CB70300998BB1 /* Course(课程购买) */,
+				184B881E259CB6FA00998BB1 /* Member */,
+				184B8819259CB6E300998BB1 /* Attendance（考勤） */,
+				184B881D259CB6F000998BB1 /* Management（店长管理） */,
 				18FD03212599B5BC007FC8C8 /* Tools */,
 				18FD03222599B5BC007FC8C8 /* UILib */,
 				18FD03232599B5BC007FC8C8 /* Main */,
@@ -391,10 +581,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FD02F12599A32B007FC8C8 /* LaunchScreen.storyboard in Resources */,
+				184B883E259CB77F00998BB1 /* JDMemberController.xib in Resources */,
+				184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */,
 				18FD03442599CF4B007FC8C8 /* JDLoginController.xib in Resources */,
+				184B8837259CB76300998BB1 /* JDCourseController.xib in Resources */,
 				18FD0408259C6190007FC8C8 /* JDMainController.xib in Resources */,
+				184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */,
 				18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */,
 				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
+				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,13 +657,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */,
+				184B8844259CB79400998BB1 /* JDAttendanceController.swift in Sources */,
 				18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */,
 				18FD03502599D3E0007FC8C8 /* NHMBProgressHud.swift in Sources */,
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
 				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
 				18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */,
 				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
+				184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */,
 				18FD034F2599D3E0007FC8C8 /* UIView-Extension.swift in Sources */,
+				184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */,
 				18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */,
 				18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */,
 				18FD038B2599D90B007FC8C8 /* UIButton+Extend.m in Sources */,
@@ -478,8 +676,10 @@
 				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
 				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
 				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
+				184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */,
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
+				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
 			);

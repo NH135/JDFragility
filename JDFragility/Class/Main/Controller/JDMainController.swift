@@ -16,6 +16,15 @@ class JDMainController: JDBaseViewController {
     @IBOutlet weak var kaoqinBtn: UIButton!
     @IBOutlet weak var rightView: UIView!
     @IBOutlet weak var dianzhangBtn: UIButton!
+    
+    private var reserver:JDReservedController?
+    private var member:JDMemberController?
+    private var attendance:JDAttendanceController?
+    private var management:JDManagementController?
+    private var course:JDCourseController?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title="首页"
@@ -30,23 +39,22 @@ class JDMainController: JDBaseViewController {
         
         clickAction()
     }
-
  
-
 }
 
  
 
 
 extension JDMainController {
-    
-    
+     
     /// 点击事件
     private func clickAction() {
-        let view1 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
-        view1.isHidden=true;
-        view1.backgroundColor=UIColor.red;
-        rightView .addSubview(view1)
+        self.reserver = JDReservedController()
+        self.reserver?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//        let view1 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
+        self.reserver?.view.isHidden=true;
+        self.reserver?.view.backgroundColor=UIColor.red;
+        rightView.addSubview(self.reserver?.view ?? UIView())
         
         let view2 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
         view2.backgroundColor=UIColor.yellow;
