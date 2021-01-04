@@ -8,6 +8,20 @@
  
 import UIKit
 
+
+public extension Int {
+    
+    /// 创建颜色
+    var color: UIColor {
+        return UIColor.k_colorWith(hexInt: self)
+    }
+    
+    /// 创建cgColor
+    var cgColor: CGColor {
+        return self.color.cgColor
+    }
+}
+
 extension UIColor{
     func asImage(size:CGSize) -> UIImage? {
         var resultImage:UIImage? = nil
@@ -33,5 +47,125 @@ extension UIColor {
     
     class func randomColor() -> UIColor {
         return UIColor(r: CGFloat(arc4random_uniform(256)), g: CGFloat(arc4random_uniform(256)), b: CGFloat(arc4random_uniform(256)))
+    }
+    /// 获取颜色的rgba值
+    func k_toRGBA() -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        if let arr = self.cgColor.components, arr.count >= 4 {
+            red = arr[0]
+            green = arr[1]
+            blue = arr[2]
+            alpha = arr[3]
+        } else {
+            self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        }
+        return (red, green, blue, alpha)
+    }
+    
+    /// 颜色平滑过渡 progress 0.0~1.0
+    func k_convertToColor(_ endColor: UIColor, progress: CGFloat) -> UIColor {
+        
+        let beginTuple = self.k_toRGBA()
+        let endTuple = endColor.k_toRGBA()
+        let spaceTuple = (endTuple.0 - beginTuple.0, endTuple.1 - beginTuple.1, endTuple.2 - beginTuple.2, endTuple.3 - beginTuple.3)
+        
+        let red: CGFloat = beginTuple.0 + spaceTuple.0 * progress
+        let green: CGFloat = beginTuple.1 + spaceTuple.1 * progress
+        let blue: CGFloat = beginTuple.2 + spaceTuple.2 * progress
+        let alpha: CGFloat = beginTuple.3 + spaceTuple.3 * progress
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    /// 随机色
+    class var k_randomColor: UIColor {
+        let red = CGFloat(arc4random() % 256) / 255.0
+        let green = CGFloat(arc4random() % 256) / 255.0
+        let blue = CGFloat(arc4random() % 256) / 255.0
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+    
+    /// rbg颜色
+    ///
+    /// - Parameters:
+    ///   - rgb: 一个大于1的数 [0,255.0]
+    ///   - alpha: 透明度 0.0~1.0
+    /// - Returns: 新颜色
+    class func k_colorWith(rgb: CGFloat, alpha: CGFloat = 1.0) -> UIColor {
+        
+        return UIColor(red: rgb / 255.0, green: rgb / 255.0, blue: rgb / 255.0, alpha: alpha)
+    }
+    
+    /// rbg颜色
+    ///
+    /// - Parameters:
+    ///   - r: 一个大于1的数 [0,255.0]
+    ///   - g: 一个大于1的数 [0,255.0]
+    ///   - b: 一个大于1的数 [0,255.0]
+    ///   - alpha: 透明度 0.0~1.0
+    /// - Returns: 新颜色
+    class func k_colorWith(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat = 1.0) -> UIColor {
+        
+        return UIColor.init(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: alpha)
+    }
+    
+    /// 16进制颜色转为RGB颜色
+    ///
+    /// - Parameters:
+    ///   - hexInt: 0x333333
+    ///   - alpha: 透明度 默认 1.0
+    /// - Returns: 颜色
+    class func k_colorWith(hexInt: Int, alpha: CGFloat = 1.0) -> UIColor {
+        let r = CGFloat((hexInt & 0xFF0000) >> 16)
+        let g = CGFloat((hexInt & 0x00FF00) >> 8)
+        let b = CGFloat((hexInt & 0x0000FF))
+        
+        return UIColor.k_colorWith(r: r, g: g, b: b, alpha: alpha)
+    }
+    
+    /// 16进制颜色转为RGB颜色
+    ///
+    /// - Parameter hexStr: 0x333333 / #333333
+    /// - Returns: 颜色
+    class func k_colorWith(hexStr: String, alpha: CGFloat = 1.0) -> UIColor{
+        var cstr = hexStr.trimmingCharacters(in:  CharacterSet.whitespacesAndNewlines).uppercased() as NSString;
+        if (cstr.length < 6) {
+            
+            return UIColor.clear;
+        }
+        if (cstr.hasPrefix("0X")) {
+            
+            cstr = cstr.substring(from: 2) as NSString
+        }
+        if (cstr.hasPrefix("#")) {
+            
+            cstr = cstr.substring(from: 1) as NSString
+        }
+        if (cstr.length != 6) {
+            
+            return UIColor.clear;
+        }
+        var range = NSRange.init()
+        range.location = 0
+        range.length = 2
+        //r
+        let rStr = cstr.substring(with: range);
+        //g
+        range.location = 2;
+        let gStr = cstr.substring(with: range)
+        //b
+        range.location = 4;
+        let bStr = cstr.substring(with: range)
+        var r: UInt32 = 0x0;
+        var g: UInt32 = 0x0;
+        var b: UInt32 = 0x0;
+        Scanner.init(string: rStr).scanHexInt32(&r);
+        Scanner.init(string: gStr).scanHexInt32(&g);
+        Scanner.init(string: bStr).scanHexInt32(&b);
+        return UIColor.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha);
     }
 }

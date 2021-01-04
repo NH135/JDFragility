@@ -17,6 +17,18 @@
 		184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B8843259CB79400998BB1 /* JDAttendanceController.xib */; };
 		184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B884C259CB7CE00998BB1 /* JDManagementController.swift */; };
 		184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B884D259CB7CE00998BB1 /* JDManagementController.xib */; };
+		18B7A9D125A2FD8000BE4C27 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9D025A2FD8000BE4C27 /* Array+Ext.swift */; };
+		18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9D525A2FDB500BE4C27 /* Date+Ext.swift */; };
+		18B7A9DB25A2FDE100BE4C27 /* Number+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9DA25A2FDE100BE4C27 /* Number+Ext.swift */; };
+		18B7A9E025A2FDFD00BE4C27 /* Timer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9DF25A2FDFD00BE4C27 /* Timer+Ext.swift */; };
+		18B7A9E525A3096700BE4C27 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9E425A3096700BE4C27 /* NSObject+Ext.swift */; };
+		18B7A9EA25A3098000BE4C27 /* DispatchQueue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9E925A3098000BE4C27 /* DispatchQueue+Ext.swift */; };
+		18B7A9EF25A30AAA00BE4C27 /* UIIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9EE25A30AAA00BE4C27 /* UIIImageView+Ext.swift */; };
+		18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9F325A30B4D00BE4C27 /* UILabel+Ext.swift */; };
+		18B7A9F925A30B7300BE4C27 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9F825A30B7300BE4C27 /* UIScrollView+Ext.swift */; };
+		18B7A9FE25A30B8200BE4C27 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9FD25A30B8200BE4C27 /* UITableView+Ext.swift */; };
+		18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA0225A30BAE00BE4C27 /* UITextField+Ext.swift */; };
+		18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA0725A30BB700BE4C27 /* UITextView+Ext.swift */; };
 		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
 		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
 		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
@@ -36,7 +48,6 @@
 		18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD034E2599D3E0007FC8C8 /* String+Extension.swift */; };
 		18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03592599D3FB007FC8C8 /* pch.swift */; };
 		18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03842599D8DE007FC8C8 /* LSTTimer.m */; };
-		18FD038B2599D90B007FC8C8 /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03892599D90B007FC8C8 /* UIButton+Extend.m */; };
 		18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03B8259C4F11007FC8C8 /* NetManager.swift */; };
 		18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03C9259C5248007FC8C8 /* BaseModel.swift */; };
 		18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD03D6259C560A007FC8C8 /* JDWebClient.swift */; };
@@ -46,6 +57,8 @@
 		18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */; };
 		18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041F259C769E007FC8C8 /* JDNavViewController.swift */; };
 		836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */; };
+		ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211C9425A18656000F4A96 /* JDGroupModel.swift */; };
+		ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211CB425A189AB000F4A96 /* JDgroupCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +89,18 @@
 		184B8843259CB79400998BB1 /* JDAttendanceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDAttendanceController.xib; sourceTree = "<group>"; };
 		184B884C259CB7CE00998BB1 /* JDManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDManagementController.swift; sourceTree = "<group>"; };
 		184B884D259CB7CE00998BB1 /* JDManagementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDManagementController.xib; sourceTree = "<group>"; };
+		18B7A9D025A2FD8000BE4C27 /* Array+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9D525A2FDB500BE4C27 /* Date+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9DA25A2FDE100BE4C27 /* Number+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Number+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9DF25A2FDFD00BE4C27 /* Timer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timer+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9E425A3096700BE4C27 /* NSObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9E925A3098000BE4C27 /* DispatchQueue+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9EE25A30AAA00BE4C27 /* UIIImageView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIIImageView+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9F325A30B4D00BE4C27 /* UILabel+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9F825A30B7300BE4C27 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
+		18B7A9FD25A30B8200BE4C27 /* UITableView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		18B7AA0225A30BAE00BE4C27 /* UITextField+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		18B7AA0725A30BB700BE4C27 /* UITextView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
 		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,8 +128,6 @@
 		18FD035E2599D48E007FC8C8 /* JDFragility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDFragility-Bridging-Header.h"; sourceTree = "<group>"; };
 		18FD03832599D8DE007FC8C8 /* LSTTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTimer.h; sourceTree = "<group>"; };
 		18FD03842599D8DE007FC8C8 /* LSTTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTimer.m; sourceTree = "<group>"; };
-		18FD03892599D90B007FC8C8 /* UIButton+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extend.m"; sourceTree = "<group>"; };
-		18FD038A2599D90B007FC8C8 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
 		18FD03B8259C4F11007FC8C8 /* NetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetManager.swift; sourceTree = "<group>"; };
 		18FD03C9259C5248007FC8C8 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		18FD03D6259C560A007FC8C8 /* JDWebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDWebClient.swift; sourceTree = "<group>"; };
@@ -116,6 +139,8 @@
 		3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDFragility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.release.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.release.xcconfig"; sourceTree = "<group>"; };
 		CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.debug.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.debug.xcconfig"; sourceTree = "<group>"; };
+		ED211C9425A18656000F4A96 /* JDGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupModel.swift; sourceTree = "<group>"; };
+		ED211CB425A189AB000F4A96 /* JDgroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDgroupCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +267,7 @@
 		184B8824259CB70300998BB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ED211C9425A18656000F4A96 /* JDGroupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,6 +275,7 @@
 		184B8825259CB70300998BB1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED211CB425A189AB000F4A96 /* JDgroupCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,16 +412,26 @@
 			children = (
 				18FD03832599D8DE007FC8C8 /* LSTTimer.h */,
 				18FD03842599D8DE007FC8C8 /* LSTTimer.m */,
-				18FD038A2599D90B007FC8C8 /* UIButton+Extend.h */,
-				18FD03892599D90B007FC8C8 /* UIButton+Extend.m */,
 				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
 				18FD034E2599D3E0007FC8C8 /* String+Extension.swift */,
 				18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */,
 				18FD034A2599D3DF007FC8C8 /* UIColor-Extention.swift */,
 				18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */,
 				18FD034D2599D3E0007FC8C8 /* UIImage-Extension.swift */,
+				18B7A9EE25A30AAA00BE4C27 /* UIIImageView+Ext.swift */,
 				18FD034B2599D3DF007FC8C8 /* UITextField-Extension.swift */,
 				18FD03482599D3DF007FC8C8 /* UIView-Extension.swift */,
+				18B7A9D025A2FD8000BE4C27 /* Array+Ext.swift */,
+				18B7A9D525A2FDB500BE4C27 /* Date+Ext.swift */,
+				18B7A9DA25A2FDE100BE4C27 /* Number+Ext.swift */,
+				18B7A9DF25A2FDFD00BE4C27 /* Timer+Ext.swift */,
+				18B7A9E425A3096700BE4C27 /* NSObject+Ext.swift */,
+				18B7A9E925A3098000BE4C27 /* DispatchQueue+Ext.swift */,
+				18B7A9F325A30B4D00BE4C27 /* UILabel+Ext.swift */,
+				18B7A9FD25A30B8200BE4C27 /* UITableView+Ext.swift */,
+				18B7A9F825A30B7300BE4C27 /* UIScrollView+Ext.swift */,
+				18B7AA0225A30BAE00BE4C27 /* UITextField+Ext.swift */,
+				18B7AA0725A30BB700BE4C27 /* UITextView+Ext.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -657,31 +694,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */,
+				18B7A9E525A3096700BE4C27 /* NSObject+Ext.swift in Sources */,
 				184B8844259CB79400998BB1 /* JDAttendanceController.swift in Sources */,
 				18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */,
 				18FD03502599D3E0007FC8C8 /* NHMBProgressHud.swift in Sources */,
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
 				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
 				18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */,
+				ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */,
 				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
 				184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */,
+				18B7A9FE25A30B8200BE4C27 /* UITableView+Ext.swift in Sources */,
+				18B7A9EA25A3098000BE4C27 /* DispatchQueue+Ext.swift in Sources */,
 				18FD034F2599D3E0007FC8C8 /* UIView-Extension.swift in Sources */,
 				184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */,
 				18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */,
 				18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */,
-				18FD038B2599D90B007FC8C8 /* UIButton+Extend.m in Sources */,
+				18B7A9EF25A30AAA00BE4C27 /* UIIImageView+Ext.swift in Sources */,
+				18B7A9F925A30B7300BE4C27 /* UIScrollView+Ext.swift in Sources */,
+				18B7A9E025A2FDFD00BE4C27 /* Timer+Ext.swift in Sources */,
 				18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */,
 				18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */,
+				18B7A9DB25A2FDE100BE4C27 /* Number+Ext.swift in Sources */,
 				18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */,
 				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
 				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
 				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
 				184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */,
+				18B7A9D125A2FD8000BE4C27 /* Array+Ext.swift in Sources */,
+				18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */,
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
+				18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */,
+				18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */,
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
+				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
 				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
+				18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

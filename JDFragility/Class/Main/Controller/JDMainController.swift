@@ -34,7 +34,8 @@ class JDMainController: JDBaseViewController {
         huiyuanBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         kaoqinBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         dianzhangBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
-//
+    
+////
 //        yuyueBtn.isEnabled=false
         
         clickAction()
@@ -51,31 +52,40 @@ extension JDMainController {
     private func clickAction() {
         self.reserver = JDReservedController()
         self.reserver?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-//        let view1 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
         self.reserver?.view.isHidden=true;
         self.reserver?.view.backgroundColor=UIColor.red;
+        self.addChild(self.reserver ?? UIViewController())
         rightView.addSubview(self.reserver?.view ?? UIView())
+
+        self.course = JDCourseController()
+        self.course?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+        self.course?.view.isHidden=true;
+     
+        self.addChild(self.course ?? UIViewController())
+        rightView.addSubview(self.course?.view ?? UIView())
         
-        let view2 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
-        view2.backgroundColor=UIColor.yellow;
-        view2.isHidden=true;
-        rightView .addSubview(view2)
         
-        let view3 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
-        view3.backgroundColor=UIColor.orange;
-        view3.isHidden=true;
-        rightView .addSubview(view3)
+        self.member = JDMemberController()
+        self.member?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+        self.member?.view.isHidden=true;
+       
+        self.addChild(self.member ?? UIViewController())
+        rightView.addSubview(self.member?.view ?? UIView())
         
-        let view4 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
-        view4.backgroundColor=UIColor.blue;
-        view4.isHidden=true;
-        rightView .addSubview(view4)
         
-        let view5 = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight))
-        view5.backgroundColor=UIColor.purple;
-        view5.isHidden=true;
-        rightView .addSubview(view5)
+        self.attendance = JDAttendanceController()
+        self.attendance?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+        self.attendance?.view.isHidden=true;
+        self.addChild(self.attendance ?? UIViewController())
+        rightView.addSubview(self.attendance?.view ?? UIView())
         
+        
+        
+        self.management = JDManagementController()
+        self.management?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+        self.management?.view.isHidden=true;
+        self.addChild(self.management ?? UIViewController())
+        rightView.addSubview(self.management?.view ?? UIView())
           
         
         
@@ -84,22 +94,22 @@ extension JDMainController {
         
         func typeView(with type:NSInteger) {
             
-            view1.isHidden=true;
-            view2.isHidden=true;
-            view3.isHidden=true;
-            view4.isHidden=true;
-            view5.isHidden=true;
+            self.reserver?.view.isHidden=true;
+            self.course?.view.isHidden=true;
+            self.member?.view.isHidden=true;
+            self.attendance?.view.isHidden=true;
+            self.management?.view.isHidden=true;
             switch type {
             case 1:
-                view1.isHidden=false;
+                self.reserver?.view.isHidden=false;
             case 2:
-                view2.isHidden=false;
+                self.course?.view.isHidden=false;
             case 3:
-                view3.isHidden=false;
+                self.member?.view.isHidden=false;
             case 4:
-                view4.isHidden=false;
+                self.attendance?.view.isHidden=false;
             default:
-                view5.isHidden=false;
+                self.management?.view.isHidden=false;
             }
         }
         yuyueBtn.addAction { (btn:UIButton) in

@@ -11,8 +11,21 @@ class JDMemberController: JDBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let widthV = ( kScreenWidth-190)/2
+        
+        let leftView = UIView(frame: CGRect(x: 30, y: 30, width: widthV, height: kScreenHeight-60))
+        
+        leftView.backgroundColor=UIColor.yellow;
+        leftView.centerY=view.centerY
+        view.addSubview(leftView)
+        
+        let rightView = UIView(frame: CGRect(x: widthV+60, y: 30, width: widthV, height: kScreenHeight-60))
+   
+        rightView.backgroundColor=UIColor.red;
+        view.addSubview(rightView)
+        
+        
     }
 
 
