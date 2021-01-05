@@ -42,7 +42,7 @@ class JDLoginController: JDBaseViewController {
     }
 
     @objc func loginClick()  {
-//      print("登录");
+ 
         if telF.text?.length==0  {
             NHMBProgressHud.showErrorMessage(message: "请输入账户")
             return
@@ -51,11 +51,13 @@ class JDLoginController: JDBaseViewController {
             NHMBProgressHud.showErrorMessage(message: "请输入密码")
             return
         }
-//        ["cfdUserName":telF.text ?? "","cfdUserName":yzmF.text ?? ""]
+        NHMBProgressHud.showLoadingHudView(message: "登录中。。。")
+ 
         let params = ["cfdUserName": telF.text ?? "",
                       "cfdPassWord": yzmF.text ?? ""]
         NetManager.ShareInstance.postWith(url: "api/IPad/IPadLogin", params:params ) { (dic) in
             print(dic)
+            NHMBProgressHud.showSuccesshTips(message: "登录成功！")
             let login = JDUserInfo.deserialize(from: dic as? Dictionary)
             
             let userDefault = UserDefaults.standard

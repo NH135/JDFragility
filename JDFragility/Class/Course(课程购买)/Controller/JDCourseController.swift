@@ -95,3 +95,10 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     }
     
 }
+
+//open
+//public一般设置这个
+//internal 默认
+//fileprivate在当前文件
+//private在当前定义体内
+

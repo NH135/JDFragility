@@ -29,6 +29,9 @@
 		18B7A9FE25A30B8200BE4C27 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7A9FD25A30B8200BE4C27 /* UITableView+Ext.swift */; };
 		18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA0225A30BAE00BE4C27 /* UITextField+Ext.swift */; };
 		18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA0725A30BB700BE4C27 /* UITextView+Ext.swift */; };
+		18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B7AA1325A43FB500BE4C27 /* dropdownMenu_cornerIcon.png */; };
+		18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA1425A43FB500BE4C27 /* LMJDropdownMenu.m */; };
+		18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA1B25A4412300BE4C27 /* JSsignalert.m */; };
 		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
 		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
 		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
@@ -101,6 +104,11 @@
 		18B7A9FD25A30B8200BE4C27 /* UITableView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		18B7AA0225A30BAE00BE4C27 /* UITextField+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		18B7AA0725A30BB700BE4C27 /* UITextView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
+		18B7AA1325A43FB500BE4C27 /* dropdownMenu_cornerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownMenu_cornerIcon.png; sourceTree = "<group>"; };
+		18B7AA1425A43FB500BE4C27 /* LMJDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMJDropdownMenu.m; sourceTree = "<group>"; };
+		18B7AA1525A43FB500BE4C27 /* LMJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMJDropdownMenu.h; sourceTree = "<group>"; };
+		18B7AA1B25A4412300BE4C27 /* JSsignalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSsignalert.m; sourceTree = "<group>"; };
+		18B7AA1C25A4412300BE4C27 /* JSsignalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSsignalert.h; sourceTree = "<group>"; };
 		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +344,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18B7AA1225A43FB500BE4C27 /* LMJDropdownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				18B7AA1325A43FB500BE4C27 /* dropdownMenu_cornerIcon.png */,
+				18B7AA1425A43FB500BE4C27 /* LMJDropdownMenu.m */,
+				18B7AA1525A43FB500BE4C27 /* LMJDropdownMenu.h */,
+			);
+			path = LMJDropdownMenu;
+			sourceTree = "<group>";
+		};
 		18FD02D82599A329007FC8C8 = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +428,9 @@
 		18FD03212599B5BC007FC8C8 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18B7AA1225A43FB500BE4C27 /* LMJDropdownMenu */,
+				18B7AA1C25A4412300BE4C27 /* JSsignalert.h */,
+				18B7AA1B25A4412300BE4C27 /* JSsignalert.m */,
 				18FD03832599D8DE007FC8C8 /* LSTTimer.h */,
 				18FD03842599D8DE007FC8C8 /* LSTTimer.m */,
 				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
@@ -625,6 +646,7 @@
 				18FD0408259C6190007FC8C8 /* JDMainController.xib in Resources */,
 				184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */,
 				18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */,
+				18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */,
 				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 			);
@@ -726,10 +748,12 @@
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
 				18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */,
 				18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */,
+				18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */,
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
+				18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */,
 				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
 				18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */,
 			);

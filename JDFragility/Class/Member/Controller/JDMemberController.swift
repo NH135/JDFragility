@@ -7,36 +7,194 @@
 
 import UIKit
 
-class JDMemberController: JDBaseViewController {
-
+class JDMemberController: JDBaseViewController, UITextFieldDelegate {
+    
+    let searchT = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
+        
+        
+        
+        
+    }
+    
+}
+extension JDMemberController{
+    
+    func setUI() {
+        
         let widthV = ( kScreenWidth-190)/2
         
-        let leftView = UIView(frame: CGRect(x: 30, y: 30, width: widthV, height: kScreenHeight-60))
-        
-        leftView.backgroundColor=UIColor.yellow;
-        leftView.centerY=view.centerY
+        let leftView = UIView(frame: CGRect(x: 30, y: 10, width: widthV, height: kScreenHeight-60))
+        leftView.k_cornerRadius = 8
+        leftView.backgroundColor=UIColor.k_colorWith(hexStr: "#DC88C6");
         view.addSubview(leftView)
         
-        let rightView = UIView(frame: CGRect(x: widthV+60, y: 30, width: widthV, height: kScreenHeight-60))
-   
-        rightView.backgroundColor=UIColor.red;
+        //        let searchT = UITextField(frame: CGRect(x: 20, y: leftView.centerY, width: leftView.width-30, height: 40))
+        searchT.frame = CGRect(x: 15, y: leftView.centerY, width: leftView.width-30, height: 40)
+//        searchT.cornerRadius(radius: 20)
+//        searchT.k_setBorder(color: UIColor.lightText, width: 1)
+        searchT.placeholder = "请输入会员手机号";
+        searchT.borderStyle = .roundedRect
+        let imageSear = UIImageView(image: UIImage(named: "搜索-2"))
+        imageSear.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
+        searchT.leftView = imageSear
+        searchT.delegate = self
+        searchT.k_limitTextLength = 20
+        searchT.returnKeyType = .search
+ 
+        leftView.addSubview(searchT)
+        let rightView = UIView(frame: CGRect(x: widthV+60, y: leftView.y, width: widthV, height: kScreenHeight-60))
+        rightView.k_cornerRadius = 8
+        rightView.backgroundColor=UIColor.k_colorWith(hexStr: "#DC88C6")
         view.addSubview(rightView)
         
+        let textfH = 40
+        let textfW = rightView.width-100
+        let tiL = UILabel(frame: CGRect(x: 0, y: 30, width: Int(rightView.width), height: textfH))
+        tiL.text = "新增会员"
+        tiL.textAlignment = .center
+        tiL.textColor=UIColor.white
+        rightView.addSubview(tiL)
+        
+        
+        
+        let teL = UILabel(frame: CGRect(x: 30, y:Int(tiL.bottomY)+20, width: 50, height: textfH))
+        teL.text = "手机"
+        teL.textColor=UIColor.white
+        rightView.addSubview(teL)
+        
+        let teT = UITextField(frame: CGRect(x: teL.rightX, y:teL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        teT.placeholder = "请输入手机号"
+        teT.borderStyle = .roundedRect
+        teT.textColor=UIColor.white
+        rightView.addSubview(teT)
+        
+        
+        let nameL = UILabel(frame: CGRect(x: 30, y:Int(teT.bottomY)+20, width: 50, height: textfH))
+        nameL.text = "姓名"
+        nameL.textColor=UIColor.white
+        rightView.addSubview(nameL)
+        
+        let nameT = UITextField(frame: CGRect(x: nameL.rightX, y:nameL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        nameT.placeholder = "请输入姓名"
+        nameT.borderStyle = .roundedRect
+        nameT.textColor=UIColor.white
+        rightView.addSubview(nameT)
+        
+        
+        
+        let sourceL = UILabel(frame: CGRect(x: 30, y:Int(nameL.bottomY)+20, width: 50, height: textfH))
+        sourceL.text = "来源"
+        sourceL.textColor=UIColor.white
+        rightView.addSubview(sourceL)
+        
+        let sourceT = UITextField(frame: CGRect(x: sourceL.rightX, y:sourceL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        sourceT.placeholder = "请输入姓名"
+        sourceT.borderStyle = .roundedRect
+        sourceT.textColor=UIColor.white
+        rightView.addSubview(sourceT)
+        
+        
+        
+        let sexL = UILabel(frame: CGRect(x: 30, y:Int(sourceL.bottomY)+20, width: 50, height: textfH))
+        sexL.text = "性别"
+        sexL.textColor=UIColor.white
+        rightView.addSubview(sexL)
+        
+        let sexT = UITextField(frame: CGRect(x: sexL.rightX, y:sexL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        sexT.placeholder = "请输入姓名"
+        sexT.borderStyle = .roundedRect
+        sexT.textColor=UIColor.white
+        rightView.addSubview(sexT)
+        
+        
+        
+        let birthdayL = UILabel(frame: CGRect(x: 30, y:Int(sexL.bottomY)+20, width: 50, height: textfH))
+        birthdayL.text = "生日"
+        birthdayL.textColor=UIColor.white
+        rightView.addSubview(birthdayL)
+        
+        let birthdayT = UITextField(frame: CGRect(x: birthdayL.rightX, y:birthdayL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        birthdayT.placeholder = "请输入姓名"
+        birthdayT.borderStyle = .roundedRect
+        birthdayT.textColor=UIColor.white
+        rightView.addSubview(birthdayT)
+        
+        
+        
+        let heightL = UILabel(frame: CGRect(x: 30, y:Int(birthdayL.bottomY)+20, width: 50, height: textfH))
+        heightL.text = "身高"
+        heightL.textColor=UIColor.white
+        rightView.addSubview(heightL)
+        
+        let heightT = UITextField(frame: CGRect(x: heightL.rightX, y:heightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        heightT.placeholder = "体重"
+        heightT.borderStyle = .roundedRect
+        heightT.textColor=UIColor.white
+        rightView.addSubview(heightT)
+        
+        
+        
+        let weightL = UILabel(frame: CGRect(x: 30, y:Int(heightL.bottomY)+20, width: 50, height: textfH))
+        weightL.text = "体重"
+        weightL.textColor=UIColor.white
+        rightView.addSubview(weightL)
+        
+        let weightT = UITextField(frame: CGRect(x: weightL.rightX, y:weightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        weightT.placeholder = "请输入姓名"
+        weightT.borderStyle = .roundedRect
+        weightT.textColor=UIColor.white
+        rightView.addSubview(weightT)
+        
+        
+        
+        let overweightL = UILabel(frame: CGRect(x: 30, y:Int(weightL.bottomY)+20, width: 50, height: textfH))
+        overweightL.text = "超重"
+        overweightL.textColor=UIColor.white
+        rightView.addSubview(overweightL)
+        
+        let overweightT = UITextField(frame: CGRect(x: overweightL.rightX, y:overweightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        overweightT.placeholder = "请输入姓名"
+        overweightT.borderStyle = .roundedRect
+        overweightT.textColor=UIColor.white
+        rightView.addSubview(overweightT)
+        
+        let sendBtn = UIButton(frame: CGRect(x: 40, y: overweightL.bottomY+50, width: rightView.width-80, height: 50))
+//        sendBtn.centerX = rightView.centerX
+        sendBtn.setTitle("提交", for: .normal)
+        sendBtn.setTitleColor(UIColor.black, for: .normal)
+        sendBtn.k_cornerRadius = 25
+        sendBtn.backgroundColor=UIColor.white
+        rightView.addSubview(sendBtn)
+        sendBtn.addAction { (btn:UIButton) in
+            print("提交")
+        }
+        
+        
+        
         
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+}
+extension JDMemberController{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == searchT {
+//         搜索会员
+           
+            searchT.resignFirstResponder()
+//            Timer .k_startTimer(<#T##self: NSObject##NSObject#>)
+            NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                NHMBProgressHud.hideHud()
+            }
+            
+        }
+        
+        return true
     }
-    */
-
+    
 }

@@ -13,6 +13,5 @@ target 'JDFragility' do
   pod 'IQKeyboardManager'
   pod 'SnapKit'
   pod 'Kingfisher'
-
   pod 'MBProgressHUD'
 end
