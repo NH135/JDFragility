@@ -34,11 +34,11 @@ class JDMainController: JDBaseViewController {
         huiyuanBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         kaoqinBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         dianzhangBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
+     
+        yuyueBtn.isEnabled=false
     
-////
-//        yuyueBtn.isEnabled=false
-        
         clickAction()
+        
     }
  
 }
@@ -49,15 +49,15 @@ class JDMainController: JDBaseViewController {
 extension JDMainController {
      
     /// 点击事件
-    private func clickAction() {
+    private func clickAction() { 
         self.reserver = JDReservedController()
-        self.reserver?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+        self.reserver?.view.frame=CGRect(x: 0, y: 0, width: view.width-100, height: view.height)
         self.reserver?.view.isHidden=true;
         self.reserver?.view.backgroundColor=UIColor.red;
         self.addChild(self.reserver ?? UIViewController())
         rightView.addSubview(self.reserver?.view ?? UIView())
 
-        self.course = JDCourseController()
+                 self.course = JDCourseController()
         self.course?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
         self.course?.view.isHidden=true;
      
@@ -90,7 +90,7 @@ extension JDMainController {
         
         
         
-       
+      
         
         func typeView(with type:NSInteger) {
             
@@ -112,6 +112,9 @@ extension JDMainController {
                 self.management?.view.isHidden=false;
             }
         }
+        
+        typeView(with: 1)
+        
         yuyueBtn.addAction { (btn:UIButton) in
             btn.isEnabled=false
             self.kechengBtn.isEnabled = true

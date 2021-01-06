@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="JDreservedCell" customModule="JDFragility" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="489" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="489" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reserveAdd" translatesAutoresizingMaskIntoConstraints="NO" id="aS5-3F-MOi">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="1c5-LF-lUL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李文亮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKd-Qp-K60">
+                        <rect key="frame" x="65" y="10" width="49" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="GhM-5q-0jt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="美容师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsg-7c-bOf">
+                        <rect key="frame" x="65" y="32" width="43" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="uMx-ke-CLy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaQ-1f-0c5">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="6uw-7z-7Ib"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleColor" systemColor="labelColor"/>
+                        </state>
+                    </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Kbg-4g-rZO">
+                        <rect key="frame" x="150" y="0.0" width="339" height="60"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zay-qQ-1D2">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Kbg-4g-rZO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5A4-ID-Nyd"/>
+                    <constraint firstAttribute="bottom" secondItem="WaQ-1f-0c5" secondAttribute="bottom" id="A7P-cd-unJ"/>
+                    <constraint firstItem="aS5-3F-MOi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Acq-ME-Jdm"/>
+                    <constraint firstAttribute="trailing" secondItem="Kbg-4g-rZO" secondAttribute="trailing" id="DoP-C9-LAn"/>
+                    <constraint firstAttribute="bottom" secondItem="Kbg-4g-rZO" secondAttribute="bottom" id="IUg-1z-1Ib"/>
+                    <constraint firstItem="Kbg-4g-rZO" firstAttribute="leading" secondItem="WaQ-1f-0c5" secondAttribute="trailing" id="MHK-aS-2o9"/>
+                    <constraint firstItem="KKd-Qp-K60" firstAttribute="top" secondItem="aS5-3F-MOi" secondAttribute="top" constant="10" id="Qvh-Uw-Y7u"/>
+                    <constraint firstItem="WaQ-1f-0c5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Trr-zG-cOO"/>
+                    <constraint firstItem="Nsg-7c-bOf" firstAttribute="leading" secondItem="KKd-Qp-K60" secondAttribute="leading" id="Ufz-11-eUZ"/>
+                    <constraint firstAttribute="bottom" secondItem="aS5-3F-MOi" secondAttribute="bottom" id="XfC-hd-cSw"/>
+                    <constraint firstItem="KKd-Qp-K60" firstAttribute="leading" secondItem="aS5-3F-MOi" secondAttribute="trailing" constant="5" id="h4l-Zo-zmY"/>
+                    <constraint firstItem="Nsg-7c-bOf" firstAttribute="top" secondItem="KKd-Qp-K60" secondAttribute="bottom" constant="2" id="lmm-pv-cPb"/>
+                    <constraint firstItem="aS5-3F-MOi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mtP-3n-DKn"/>
+                    <constraint firstItem="WaQ-1f-0c5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yWI-dY-1Ro"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="collectionView" destination="Kbg-4g-rZO" id="oKj-an-SlM"/>
+                <outlet property="layout" destination="Zay-qQ-1D2" id="cEM-Jk-2xd"/>
+                <outlet property="nameL" destination="KKd-Qp-K60" id="sdg-7E-RQy"/>
+                <outlet property="reserveAddBtn" destination="WaQ-1f-0c5" id="0AI-89-Mid"/>
+                <outlet property="typeL" destination="Nsg-7c-bOf" id="XJP-Lg-FEK"/>
+            </connections>
+            <point key="canvasLocation" x="193.47826086956522" y="72.321428571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="reserveAdd" width="46" height="36"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

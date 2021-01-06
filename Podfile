@@ -14,4 +14,5 @@ target 'JDFragility' do
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'MBProgressHUD'
+  pod 'KakaJSON'
 end

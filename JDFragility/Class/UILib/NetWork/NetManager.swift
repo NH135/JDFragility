@@ -52,7 +52,10 @@ class NetManager: NSObject {
     private var ewHttpHeaders: [String:String]? {
         //            guard let tokenData = Keychain.load(key: "token") else { return nil }
         //            let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData)
-        return ["Authorization": "Bearer"]
+        let userDefault = UserDefaults.standard
+        let stringValue = userDefault.string(forKey: "Ticket") ?? ""
+//        let stringValue =  "3DAB5092A62DCFCFE743F5D4B96653B7AF26A916CF362C292AF9B0045B8EAC87BC37858818604350733CC273528BA36909019CF96E14D585F20FC568CC5AED84071E4F0D257CEE94609A65B339F5ED2EDD7077398D607DE0199B717812A36917EA391A5A8D741ECD997B1296A14709DFC3B3A689278C199F08FE2120246A15CA3D99E261C4EBA0E91C5C42C0D959FD2832404441C557AF57D90F60AA56A51BF2126B4A6F0AABF27C07436978E868BBD5C8682EB517E4F8C7FB3330E2C3F8C001787AA8C7F9958C5D576E0A45C183DBFDBEA4FED96F1ABA0E71B9A9FFE4B2037F4384765A0BF3B11CD63F96F0F2EA39A09E298CC2521D354F94EFCE428E59D3E27731A7D844B5CA2FEA7ED6F53109B27432B34E8F1D6E745DF1F534BD6365E629CACCBE602F78E7DD70DF47DEE57E38C3280D1328ACF4D52250B2A584106FEB9E73A8854E3460B7C2E3F123CAD15D6E9C1A3A1EDED0579301E691832B2DB47460E84AA3442AC40A8B91100662D905F3D5ECDEF78E3ABA5C5504B0B1BCCA04AA19536C41B7FAC85092527DCF9C18B7C62E90EAD7B37693F72ACE5450E778AA662E"
+        return ["Authorization": "Bearer " + stringValue]
     }
     ///缓存存储地址
     private  let cachePath = NSHomeDirectory() + "/Documents/AlamofireCaches/"
@@ -101,9 +104,9 @@ class NetManager: NSObject {
         let lastUrl = buildAPIString(path: absolute)
         //打印header进行调试.
         if let params = params {
-            print("\(lastUrl)\nheader =\(String(describing: ewHttpHeaders))\nparams = \(params)")
+            print("\(lastUrl)\nheader =\(String(describing: ewHttpHeaders!))\nparams = \(params)")
         } else {
-            print("\(lastUrl)\nheader =\(String(describing: ewHttpHeaders))")
+            print("\(lastUrl)\nheader =\(String(describing: ewHttpHeaders!))")
         }
         //            //无网络状态获取缓存
         //                if ewNetworkStatus.rawValue == EWNetworkStatus.notReachable.rawValue
@@ -142,6 +145,8 @@ class NetManager: NSObject {
                                     ////                                            _ = Keychain.clear()
                                     //                                            return
                                     //                                        }
+                                    
+                                    print("接口返回的 =\(value)")
                                     if value["code"] != nil {
                                         let code = value["code"] ?? 400
                                         if code as! Int  == 0 {
@@ -177,6 +182,7 @@ class NetManager: NSObject {
                                     ////                                            _ = Keychain.clear()
                                     //                                            return
                                     //                                        }
+                                    DLog("接口返回的 =\(value)")
                                     if value["code"] != nil {
                                         let code = value["code"] ?? 400
                                         if code as! Int  == 0 {

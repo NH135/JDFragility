@@ -35,6 +35,13 @@
 		18B7AA3E25A473FA00BE4C27 /* NSDate+ACAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */; };
 		18B7AA4425A4743300BE4C27 /* EWDataPickerPresentAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA4325A4743300BE4C27 /* EWDataPickerPresentAnimated.swift */; };
 		18B7AA4925A4743700BE4C27 /* EWDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA4825A4743700BE4C27 /* EWDatePickerViewController.swift */; };
+		18B95D2725A595D3007B8AEE /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D2625A595D3007B8AEE /* Foundation+Log.m */; };
+		18B95D2D25A5A70E007B8AEE /* JDreservedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D2B25A5A70E007B8AEE /* JDreservedCell.swift */; };
+		18B95D2E25A5A70E007B8AEE /* JDreservedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B95D2C25A5A70E007B8AEE /* JDreservedCell.xib */; };
+		18B95D3425A5AAD5007B8AEE /* JDreserveItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D3225A5AAD5007B8AEE /* JDreserveItemCell.swift */; };
+		18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */; };
+		18B95D3A25A5BA18007B8AEE /* JDreserverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */; };
+		18B95D6E25A5C949007B8AEE /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D6D25A5C949007B8AEE /* JsonUtil.swift */; };
 		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
 		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
 		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
@@ -116,6 +123,13 @@
 		18B7AA3D25A473FA00BE4C27 /* NSDate+ACAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ACAdd.h"; sourceTree = "<group>"; };
 		18B7AA4325A4743300BE4C27 /* EWDataPickerPresentAnimated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWDataPickerPresentAnimated.swift; sourceTree = "<group>"; };
 		18B7AA4825A4743700BE4C27 /* EWDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWDatePickerViewController.swift; sourceTree = "<group>"; };
+		18B95D2625A595D3007B8AEE /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		18B95D2B25A5A70E007B8AEE /* JDreservedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreservedCell.swift; sourceTree = "<group>"; };
+		18B95D2C25A5A70E007B8AEE /* JDreservedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDreservedCell.xib; sourceTree = "<group>"; };
+		18B95D3225A5AAD5007B8AEE /* JDreserveItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreserveItemCell.swift; sourceTree = "<group>"; };
+		18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDreserveItemCell.xib; sourceTree = "<group>"; };
+		18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreserverModel.swift; sourceTree = "<group>"; };
+		18B95D6D25A5C949007B8AEE /* JsonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
 		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +331,7 @@
 		184B8828259CB70A00998BB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +339,10 @@
 		184B8829259CB70A00998BB1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B95D2B25A5A70E007B8AEE /* JDreservedCell.swift */,
+				18B95D2C25A5A70E007B8AEE /* JDreservedCell.xib */,
+				18B95D3225A5AAD5007B8AEE /* JDreserveItemCell.swift */,
+				18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,6 +470,7 @@
 				18FD03842599D8DE007FC8C8 /* LSTTimer.m */,
 				18B7AA3D25A473FA00BE4C27 /* NSDate+ACAdd.h */,
 				18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */,
+				18B95D2625A595D3007B8AEE /* Foundation+Log.m */,
 				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
 				18FD034E2599D3E0007FC8C8 /* String+Extension.swift */,
 				18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */,
@@ -481,6 +501,7 @@
 				18B7AA4225A4742000BE4C27 /* PickerDate */,
 				18FD03B7259C4F11007FC8C8 /* NetWork */,
 				18FD03D6259C560A007FC8C8 /* JDWebClient.swift */,
+				18B95D6D25A5C949007B8AEE /* JsonUtil.swift */,
 			);
 			path = UILib;
 			sourceTree = "<group>";
@@ -666,7 +687,9 @@
 				184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */,
 				18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */,
 				18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */,
+				18B95D2E25A5A70E007B8AEE /* JDreservedCell.xib in Resources */,
 				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
+				18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,6 +760,7 @@
 				18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */,
 				18B7A9E525A3096700BE4C27 /* NSObject+Ext.swift in Sources */,
 				184B8844259CB79400998BB1 /* JDAttendanceController.swift in Sources */,
+				18B95D2D25A5A70E007B8AEE /* JDreservedCell.swift in Sources */,
 				18FD03552599D3E0007FC8C8 /* String+Extension.swift in Sources */,
 				18FD03502599D3E0007FC8C8 /* NHMBProgressHud.swift in Sources */,
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
@@ -746,6 +770,7 @@
 				ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */,
 				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
 				184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */,
+				18B95D3A25A5BA18007B8AEE /* JDreserverModel.swift in Sources */,
 				18B7A9FE25A30B8200BE4C27 /* UITableView+Ext.swift in Sources */,
 				18B7A9EA25A3098000BE4C27 /* DispatchQueue+Ext.swift in Sources */,
 				18FD034F2599D3E0007FC8C8 /* UIView-Extension.swift in Sources */,
@@ -762,8 +787,10 @@
 				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
 				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
 				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
+				18B95D6E25A5C949007B8AEE /* JsonUtil.swift in Sources */,
 				18B7AA4925A4743700BE4C27 /* EWDatePickerViewController.swift in Sources */,
 				184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */,
+				18B95D3425A5AAD5007B8AEE /* JDreserveItemCell.swift in Sources */,
 				18B7A9D125A2FD8000BE4C27 /* Array+Ext.swift in Sources */,
 				18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */,
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
@@ -775,6 +802,7 @@
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
 				18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */,
+				18B95D2725A595D3007B8AEE /* Foundation+Log.m in Sources */,
 				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
 				18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */,
 				18B7AA4425A4743300BE4C27 /* EWDataPickerPresentAnimated.swift in Sources */,

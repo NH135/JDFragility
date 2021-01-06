@@ -55,9 +55,26 @@ class JDCourseController: JDBaseViewController {
         self.leftTableView.dataSource = self;
 //        self.leftTableView .register(JDgroupCell.classForCoder(), forCellReuseIdentifier: "groupsCellid")
         self.leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
-    }
+        
+        setData()
+      
+        }
+        
+        
 
  
+}
+
+extension JDCourseController{
+    
+    func setData()  {
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseClassList", params: nil) { (dic) in
+            DLog(dic)
+        } error: { (err) in
+            print(err)
+        }
+
+    }
 }
 
 extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderViewDelegate{

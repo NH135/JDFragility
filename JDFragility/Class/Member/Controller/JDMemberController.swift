@@ -38,6 +38,7 @@ extension JDMemberController{
 //        searchT.cornerRadius(radius: 20)
 //        searchT.k_setBorder(color: UIColor.lightText, width: 1)
         searchT.placeholder = "请输入会员手机号";
+        searchT.text="18627912021"
         searchT.borderStyle = .roundedRect
         let imageSear = UIImageView(image: UIImage(named: "搜索-2"))
         imageSear.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
@@ -69,6 +70,7 @@ extension JDMemberController{
         
         let teT = UITextField(frame: CGRect(x: teL.rightX, y:teL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
         teT.placeholder = "请输入手机号"
+        
         teT.borderStyle = .roundedRect
         teT.textColor=UIColor.white
         rightView.addSubview(teT)
@@ -139,6 +141,7 @@ extension JDMemberController{
                 dateFormatter.dateFormat = "YYYY-MM-dd"
                 let dateString: String = dateFormatter.string(from: date)
 //                self?.label.text = dateString
+                
             }
             dataPicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
             dataPicker.picker.reloadAllComponents()
@@ -148,15 +151,7 @@ extension JDMemberController{
                 dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
                 dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
                 let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
-                
-//                let findIndex = hours.firstIndex(where: { (e) -> Bool in
-//                    return e == NSDate().hour
-//                })
-    //            let index = NSDate().minute > 30 ? findIndex ?? 0 + 1 : findIndex
-    //
-                dataPicker.picker.selectRow( 0, inComponent: 3, animated: true)
-                
-                  dataPicker.picker.selectRow(1, inComponent: 4, animated: true)
+ 
             }
         }
         
@@ -226,6 +221,14 @@ extension JDMemberController{
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                 NHMBProgressHud.hideHud()
             }
+            let params = ["cfdMoTel": searchT.text ?? ""]
+            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
+                DLog(dic)
+                NHMBProgressHud.hideHud()
+            } error: { (err) in
+                DLog(err)
+            }
+
             
         }
         
