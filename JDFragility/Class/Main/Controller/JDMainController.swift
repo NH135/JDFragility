@@ -22,7 +22,18 @@ class JDMainController: JDBaseViewController {
     private var attendance:JDAttendanceController?
     private var management:JDManagementController?
     private var course:JDCourseController?
-    
+    override func viewWillAppear(_ animated: Bool) {
+          super.viewWillAppear(animated)
+ 
+                navigationController?.navigationBar.isHidden=true
+  
+      }
+      override func viewWillDisappear(_ animated: Bool) {
+          super.viewDidDisappear(animated)
+                      navigationController?.navigationBar.isHidden=false
+ 
+      }
+
     
     
     override func viewDidLoad() {
@@ -102,14 +113,19 @@ extension JDMainController {
             switch type {
             case 1:
                 self.reserver?.view.isHidden=false;
+            
             case 2:
                 self.course?.view.isHidden=false;
+                self.course?.isNet = true
             case 3:
                 self.member?.view.isHidden=false;
+                self.member?.isNet = true
             case 4:
                 self.attendance?.view.isHidden=false;
+                self.attendance?.isNet = true
             default:
                 self.management?.view.isHidden=false;
+                self.management?.isNet = true
             }
         }
         

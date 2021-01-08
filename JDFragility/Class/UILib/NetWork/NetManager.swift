@@ -54,8 +54,8 @@ class NetManager: NSObject {
         //            let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData)
         let userDefault = UserDefaults.standard
         let stringValue = userDefault.string(forKey: "Ticket") ?? ""
-//        let stringValue =  "3DAB5092A62DCFCFE743F5D4B96653B7AF26A916CF362C292AF9B0045B8EAC87BC37858818604350733CC273528BA36909019CF96E14D585F20FC568CC5AED84071E4F0D257CEE94609A65B339F5ED2EDD7077398D607DE0199B717812A36917EA391A5A8D741ECD997B1296A14709DFC3B3A689278C199F08FE2120246A15CA3D99E261C4EBA0E91C5C42C0D959FD2832404441C557AF57D90F60AA56A51BF2126B4A6F0AABF27C07436978E868BBD5C8682EB517E4F8C7FB3330E2C3F8C001787AA8C7F9958C5D576E0A45C183DBFDBEA4FED96F1ABA0E71B9A9FFE4B2037F4384765A0BF3B11CD63F96F0F2EA39A09E298CC2521D354F94EFCE428E59D3E27731A7D844B5CA2FEA7ED6F53109B27432B34E8F1D6E745DF1F534BD6365E629CACCBE602F78E7DD70DF47DEE57E38C3280D1328ACF4D52250B2A584106FEB9E73A8854E3460B7C2E3F123CAD15D6E9C1A3A1EDED0579301E691832B2DB47460E84AA3442AC40A8B91100662D905F3D5ECDEF78E3ABA5C5504B0B1BCCA04AA19536C41B7FAC85092527DCF9C18B7C62E90EAD7B37693F72ACE5450E778AA662E"
-        return ["Authorization": "Bearer " + stringValue]
+//        let stringValue =  "BC676C167EBFAA2CE4DCF18A135E4A1417D8B00E8A69C695D8780DE2B20ED74A09C924913D13ADF88D718A40ED6DF28AAC66A571623C749AAA800A7108EF0A6B192B5B672661CDAC2C212288EA035D563BA6B49B29F71C7EBA447ACF959B243EC68725FA5F1227B1AA6611658472301288A10B34C1ABD279A1584DFAE2B8E5106C96703EF7B2E500C2FAD4CA67DB11B87DE08271646F62D9D469983913CBC4213B91BACD273D062C070A726A456E78CFA3B401797BB59C5E425A0477483E30DB6B88F0D6895AF9D3D7D0A328CE89D81AC662BF986FC124266480F1AEFB00FA75601AFBD09CF0FCE6AF3A805CB78B6ECB7E3C5F4B73ACB5F6E1CA7359A9C916A926C795922282C477EB99E3CFA73355279590E5B68B83F5434B1D0A871210C3BB30F0E01BCED842B80D08B32AEAA288E19A543A29F8DB8A21BC6B0E121AD949CF72E827BE48C0584FEA17322DA5C50FBCC833253D9D1E1591B01F61696140D6ADA2EE285398F06D2F67780AF9B8F2D82022B2CB1F1705F6863FA13C45D383FB9FCDF343187DD77D4A54BAC35B76D2CF175AC241D3858F267551285A8C0E1194F8"
+        return ["Authorization": "BasicAuth " + stringValue]
     }
     ///缓存存储地址
     private  let cachePath = NSHomeDirectory() + "/Documents/AlamofireCaches/"
@@ -102,6 +102,7 @@ class NetManager: NSObject {
         let encodingUrl = encodingURL(path: url)
         let absolute = absoluteUrlWithPath(path: encodingUrl)
         let lastUrl = buildAPIString(path: absolute)
+     
         //打印header进行调试.
         if let params = params {
             print("\(lastUrl)\nheader =\(String(describing: ewHttpHeaders!))\nparams = \(params)")
@@ -146,13 +147,16 @@ class NetManager: NSObject {
                                     //                                            return
                                     //                                        }
                                     
-                                    print("接口返回的 =\(value)")
+                                    print("url=\(url)接口返回的 =\(value)")
                                     if value["code"] != nil {
                                         let code = value["code"] ?? 400
                                         if code as! Int  == 0 {
                                             success(value["data"] as AnyObject)
                                         }else{
+                                            self.outLogin()
+                                            
                                             debugPrint(value["msg"] ?? "网络错误")
+                                            
                                         }
                                     }else{
                                         debugPrint(value["msg"] ?? "网络错误")
@@ -182,13 +186,14 @@ class NetManager: NSObject {
                                     ////                                            _ = Keychain.clear()
                                     //                                            return
                                     //                                        }
-                                    DLog("接口返回的 =\(value)")
+                                    print("url=\(url)接口返回的 =\(value)")
                                     if value["code"] != nil {
                                         let code = value["code"] ?? 400
                                         if code as! Int  == 0 {
                                             success(value["data"] as AnyObject)
                                         }else{
                                             debugPrint(value["msg"] ?? "网络错误")
+                                            self.outLogin()
                                         }
                                     }else{
                                         debugPrint(value["msg"] ?? "网络错误")
@@ -202,6 +207,11 @@ class NetManager: NSObject {
                                 debugPrint(err)
                             }
         }
+    }
+    
+   private func outLogin() {
+    (UIApplication.shared.delegate as! AppDelegate).showWindowOutLogin()
+
     }
 }
 // MARK: 网络状态相关

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         return true
     }
-    func setWindow() {
+   private func setWindow() {
 //        sleep(2) //可以延长启动图显示时间，只能选择整数吗？？
        let window = UIWindow(frame: UIScreen.main.bounds)
         let userDefault = UserDefaults.standard
@@ -30,6 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                self.window = window
                window.makeKeyAndVisible()
     }
+    
+    func showWindowOutLogin() {
+        //删除所有
+        //获取应用域的所有字符串
+        guard let appDomainString = Bundle.main.bundleIdentifier else { return  }
+        UserDefaults.standard.removePersistentDomain(forName: appDomainString)
+        self.window?.rootViewController=JDLoginController()
+    }
+    
     
     func 存数据() {
 //        https://www.jianshu.com/p/0a12968bcde2

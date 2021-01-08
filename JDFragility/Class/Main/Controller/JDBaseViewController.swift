@@ -16,18 +16,18 @@ class JDBaseViewController: UIViewController {
     }
     
 
-    override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-            if title == "首页" {
-                navigationController?.navigationBar.isHidden=true
-            }
-      }
-      override func viewDidDisappear(_ animated: Bool) {
-          super.viewDidDisappear(animated)
+//    override func viewWillAppear(_ animated: Bool) {
+//          super.viewWillAppear(animated)
+//            if title == "首页" {
+////                navigationController?.navigationBar.isHidden=true
+//            }
+//      }
+//      override func viewDidDisappear(_ animated: Bool) {
+//          super.viewDidDisappear(animated)
 //             if title == "首页" {
-//                      navigationController?.navigationBar.isHidden=false
+////                      navigationController?.navigationBar.isHidden=false
 //                  }
-      }
+//      }
 
 
 }

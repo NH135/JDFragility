@@ -1,20 +1,22 @@
 //
-//  JDManagementController.swift
+//  JDMemberDetailController.swift
 //  JDFragility
 //
-//  Created by apple on 2020/12/30.
-//（店长管理）
+//  Created by apple on 2021/1/8.
+//
 
 import UIKit
 
-class JDManagementController: JDBaseViewController {
-    var isNet:Bool?
+class JDMemberDetailController: JDBaseViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor=UIColor.purple
-        if isNet == true {
-            print("店长管理网络请求啦")
-        }
+
+        let erwIimage = UIImageView(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
+        erwIimage.backgroundColor=UIColor.red
+        erwIimage.k_createQrImage(url: "2131233232", placeholder: UIImage())
+        view.addSubview(erwIimage)
+        
     }
 
 

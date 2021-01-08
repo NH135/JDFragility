@@ -10,17 +10,31 @@ import UIKit
 class JDMemberController: JDBaseViewController, UITextFieldDelegate {
     private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day,.hour], from: Date())
     let searchT = UITextField()
-    
+    var isNet:Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUI()
-        
-        
-        
+        if isNet == true {
+            print("会员信息")
+            setData()
+        }
         
     }
     
+}
+extension JDMemberController{
+    
+    
+    func setData()  {
+        NHMBProgressHud.showLoadingHudView(message: "获取中···")
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQuerySourceList", params: nil) { (dic) in
+            print("来源：：：\(dic)")
+            NHMBProgressHud.hideHud()
+        } error: { (error) in
+            print(error)
+        }
+
+    }
 }
 extension JDMemberController{
     
@@ -216,7 +230,7 @@ extension JDMemberController{
 //         搜索会员
            
             searchT.resignFirstResponder()
-//            Timer .k_startTimer(<#T##self: NSObject##NSObject#>)
+ 
             NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                 NHMBProgressHud.hideHud()
@@ -225,6 +239,11 @@ extension JDMemberController{
             NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                 DLog(dic)
                 NHMBProgressHud.hideHud()
+                
+                let memberDetail = JDMemberDetailController()
+//                memberDetail.
+  
+                self.navigationController?.pushViewController(memberDetail, animated: true)
             } error: { (err) in
                 DLog(err)
             }

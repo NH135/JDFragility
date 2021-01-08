@@ -6,8 +6,7 @@
 //会员预约
 
 import UIKit
-import HandyJSON
-import SwiftyJSON
+import MJRefresh
 class JDReservedController: JDBaseViewController {
 
     @IBOutlet weak var storeNameL: UILabel!
@@ -28,7 +27,11 @@ class JDReservedController: JDBaseViewController {
         super.viewDidLoad()
         view.backgroundColor=UIColor.red
         setUI()
-        setData()
+//        setData()
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.setData()
+        })
+        tableView.mj_header?.beginRefreshing()
     }
 
 
@@ -40,11 +43,11 @@ extension JDReservedController{
         let params = ["cfdFendianId":cfdFendianId,"dfdDateTime":Date.init().k_toDateStr("yyyy-MM-dd")]
         
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserveView", params: params) { (reserve) in
-            print(type(of: reserve))
+         
+            self.tableView.mj_header?.endRefreshing()
 //            reserve = JDreserverModel.deserialize(from: reserve as? Dictionary)
 //            let arr = JsonUtil.jsonArrayToModel(reserve.array as! String, JDreserverModel.self) as? [JDreserverModel]
             guard let arr = reserve as? [[String : Any]] else { return }
-            
             self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
  
             self.tableView.reloadData()
