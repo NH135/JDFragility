@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showWindowOutLogin() {
         //删除所有
         //获取应用域的所有字符串
-        guard let appDomainString = Bundle.main.bundleIdentifier else { return  }
-        UserDefaults.standard.removePersistentDomain(forName: appDomainString)
+//        guard let appDomainString = Bundle.main.bundleIdentifier else { return  }
+//        UserDefaults.standard.removePersistentDomain(forName: appDomainString)
         self.window?.rootViewController=JDLoginController()
     }
     

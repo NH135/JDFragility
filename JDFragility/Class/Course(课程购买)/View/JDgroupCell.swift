@@ -13,24 +13,14 @@ class JDgroupCell: UITableViewCell {
      
     var friendData:JDGroupDetaileModel? {
         didSet {
-            self.textLabel?.text = friendData!.name!
+            self.textLabel?.text = friendData!.cfdCourseClass!
 
         }
     }
- 
-    
-    //            override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    //                super.init(style: style, reuseIdentifier: reuseIdentifier)
-    //
-    //            }
-    //
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-       textLabel?.text = "friendData!.name!"
+      
     }
 }
 
@@ -73,7 +63,7 @@ class HeaderView: UITableViewHeaderFooterView {
  
        var group:JDGroupModel? {
            didSet {
-            self.nameView?.setTitle(group!.name!, for: .normal)
+            self.nameView?.setTitle(group!.cfdCourseClass!, for: .normal)
            
                didMoveToSuperview()
            }
@@ -101,7 +91,7 @@ class HeaderView: UITableViewHeaderFooterView {
            
        }
     @objc func nameClick() {
-         self.group?.isOpen = !self.group!.isOpen!
+//         self.group?.isOpen = !self.group!.isOpen!
          // 刷新表格
         if ((self.delegate?.responds(to: Selector(("headerViewDidClickedNameView:")))) != nil) {
             self.delegate?.headerViewDidClickedNameView(headerView: self)

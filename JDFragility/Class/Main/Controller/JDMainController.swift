@@ -22,6 +22,12 @@ class JDMainController: JDBaseViewController {
     private var attendance:JDAttendanceController?
     private var management:JDManagementController?
     private var course:JDCourseController?
+    
+    var one :Bool = false
+    var two :Bool = false
+    var three :Bool = false
+    var four :Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
  
@@ -68,40 +74,27 @@ extension JDMainController {
         self.addChild(self.reserver ?? UIViewController())
         rightView.addSubview(self.reserver?.view ?? UIView())
 
-                 self.course = JDCourseController()
-        self.course?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-        self.course?.view.isHidden=true;
+      
      
-        self.addChild(self.course ?? UIViewController())
-        rightView.addSubview(self.course?.view ?? UIView())
+      
         
         
-        self.member = JDMemberController()
-        self.member?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-        self.member?.view.isHidden=true;
+  
        
-        self.addChild(self.member ?? UIViewController())
-        rightView.addSubview(self.member?.view ?? UIView())
+//        self.addChild(self.member ?? UIViewController())
+      
         
         
-        self.attendance = JDAttendanceController()
-        self.attendance?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-        self.attendance?.view.isHidden=true;
-        self.addChild(self.attendance ?? UIViewController())
-        rightView.addSubview(self.attendance?.view ?? UIView())
-        
-        
-        
-        self.management = JDManagementController()
-        self.management?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-        self.management?.view.isHidden=true;
-        self.addChild(self.management ?? UIViewController())
-        rightView.addSubview(self.management?.view ?? UIView())
-          
+       
+//        self.addChild(self.attendance ?? UIViewController())
+    
         
         
         
       
+//        self.addChild(self.management ?? UIViewController())
+        
+           
         
         func typeView(with type:NSInteger) {
             
@@ -112,20 +105,52 @@ extension JDMainController {
             self.management?.view.isHidden=true;
             switch type {
             case 1:
+              
                 self.reserver?.view.isHidden=false;
             
             case 2:
                 self.course?.view.isHidden=false;
-                self.course?.isNet = true
+                
+                if one == false {
+                    self.course = JDCourseController()
+                    self.course?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.course?.view.isHidden=true;
+                    self.addChild(self.course ?? UIViewController())
+                    rightView.addSubview(self.course?.view ?? UIView())
+                    one = true
+                }
+              
             case 3:
                 self.member?.view.isHidden=false;
-                self.member?.isNet = true
+                if two == false {
+                    self.member = JDMemberController()
+                    self.member?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.member?.view.isHidden=true;
+                    self.addChild(self.member ?? UIViewController())
+                    rightView.addSubview(self.member?.view ?? UIView())
+                    two = true
+                }
             case 4:
                 self.attendance?.view.isHidden=false;
-                self.attendance?.isNet = true
+                if three == false {
+                    self.attendance = JDAttendanceController()
+                    self.attendance?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.attendance?.view.isHidden=true;
+                    self.addChild(self.attendance ?? UIViewController())
+                    rightView.addSubview(self.attendance?.view ?? UIView())
+                    three = true
+                }
             default:
+                
                 self.management?.view.isHidden=false;
-                self.management?.isNet = true
+                if four == false {
+                    self.management = JDManagementController()
+                    self.management?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.management?.view.isHidden=true;
+                    self.addChild(self.management ?? UIViewController())
+                    rightView.addSubview(self.management?.view ?? UIView())
+                    four = true
+                }
             }
         }
         

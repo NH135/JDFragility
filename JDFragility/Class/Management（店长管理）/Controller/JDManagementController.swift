@@ -8,13 +8,13 @@
 import UIKit
 
 class JDManagementController: JDBaseViewController {
-    var isNet:Bool?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor=UIColor.purple
-        if isNet == true {
+       
             print("店长管理网络请求啦")
-        }
+       
     }
 
 

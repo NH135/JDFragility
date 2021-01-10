@@ -76,6 +76,11 @@
 		836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */; };
 		ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211C9425A18656000F4A96 /* JDGroupModel.swift */; };
 		ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211CB425A189AB000F4A96 /* JDgroupCell.swift */; };
+		EDD5BF7825A97A0C006E94D6 /* JDGoReserveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */; };
+		EDD5BF7925A97A0C006E94D6 /* JDGoReserveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD5BF7725A97A0C006E94D6 /* JDGoReserveController.xib */; };
+		EDD5BF9425A9D397006E94D6 /* lbl_AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD5BF9125A9D397006E94D6 /* lbl_AlertController.m */; };
+		EDD5BF9525A9D397006E94D6 /* JXTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD5BF9225A9D397006E94D6 /* JXTAlertView.m */; };
+		EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD5BF9925A9DCD2006E94D6 /* JDmemberModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +183,13 @@
 		CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.debug.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.debug.xcconfig"; sourceTree = "<group>"; };
 		ED211C9425A18656000F4A96 /* JDGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupModel.swift; sourceTree = "<group>"; };
 		ED211CB425A189AB000F4A96 /* JDgroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDgroupCell.swift; sourceTree = "<group>"; };
+		EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGoReserveController.swift; sourceTree = "<group>"; };
+		EDD5BF7725A97A0C006E94D6 /* JDGoReserveController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDGoReserveController.xib; sourceTree = "<group>"; };
+		EDD5BF9025A9D396006E94D6 /* JXTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXTAlertView.h; sourceTree = "<group>"; };
+		EDD5BF9125A9D397006E94D6 /* lbl_AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lbl_AlertController.m; sourceTree = "<group>"; };
+		EDD5BF9225A9D397006E94D6 /* JXTAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTAlertView.m; sourceTree = "<group>"; };
+		EDD5BF9325A9D397006E94D6 /* lbl_AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lbl_AlertController.h; sourceTree = "<group>"; };
+		EDD5BF9925A9DCD2006E94D6 /* JDmemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDmemberModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,8 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				184B881F259CB6FA00998BB1 /* Controller */,
-				184B8820259CB6FA00998BB1 /* Model */,
-				184B8821259CB6FA00998BB1 /* View */,
+				EDD5BF7D25A9CF33006E94D6 /* Model */,
+				EDD5BF7E25A9CF33006E94D6 /* View */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -268,20 +280,6 @@
 				1872BA4F25A7FFF800AAE052 /* JDMemberDetailController.xib */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		184B8820259CB6FA00998BB1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		184B8821259CB6FA00998BB1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		184B8822259CB70300998BB1 /* Course(课程购买) */ = {
@@ -336,6 +334,8 @@
 			children = (
 				184B882A259CB73F00998BB1 /* JDReservedController.swift */,
 				184B882B259CB73F00998BB1 /* JDReservedController.xib */,
+				EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */,
+				EDD5BF7725A97A0C006E94D6 /* JDGoReserveController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -483,6 +483,10 @@
 				18B7AA3D25A473FA00BE4C27 /* NSDate+ACAdd.h */,
 				18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */,
 				18B95D2625A595D3007B8AEE /* Foundation+Log.m */,
+				EDD5BF9025A9D396006E94D6 /* JXTAlertView.h */,
+				EDD5BF9225A9D397006E94D6 /* JXTAlertView.m */,
+				EDD5BF9325A9D397006E94D6 /* lbl_AlertController.h */,
+				EDD5BF9125A9D397006E94D6 /* lbl_AlertController.m */,
 				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
 				18FD034E2599D3E0007FC8C8 /* String+Extension.swift */,
 				18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */,
@@ -580,6 +584,21 @@
 				BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EDD5BF7D25A9CF33006E94D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDD5BF9925A9DCD2006E94D6 /* JDmemberModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EDD5BF7E25A9CF33006E94D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -704,6 +723,7 @@
 				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
 				18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */,
 				1872BA5125A7FFF900AAE052 /* JDMemberDetailController.xib in Resources */,
+				EDD5BF7925A97A0C006E94D6 /* JDGoReserveController.xib in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,6 +791,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD5BF9525A9D397006E94D6 /* JXTAlertView.m in Sources */,
 				18FD032E2599C3F0007FC8C8 /* JDBaseViewController.swift in Sources */,
 				18B7A9E525A3096700BE4C27 /* NSObject+Ext.swift in Sources */,
 				184B8844259CB79400998BB1 /* JDAttendanceController.swift in Sources */,
@@ -784,6 +805,7 @@
 				ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */,
 				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
 				1872B9B425A706FD00AAE052 /* JDCourseCell.swift in Sources */,
+				EDD5BF9425A9D397006E94D6 /* lbl_AlertController.m in Sources */,
 				184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */,
 				18B95D3A25A5BA18007B8AEE /* JDreserverModel.swift in Sources */,
 				18B7A9FE25A30B8200BE4C27 /* UITableView+Ext.swift in Sources */,
@@ -797,6 +819,7 @@
 				18B7A9E025A2FDFD00BE4C27 /* Timer+Ext.swift in Sources */,
 				1872BA5025A7FFF900AAE052 /* JDMemberDetailController.swift in Sources */,
 				18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */,
+				EDD5BF7825A97A0C006E94D6 /* JDGoReserveController.swift in Sources */,
 				18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */,
 				18B7A9DB25A2FDE100BE4C27 /* Number+Ext.swift in Sources */,
 				18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */,
@@ -814,6 +837,7 @@
 				18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */,
 				18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */,
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
+				EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
@@ -1009,7 +1033,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jingdian.JDFragility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/JDFragility/JDFragility/JDFragility-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JDFragility/JDFragility-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1033,7 +1057,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jingdian.JDFragility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Desktop/JDFragility/JDFragility/JDFragility-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JDFragility/JDFragility-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

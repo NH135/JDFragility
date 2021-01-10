@@ -6,36 +6,31 @@
 //
 
 import UIKit
+import KakaJSON
 
-class JDGroupModel: BaseModel {
+struct JDGroupModel: Convertible {
 
-    var name:String?
-    var friends: NSMutableArray?
+    var cfdCourseClass:String?
+    var list = [JDGroupDetaileModel]()
     // 这个变量是控制分组是否打开的，如果打开则设定展示cell的个数
     var isOpen:Bool? = false
     
-    
-//    init(withDic dic:NSDictionary) {
-//           super.init()
-//           self.setValuesForKeysWithDictionary(dic as! [String : AnyObject])
-//
-//           let  arrayFriend:NSMutableArray = NSMutableArray()
-//
-//           for friendDic in self.friends! {
-//               let friend :JDGroupDetaileModel = JDGroupDetaileModel.init(dic: friendDic as! NSDictionary)
-//               arrayFriend.addObject(friend)
-//           }
-//
-//           self.friends = arrayFriend
-//
-//       }
-       
+    var cfdCourseClassId:String?
+    var dfdCreateDate:String?
+    var ifdState:String?
+    var ifdOrder:String?
     
 }
 
-class JDGroupDetaileModel:BaseModel {
+struct JDGroupDetaileModel:Convertible {
     
-    var name:String?
-    var id:String?
-   
+    var cfdCreateUser:String?
+    var cfdRemarks:String?
+    var cfdImageUrl1:String?
+    var cfdImageUrl2:String?
+    var cfdCourseClassId:String?
+    var cfdCourseClass:String?
+    var dfdCreateDate:String?
+    var ifdState:String?
+    var ifdOrder:String?
 }

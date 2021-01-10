@@ -9,15 +9,18 @@ import UIKit
 
 class JDMemberController: JDBaseViewController, UITextFieldDelegate {
     private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day,.hour], from: Date())
-    let searchT = UITextField()
-    var isNet:Bool?
+    let searchT = UITextField() 
+    var sourceID :String?
+    
+    var sourceArr = [JDmemberModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        if isNet == true {
-            print("会员信息")
+//        if isNet == true {
+            
             setData()
-        }
+//        }
         
     }
     
@@ -26,10 +29,12 @@ extension JDMemberController{
     
     
     func setData()  {
-        NHMBProgressHud.showLoadingHudView(message: "获取中···")
+//        NHMBProgressHud.showLoadingHudView(message: "获取中···")
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQuerySourceList", params: nil) { (dic) in
-            print("来源：：：\(dic)")
-            NHMBProgressHud.hideHud()
+  
+//            NHMBProgressHud.hideHud()
+            guard let arr = dic as? [[String : Any]] else { return }
+            self.sourceArr  = arr.kj.modelArray(JDmemberModel.self)
         } error: { (error) in
             print(error)
         }
@@ -86,7 +91,7 @@ extension JDMemberController{
         teT.placeholder = "请输入手机号"
         
         teT.borderStyle = .roundedRect
-        teT.textColor=UIColor.white
+        teT.textColor=UIColor.black
         rightView.addSubview(teT)
         
         
@@ -98,7 +103,7 @@ extension JDMemberController{
         let nameT = UITextField(frame: CGRect(x: nameL.rightX, y:nameL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
         nameT.placeholder = "请输入姓名"
         nameT.borderStyle = .roundedRect
-        nameT.textColor=UIColor.white
+        nameT.textColor=UIColor.black
         rightView.addSubview(nameT)
         
         
@@ -108,24 +113,71 @@ extension JDMemberController{
         sourceL.textColor=UIColor.white
         rightView.addSubview(sourceL)
         
-        let sourceT = UITextField(frame: CGRect(x: sourceL.rightX, y:sourceL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        sourceT.placeholder = "请输入姓名"
-        sourceT.borderStyle = .roundedRect
-        sourceT.textColor=UIColor.white
-        rightView.addSubview(sourceT)
         
-        
+        let sourceB = UIButton(frame: CGRect(x: sourceL.rightX, y:sourceL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        sourceB.titleLabel?.font=UIFont.systemFont(ofSize: 16)
+        sourceB.setTitle("  请选择来源", for: .normal)
+        sourceB.backgroundColor=UIColor.white
+        sourceB.contentHorizontalAlignment = .left
+        sourceB.cornerRadius(radius: 4)
+        sourceB.setTitleColor(UIColor.lightGray, for: .normal)
+        rightView.addSubview(sourceB)
+  
+        sourceB.addAction { (btn:UIButton) in
+            var couserA = [String]()
+            
+            for model:JDmemberModel in self.sourceArr{
+ 
+                couserA.append(model.cfdSource!)
+            }
+            
+            
+            JSsignalert.show(withTitle: "来源", titles: couserA, selectStr: couserA[0]) { (str) in
+                sourceB.setTitle("  \(String(describing: str!))" , for: .normal)
+                sourceB.setTitleColor(UIColor.black, for: .normal)
+                for model:JDmemberModel in self.sourceArr{
+                    if str == model.cfdSource{
+                        self.sourceID = model.cfdSourceId
+                        break
+                    }
+                }
+            }
+        }
         
         let sexL = UILabel(frame: CGRect(x: 30, y:Int(sourceL.bottomY)+20, width: 50, height: textfH))
         sexL.text = "性别"
         sexL.textColor=UIColor.white
         rightView.addSubview(sexL)
+    
+        let sexB = UIButton(frame: CGRect(x: sexL.rightX, y:sexL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        sexB.setTitle("  请选择性别", for: .normal)
+        sexB.titleLabel?.font=UIFont.systemFont(ofSize: 16)
+        sexB.contentHorizontalAlignment = .left
+        sexB.backgroundColor=UIColor.white
+        sexB.cornerRadius(radius: 4)
+        sexB.setTitleColor(UIColor.lightGray, for: .normal)
+        rightView.addSubview(sexB)
         
-        let sexT = UITextField(frame: CGRect(x: sexL.rightX, y:sexL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        sexT.placeholder = "请输入姓名"
-        sexT.borderStyle = .roundedRect
-        sexT.textColor=UIColor.white
-        rightView.addSubview(sexT)
+        sexB.addAction { (btn :UIButton) in
+            let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+                   let action = UIAlertAction(title:"男" , style: .default) { (action)in
+                    sexB.setTitle("  男", for: .normal)
+                    sexB.setTitleColor(UIColor.black, for: .normal)
+                   }
+                   let action1 = UIAlertAction(title:"女" , style: .default) { (action)in
+                    sexB.setTitle("  女", for: .normal)
+                    sexB.setTitleColor(UIColor.black, for: .normal)
+                   }
+                   alert.addAction(action)
+                   alert.addAction(action1)
+                
+           //适配ipad需要加这两句
+                   alert.popoverPresentationController?.sourceView = sexL
+//            CGRect(x: sexB.centerX, y: sexB.bottomY, width: sexB.width, height:50)
+            alert.popoverPresentationController?.sourceRect = sexL.bounds
+
+            self.present(alert, animated:true, completion: nil)
+        }
         
         
         
@@ -134,19 +186,20 @@ extension JDMemberController{
         birthdayL.textColor=UIColor.white
         rightView.addSubview(birthdayL)
         
+       
         let birthdayB = UIButton(frame: CGRect(x: birthdayL.rightX, y:birthdayL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-//        birthdayT.placeholder = "请输入姓名"
-//        birthdayT.borderStyle = .roundedRect
-//        birthdayT.textColor=UIColor.white
-        birthdayB.setTitle("请选择生日", for: .normal)
+        birthdayB.setTitleColor(UIColor.black, for: .normal)
+        birthdayB.setTitle("  请选择生日", for: .normal)
+        birthdayB.titleLabel?.font=UIFont.systemFont(ofSize: 16)
         birthdayB.backgroundColor=UIColor.white
+        birthdayB.contentHorizontalAlignment = .left
         birthdayB.cornerRadius(radius: 4)
-        birthdayB.setTitleColor(UIColor.lightText, for: .normal)
+        birthdayB.setTitleColor(UIColor.lightGray, for: .normal)
         rightView.addSubview(birthdayB)
 
         birthdayB.addAction { (btn:UIButton) in
             let dataPicker = EWDatePickerViewController()
-            dataPicker.isYuyue = true
+//            dataPicker.isYuyue = true
             self.definesPresentationContext = true
             /// 回调显示方法
             dataPicker.backDate = {  date in
@@ -155,7 +208,8 @@ extension JDMemberController{
                 dateFormatter.dateFormat = "YYYY-MM-dd"
                 let dateString: String = dateFormatter.string(from: date)
 //                self?.label.text = dateString
-                
+                birthdayB.setTitle("  \(dateString)", for: .normal)
+                birthdayB.setTitleColor(UIColor.black, for: .normal)
             }
             dataPicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
             dataPicker.picker.reloadAllComponents()
@@ -164,7 +218,7 @@ extension JDMemberController{
                 dataPicker.picker.selectRow(0, inComponent: 0, animated: true)
                 dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
                 dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
-                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
+                 
  
             }
         }
@@ -176,9 +230,10 @@ extension JDMemberController{
         rightView.addSubview(heightL)
         
         let heightT = UITextField(frame: CGRect(x: heightL.rightX, y:heightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        heightT.placeholder = "体重"
+        heightT.placeholder = "请输入身高"
+        heightT.keyboardType = .phonePad
         heightT.borderStyle = .roundedRect
-        heightT.textColor=UIColor.white
+        heightT.textColor=UIColor.black
         rightView.addSubview(heightT)
         
         
@@ -189,9 +244,10 @@ extension JDMemberController{
         rightView.addSubview(weightL)
         
         let weightT = UITextField(frame: CGRect(x: weightL.rightX, y:weightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        weightT.placeholder = "请输入姓名"
+        weightT.placeholder = "请输入体重"
+        weightT.keyboardType = .phonePad
         weightT.borderStyle = .roundedRect
-        weightT.textColor=UIColor.white
+        weightT.textColor=UIColor.black
         rightView.addSubview(weightT)
         
         
@@ -202,7 +258,8 @@ extension JDMemberController{
         rightView.addSubview(overweightL)
         
         let overweightT = UITextField(frame: CGRect(x: overweightL.rightX, y:overweightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        overweightT.placeholder = "请输入姓名"
+        overweightT.placeholder = "请输入超重"
+        overweightT.keyboardType = .phonePad
         overweightT.borderStyle = .roundedRect
         overweightT.textColor=UIColor.white
         rightView.addSubview(overweightT)
@@ -215,7 +272,41 @@ extension JDMemberController{
         sendBtn.backgroundColor=UIColor.white
         rightView.addSubview(sendBtn)
         sendBtn.addAction { (btn:UIButton) in
-            print("提交")
+         
+            if teT.text?.length != 11{
+                NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
+                return
+            }else if nameT.text?.length == 0{
+                NHMBProgressHud.showErrorMessage(message: "请输入姓名")
+                return
+            }else if self.sourceID == nil{
+                NHMBProgressHud.showErrorMessage(message: "请选择来源")
+                return
+            }else if sexB.titleLabel?.text?.containsIgnoringCase(find: "请选择性别") ?? false {
+                NHMBProgressHud.showErrorMessage(message: "请选择性别")
+                return
+            }else if ((birthdayB.titleLabel?.text?.containsIgnoringCase(find: "请选择生日")) != nil){
+                NHMBProgressHud.showErrorMessage(message: "请选择生日")
+                return
+            }else if heightT.text?.length == 0{
+                NHMBProgressHud.showErrorMessage(message: "请输入身高")
+                return
+            }else if weightT.text?.length == 0{
+                NHMBProgressHud.showErrorMessage(message: "请输入体重")
+                return
+            } 
+            
+//            cfdIntroducer介绍人
+            let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":"3b4ee8ea-6180-438a-b1a7-d5835c8741fc","ifdHeight":heightT.text ?? "","ifdWeight":weightT.text ?? ""] as [String : Any]
+            
+            NetManager.ShareInstance.postWith(url: "api/IPad/AddMember", params: params) { (dic) in
+                print(dic)
+            } error: { (error) in
+                print(error)
+            }
+
+            
         }
         
         
@@ -237,11 +328,10 @@ extension JDMemberController{
             }
             let params = ["cfdMoTel": searchT.text ?? ""]
             NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
-                DLog(dic)
                 NHMBProgressHud.hideHud()
                 
                 let memberDetail = JDMemberDetailController()
-//                memberDetail.
+                memberDetail.detaileDic = dic as! [String : Any]
   
                 self.navigationController?.pushViewController(memberDetail, animated: true)
             } error: { (err) in

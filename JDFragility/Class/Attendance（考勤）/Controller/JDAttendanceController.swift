@@ -8,15 +8,14 @@
 import UIKit
 
 class JDAttendanceController: JDBaseViewController {
-
-    var isNet:Bool?
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor=UIColor.blue
-        if isNet == true {
+      
             print("考勤排班网络请求啦")
-        }
+     
     }
 
 

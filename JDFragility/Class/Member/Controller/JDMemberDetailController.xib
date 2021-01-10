@@ -11,7 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JDMemberDetailController" customModule="JDFragility" customModuleProvider="target">
             <connections>
+                <outlet property="chapingB" destination="veK-eu-Rlp" id="B7x-pp-m7Y"/>
+                <outlet property="chongzhiB" destination="nfb-SN-aL0" id="xZf-QM-gBT"/>
+                <outlet property="cishuBtn" destination="vqa-0Q-hHI" id="75L-Ji-ebu"/>
+                <outlet property="creatL" destination="Ifa-MR-2oe" id="KYK-GV-mQD"/>
+                <outlet property="dianpingB" destination="qAl-tV-0E0" id="zOu-ao-dLk"/>
+                <outlet property="iconImageV" destination="NnS-uA-Z60" id="MxX-yb-l5y"/>
+                <outlet property="jiangeB" destination="iUj-KC-UHd" id="w03-jY-OWI"/>
+                <outlet property="kedanB" destination="qpr-0f-caH" id="8cw-vl-HLE"/>
+                <outlet property="nameL" destination="qab-qq-amW" id="7uE-tD-yk4"/>
+                <outlet property="scoureL" destination="fZV-XH-3HE" id="WWM-Qj-B69"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xiaofeiB" destination="Gew-1v-kTH" id="Jt0-Ij-Cy6"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -168,7 +179,69 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-Eu-cGp">
                     <rect key="frame" x="10" y="220" width="665" height="243"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQ1-to-Emk">
+                            <rect key="frame" x="0.0" y="0.0" width="166.5" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="qau-4N-AWG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="课程购买记录">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled" title="课程购买记录">
+                                <color key="titleColor" systemColor="linkColor"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KF-0u-ngl">
+                            <rect key="frame" x="166.5" y="0.0" width="166" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="剩余课程">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled" title="剩余课程">
+                                <color key="titleColor" systemColor="linkColor"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQI-a8-Klb">
+                            <rect key="frame" x="332.5" y="0.0" width="166.5" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="预付金记录">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled" title="预付金记录">
+                                <color key="titleColor" systemColor="linkColor"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53D-pw-rOL">
+                            <rect key="frame" x="499" y="0.0" width="166" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="操作记录">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" systemColor="linkColor"/>
+                            </state>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="pQI-a8-Klb" firstAttribute="width" secondItem="pQ1-to-Emk" secondAttribute="width" id="1Sx-2y-tpq"/>
+                        <constraint firstItem="53D-pw-rOL" firstAttribute="height" secondItem="pQ1-to-Emk" secondAttribute="height" id="2V9-Xp-qbE"/>
+                        <constraint firstItem="pQI-a8-Klb" firstAttribute="top" secondItem="0KF-0u-ngl" secondAttribute="top" id="3ZS-2w-jqP"/>
+                        <constraint firstItem="0KF-0u-ngl" firstAttribute="top" secondItem="pQ1-to-Emk" secondAttribute="top" id="6KQ-bC-QY9"/>
+                        <constraint firstItem="0KF-0u-ngl" firstAttribute="leading" secondItem="pQ1-to-Emk" secondAttribute="trailing" id="7dL-Kx-lHC"/>
+                        <constraint firstAttribute="trailing" secondItem="53D-pw-rOL" secondAttribute="trailing" id="Dku-pb-jZ8"/>
+                        <constraint firstItem="53D-pw-rOL" firstAttribute="leading" secondItem="pQI-a8-Klb" secondAttribute="trailing" id="ZfN-PM-aKf"/>
+                        <constraint firstItem="53D-pw-rOL" firstAttribute="width" secondItem="pQ1-to-Emk" secondAttribute="width" id="c5w-9J-k2Z"/>
+                        <constraint firstItem="pQI-a8-Klb" firstAttribute="height" secondItem="pQ1-to-Emk" secondAttribute="height" id="d0B-Wu-JxT"/>
+                        <constraint firstItem="pQ1-to-Emk" firstAttribute="top" secondItem="rBE-Eu-cGp" secondAttribute="top" id="j23-Za-b3F"/>
+                        <constraint firstItem="0KF-0u-ngl" firstAttribute="height" secondItem="pQ1-to-Emk" secondAttribute="height" id="ovE-sS-Yia"/>
+                        <constraint firstItem="0KF-0u-ngl" firstAttribute="width" secondItem="pQ1-to-Emk" secondAttribute="width" id="rrS-Fb-wFR"/>
+                        <constraint firstItem="53D-pw-rOL" firstAttribute="top" secondItem="pQI-a8-Klb" secondAttribute="top" id="sHX-fS-ORR"/>
+                        <constraint firstItem="pQ1-to-Emk" firstAttribute="leading" secondItem="rBE-Eu-cGp" secondAttribute="leading" id="sap-bA-Snz"/>
+                        <constraint firstItem="pQI-a8-Klb" firstAttribute="leading" secondItem="0KF-0u-ngl" secondAttribute="trailing" id="teU-09-ZzF"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -187,6 +260,9 @@
         </view>
     </objects>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
