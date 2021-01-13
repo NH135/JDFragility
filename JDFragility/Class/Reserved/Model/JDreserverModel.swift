@@ -65,7 +65,18 @@ struct JDreserverModel: Convertible {
 
 struct ResListModel:Convertible {
     
-    var name:String?
-    var id:String?
+    var cfdMemberName:String?
+    var cfdEmployeeId:String?
+    
+    var cfdTimeStar:String?
+    var cfdCreateUser:String?
+    var dfdToTime:String?
+    var cfdTimeEnd:String?
+    var cfdReserveId:String?
+    var ifdRoomId:String?
+    var cfdMemberId:String?
+    var cfdFendianId:String?
+    var ifdState:String?
+    var dfdCreateDate:String?
    
 }

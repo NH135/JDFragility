@@ -10,7 +10,6 @@ import MJRefresh
 class JDReservedController: JDBaseViewController, reserveSendDelegate {
 
     @IBOutlet weak var storeNameL: UILabel!
-    
     @IBOutlet weak var allBtn: UIButton!
     @IBOutlet weak var daiquerenBtn: UIButton!
     @IBOutlet weak var querenBtn: UIButton!
@@ -18,16 +17,21 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var kaidianBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var chidaoBtn: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     var reserveArr = [JDreserverModel]()
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//    }
+//
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor=UIColor.red
+        storeNameL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "暂无")"
         setUI()
-//        setData()
+        tableView.tableFooterView = UIView()
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.setData()
         })

@@ -53,7 +53,8 @@ class JDMainController: JDBaseViewController {
         dianzhangBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
      
         yuyueBtn.isEnabled=false
-    
+        
+            iconB.setTitle(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "", for: .normal)
         clickAction()
         
     }

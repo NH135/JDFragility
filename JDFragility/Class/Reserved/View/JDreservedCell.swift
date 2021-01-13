@@ -54,12 +54,12 @@ class JDreservedCell: UITableViewCell {
 }
 extension JDreservedCell:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        reserveMode?.ResList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.k_dequeueReusableCell(cls: JDreserveItemCell.self, indexPath: indexPath)
-        
+        cell.resListModel = reserveMode?.ResList[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

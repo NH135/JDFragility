@@ -67,6 +67,8 @@ class JDLoginController: JDBaseViewController {
             userDefault.set(login?.cfdEmployeeName, forKey: "cfdEmployeeName")
             userDefault.set(login?.cfdFendianId, forKey: "cfdFendianId")
             userDefault.set(login?.cfdLevelID, forKey: "cfdLevelID")
+            userDefault.set(login?.cfdFendianName, forKey: "cfdFendianName")
+            
             Kwindow.window?.rootViewController = JDNavViewController(rootViewController: JDMainController())
         } error: { (err) in
             print(err)

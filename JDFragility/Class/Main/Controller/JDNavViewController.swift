@@ -13,7 +13,7 @@ class JDNavViewController:UINavigationController,UINavigationControllerDelegate 
          super.viewDidLoad()
          
          //navigationBar字体颜色设置
-         self.navigationBar.barTintColor = UIColor.red
+        self.navigationBar.barTintColor = UIColor.k_colorWith(hexStr: "429DFF")
          //navigationBar字体颜色设置
          self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
          
@@ -40,7 +40,7 @@ class JDNavViewController:UINavigationController,UINavigationControllerDelegate 
              viewController.hidesBottomBarWhenPushed=true
 
  //            //添加图片
- //                       viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "navigation_left_back")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(leftClick))
+                        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "left")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(leftClick))
  //                       //添加文字
  //                       viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: self, action: #selector(leftClick))
      
@@ -58,12 +58,12 @@ class JDNavViewController:UINavigationController,UINavigationControllerDelegate 
      
      
      
- //    //返回上一层控制器
- //    @objc func leftClick()  {
- //
- //        popViewController(animated: true)
- //
- //    }
+     //返回上一层控制器
+     @objc func leftClick()  {
+ 
+         popViewController(animated: true)
+ 
+     }
      
  }
 

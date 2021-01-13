@@ -7,11 +7,24 @@
 
 import UIKit
 import MJRefresh
-class JDCourseController: JDBaseViewController {
+class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
+    @IBOutlet weak var iconImageV: UIImageView!
+    @IBOutlet weak var memberTelL: UILabel!
+    @IBOutlet weak var memBerT: UITextField!
+    @IBOutlet weak var goShopingBtn: UIButton!
+    @IBOutlet weak var shopingView: UIView!
+    @IBOutlet weak var zheBg: UIView!
+    @IBOutlet weak var shopingTableView: UITableView!
+    @IBOutlet weak var jiesuanBtn: UIButton!
+    
+    
+    var cfdMemberId:String?
+    
     var groups = Array<JDGroupModel>()
+    var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
      
 //    lazy var groups: NSMutableArray? = {
@@ -34,21 +47,20 @@ class JDCourseController: JDBaseViewController {
 //    }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor=UIColor.yellow
-        self.leftTableView.delegate = self;
-        self.leftTableView.dataSource = self;
-//        self.leftTableView .register(JDgroupCell.classForCoder(), forCellReuseIdentifier: "groupsCellid")
-        self.leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
-        
-        self.rightTableView.delegate = self;
-        self.rightTableView.dataSource = self;
-        self.rightTableView.contentInset=UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
-//        self.leftTableView .register(JDgroupCell.classForCoder(), forCellReuseIdentifier: "groupsCellid")
-        self.rightTableView.k_registerCell(cls: JDCourseCell.classForCoder())
-         
+        memBerT.delegate = self
+  leftTableView.delegate = self;
+  leftTableView.dataSource = self;
+        leftTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+     leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
+      rightTableView.delegate = self;
+     rightTableView.dataSource = self;
+          rightTableView.emptyDataSetSource = self;
+        rightTableView.emptyDataSetDelegate = self
+      rightTableView.contentInset=UIEdgeInsets(top: -20, left: 0, bottom: 20, right: 0)
+        rightTableView.tableFooterView=UIView()
+     rightTableView.k_registerCell(cls: JDCourseCell.classForCoder())
             setData()
-  
+        setRightshopingView()
             rightTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
                 if self.classId == nil{
                     self.rightTableView.mj_header?.endRefreshing()
@@ -59,6 +71,8 @@ class JDCourseController: JDBaseViewController {
         }
         
         
+    
+
 
  
 }
@@ -71,7 +85,7 @@ extension JDCourseController{
             self.groups  = arr.kj.modelArray(JDGroupModel.self)
             self.leftTableView.reloadData()
  
-            self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+
         } error: { (err) in
             print(err)
         }
@@ -97,7 +111,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
 //            return group.isOpen == true ? group.list.count : 0
             return group.list.count
         }else{
-            return 4
+            return rightGroups.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,6 +125,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             return cell
         }else{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseCell.self, indexPath: indexPath)
+            cell.detaileModel = rightGroups[indexPath.row]
             return cell
         }
        
@@ -122,29 +137,49 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             return 110
         }
     }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        40
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == leftTableView {
         let header:HeaderView = HeaderView.headerViewWithTableView(tableView: tableView)
          header.delegate = self
+            header.backgroundColor=UIColor.k_colorWith(hexStr: "F7F8FA")
         header.group = groups[section]
          return header
      }
         return UIView()
     }
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        50
+    }
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == leftTableView {
+            guard (cfdMemberId != nil) else {
+                NHMBProgressHud.showSuccesshTips(message: "请先输入会员号码进行查询！")
+                memBerT.becomeFirstResponder()
+                return
+            }
+            
         let group  = groups[indexPath.section]
-        
         let groupDetail = group.list[indexPath.row]
-         
-    getCargarycfdCourseClassId(cfdCourseClassId: groupDetail.cfdCourseClassId!)
+            classId = group.cfdCourseClassId
+            rightTableView.mj_header?.beginRefreshing()
+        }else{
+            
+        }
     }
     
     func getCargarycfdCourseClassId(cfdCourseClassId:String)  {
         let params = ["cfdCourseClassId":cfdCourseClassId]
+      
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseList", params: params) { (dic) in
-            print(dic)
             self.rightTableView.mj_header?.endRefreshing()
+            guard let arr = dic as? [[String : Any]] else { return }
+            self.rightGroups = arr.kj.modelArray(JDGroupProjectModel.self)
+            self.rightTableView.reloadData()
+
         } error: { (error) in
             print(error)
         }
@@ -154,9 +189,72 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     func headerViewDidClickedNameView(headerView: HeaderView) {
         self.leftTableView.reloadData()
     }
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        UIImage(named: "zanwu")
+    }
+}
+extension JDCourseController{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == memBerT {
+//         搜索会员
+           
+            memBerT.resignFirstResponder()
+ 
+            NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                NHMBProgressHud.hideHud()
+            }
+            let params = ["cfdMoTel": memBerT.text ?? ""]
+            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
+                NHMBProgressHud.hideHud()
+               
+                guard let dics = dic as? [String : Any] else {
+                    textField.text = ""
+                    NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                    return
+                    
+                }
+//                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
+              
+                let member =  dics.kj.model(MemberDetailModel.self)
+                self.memberTelL.text = "\(member.cfdMemberName ?? "暂无")    \(member.cfdMoTel?.securePhoneStr ?? "暂无")"
+                self.cfdMemberId = member.cfdMemberId
+                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+            } error: { (err) in
+                DLog(err)
+            }
+
+            
+        }
+        
+        return true
+    }
     
 }
 
+
+extension JDCourseController{
+    
+    func setRightshopingView()  {
+    
+        zheBg.backgroundColor=UIColor.black.withAlphaComponent(0.7)
+        goShopingBtn.addAction { (_) in
+            UIView.animate(withDuration: 0.25) {
+                self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
+            }
+          
+            self.zheBg.isHidden=false
+        }
+        
+        zheBg.k_addTarget { (_) in
+            UIView.animate(withDuration: 0.25) {
+            self.shopingView.transform = CGAffineTransform.identity
+            self.zheBg.isHidden = true
+            }
+        }
+    }
+    
+}
 //open
 //public一般设置这个
 //internal 默认

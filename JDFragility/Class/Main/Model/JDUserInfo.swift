@@ -14,5 +14,5 @@ class JDUserInfo: BaseModel {
     var cfdFendianId :String?;
     var cfdLevelID :String?;
     var cfdRealName :String?;
-    
+    var cfdFendianName :String?;
 }

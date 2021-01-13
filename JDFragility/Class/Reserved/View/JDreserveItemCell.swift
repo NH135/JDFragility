@@ -17,5 +17,12 @@ class JDreserveItemCell: UICollectionViewCell {
         bgV.backgroundColor=UIColor.k_randomColor
         bgV.cornerRadius(radius: 20)
     }
-
+    
+    var resListModel : ResListModel? {
+        didSet{
+//            + "-" + resListModel?.dfdTime_End ?? ""
+            timeL.text =  "\(resListModel?.cfdTimeStar ?? "") - \(resListModel?.cfdTimeEnd ?? "")"
+            nameL.text = resListModel?.cfdMemberName
+        }
+    }
 }
