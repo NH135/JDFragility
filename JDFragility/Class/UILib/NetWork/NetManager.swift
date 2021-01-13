@@ -159,6 +159,7 @@ class NetManager: NSObject {
                                             
                                         }
                                     }else{
+                                        error(value["msg"] as AnyObject)
                                         debugPrint(value["msg"] ?? "网络错误")
                                     }
                                 }
@@ -196,7 +197,9 @@ class NetManager: NSObject {
                                             self.outLogin()
                                         }
                                     }else{
+                                        error(value["msg"] as AnyObject)
                                         debugPrint(value["msg"] ?? "网络错误")
+                                     
                                     }
                                     
                                     //缓存数据

@@ -70,7 +70,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfc-ZQ-E7b">
-                    <rect key="frame" x="531" y="60" width="300" height="390"/>
+                    <rect key="frame" x="831" y="60" width="300" height="390"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物车" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZt-aF-oy0">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
@@ -121,7 +121,7 @@
                 <constraint firstAttribute="bottom" secondItem="mpo-Om-dqF" secondAttribute="bottom" id="H2h-WK-nqN"/>
                 <constraint firstItem="AzI-Rz-A3l" firstAttribute="leading" secondItem="39V-7J-n3d" secondAttribute="trailing" id="HBR-sZ-acz"/>
                 <constraint firstItem="7xf-FR-yUm" firstAttribute="centerY" secondItem="d2p-84-CjP" secondAttribute="centerY" id="Ha6-Hu-r79"/>
-                <constraint firstAttribute="trailing" secondItem="tfc-ZQ-E7b" secondAttribute="trailing" id="RLl-Cs-nj3"/>
+                <constraint firstAttribute="trailing" secondItem="tfc-ZQ-E7b" secondAttribute="trailing" constant="-300" id="RLl-Cs-nj3"/>
                 <constraint firstItem="7fL-u7-ZQd" firstAttribute="centerY" secondItem="7xf-FR-yUm" secondAttribute="centerY" id="Yms-Oh-2yr"/>
                 <constraint firstItem="tfc-ZQ-E7b" firstAttribute="top" secondItem="AzI-Rz-A3l" secondAttribute="top" id="ZnM-6x-qkF"/>
                 <constraint firstItem="39V-7J-n3d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dbb-EW-rRN"/>

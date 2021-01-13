@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isLaterThan:(NSDate *)date;
 - (BOOL)isEarlierThanOrEqualTo:(NSDate *)date;
 - (BOOL)isLaterThanOrEqualTo:(NSDate *)date;
-
++(NSMutableArray *)latelyEightTimeCout:(NSInteger )count;
 @end
 
 NS_ASSUME_NONNULL_END

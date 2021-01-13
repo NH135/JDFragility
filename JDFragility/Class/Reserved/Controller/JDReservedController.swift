@@ -18,6 +18,9 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var chidaoBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeView: UIView!
+    var timeBtn = UIButton()
+    
     var reserveArr = [JDreserverModel]()
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +39,35 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
             self.setData()
         })
         tableView.mj_header?.beginRefreshing()
+        let width = ( view.width-280)/7
+        
+        let numbs = NSDate.latelyEightTimeCout(7)
+        for (index,item) in numbs.enumerated() {
+            let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: 0, width: width, height: timeView.height))
+            btn.setTitle(item as? String, for: .normal)
+            btn.setTitle(item as? String, for: .disabled)
+            btn.tag = index
+            btn.titleLabel?.numberOfLines = 2
+            btn.titleLabel?.textAlignment = .center
+            btn.setTitleColor(UIColor.black, for: .normal)
+            btn.setTitleColor(UIColor.blue, for: .disabled)
+            if btn.tag == 0 {
+                btn.isEnabled = false
+                timeBtn = btn
+            }
+            btn.addTarget(self, action: #selector(timeBtn(btn:)),  for: .touchUpInside)
+            timeView.addSubview(btn)
+
+            
+        }
+   
     }
-
-
+    
+    @objc func timeBtn(btn:UIButton) {
+        timeBtn.isEnabled = true
+        btn.isEnabled = false
+        timeBtn = btn
+    }
 
 }
 extension JDReservedController{

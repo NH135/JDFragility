@@ -15,4 +15,5 @@ target 'JDFragility' do
   pod 'Kingfisher'
   pod 'MBProgressHUD'
   pod 'KakaJSON'
+  pod 'MJExtension'
 end

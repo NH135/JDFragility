@@ -7,7 +7,10 @@
 
 import UIKit
 import MJRefresh
-class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+import KakaJSON
+class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, shopingcourseAddDelegate {
+   
+    
 
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
@@ -22,7 +25,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     
     
     var cfdMemberId:String?
-    
+    var shopingGroups = Array<JDGroupProjectModel>()
     var groups = Array<JDGroupModel>()
     var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
@@ -93,7 +96,8 @@ extension JDCourseController{
     }
 }
 
-extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderViewDelegate{
+extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderViewDelegate,courseAddDelegate{
+ 
       
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == leftTableView{
@@ -110,8 +114,10 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
          
 //            return group.isOpen == true ? group.list.count : 0
             return group.list.count
-        }else{
+        }else if tableView == rightTableView{
             return rightGroups.count
+        }else{
+            return shopingGroups.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,9 +129,15 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
  
             cell.friendData = group.list[indexPath.row]
             return cell
-        }else{
+        }else if tableView == rightTableView{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseCell.self, indexPath: indexPath)
             cell.detaileModel = rightGroups[indexPath.row]
+            cell.delegate = self
+            return cell
+        }else{
+            let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
+            cell.detaileModel = shopingGroups[indexPath.row]
+            cell.delegate = self
             return cell
         }
        
@@ -133,8 +145,10 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == leftTableView {
             return 35
-        }else{
+        }else if tableView == rightTableView {
             return 110
+        }else{
+            return 90
         }
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -181,7 +195,9 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             self.rightTableView.reloadData()
 
         } error: { (error) in
-            print(error)
+//            print(error)
+            self.rightTableView.mj_header?.endRefreshing()
+//            NHMBProgressHud.showErrorMessage(message: String(error) ?? "获取失败" )
         }
 
     }
@@ -191,6 +207,15 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     }
     func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
         UIImage(named: "zanwu")
+    }
+    
+    
+    func addjianCourse(type: Bool, model: JDGroupProjectModel) {
+        if type == true {
+         self.shopingGroups.append(model)
+        }else{
+            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
+        }
     }
 }
 extension JDCourseController{
@@ -238,7 +263,17 @@ extension JDCourseController{
     func setRightshopingView()  {
     
         zheBg.backgroundColor=UIColor.black.withAlphaComponent(0.7)
+        self.shopingTableView.delegate = self
+        self.shopingTableView.dataSource = self
+        self.shopingTableView.emptyDataSetSource = self
+        self.shopingTableView.emptyDataSetDelegate = self
+        self.shopingTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
+ 
+        
+//        购物车
         goShopingBtn.addAction { (_) in
+            self.shopingTableView.reloadData()
+            
             UIView.animate(withDuration: 0.25) {
                 self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
             }
@@ -252,7 +287,51 @@ extension JDCourseController{
             self.zheBg.isHidden = true
             }
         }
+        
+        
+        
+        jiesuanBtn.addAction { (_) in
+            let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+            let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
+            let aa : String = self.shopingGroups.kj.JSONString()
+
+
+            let params = ["cfdFendianId":cfdFendianId ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":self.cfdMemberId,"cfdCourseStr":aa]
+            
+          
+            NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddBusList", params: params as [String : Any]) { (dic) in
+                print(dic)
+                self.shopingGroups.removeAll()
+//                self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
+                let settlement = JDSettlementController()
+                settlement.cfdBusListGUID  = dic["cfdBusListGUID"] as! String
+                
+                self.navigationController?.pushViewController(settlement, animated: true)
+
+            } error: { (error) in
+                print(error )
+            }
+
+        }
     }
+    func shopingaddjianCourse(type: Bool, model: JDGroupProjectModel) {
+        if type == true {
+        self.shopingGroups.append(model)
+        }else{
+            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
+        }
+    }
+    func ObjectToJSONString(object: Any) -> String? {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: object, options: []);
+            let JSONString = String(data: data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue));
+            return JSONString;
+        } catch {
+            print(error);
+        }
+        return nil;
+    }
+
     
 }
 //open

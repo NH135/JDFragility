@@ -19,6 +19,10 @@
 		184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B884D259CB7CE00998BB1 /* JDManagementController.xib */; };
 		185286C825AC13460066A009 /* JDGroupProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185286C725AC13460066A009 /* JDGroupProjectModel.swift */; };
 		185287C625AD80570066A009 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 185287C425AD80570066A009 /* UIScrollView+EmptyDataSet.m */; };
+		1861AB3725AEAFE5006158AD /* JDCourseshopingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861AB3525AEAFE5006158AD /* JDCourseshopingCell.swift */; };
+		1861AB3825AEAFE5006158AD /* JDCourseshopingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1861AB3625AEAFE5006158AD /* JDCourseshopingCell.xib */; };
+		1861AB4D25AECFC9006158AD /* JDyuyueAuthorization Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861AB4B25AECFC9006158AD /* JDyuyueAuthorization Controller.swift */; };
+		1861AB4E25AECFC9006158AD /* JDyuyueAuthorization Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1861AB4C25AECFC9006158AD /* JDyuyueAuthorization Controller.xib */; };
 		1872B9B425A706FD00AAE052 /* JDCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872B9B225A706FD00AAE052 /* JDCourseCell.swift */; };
 		1872B9B525A706FD00AAE052 /* JDCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1872B9B325A706FD00AAE052 /* JDCourseCell.xib */; };
 		1872BA5025A7FFF900AAE052 /* JDMemberDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872BA4E25A7FFF800AAE052 /* JDMemberDetailController.swift */; };
@@ -118,6 +122,10 @@
 		185286C725AC13460066A009 /* JDGroupProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupProjectModel.swift; sourceTree = "<group>"; };
 		185287C425AD80570066A009 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		185287C525AD80570066A009 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		1861AB3525AEAFE5006158AD /* JDCourseshopingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseshopingCell.swift; sourceTree = "<group>"; };
+		1861AB3625AEAFE5006158AD /* JDCourseshopingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDCourseshopingCell.xib; sourceTree = "<group>"; };
+		1861AB4B25AECFC9006158AD /* JDyuyueAuthorization Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JDyuyueAuthorization Controller.swift"; sourceTree = "<group>"; };
+		1861AB4C25AECFC9006158AD /* JDyuyueAuthorization Controller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "JDyuyueAuthorization Controller.xib"; sourceTree = "<group>"; };
 		1872B9B225A706FD00AAE052 /* JDCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseCell.swift; sourceTree = "<group>"; };
 		1872B9B325A706FD00AAE052 /* JDCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDCourseCell.xib; sourceTree = "<group>"; };
 		1872BA4E25A7FFF800AAE052 /* JDMemberDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDMemberDetailController.swift; sourceTree = "<group>"; };
@@ -327,6 +335,8 @@
 				ED211CB425A189AB000F4A96 /* JDgroupCell.swift */,
 				1872B9B225A706FD00AAE052 /* JDCourseCell.swift */,
 				1872B9B325A706FD00AAE052 /* JDCourseCell.xib */,
+				1861AB3525AEAFE5006158AD /* JDCourseshopingCell.swift */,
+				1861AB3625AEAFE5006158AD /* JDCourseshopingCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,6 +358,8 @@
 				184B882B259CB73F00998BB1 /* JDReservedController.xib */,
 				EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */,
 				EDD5BF7725A97A0C006E94D6 /* JDGoReserveController.xib */,
+				1861AB4B25AECFC9006158AD /* JDyuyueAuthorization Controller.swift */,
+				1861AB4C25AECFC9006158AD /* JDyuyueAuthorization Controller.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -724,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FD02F12599A32B007FC8C8 /* LaunchScreen.storyboard in Resources */,
+				1861AB4E25AECFC9006158AD /* JDyuyueAuthorization Controller.xib in Resources */,
 				184B883E259CB77F00998BB1 /* JDMemberController.xib in Resources */,
 				184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */,
 				18FD03442599CF4B007FC8C8 /* JDLoginController.xib in Resources */,
@@ -740,6 +753,7 @@
 				EDD5BF7925A97A0C006E94D6 /* JDGoReserveController.xib in Resources */,
 				ED0D6D7225ADF12E0081C5B6 /* JDSettlementController.xib in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
+				1861AB3825AEAFE5006158AD /* JDCourseshopingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +844,7 @@
 				18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */,
 				18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */,
 				185286C825AC13460066A009 /* JDGroupProjectModel.swift in Sources */,
+				1861AB4D25AECFC9006158AD /* JDyuyueAuthorization Controller.swift in Sources */,
 				18B7A9EF25A30AAA00BE4C27 /* UIIImageView+Ext.swift in Sources */,
 				185287C625AD80570066A009 /* UIScrollView+EmptyDataSet.m in Sources */,
 				18B7A9F925A30B7300BE4C27 /* UIScrollView+Ext.swift in Sources */,
@@ -857,6 +872,7 @@
 				ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */,
 				EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
+				1861AB3725AEAFE5006158AD /* JDCourseshopingCell.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
 				18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */,

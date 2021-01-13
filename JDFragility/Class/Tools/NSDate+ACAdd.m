@@ -211,4 +211,56 @@
     return self.timeIntervalSince1970 >= date.timeIntervalSince1970;
 }
 
+//获取最近八天时间 数组
++(NSMutableArray *)latelyEightTimeCout:(NSInteger )count{
+    NSMutableArray *eightArr = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i ++) {
+        //从现在开始的24小时
+        NSTimeInterval secondsPerDay = -i * 24*60*60;
+        NSDate *curDate = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
+      
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"M月d日"];
+        NSString *dateStr = [dateFormatter stringFromDate:curDate];//几月几号
+        
+        NSDateFormatter *weekFormatter = [[NSDateFormatter alloc] init];
+        [weekFormatter setDateFormat:@"EEEE"];//星期几 @"HH:mm 'on' EEEE MMMM d"];
+        NSString *weekStr = [weekFormatter stringFromDate:curDate];
+        
+        //转换英文为中文
+        NSString *chinaStr = [self cTransformFromE:weekStr];
+       
+        //组合时间
+        NSString *strTime = [NSString stringWithFormat:@"周%@\n%@",chinaStr,dateStr];
+         [eightArr addObject:strTime];
+    }
+   
+    return eightArr;
+}
+
+
+//转换英文为中文
++(NSString *)cTransformFromE:(NSString *)theWeek{
+    NSString *chinaStr;
+    if(theWeek){
+        if([theWeek isEqualToString:@"Monday"]){
+            chinaStr = @"一";
+        }else if([theWeek isEqualToString:@"Tuesday"]){
+            chinaStr = @"二";
+        }else if([theWeek isEqualToString:@"Wednesday"]){
+            chinaStr = @"三";
+        }else if([theWeek isEqualToString:@"Thursday"]){
+            chinaStr = @"四";
+        }else if([theWeek isEqualToString:@"Friday"]){
+            chinaStr = @"五";
+        }else if([theWeek isEqualToString:@"Saturday"]){
+            chinaStr = @"六";
+        }else if([theWeek isEqualToString:@"Sunday"]){
+            chinaStr = @"日";
+        }
+    }
+    return chinaStr;
+}
+
 @end

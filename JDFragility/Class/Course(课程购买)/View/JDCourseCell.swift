@@ -7,8 +7,13 @@
 
 import UIKit
 
-class JDCourseCell: UITableViewCell {
 
+protocol courseAddDelegate:NSObjectProtocol {
+    func addjianCourse(type:Bool, model:JDGroupProjectModel)
+}
+
+class JDCourseCell: UITableViewCell {
+    weak var delegate:courseAddDelegate?
     @IBOutlet weak var addV: UIView!
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var IconImageV: UIImageView!
@@ -16,15 +21,21 @@ class JDCourseCell: UITableViewCell {
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var numberL: UILabel!
     @IBOutlet weak var jianBtn: UIButton!
-    var number:Int = 1
+    var number:Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         addV.k_setCornerRadius(17)
         addV.k_setBorder(color: UIColor.k_colorWith(hexStr: "429DFF"), width: 1)
         addBtn.addAction { (_) in
+             
             self.number += 1
             self.numberL.text = String(self.number)
+            if ((self.delegate?.responds(to: Selector(("addjianCourse:")))) != nil) {
+                self.delegate?.addjianCourse(type: true, model: self.detaileModel!)
+             }
+         
         }
       
         jianBtn.addAction { (_) in
@@ -35,6 +46,9 @@ class JDCourseCell: UITableViewCell {
             
             self.number -= 1
             self.numberL.text = String(self.number)
+            if ((self.delegate?.responds(to: Selector(("addjianCourse:")))) != nil) {
+                self.delegate?.addjianCourse(type: false, model: self.detaileModel!)
+             }
         }
         
     }
@@ -42,9 +56,11 @@ class JDCourseCell: UITableViewCell {
     
     var detaileModel:JDGroupProjectModel? {
         didSet {
+            self.number = 0
             nameL.text = detaileModel?.cfdCourseName
             priceL.text = "¥\(detaileModel?.ffdPrice ?? "暂无报价")"
             numberL.text = "0"
         }
     }
 }
+

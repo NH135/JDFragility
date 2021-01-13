@@ -18,7 +18,11 @@ class JDGoReserveController: JDBaseViewController {
 //       title="预约"
         
     }
-
+    @IBAction func goAuthorization(_ sender: UIButton) {
+        navigationController?.pushViewController(JDyuyueAuthorization_Controller(), animated: true)
+    }
+    
+    
  
 
 }

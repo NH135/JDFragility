@@ -20,6 +20,7 @@
                 <outlet property="querenBtn" destination="R67-Fg-iPp" id="D8B-aA-0ik"/>
                 <outlet property="storeNameL" destination="mfm-qc-efg" id="ybp-w4-qRe"/>
                 <outlet property="tableView" destination="CK3-rQ-But" id="Q3E-tq-kkS"/>
+                <outlet property="timeView" destination="KPK-d3-mEt" id="UDM-g3-dkQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

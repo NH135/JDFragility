@@ -5,6 +5,7 @@ PODS:
   - KakaJSON (1.1.2)
   - Kingfisher (4.10.1)
   - MBProgressHUD (1.2.0)
+  - MJExtension (3.2.2)
   - MJRefresh (3.5.0)
   - SnapKit (4.2.0)
   - SwiftyJSON (5.0.0)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - KakaJSON
   - Kingfisher
   - MBProgressHUD
+  - MJExtension
   - MJRefresh
   - SnapKit
   - SwiftyJSON
@@ -28,6 +30,7 @@ SPEC REPOS:
     - KakaJSON
     - Kingfisher
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - SnapKit
     - SwiftyJSON
@@ -39,10 +42,11 @@ SPEC CHECKSUMS:
   KakaJSON: cc5ff50a8c1cfbb09413db8496cb709a209e6137
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: cde1c1d8010a8826783487bcb5b1da90b84f27a3
+PODFILE CHECKSUM: 6ae4c207a1882076884adb4c55c9d6e80c52d863
 
 COCOAPODS: 1.10.0

@@ -32,10 +32,11 @@ struct JDGroupProjectModel: Convertible {
     
     var cfdCourseName:String?
 //    var ItemList = []
-    
+ 
     var ffdPrice:String?
     var dfdCreateDate:String?
     var cfdCourseClassId:String?
-    
-    
+    var cfdCourseId:String?
+    var ifdTerm:String?
+    var ifdSort:String? 
 }

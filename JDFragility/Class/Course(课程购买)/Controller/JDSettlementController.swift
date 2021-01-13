@@ -35,6 +35,7 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var contenView: UIView!
     
     @IBOutlet weak var contenL: UILabel!
+    var cfdBusListGUID : String?
     
     
     override func viewDidLoad() {
@@ -57,7 +58,14 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
 
 extension JDSettlementController{
     func setData()  {
-       
+        let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
+        
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusListBySave", params: params as [String : Any]) { (dic) in
+            print(dic)
+        } error: { (error) in
+            print(error)
+        }
+
     }
     
 }
