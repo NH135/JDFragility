@@ -76,6 +76,8 @@
 		18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */; };
 		18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041F259C769E007FC8C8 /* JDNavViewController.swift */; };
 		836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */; };
+		ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0D6D6F25ADF12E0081C5B6 /* JDSettlementController.swift */; };
+		ED0D6D7225ADF12E0081C5B6 /* JDSettlementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D6D7025ADF12E0081C5B6 /* JDSettlementController.xib */; };
 		ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211C9425A18656000F4A96 /* JDGroupModel.swift */; };
 		ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED211CB425A189AB000F4A96 /* JDgroupCell.swift */; };
 		EDD5BF7825A97A0C006E94D6 /* JDGoReserveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */; };
@@ -186,6 +188,8 @@
 		3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDFragility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.release.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.release.xcconfig"; sourceTree = "<group>"; };
 		CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.debug.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.debug.xcconfig"; sourceTree = "<group>"; };
+		ED0D6D6F25ADF12E0081C5B6 /* JDSettlementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDSettlementController.swift; sourceTree = "<group>"; };
+		ED0D6D7025ADF12E0081C5B6 /* JDSettlementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDSettlementController.xib; sourceTree = "<group>"; };
 		ED211C9425A18656000F4A96 /* JDGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupModel.swift; sourceTree = "<group>"; };
 		ED211CB425A189AB000F4A96 /* JDgroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDgroupCell.swift; sourceTree = "<group>"; };
 		EDD5BF7625A97A0C006E94D6 /* JDGoReserveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGoReserveController.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 			children = (
 				184B8834259CB76300998BB1 /* JDCourseController.swift */,
 				184B8835259CB76300998BB1 /* JDCourseController.xib */,
+				ED0D6D6F25ADF12E0081C5B6 /* JDSettlementController.swift */,
+				ED0D6D7025ADF12E0081C5B6 /* JDSettlementController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */,
 				1872BA5125A7FFF900AAE052 /* JDMemberDetailController.xib in Resources */,
 				EDD5BF7925A97A0C006E94D6 /* JDGoReserveController.xib in Resources */,
+				ED0D6D7225ADF12E0081C5B6 /* JDSettlementController.xib in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,6 +854,7 @@
 				18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */,
 				18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */,
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
+				ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */,
 				EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
