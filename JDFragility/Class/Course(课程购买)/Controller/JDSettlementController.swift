@@ -63,36 +63,17 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
 
 extension JDSettlementController{
     func setData()  {
-        NetManager.ShareInstance.getWith(url:"api/IPad/IPadQueryPayMode", params: nil) { (dic) in
-            print("支付方式：\(dic)")
+        NetManager.ShareInstance.getWith(url:"api/IPad/IPadQueryPayMode", params: nil) { (arr) in
+            print("支付方式：\(arr)")
+            guard let payArr = arr as? [[String:Any]] else{return}
+            let payList =  payArr.kj.modelArray(payModel.self)
+//            self.addPayType
+            self.addPayType(list: payList)
         } error: { (error) in
             
         }
 
-        func addPayType(list:[String]) {
-            let width = 400
-            let height = 50
-            for (index ,item) in list.enumerated() {
-                let vv = UIView(frame: CGRect(x:20 + index % 2 * width, y: index / 2 * (height+10), width: width, height: height))
-                 payView.addSubview(vv)
-                let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-                btn.setTitle(item, for: .normal)
-                btn.setTitleColor(UIColor.black, for: .normal)
-                btn.isUserInteractionEnabled = false
-                vv.addSubview(btn)
-                
-                let payType = UITextField(frame: CGRect(x: 150, y: 0, width: 250, height: 50))
-                payType.placeholder = "请输入\(item)金额"
-                payType.borderStyle = .roundedRect
-                vv.addSubview(payType)
-                
-                
-                
-                
-            }
-        
-        }
-        
+      
         let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusListBySave", params: params as [String : Any]) { (dic) in
             print(dic)
@@ -102,13 +83,36 @@ extension JDSettlementController{
             self.jiesuanModel = dict.kj.model(JDjiesuanModel.self)
 
             self.ewmL.image = self.jiesuanModel?.CodeMsg.cfdCodeMsgId?.k_createQRCode()
-            self.fuML.text = "应付：\(self.jiesuanModel?.BusList.cfdBusMoney ?? "0")"
+            self.fuML.text = "应付：\(self.jiesuanModel?.BusList.ffdBusMoney ?? "0")"
 
             self.rightTableView.reloadData()
         } error: { (error) in
             print(error)
         }
 
+    }
+    func addPayType(list:[payModel]) {
+        let width = 400
+        let height = 50
+        for (index ,item) in list.enumerated() {
+            let vv = UIView(frame: CGRect(x:20 + index % 2 * width, y: index / 2 * (height+10), width: width, height: height))
+             payView.addSubview(vv)
+            let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
+            btn.setTitle(item.cfdPayMode, for: .normal)
+            btn.setTitleColor(UIColor.black, for: .normal)
+            btn.isUserInteractionEnabled = false
+            vv.addSubview(btn)
+            
+            let payType = UITextField(frame: CGRect(x: 150, y: 0, width: 250, height: 50))
+            payType.placeholder = "请输入\(item.cfdPayMode ?? "")金额"
+            payType.borderStyle = .roundedRect
+            vv.addSubview(payType)
+            
+            
+            
+            
+        }
+    
     }
     
 }

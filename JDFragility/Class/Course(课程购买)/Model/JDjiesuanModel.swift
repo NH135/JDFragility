@@ -36,7 +36,7 @@ struct JDjiesuanModel: Convertible {
     var MCList = [MCListModel]()
 }
 struct BusListModel: Convertible {
-    var cfdBusMoney : String?
+    var ffdBusMoney : String?
     
 //    cfdBusListGUID = d7f9402f-f176-47c9-94d2-a5d9be9c0563;
 //    cfdEmployeeId = 146ad23c-7d78-4152-be45-c626ccbd36cd;
@@ -51,7 +51,7 @@ struct BusListModel: Convertible {
 //    cfdFendianId = 29b7d770-08a5-43d5-a1e6-c664543f8422
 }
 struct MCListModel: Convertible {
-    var ffdBusMoney : String?
+    var ffdNowPrice : String?
     var cfdCourseName : String?
     //    cfdCreateUser = 罗俊杰;
     //    ifdTerm = 1;
