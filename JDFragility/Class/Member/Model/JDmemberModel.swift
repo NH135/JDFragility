@@ -40,6 +40,7 @@ struct MemberDetailModel : Convertible {
     var cfdFendianName:String?
     var dfdBirthday:String?
     var cfdMemberId:String?
+    var ffdBalance:String?
     //    cfdMemberName = 李文龙;
 //    cfdEmployeeName = <null>;
 //    cfdPhone = 18627912021;

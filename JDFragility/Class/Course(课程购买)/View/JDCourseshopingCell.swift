@@ -58,4 +58,11 @@ class JDCourseshopingCell: UITableViewCell {
             numberL.text = "0"
         }
     }
+    var jiesuanModel:MCListModel? {
+        didSet {
+            nameL.text = jiesuanModel?.cfdCourseName
+            detaileL.text = "¥\(jiesuanModel?.ffdBusMoney ?? "暂无报价")"
+            numberL.text = "0"
+        }
+    }
 }

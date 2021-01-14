@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    private func setWindow() {
 //        sleep(2) //可以延长启动图显示时间，只能选择整数吗？？
        let window = UIWindow(frame: UIScreen.main.bounds)
-        let userDefault = UserDefaults.standard
-        let stringValue = userDefault.string(forKey: "cfdRealName")
+ 
+        let stringValue = UserDefaults.standard.string(forKey: "cfdRealName")
         if (stringValue != nil) {
             window.rootViewController=JDNavViewController(rootViewController: JDMainController())
         }else{
@@ -34,9 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showWindowOutLogin() {
         //删除所有
         //获取应用域的所有字符串
-//        guard let appDomainString = Bundle.main.bundleIdentifier else { return  }
-//        UserDefaults.standard.removePersistentDomain(forName: appDomainString)
-        self.window?.rootViewController=JDLoginController()
+        guard let appDomainString = Bundle.main.bundleIdentifier else {
+            UserDefaults.standard.set(nil, forKey: "cfdRealName")
+            self.window?.rootViewController = JDLoginController()
+            return
+        }
+        UserDefaults.standard.removePersistentDomain(forName: appDomainString)
+        self.window?.rootViewController = JDLoginController()
     }
     
     

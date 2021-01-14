@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824977C25B02E5500858644 /* JDjiesuanModel.swift */; };
 		184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B882A259CB73F00998BB1 /* JDReservedController.swift */; };
 		184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B882B259CB73F00998BB1 /* JDReservedController.xib */; };
 		184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B8834259CB76300998BB1 /* JDCourseController.swift */; };
@@ -109,6 +110,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1824977C25B02E5500858644 /* JDjiesuanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDjiesuanModel.swift; sourceTree = "<group>"; };
 		184B882A259CB73F00998BB1 /* JDReservedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDReservedController.swift; sourceTree = "<group>"; };
 		184B882B259CB73F00998BB1 /* JDReservedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDReservedController.xib; sourceTree = "<group>"; };
 		184B8834259CB76300998BB1 /* JDCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			children = (
 				ED211C9425A18656000F4A96 /* JDGroupModel.swift */,
 				185286C725AC13460066A009 /* JDGroupProjectModel.swift */,
+				1824977C25B02E5500858644 /* JDjiesuanModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				18FD03542599D3E0007FC8C8 /* UIImage-Extension.swift in Sources */,
 				ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */,
 				EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */,
+				1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,
 				1861AB3725AEAFE5006158AD /* JDCourseshopingCell.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,

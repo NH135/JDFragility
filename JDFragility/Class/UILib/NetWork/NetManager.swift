@@ -153,7 +153,7 @@ class NetManager: NSObject {
                                         if code as! Int  == 0 {
                                             success(value["data"] as AnyObject)
                                         }else{
-                                            self.outLogin()
+                                            self.outLogin(code:code as! Int, message: value["msg"] as! String )
                                             
                                             debugPrint(value["msg"] ?? "网络错误")
                                             
@@ -193,8 +193,9 @@ class NetManager: NSObject {
                                         if code as! Int  == 0 {
                                             success(value["data"] as AnyObject)
                                         }else{
+                                            self.outLogin(code:code as! Int, message: value["msg"] as! String )
                                             debugPrint(value["msg"] ?? "网络错误")
-                                            self.outLogin()
+                                         
                                         }
                                     }else{
                                         error(value["msg"] as AnyObject)
@@ -212,8 +213,13 @@ class NetManager: NSObject {
         }
     }
     
-   private func outLogin() {
-    (UIApplication.shared.delegate as! AppDelegate).showWindowOutLogin()
+    private func outLogin(code:Int ,message:String) {
+        if code == 300 || code == 301 || code == 302 {
+            (UIApplication.shared.delegate as! AppDelegate).showWindowOutLogin()
+        }else{
+            NHMBProgressHud.showErrorMessage(message: message as String)
+        }
+
 
     }
 }

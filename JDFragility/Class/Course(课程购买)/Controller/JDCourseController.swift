@@ -8,7 +8,7 @@
 import UIKit
 import MJRefresh
 import KakaJSON
-class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, shopingcourseAddDelegate {
+class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
    
     
 
@@ -23,6 +23,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     @IBOutlet weak var shopingTableView: UITableView!
     @IBOutlet weak var jiesuanBtn: UIButton!
     
+    var memberModel = MemberDetailModel()
     
     var cfdMemberId:String?
     var shopingGroups = Array<JDGroupProjectModel>()
@@ -51,8 +52,11 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     override func viewDidLoad() {
         super.viewDidLoad()
         memBerT.delegate = self
-  leftTableView.delegate = self;
-  leftTableView.dataSource = self;
+        leftTableView.delegate = self;
+        leftTableView.dataSource = self;
+        leftTableView.emptyDataSetSource = self;
+        leftTableView.emptyDataSetDelegate = self
+        leftTableView.tableFooterView=UIView()
         leftTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
      leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
       rightTableView.delegate = self;
@@ -83,7 +87,9 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
 extension JDCourseController{
     
     func setData()  {
+        NHMBProgressHud.showLoadingHudView(message: "加载中···")
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseClassList", params: nil) { (dic) in
+            NHMBProgressHud.hideHud()
             guard let arr = dic as? [[String : Any]] else { return }
             self.groups  = arr.kj.modelArray(JDGroupModel.self)
             self.leftTableView.reloadData()
@@ -91,6 +97,8 @@ extension JDCourseController{
 
         } error: { (err) in
             print(err)
+            NHMBProgressHud.hideHud()
+            NHMBProgressHud.showErrorMessage(message: "加载失败")
         }
 
     }
@@ -131,13 +139,15 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             return cell
         }else if tableView == rightTableView{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseCell.self, indexPath: indexPath)
+            cell.selectionStyle = .none;
             cell.detaileModel = rightGroups[indexPath.row]
             cell.delegate = self
             return cell
         }else{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
             cell.detaileModel = shopingGroups[indexPath.row]
-            cell.delegate = self
+//            cell.delegate = self
+            cell.selectionStyle = .none;
             return cell
         }
        
@@ -241,9 +251,9 @@ extension JDCourseController{
                 }
 //                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
               
-                let member =  dics.kj.model(MemberDetailModel.self)
-                self.memberTelL.text = "\(member.cfdMemberName ?? "暂无")    \(member.cfdMoTel?.securePhoneStr ?? "暂无")"
-                self.cfdMemberId = member.cfdMemberId
+                self.memberModel =  dics.kj.model(MemberDetailModel.self)
+                self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
+                self.cfdMemberId = self.memberModel.cfdMemberId
                 self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
             } error: { (err) in
                 DLog(err)
@@ -273,7 +283,6 @@ extension JDCourseController{
 //        购物车
         goShopingBtn.addAction { (_) in
             self.shopingTableView.reloadData()
-            
             UIView.animate(withDuration: 0.25) {
                 self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
             }
@@ -291,6 +300,18 @@ extension JDCourseController{
         
         
         jiesuanBtn.addAction { (_) in
+//            let settlement = JDSettlementController()
+//            settlement.cfdBusListGUID  = (dic["cfdBusListGUID"] as! String)
+//            settlement.memberModel = self.memberModel;
+//            self.navigationController?.pushViewController(settlement, animated: true)
+//
+//            retu
+//
+//
+            guard self.shopingGroups.count != 0  else {
+                NHMBProgressHud.showErrorMessage(message: "请购买项目")
+                return }
+            
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
             let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
             let aa : String = self.shopingGroups.kj.JSONString()
@@ -302,10 +323,11 @@ extension JDCourseController{
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddBusList", params: params as [String : Any]) { (dic) in
                 print(dic)
                 self.shopingGroups.removeAll()
-//                self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
+                self.shopingTableView.reloadData()
+                self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
                 let settlement = JDSettlementController()
-                settlement.cfdBusListGUID  = dic["cfdBusListGUID"] as! String
-                
+                settlement.cfdBusListGUID  = (dic["cfdBusListGUID"] as! String)
+                settlement.memberModel = self.memberModel;
                 self.navigationController?.pushViewController(settlement, animated: true)
 
             } error: { (error) in
@@ -314,13 +336,7 @@ extension JDCourseController{
 
         }
     }
-    func shopingaddjianCourse(type: Bool, model: JDGroupProjectModel) {
-        if type == true {
-        self.shopingGroups.append(model)
-        }else{
-            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
-        }
-    }
+ 
     func ObjectToJSONString(object: Any) -> String? {
         do {
             let data = try JSONSerialization.data(withJSONObject: object, options: []);
