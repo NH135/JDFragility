@@ -87,6 +87,7 @@ struct payModel: Convertible {
     var cfdPayMode : String?
     var cfdPayModeId : String?
     var ffdIncome : String?
+    var ifdId : Int?
 //    cfdBusListGUID = d7f9402f-f176-47c9-94d2-a5d9be9c0563;
 //    dfdCreateDate = 2021-01-14 15:45:36;
 //    ifdType = 1;

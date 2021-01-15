@@ -300,13 +300,12 @@ extension JDCourseController{
         
         
         jiesuanBtn.addAction { (_) in
-//            let settlement = JDSettlementController()
-//            settlement.cfdBusListGUID  = (dic["cfdBusListGUID"] as! String)
-//            settlement.memberModel = self.memberModel;
-//            self.navigationController?.pushViewController(settlement, animated: true)
-//
-//            retu
-//
+            let settlement = JDSettlementController()
+          
+            self.navigationController?.pushViewController(settlement, animated: true)
+
+            return
+
 //
             guard self.shopingGroups.count != 0  else {
                 NHMBProgressHud.showErrorMessage(message: "请购买项目")
