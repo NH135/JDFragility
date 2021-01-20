@@ -45,8 +45,6 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
         super.viewDidLoad()
         
         view.backgroundColor=UIColor.k_colorWith(hexStr: "f8f8f8")
-        
-        
         setletfUI()
         setrightUI()
         setcontenUI()
@@ -57,16 +55,13 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
         contenView.isHidden = true
     }
     
-    
-    
-    
-    
 }
 
 extension JDSettlementController:UITextFieldDelegate{
     func setData()  {
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         NetManager.ShareInstance.getWith(url:"api/IPad/IPadQueryPayMode", params: nil) { (arr) in
-            print("支付方式：\(arr)")
+            NHMBProgressHud.hideHud()
             guard let payArr = arr as? [[String:Any]] else{return}
             var payList =  payArr.kj.modelArray(payModel.self)
             var yue = payModel()
@@ -74,25 +69,27 @@ extension JDSettlementController:UITextFieldDelegate{
             payList.append(yue)
             self.addPayType(list: payList)
         } error: { (error) in
-            
+            NHMBProgressHud.hideHud()
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
         
 //
-//        let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
-//        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusListBySave", params: params as [String : Any]) { (dic) in
-//
-//            guard let dict = dic as? [String : Any] else{
-//                return
-//            }
-//            self.jiesuanModel = dict.kj.model(JDjiesuanModel.self)
-//
-//            self.ewmL.image = self.jiesuanModel?.CodeMsg.cfdCodeMsgId?.k_createQRCode()
-//            self.fuML.text = "应付：\(self.jiesuanModel?.BusList.ffdBusMoney ?? "0")"
-//
-//            self.rightTableView.reloadData()
-//        } error: { (error) in
-//            print(error)
-//        }
+        let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusListBySave", params: params as [String : Any]) { (dic) in
+
+            guard let dict = dic as? [String : Any] else{
+                return
+            }
+            self.jiesuanModel = dict.kj.model(JDjiesuanModel.self)
+
+            self.ewmL.image = self.jiesuanModel?.CodeMsg.cfdCodeMsgId?.k_createQRCode()
+            self.fuML.text = "应付：\(self.jiesuanModel?.BusList.ffdBusMoney ?? "0")"
+
+            self.rightTableView.reloadData()
+        } error: { (error) in
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+            NHMBProgressHud.hideHud()
+        }
         //        获取优惠卷
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryTokenList", params: ["cfdMemberId":memberModel?.cfdMemberId ?? "" ] as [String : Any]) { (dic) in
             print("优惠卷\(dic)")
@@ -100,11 +97,9 @@ extension JDSettlementController:UITextFieldDelegate{
             //                return
             //            }
             //            self.jiesuanModel = dict.kj.modelArray(JDjiesuanModel.self)
-            
-            
             //            self.rightTableView.reloadData()
         } error: { (error) in
-            print(error)
+//            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
     }
     func addPayType(list:[payModel]) {
@@ -134,7 +129,23 @@ extension JDSettlementController:UITextFieldDelegate{
         }
     }
         func textFieldDidEndEditing(_ textField: UITextField) {
-            print(textField.text ?? "")
+            allMoeny = 0
+            for (_,textF) in textArr.enumerated() {
+                
+                if textF.text?.k_isNumber == true {
+                    allMoeny  = allMoeny + Int(textF.text ?? "0")!
+                }
+            }
+            shifuML.text = "实付金额：\(allMoeny)"
+            shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "实付金额：")
+            
+            if allMoeny >= Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+                self.wanB.isEnabled = false
+                self.yuB.isEnabled = true
+            }
+            if allMoeny > Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+                NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+            }
         }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -146,72 +157,17 @@ extension JDSettlementController:UITextFieldDelegate{
         return true
     }
 
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//         if textField.placeholder?.containsIgnoringCase(find: "支付宝") == true  {
-//            if textField.text?.k_isEmpty == false{
-//                payAllArr.append("\(textField.placeholder ?? ""): \(textField.text ?? "")")
-//            }else{
-//                for (index,item) in payAllArr.enumerated() {
-//                    if item.containsIgnoringCase(find: "支付宝") == true {
-//                        payAllArr.remove(at: index)
-//                    }
-//                }
-//            }
-//        }else  if textField.placeholder?.containsIgnoringCase(find: "银联") == true  {
-//            if textField.text?.k_isEmpty == false{
-//                payAllArr.append("\(textField.placeholder ?? ""): \(textField.text ?? "")")
-//            }else{
-//                for (index,item) in payAllArr.enumerated() {
-//                    if item.containsIgnoringCase(find: "银联") == true {
-//                        payAllArr.remove(at: index)
-//                    }
-//                }
-//            }
-//        }else  if textField.placeholder?.containsIgnoringCase(find: "微信") == true  {
-//            if textField.text?.k_isEmpty == false{
-//                payAllArr.append("\(textField.placeholder ?? ""): \(textField.text ?? "")")
-//            }else{
-//                for (index,item) in payAllArr.enumerated() {
-//                    if item.containsIgnoringCase(find: "微信") == true {
-//                        payAllArr.remove(at: index)
-//                    }
-//                }
-//            }
-//        }else  if textField.placeholder?.containsIgnoringCase(find: "现金") == true  {
-//            if textField.text?.k_isEmpty == false{
-//                payAllArr.append("\(textField.placeholder ?? ""): \(textField.text ?? "")")
-//            }else{
-//                for (index,item) in payAllArr.enumerated() {
-//                    if item.containsIgnoringCase(find: "现金") == true {
-//                        payAllArr.remove(at: index)
-//                    }
-//                }
-//            }
-//        }else  if textField.placeholder?.containsIgnoringCase(find: "余额") == true  {
-//            if textField.text?.k_isEmpty == false{
-//                payAllArr.append("\(textField.placeholder ?? ""): \(textField.text ?? "")")
-//            }else{
-//                for (index,item) in payAllArr.enumerated() {
-//                    if item.containsIgnoringCase(find: "余额") == true {
-//                        payAllArr.remove(at: index)
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 }
 
 extension JDSettlementController{
     func setletfUI()  {
-        
         nameL.text = memberModel?.cfdMemberName
         telL.text = memberModel?.cfdMoTel
         lastML.text = "当前余额：\(memberModel?.ffdBalance ?? "0")"
-        
+        yhjB.cornerRadius(radius: 6)
         let cfdFendianName = UserDefaults.standard.string(forKey: "cfdFendianName") ?? ""
         mdL.text = "购买门店：\(cfdFendianName)"
-        
         wanB.addAction { (btn:UIButton) in
             btn.isEnabled=false
             self.yuB.isEnabled = true
@@ -231,27 +187,64 @@ extension JDSettlementController{
         rightTableView.delegate = self
         rightTableView.dataSource = self
         rightTableView.k_registerCell(cls: JDCourseshopingCell.self)
-        
+        shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "实付金额：")
         //        确定付款
         
         
-        sureB.addAction { (_) in
-//            var moneyArr = [payModel]()
-//            var pmodel = payModel()
-//            pmodel.ifdId = "1";
-//            pmodel.ffdIncome = "1000"
-//            moneyArr.append(pmodel)
+        sureB.addAction { [self] (_) in
+            if self.wanB.isEnabled == false{
+                if allMoeny < Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+//                    self.wanB.isEnabled = false
+//                    self.yuB.isEnabled = true
+                    NHMBProgressHud.showErrorMessage(message: "您选择了完款，但您输入的金额小于应付金额")
+                    return
+                }
+                if allMoeny > Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+                    NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+                    return
+                }
+            }
+            if self.yuB.isEnabled == false{
+            if allMoeny == 0{
+                NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
+                return
+            }
+            }
+            var moneyArr = [payModel]()
+            var ffdMemberBalance : String?
+            
+            for (_, item) in self.textArr.enumerated(){
+                if item.tag == 99 {
+                    ffdMemberBalance = item.text ?? ""
+                }else{
+                    if item.text?.isEmpty == false {
+                        var pmodel = payModel()
+                        pmodel.ifdId = item.tag;
+                        pmodel.ffdIncome = item.text ?? ""
+                        moneyArr.append(pmodel)
+                    }
+                
+                }
+            }
 //
-//            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":"34000","cfdTokeStr":"","ifdType":"true","cfdCaiWustr":moneyArr.kj.JSONString() ]
+            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":"true","cfdCaiWustr":moneyArr.kj.JSONString() ]
 //            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
-//            NetManager.ShareInstance.postWith(url: "api/IPad/IPadPayBusList", params: params) { (dic) in
-//                print("购买课程支付结果\(dic)")
-//                NHMBProgressHud.showErrorMessage(message: "支付成功啦～")
-//            } error: { (error) in
-//                print(error)
-//            }
-//
-            print(self.payAllArr)
+            NetManager.ShareInstance.postWith(url: "api/IPad/IPadPayBusList", params: params) { (dic) in
+                print("购买课程支付结果\(dic)")
+                
+                NHMBProgressHud.showErrorMessage(message: "支付成功啦～")
+                if dic["ifdJump"] as? Bool == true{
+                    let save =  JDsaveKCController()
+                    save.cfdBusListGUID = dic["cfdBusListGUID"] as? String ?? ""
+//                    self.navigationController?.pushViewController(save, animated: true)
+                    self.navigationController?.ymPushViewController(save, removeSelf: true, animated: true)
+                }else{
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+            } error: { (error) in
+                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+            }
         }
     }
     
@@ -268,7 +261,8 @@ extension JDSettlementController{
         }
       
         yhjB.addAction { (_) in
-            self.contenView.isHidden = false
+//            self.contenView.isHidden = false
+            NHMBProgressHud.showErrorMessage(message: "暂无优惠卷")
         }
         
         

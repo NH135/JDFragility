@@ -18,7 +18,7 @@ struct EWScreenInfo {
 }
 /// 默认hub显示时间
 private let hudShowTime = 1.5
-
+private let dissTime = 10.0
 
 class NHMBProgressHud {
     static var hud : MBProgressHUD?
@@ -123,6 +123,12 @@ extension NHMBProgressHud {
         HUD?.mode = .indeterminate
         HUD?.label.text = message
         hud = HUD
+        
+        
+        /// 在hud消失时调用completeBlock.
+        DispatchQueue.main.asyncAfter(deadline: .now() + dissTime) {
+            HUD?.hide(animated: true)
+        }
     }
     /// 展示loadingHUD,可用于网络请求
     ///
@@ -135,6 +141,11 @@ extension NHMBProgressHud {
         HUD?.mode = .indeterminate
         HUD?.label.text = message
         hud = HUD
+        
+        /// 在hud消失时调用completeBlock.
+        DispatchQueue.main.asyncAfter(deadline: .now() + dissTime) {
+            HUD?.hide(animated: true)
+        }
     }
     /// 生成实例的loadingHUD,可以再对实例进行自定义修改
     ///

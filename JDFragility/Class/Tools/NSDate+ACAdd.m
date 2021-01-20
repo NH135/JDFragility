@@ -217,11 +217,11 @@
     
     for (int i = 0; i < count; i ++) {
         //从现在开始的24小时
-        NSTimeInterval secondsPerDay = -i * 24*60*60;
+        NSTimeInterval secondsPerDay = i * 24*60*60;
         NSDate *curDate = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
       
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"M月d日"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr = [dateFormatter stringFromDate:curDate];//几月几号
         
         NSDateFormatter *weekFormatter = [[NSDateFormatter alloc] init];

@@ -63,15 +63,21 @@ class HeaderView: UITableViewHeaderFooterView {
  
        var group:JDGroupModel? {
            didSet {
-            self.nameView?.setTitle(group!.cfdCourseClass!, for: .normal)
+            if group!.cfdCourseClass?.isEmpty == false {
+                self.nameView?.setTitle(group!.cfdCourseClass!, for: .normal)
+                    didMoveToSuperview()
+            }else{
+                self.nameView?.setTitle("\(group!.cfdCIGName!) （\(group?.ItemList.count ?? 0) 选 \(group?.ifdSelectNumber ?? "0") ）", for: .normal)
+                    didMoveToSuperview()
+            }
            
-               didMoveToSuperview()
            }
        }
+ 
        
        // 返回一个headerView
        class func headerViewWithTableView(tableView:UITableView) -> HeaderView {
-           let headerID = "myHeader"
+           let headerID = "savemyHeader"
         var header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerID)
            if header == nil {
                header = HeaderView.init(reuseIdentifier: headerID)

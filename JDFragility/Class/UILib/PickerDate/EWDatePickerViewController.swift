@@ -10,12 +10,13 @@ import UIKit
 
 class EWDatePickerViewController: UIViewController {
 
-    var backDate: ((Date) -> Void)?
-    var hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
+    var backDate: ((String) -> Void)?
+    var hours:[Int] = [8,9,10,11,12,13,14,15,16,17,18,18,19,20,21,22,23]
     var points:[Int] = [00,30]
     //属性传值第一步
        var isYuyue:Bool!
-    
+    var hoursStr : String?
+    var pointStr : String?
     
     ///获取当前日期
     private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day],   from: Date())    //日期类型
@@ -81,29 +82,38 @@ class EWDatePickerViewController: UIViewController {
         let dateString = String(format: "%02ld-%02ld-%02ld", self.picker.selectedRow(inComponent: 0) + (self.currentDateCom.year!), self.picker.selectedRow(inComponent: 1) + 1, self.picker.selectedRow(inComponent: 2) + 1)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
+        
+
+        if isYuyue {
+            //         如果需求需要不能选择已经过去的日期
+                     let dateSelect = dateFormatter.date(from: dateString)
+                     let date = Date()
+                     let calendar = Calendar.current
+                     let dateNowString = String(format: "%02ld-%02ld-%02ld", calendar.component(.year, from: date) , calendar.component(.month, from: date), calendar.component(.day, from: date))
+
+                    /// 判断选择日期与当前日期关系
+                    let result:ComparisonResult = (dateSelect?.compare(dateFormatter.date(from: dateNowString)!))!
+
+                    if result == ComparisonResult.orderedAscending {
+                        ///
+                        /// 选择日期在当前日期之前,可以选择使用toast提示用户.
+                        
+                        return
+                        }else{
+                        /// 选择日期在当前日期之后. 正常调用
+                        if self.backDate != nil{
+                            self.backDate!("\(dateString) \(hoursStr!):\(pointStr!)")
+                        }
+                    }
+                     
+        }else{
         /// 直接回调显示
         if self.backDate != nil {
-            self.backDate!(dateFormatter.date(from: dateString) ?? Date())
+            self.backDate!(dateString)
         }
-        /*** 如果需求需要不能选择已经过去的日期
-         let dateSelect = dateFormatter.date(from: dateString)
-         let date = Date()
-         let calendar = Calendar.current
-         let dateNowString = String(format: "%02ld-%02ld-%02ld", calendar.component(.year, from: date) , calendar.component(.month, from: date), calendar.component(.day, from: date))
-
-        /// 判断选择日期与当前日期关系
-        let result:ComparisonResult = (dateSelect?.compare(dateFormatter.date(from: dateNowString)!))!
-
-        if result == ComparisonResult.orderedAscending {
-            /// 选择日期在当前日期之前,可以选择使用toast提示用户.
-            return
-            }else{
-            /// 选择日期在当前日期之后. 正常调用
-            if self.backDate != nil{
-                self.backDate!(dateFormatter.date(from: dateString) ?? Date())
-            }
         }
-         */
+        
+
         self.dismiss(animated: true, completion: nil)
     }
     ///点击任意位置view消失
@@ -180,8 +190,10 @@ extension EWDatePickerViewController:UIPickerViewDelegate,UIPickerViewDataSource
         } else if component == 2  {
             return "\(row + 1)\("日")"
         }else if component == 3  {
+            hoursStr = "\(hours[row])"
             return "\(hours[row])\("时")"
         }else {
+            pointStr = "\(points[row])"
             return "\(points[row])\("分")"
         }
     }

@@ -10,8 +10,8 @@ import UIKit
 // 自定义section的headerView
 // 协议，点击headerView的回调
 protocol reserveSendDelegate:NSObjectProtocol {
-    func reserveSendName()
-    func ediReserveSendName()
+    func reserveSendName(reserveMode:JDreserverModel)
+    func ediReserveSendName(reserveMode:ResListModel)
 }
 
 
@@ -37,7 +37,7 @@ class JDreservedCell: UITableViewCell {
         reserveAddBtn.addAction { (btn) in
             // 添加预约
            if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
-            self.delegate?.reserveSendName()
+            self.delegate?.reserveSendName(reserveMode:self.reserveMode!)
             }
         }
     }
@@ -47,6 +47,7 @@ class JDreservedCell: UITableViewCell {
         didSet{
             nameL.text = reserveMode?.cfdEmployeeName
             typeL.text = reserveMode?.cfdLevel
+            self.collectionView.reloadData()
         }
     }
     
@@ -65,7 +66,9 @@ extension JDreservedCell:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 编辑预约
        if ((self.delegate?.responds(to: Selector(("ediReserveSendName")))) != nil) {
-        self.delegate?.ediReserveSendName()
+        let mode = self.reserveMode?.ResList[indexPath.row]
+        
+        self.delegate?.ediReserveSendName(reserveMode:mode!)
         }
     }
     func setUI() {

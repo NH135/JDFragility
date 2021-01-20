@@ -70,8 +70,8 @@ class JDLoginController: JDBaseViewController {
             userDefault.set(login?.cfdFendianName, forKey: "cfdFendianName")
             
             Kwindow.window?.rootViewController = JDNavViewController(rootViewController: JDMainController())
-        } error: { (err) in
-            print(err)
+        } error: { (error) in
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 
         

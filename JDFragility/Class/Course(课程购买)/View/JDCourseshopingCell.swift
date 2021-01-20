@@ -10,6 +10,7 @@ import UIKit
 
 protocol shopingcourseAddDelegate:NSObjectProtocol {
     func shopingaddjianCourse(type:Bool, model:JDGroupProjectModel)
+ 
 }
 class JDCourseshopingCell: UITableViewCell {
     weak var delegate:shopingcourseAddDelegate?
@@ -20,6 +21,7 @@ class JDCourseshopingCell: UITableViewCell {
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var numberL: UILabel!
     @IBOutlet weak var jianBtn: UIButton!
+    @IBOutlet weak var setedBtn: UIButton!
     
     var number:Int = 0
     override func awakeFromNib() {
@@ -42,17 +44,18 @@ class JDCourseshopingCell: UITableViewCell {
                 NHMBProgressHud.showErrorMessage(message: "不能再减了")
                 return
             }
-            
             self.number -= 1
             self.numberL.text = String(self.number)
             if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
                 self.delegate?.shopingaddjianCourse(type: false, model: self.detaileModel!)
              }
         }
+ 
         
     }
     var detaileModel:JDGroupProjectModel? {
         didSet {
+            setedBtn.isHidden = true;
             nameL.text = detaileModel?.cfdCourseName
             detaileL.text = "¥\(detaileModel?.ffdPrice ?? "暂无报价")"
             numberL.text = "0"
@@ -60,9 +63,31 @@ class JDCourseshopingCell: UITableViewCell {
     }
     var jiesuanModel:MCListModel? {
         didSet {
+            setedBtn.isHidden = true;
             nameL.text = jiesuanModel?.cfdCourseName
             detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
             numberL.text = "0"
         }
     }
+    
+    var baocunModel:saveDetailModel? {
+        didSet {
+            nameL.text = baocunModel?.cfdItemName
+//            detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
+//            numberL.text = "0"
+            setedBtn.isSelected = baocunModel?.isseleted ?? false
+        }
+    }
+    var ifdType:Int?{
+        didSet {
+            if ifdType == 1 {
+                setedBtn.isHidden = false;
+                addV.isHidden = true
+            }else{
+                addV.isHidden = false
+                setedBtn.isHidden = true;
+            }
+        }
+    }
+
 }

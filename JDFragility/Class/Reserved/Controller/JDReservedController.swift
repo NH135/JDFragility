@@ -19,6 +19,8 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var chidaoBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeView: UIView!
+    var timeStr : String?
+    
     var timeBtn = UIButton()
     
     var reserveArr = [JDreserverModel]()
@@ -31,6 +33,7 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.timeStr = NSDate.init().string(withFormat: "yyyy-MM-dd")
         view.backgroundColor=UIColor.red
         storeNameL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "暂无")"
         setUI()
@@ -43,14 +46,14 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         
         let numbs = NSDate.latelyEightTimeCout(7)
         for (index,item) in numbs.enumerated() {
-            let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: 0, width: width, height: timeView.height))
+            let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: -3, width: width, height: timeView.height))
             btn.setTitle(item as? String, for: .normal)
             btn.setTitle(item as? String, for: .disabled)
             btn.tag = index
             btn.titleLabel?.numberOfLines = 2
             btn.titleLabel?.textAlignment = .center
             btn.setTitleColor(UIColor.black, for: .normal)
-            btn.setTitleColor(UIColor.blue, for: .disabled)
+            btn.setTitleColor(UIColor.k_colorWith(hexStr: "409EFF"), for: .disabled)
             if btn.tag == 0 {
                 btn.isEnabled = false
                 timeBtn = btn
@@ -67,24 +70,28 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         timeBtn.isEnabled = true
         btn.isEnabled = false
         timeBtn = btn
+        let time = btn.titleLabel?.text?.stringCutToEnd(star: 3)
+//        setData(time:time ?? Date.init().k_toDateStr("yyyy-MM-dd"))
+        self.timeStr = time;
+        self.tableView.mj_header?.beginRefreshing()
+        
     }
 
 }
 extension JDReservedController{
-    fileprivate func setData(){
+     func setData(){
         let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-        let params = ["cfdFendianId":cfdFendianId,"dfdDateTime":Date.init().k_toDateStr("yyyy-MM-dd")]
+        let params = ["cfdFendianId":cfdFendianId,"dfdDateTime":self.timeStr! ] as [String : Any]
         
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserveView", params: params) { (reserve) in
             self.tableView.mj_header?.endRefreshing()
-//            reserve = JDreserverModel.deserialize(from: reserve as? Dictionary)
-//            let arr = JsonUtil.jsonArrayToModel(reserve.array as! String, JDreserverModel.self) as? [JDreserverModel]
+ 
             guard let arr = reserve as? [[String : Any]] else { return }
             self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
  
             self.tableView.reloadData()
         } error: { (error) in
-            
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 
     }
@@ -126,33 +133,74 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
         return cell
     }
     //添加预约
-    func reserveSendName() {
+    func reserveSendName(reserveMode:JDreserverModel) {
         let goReserved = JDGoReserveController()
         goReserved.title="添加预约"
+        goReserved.reaverdMode = reserveMode
         navigationController?.pushViewController(goReserved, animated: true)
+        
     }
     //编辑预约
-    func ediReserveSendName(){
-        NHMBProgressHud.showErrorMessage(message: "编辑预约")
-//        let  alertController =  UIAlertController (title:  "保存或删除数据" , message:  "删除数据将不可恢复" ,
-//                                                 preferredStyle: .actionSheet)
-//        let  cancelAction =  UIAlertAction (title:  "取消" , style: .cancel, handler:  nil )
-//        let  sureAction =  UIAlertAction (title:  "确定" , style: .destructive, handler:  nil )
-//        let  ediAction =  UIAlertAction (title:  "修改" , style: . default , handler:  nil )
-////        let  shouquanAction =  UIAlertAction (title:  "授权" , style: . default , handler:  nil )
-////        let  jiezhangAction =  UIAlertAction (title:  "结账" , style: . default , handler:  nil )
-////        let  menberAction =  UIAlertAction (title:  "查看会员360" , style: . default , handler:  nil )
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(sureAction)
-////        alertController.addAction(shouquanAction)
-////        alertController.addAction(ediAction)
-////        alertController.addAction(jiezhangAction)
-////        alertController.addAction(menberAction)
-//        alertController.popoverPresentationController?.sourceView = self.view
-//        alertController.popoverPresentationController?.sourceRect = CGRect(origin:self.view.center, size: CGSize(width:1, height: 1))
-//
-//        present(alertController, animated: true, completion: nil)
-        
-         
+    func ediReserveSendName(reserveMode:ResListModel){
+        var actions = [String]()
+        if reserveMode.ifdState == 0 {
+            actions = ["确认预约","取消预约"]
+        }else if reserveMode.ifdState == 1 {
+            actions = ["授权","结账","会员360","课程购买"]
+        }else if reserveMode.ifdState == 2 {
+            actions = ["会员360","课程购买"]
+        }else if reserveMode.ifdState == 3 {
+            return
+        }
+        if actions.count == 0 {
+            return
+        }
+        YQActionSheet(headerTitle: nil, actionTitles: actions, configuration: nil, cellCommonConfiguration: nil) { (cell, index) in
+            print("\(cell.titleLab.text ?? "")====\(index)")
+            if cell.titleLab.text == "确认预约" {
+           
+                let params = ["ifdState":"1","cfdReserveId":reserveMode.cfdReserveId! ]
+                NHMBProgressHud.showLoadingHudView(message: "确认中～～")
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditReserveState", params: params) { (dic) in
+                    NHMBProgressHud.hideHud()
+                    NHMBProgressHud.showSuccesshTips(message: "确认成功")
+                    self.tableView.mj_header?.beginRefreshing()
+                } error: { (error) in
+                    NHMBProgressHud.hideHud()
+                    NHMBProgressHud.showErrorMessage(message: "确认失败，请重试")
+                }
+
+                
+            }else if cell.titleLab.text == "取消预约" {
+                let params = ["ifdState":"3","cfdReserveId":reserveMode.cfdReserveId! ]
+                NHMBProgressHud.showLoadingHudView(message: "取消中～～")
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditReserveState", params: params) { (dic) in
+                    NHMBProgressHud.hideHud()
+                    NHMBProgressHud.showSuccesshTips(message: "取消成功")
+                    self.tableView.mj_header?.beginRefreshing()
+                } error: { (error) in
+                    NHMBProgressHud.hideHud()
+                    NHMBProgressHud.showErrorMessage(message: "取消失败，请重试")
+                }
+            }else if cell.titleLab.text == "授权" {
+                let khauthoriztionVC = JDReveredAuthorizationController()
+                khauthoriztionVC.cfdReserveId = reserveMode.cfdReserveId
+                self.navigationController?.pushViewController(khauthoriztionVC, animated: true)
+            }else if cell.titleLab.text == "结账" {
+               
+            }else if cell.titleLab.text == "课程购买" {
+                let courseVC = JDCourseController()
+                courseVC.cfdMemberId = reserveMode.cfdMemberId
+                courseVC.namelTelStr = reserveMode.cfdMemberName;
+                self.navigationController?.pushViewController(courseVC, animated: true)
+            }else if cell.titleLab.text == "会员360" {
+                let memberVC = JDMemberDetailController()
+                self.navigationController?.pushViewController(memberVC, animated: true)
+            }
+    
+        } cancelCallBack: {
+            
+        }.show()
+
     }
 }

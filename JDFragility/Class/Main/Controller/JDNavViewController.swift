@@ -7,30 +7,33 @@
 
 import UIKit
 
+ 
 class JDNavViewController:UINavigationController,UINavigationControllerDelegate {
     var popDelegate:UIGestureRecognizerDelegate?
      override func viewDidLoad() {
          super.viewDidLoad()
          
          //navigationBar字体颜色设置
-        self.navigationBar.barTintColor = UIColor.k_colorWith(hexStr: "429DFF")
+        self.navigationBar.barTintColor = UIColor.white
          //navigationBar字体颜色设置
-         self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+         self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
          
          self.popDelegate = self.interactivePopGestureRecognizer?.delegate
          self.delegate = self
      }
-     //MARK: - UIGestureRecognizerDelegate代理
+ 
+    
+//     //MARK: - UIGestureRecognizerDelegate代理
         func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-            
+
             //实现滑动返回的功能
             //清空滑动返回手势的代理就可以实现
             if viewController == self.viewControllers[0] {
-                
+
                 self.interactivePopGestureRecognizer?.delegate = self.popDelegate
-                
+
             } else {
-                
+
                 self.interactivePopGestureRecognizer?.delegate = nil;
             }
         }
@@ -40,7 +43,7 @@ class JDNavViewController:UINavigationController,UINavigationControllerDelegate 
              viewController.hidesBottomBarWhenPushed=true
 
  //            //添加图片
-                        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "left")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(leftClick))
+                        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "leftB")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(leftClick))
  //                       //添加文字
  //                       viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: self, action: #selector(leftClick))
      

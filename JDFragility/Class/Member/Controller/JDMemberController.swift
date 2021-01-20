@@ -35,7 +35,7 @@ extension JDMemberController{
             guard let arr = dic as? [[String : Any]] else { return }
             self.sourceArr  = arr.kj.modelArray(JDmemberModel.self)
         } error: { (error) in
-            print(error)
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 
     }
@@ -207,11 +207,11 @@ extension JDMemberController{
             /// 回调显示方法
             dataPicker.backDate = {  date in
 //            dataPicker.backDate = { [weak self] date in
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "YYYY-MM-dd"
-                let dateString: String = dateFormatter.string(from: date)
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "YYYY-MM-dd"
+//                let dateString: String = dateFormatter.string(from: date)
 //                self?.label.text = dateString
-                birthdayB.setTitle("  \(dateString)", for: .normal)
+                birthdayB.setTitle("  \(date)", for: .normal)
                 birthdayB.setTitleColor(UIColor.black, for: .normal)
             }
             dataPicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
@@ -221,7 +221,21 @@ extension JDMemberController{
                 dataPicker.picker.selectRow(0, inComponent: 0, animated: true)
                 dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
                 dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
-                 
+                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
+                
+    //            let findIndex = hours.firstIndex(where: { (e) -> Bool in
+    //                return e == NSDate().hour
+    //            })
+    //            let index = NSDate().minute > 30 ? findIndex ?? 0 + 1 : findIndex
+    //
+                let index = hours.firstIndex(of: NSDate.init().hour)
+                let minute = NSDate.init().minute
+                let type = minute > 30
+            
+                
+                dataPicker.picker.selectRow(type == true ? (index ?? 0) + 1 : index ?? 0, inComponent: 3, animated: true)
+                
+                dataPicker.picker.selectRow(type == true ? 0 : 1, inComponent: 4, animated: true)
  
             }
         }
@@ -320,7 +334,7 @@ extension JDMemberController{
                 birthdayB.setTitleColor(UIColor.lightGray, for: .normal)
                 print(dic)
             } error: { (error) in
-                print(error)
+                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
 
             
@@ -354,8 +368,8 @@ extension JDMemberController{
                 memberDetail.memberModel =  member
   
                 self.navigationController?.pushViewController(memberDetail, animated: true)
-            } error: { (err) in
-                DLog(err)
+            } error: { (error) in
+                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
 
             

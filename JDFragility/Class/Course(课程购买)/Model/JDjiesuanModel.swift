@@ -83,6 +83,7 @@ struct CodeMsgModel: Convertible {
 //    cfdCodeMsgName = ItemCode;
 //    ifdConfirm = 0
 }
+//支付的model
 struct payModel: Convertible {
     var cfdPayMode : String?
     var cfdPayModeId : String?
@@ -96,4 +97,40 @@ struct payModel: Convertible {
 //    cfdCodeMsgId = 4735322112677527658;
 //    cfdCodeMsgName = ItemCode;
 //    ifdConfirm = 0
+}
+
+//优惠卷model
+struct youhuiModel: Convertible {
+    var ffdBusListMoney : String?
+    var cfdBusListGUID : String?
+    var cfdRemark : String?
+    var dfdFaceValue : String?
+//    dfdUseStarDatetime = 2021-01-15 15:10:53;
+//    cfdEmployeeId = <null>;
+//    cfdUseOpeid = <null>;
+//    cfdRemark = <null>;
+//    ffdBusListMoney = <null>;
+//    cfdBusListGUID = <null>;
+//    ifdIfUse = 1;
+//    cfdTokenCode = 20210115145561452524;
+//    dfdFaceValue = 100;
+//    cfdMemberId = 9cb24ed5-ac6d-44b2-9760-143812c21292;
+//    dfdCreateDate = 2021-01-15 15:10:53;
+//    dfdUseEndDatetime = 2025-01-01 00:00:00;
+//    cfdTokenTypeId = cbe3dbcb-b395-4e4c-bca4-4051e64f34e3;
+//    cfdTokenId = de317bbf-9016-4fa6-8593-873d125bbd86
+}
+ 
+class saveDetailModel: Convertible {
+    var cfdCIGName : String?
+    var ifdSelectNumber : String?
+    var cfdCourseItemGroupId : String?
+    var cfdItemName : String?
+    
+    var ifdTimes : String?
+    var cfdCourseListId : String?
+    var cfdItemId : String?
+    var  isseleted :Bool = false
+    var cfdCourseList : String?
+    required init() {}
 }

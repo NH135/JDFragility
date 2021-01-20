@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    private func setWindow() {
 //        sleep(2) //可以延长启动图显示时间，只能选择整数吗？？
        let window = UIWindow(frame: UIScreen.main.bounds)
- 
+    window.backgroundColor=UIColor.white
         let stringValue = UserDefaults.standard.string(forKey: "cfdRealName")
         if (stringValue != nil) {
             window.rootViewController=JDNavViewController(rootViewController: JDMainController())

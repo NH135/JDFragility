@@ -84,13 +84,20 @@
                             <constraint firstItem="wfR-h7-fCo" firstAttribute="leading" secondItem="uTx-iP-c1h" secondAttribute="trailing" id="xyi-c8-lwO"/>
                         </constraints>
                     </view>
+                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-Za-m4g">
+                        <rect key="frame" x="308" y="33" width="24" height="24"/>
+                        <state key="normal" image="notseated"/>
+                        <state key="selected" image="seated"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="rdV-Za-m4g" firstAttribute="trailing" secondItem="Oda-Qk-6zc" secondAttribute="trailing" id="5Mf-n9-FQP"/>
                     <constraint firstItem="FWu-ld-REI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Hlj-ix-3dR"/>
                     <constraint firstItem="lXA-pU-gio" firstAttribute="top" secondItem="FWu-ld-REI" secondAttribute="top" constant="15" id="IFI-8W-EdL"/>
                     <constraint firstItem="FWu-ld-REI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VES-ph-DEL"/>
                     <constraint firstItem="lXA-pU-gio" firstAttribute="leading" secondItem="FWu-ld-REI" secondAttribute="trailing" constant="10" id="Vrj-l4-GkN"/>
                     <constraint firstItem="Oda-Qk-6zc" firstAttribute="centerY" secondItem="FWu-ld-REI" secondAttribute="centerY" id="cG1-aU-Cla"/>
+                    <constraint firstItem="rdV-Za-m4g" firstAttribute="centerY" secondItem="DPB-Se-Csg" secondAttribute="centerY" id="clm-R8-F4Y"/>
                     <constraint firstItem="UuA-ng-Qfr" firstAttribute="leading" secondItem="lXA-pU-gio" secondAttribute="leading" id="eIw-Zr-OMk"/>
                     <constraint firstItem="UuA-ng-Qfr" firstAttribute="bottom" secondItem="FWu-ld-REI" secondAttribute="bottom" constant="-10" id="fSc-DQ-Rgk"/>
                     <constraint firstAttribute="trailing" secondItem="Oda-Qk-6zc" secondAttribute="trailing" constant="10" id="mXc-Ea-jsB"/>
@@ -105,11 +112,14 @@
                 <outlet property="jianBtn" destination="uTx-iP-c1h" id="f6z-IC-o5G"/>
                 <outlet property="nameL" destination="lXA-pU-gio" id="iXa-O2-QR4"/>
                 <outlet property="numberL" destination="wfR-h7-fCo" id="FEA-uC-xuF"/>
+                <outlet property="setedBtn" destination="rdV-Za-m4g" id="hdz-L6-9Ht"/>
             </connections>
             <point key="canvasLocation" x="12" y="80"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="notseated" width="24" height="24"/>
+        <image name="seated" width="24" height="24"/>
         <image name="xmdefult" width="24" height="24"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -40,3 +40,18 @@ struct JDGroupProjectModel: Convertible {
     var ifdTerm:String?
     var ifdSort:String? 
 }
+
+
+
+
+struct JDsaveKCModel: Convertible {
+    
+    var ffdPrice:String?
+    var dfdCreateDate:String?
+    var cfdCourseClassId:String?
+    var cfdCourseId:String?
+    var ifdTerm:String?
+    var ifdSort:String? 
+    
+    
+}

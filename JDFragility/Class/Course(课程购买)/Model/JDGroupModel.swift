@@ -20,6 +20,19 @@ struct JDGroupModel: Convertible {
     var ifdState:String?
     var ifdOrder:String?
     
+    
+//    保存自选套餐
+    var cfdCourseName:String?
+    var  cfdMemberCardGUID :String?
+    
+    var ifdType:Int?
+    var cfdCourseId:String?
+    var ifdSelectNumber : String?
+ 
+    var cfdCIGName : String?
+    var cfdCourseItemGroupId : String?
+    var ItemList = [saveDetailModel]()
+ 
 }
 
 struct JDGroupDetaileModel:Convertible {
@@ -33,4 +46,5 @@ struct JDGroupDetaileModel:Convertible {
     var dfdCreateDate:String?
     var ifdState:String?
     var ifdOrder:String?
+    var isSeleted:Bool = false
 }
