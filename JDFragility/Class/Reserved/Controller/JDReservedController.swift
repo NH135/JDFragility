@@ -111,6 +111,9 @@ extension JDReservedController{
     tableView.delegate = self
     tableView.dataSource = self
     tableView.k_registerCell(cls: JDreservedCell.self)
+    
+   
+    
     }
     
 }
@@ -187,7 +190,10 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
                 khauthoriztionVC.cfdReserveId = reserveMode.cfdReserveId
                 self.navigationController?.pushViewController(khauthoriztionVC, animated: true)
             }else if cell.titleLab.text == "结账" {
-               
+                
+                let reservedOrderVC = JDReservedOrderViewController()
+                reservedOrderVC.cfdReserveId = reserveMode.cfdReserveId
+                self.navigationController?.pushViewController(reservedOrderVC, animated: true)
             }else if cell.titleLab.text == "课程购买" {
                 let courseVC = JDCourseController()
                 courseVC.cfdMemberId = reserveMode.cfdMemberId

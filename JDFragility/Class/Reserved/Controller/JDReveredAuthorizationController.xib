@@ -71,20 +71,37 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="574-Nq-1WM">
-                            <rect key="frame" x="172" y="183" width="293" height="329"/>
+                            <rect key="frame" x="172" y="183" width="293" height="259"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJk-7h-e3F">
+                            <rect key="frame" x="375" y="492" width="160" height="50"/>
+                            <color key="backgroundColor" red="0.25098039215686274" green="0.61960784313725492" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="LeB-hc-DmM"/>
+                                <constraint firstAttribute="width" constant="160" id="j1K-2L-qAW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="关闭">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="closeBtn:" destination="-1" eventType="touchUpInside" id="CoT-EU-Tw3"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="yMa-bl-PBb" firstAttribute="top" secondItem="3rz-QN-Vmw" secondAttribute="bottom" constant="20" id="4cl-fb-GwF"/>
                         <constraint firstItem="3rz-QN-Vmw" firstAttribute="leading" secondItem="EbK-oe-vhJ" secondAttribute="leading" id="6NM-Tu-eP8"/>
+                        <constraint firstAttribute="trailing" secondItem="bJk-7h-e3F" secondAttribute="trailing" id="8GS-b2-kE8"/>
                         <constraint firstItem="574-Nq-1WM" firstAttribute="leading" secondItem="Nl4-qa-kFW" secondAttribute="leading" id="8Pf-vM-D4R"/>
                         <constraint firstItem="574-Nq-1WM" firstAttribute="top" secondItem="yMa-bl-PBb" secondAttribute="top" constant="30" id="8Sn-6G-lfu"/>
-                        <constraint firstAttribute="bottom" secondItem="574-Nq-1WM" secondAttribute="bottom" constant="30" id="9uW-uH-Mae"/>
+                        <constraint firstAttribute="bottom" secondItem="574-Nq-1WM" secondAttribute="bottom" constant="100" id="9uW-uH-Mae"/>
                         <constraint firstItem="Nl4-qa-kFW" firstAttribute="centerY" secondItem="3rz-QN-Vmw" secondAttribute="centerY" id="A3v-Y2-BWJ"/>
                         <constraint firstItem="Nl4-qa-kFW" firstAttribute="leading" secondItem="ig7-py-M43" secondAttribute="leading" id="FWt-Pf-HR2"/>
                         <constraint firstItem="e0d-3d-Hu7" firstAttribute="centerY" secondItem="xDL-4A-FFI" secondAttribute="centerY" id="GCv-yN-Fn4"/>
+                        <constraint firstAttribute="bottom" secondItem="bJk-7h-e3F" secondAttribute="bottom" id="MI3-ug-SMB"/>
                         <constraint firstItem="3rz-QN-Vmw" firstAttribute="top" secondItem="EbK-oe-vhJ" secondAttribute="bottom" constant="20" id="Mew-nh-Xf3"/>
                         <constraint firstItem="ig7-py-M43" firstAttribute="leading" secondItem="e0d-3d-Hu7" secondAttribute="leading" id="P56-hf-nIV"/>
                         <constraint firstItem="yMa-bl-PBb" firstAttribute="leading" secondItem="3rz-QN-Vmw" secondAttribute="leading" id="SVr-Cp-yDv"/>
@@ -112,7 +129,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLP-lS-JLc">
                     <rect key="frame" x="115" y="364" width="150" height="50"/>
-                    <color key="backgroundColor" red="0.25098039220000001" green="0.61960784310000006" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.25098039215686274" green="0.61960784313725492" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="fOh-zL-pSi"/>
                         <constraint firstAttribute="width" constant="150" id="tAo-UP-cNv"/>
@@ -129,7 +146,7 @@
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.97277528049999995" green="0.97293823960000003" blue="0.97275239229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="89P-bv-LkN" secondAttribute="bottom" id="1eK-g9-43o"/>
                 <constraint firstItem="WLP-lS-JLc" firstAttribute="top" secondItem="m2G-S6-Vnl" secondAttribute="bottom" constant="5" id="Ati-LO-S4t"/>

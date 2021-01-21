@@ -31,9 +31,9 @@ struct JDmemberModel: Convertible {
     var CommentNumber:String?;
 }
 
-struct MemberDetailModel : Convertible {
+class MemberDetailModel : Convertible {
     var cfdMemberName:String?
-    
+    var cfdEmployeeName:String?
     var cfdSource:String?
     var cfdMoTel:String?
     var dfdCreateDate:String?
@@ -41,6 +41,20 @@ struct MemberDetailModel : Convertible {
     var dfdBirthday:String?
     var cfdMemberId:String?
     var ffdBalance:String?
+    var cfdLevelID:String?
+    var cfdCardId:String?
+    var ImageUrl:String?
+    var cfdRealName:String?
+    var cfdDepartmentId:String?
+    var AppletOpenID:String?
+    var cfdFendianId:String?
+    var IsReserve:String?
+    var cfdEmployeeId:String?
+    var cfdIdCard:String?
+    var ifdEmployeeLevel:String?
+    var isRecommend:String?
+    var isSeted:Bool = false
+    required init() {}
     //    cfdMemberName = 李文龙;
 //    cfdEmployeeName = <null>;
 //    cfdPhone = 18627912021;

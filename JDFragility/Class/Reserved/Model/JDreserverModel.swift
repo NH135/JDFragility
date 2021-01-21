@@ -21,15 +21,14 @@ struct JDreserverModel: Convertible {
     var cfdLevel :String?
     
     var cfdSex:String?
-    //cfdLevelID = 5a9a5bcb-77ff-4ef8-9aa4-f262f3b95d75;
-    //ResList = (
-    //); 
+   
 }
 
 class ResListModel:Convertible {
     
     var cfdMemberName:String?
     var cfdEmployeeId:String?
+    var cfdReserveDetailGUID :String?
     
     var cfdTimeStar:String?
     var cfdCreateUser:String?
@@ -47,6 +46,8 @@ class ResListModel:Convertible {
     var cfdMemberCardGUID:String?
     var ifdAllNumber:String?
     var ifdLastNumber:Int?
+    var cfdItemId:String?
+    var cfdMemberTimeId:String?
     required init() {}
    
 }
