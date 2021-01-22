@@ -57,9 +57,9 @@ class JDreveredOrderCell: UITableViewCell {
     var authoizatioOrederModel : JDauthoizationDetailListModel?{
         didSet{
             nameL.text = authoizatioOrederModel?.cfdItemName
-            cfdEmployeeIdABtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameA, for: .normal)
-            cfdEmployeeIdBBtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameB, for: .normal)
-            cfdEmployeeIdCBtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameC, for: .normal)
+            cfdEmployeeIdABtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameA ?? "暂无", for: .normal)
+            cfdEmployeeIdBBtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameB ?? "暂无", for: .normal)
+            cfdEmployeeIdCBtn.setTitle(authoizatioOrederModel?.cfdEmployeeNameC ?? "暂无", for: .normal)
 //            if authoizatiodetailnModel?.ifdReserveItemStatus == 1{
 //
 //                sendBtn.backgroundColor=UIColor.k_colorWith(hexStr: "409EFF")

@@ -27,6 +27,7 @@ class JDReservedOrderViewController: JDBaseViewController {
                 title="预约订单结账"
          setUI()
          setData()
+        setRefreshhData()
     }
     @IBAction func closeBtn(_ sender: Any) {
         navigationController?.popViewController(animated:true)
@@ -46,10 +47,14 @@ extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSour
         alterV.twoselteddataArr = strArr
         Kwindow.window?.addSubview( alterV)
         alterV.cancelB.addAction { (_) in
+            for item in self.cfdEmployeeArr{
+                item.isSeted = false
+            }
              alterV.removeFromSuperview()
         }
         alterV.sureB.addAction { (_) in
-            print(alterV.selteddataArr)
+        
+           
             alterV.removeFromSuperview()
             var a :String?
             var b :String?
@@ -64,12 +69,16 @@ extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSour
             }else{
                  a   = alterV.selteddataArr[0]
             }
-            let params = ["cfdReserveDetailGUID":mode.cfdReserveDetailGUID, "cfdEmployeeIdA":a ,"cfdEmployeeIdB":b ,"cfdEmployeeIdC":c  ]
+            let params = ["cfdReserveDetailGUID":mode.cfdReserveDetailGUID ?? "", "cfdEmployeeIdA":a ?? "" ,"cfdEmployeeIdB":b ?? "" ,"cfdEmployeeIdC":c ?? "" ]
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditRDEmployee", params: params as [String : Any]) { (dic) in
-                print(dic)
-                btn1.setTitle(a, for: .normal)
-                btn2.setTitle(b, for: .normal)
-                btn3.setTitle(c, for: .normal)
+                self.setRefreshhData()
+                for item in self.cfdEmployeeArr{
+                    item.isSeted = false
+                }
+//                print(dic)
+//                btn1.setTitle(a ?? "暂无", for: .normal)
+//                btn2.setTitle(b ?? "暂无", for: .normal)
+//                btn3.setTitle(c ?? "暂无", for: .normal)
             } error: { (error) in
                 print(error)
             }
@@ -97,35 +106,27 @@ extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
-        let model = self.authoizationM?.DetailList[indexPath.row]
+        let listmodel = self.authoizationM?.DetailList[indexPath.row]
         var name = [String]()
         for item in deleteArr {
             name.append(item.cfdName ?? "")
         }
         
         
-        JSsignalert.show(withTitle: "来源", titles: name, selectStr: name[0]) { (str) in
-           
-            NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditRDCancel", params: ["cfdReserveDetailGUID":model?.cfdReserveDetailGUID ?? "","ifdCancelReason":str ?? "" ]) { (dic) in
-                guard let arr = dic as? [[String : Any]] else { return }
-                 self.cfdEmployeeArr  = arr.kj.modelArray(MemberDetailModel.self)
-                
-      
-    //            self.alterV.k_addTarget { (_) in
-    //                self.alterV.isHidden = true
-    //            }
-                
-            } error: { (error) in
-                print(error)
+        JSsignalert.show(withTitle: "取消原因", titles: name, selectStr: name[0]) { [self] (str) in
+            for model:JDdeleteModel in  self.deleteArr{
+                if str == model.cfdName{
+                    NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditRDCancel", params: ["cfdReserveDetailGUID":listmodel?.cfdReserveDetailGUID ?? "","ifdCancelReason":model.cfdKey ?? "" ]) { (dic) in
+                        guard let arr = dic as? [[String : Any]] else { return }
+                         self.cfdEmployeeArr  = arr.kj.modelArray(MemberDetailModel.self)
+                         
+                    } error: { (error) in
+                        print(error)
+                    }
+                    
+                    break
+                }
             }
-            
-            
-//            for model:JDdeleteModel in self.deleteArr.enumerated(){
-//                if str == model.cfdName{
-//
-//                    break
-//                }
-//            }
         }
         }
     
@@ -145,7 +146,7 @@ extension JDReservedOrderViewController{
 
 extension JDReservedOrderViewController{
     
-    func setData(){
+    func setRefreshhData(){
         NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         let params = ["cfdReserveId":cfdReserveId ?? "" ]
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserve", params: params) { (dic) in
@@ -163,6 +164,11 @@ extension JDReservedOrderViewController{
         } error: { (error) in
 
         }
+        
+    }
+    
+    func setData(){
+     
         let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
  
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryEmployeeList", params: ["cfdFendianId":cfdFendianId ]) { (dic) in

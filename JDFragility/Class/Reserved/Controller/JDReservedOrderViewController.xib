@@ -15,7 +15,6 @@
                 <outlet property="tableView" destination="sIh-gb-jbO" id="yHC-LE-py4"/>
                 <outlet property="timeL" destination="8jQ-c5-iyO" id="oCj-G0-XSb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="yiBtn" destination="9VZ-fy-v5b" id="RlU-J2-5fL"/>
                 <outlet property="yuangongNameL" destination="9HR-eu-lCh" id="G2T-XI-fxB"/>
             </connections>
         </placeholder>
@@ -110,20 +109,9 @@
                         <constraint firstAttribute="width" constant="208" id="X09-mQ-V0Z"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9VZ-fy-v5b">
-                    <rect key="frame" x="115" y="364" width="150" height="50"/>
-                    <color key="backgroundColor" red="0.25098039220000001" green="0.61960784310000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="7q4-eG-PaY"/>
-                        <constraint firstAttribute="width" constant="150" id="yiS-2Q-twu"/>
-                    </constraints>
-                    <state key="normal" title="用户已授权">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：用户已授权请点击" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lns-hQ-i01">
-                    <rect key="frame" x="115" y="349" width="106.5" height="10"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示：请先选择右侧课程服务员工，再进行扫描授权" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lns-hQ-i01">
+                    <rect key="frame" x="49.5" y="334" width="281.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" systemColor="systemPinkColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -133,20 +121,18 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wxL-Q6-q4l" secondAttribute="bottom" id="053-v3-HtC"/>
                 <constraint firstItem="4CL-OL-e7o" firstAttribute="top" secondItem="99A-h4-BDe" secondAttribute="bottom" constant="25" id="0aa-zi-4P5"/>
+                <constraint firstItem="lns-hQ-i01" firstAttribute="centerX" secondItem="4CL-OL-e7o" secondAttribute="centerX" id="2we-q6-YqH"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="leading" secondItem="99A-h4-BDe" secondAttribute="trailing" id="EPT-B2-8AP"/>
-                <constraint firstItem="9VZ-fy-v5b" firstAttribute="top" secondItem="4CL-OL-e7o" secondAttribute="bottom" constant="60" id="GDI-c3-44q"/>
                 <constraint firstItem="99A-h4-BDe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GQf-IK-CIo"/>
                 <constraint firstItem="4CL-OL-e7o" firstAttribute="centerX" secondItem="99A-h4-BDe" secondAttribute="centerX" id="GcU-SV-9zv"/>
-                <constraint firstItem="lns-hQ-i01" firstAttribute="leading" secondItem="9VZ-fy-v5b" secondAttribute="leading" id="KKZ-hv-1eP"/>
-                <constraint firstItem="9VZ-fy-v5b" firstAttribute="centerX" secondItem="4CL-OL-e7o" secondAttribute="centerX" id="QMn-86-Li9"/>
                 <constraint firstItem="99A-h4-BDe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="aHQ-Qo-Z7W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wxL-Q6-q4l" secondAttribute="trailing" id="h8e-G3-1cr"/>
-                <constraint firstItem="9VZ-fy-v5b" firstAttribute="top" secondItem="lns-hQ-i01" secondAttribute="bottom" constant="5" id="iRV-4Q-9kZ"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="380" id="m0P-qt-svm"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oSx-cC-GVa"/>
+                <constraint firstItem="lns-hQ-i01" firstAttribute="top" secondItem="4CL-OL-e7o" secondAttribute="bottom" constant="30" id="yYl-b6-PgQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="340" y="-100"/>
+            <point key="canvasLocation" x="339.84375" y="-100"/>
         </view>
     </objects>
     <resources>

@@ -51,6 +51,7 @@ extension JDalterEmployee:UITableViewDelegate,UITableViewDataSource{
             if item == mode.cfdEmployeeName {
                 cell?.accessoryType = .checkmark
                 mode.isSeted = true
+                selteddataArr.append(mode.cfdEmployeeId ?? "")
             }
         }
            return cell!
