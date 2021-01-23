@@ -19,6 +19,13 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var chidaoBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeView: UIView!
+    @IBOutlet weak var allL: UILabel!
+    @IBOutlet weak var daiL: UILabel!
+    @IBOutlet weak var queL: UILabel!
+    @IBOutlet weak var daoL: UILabel!
+    @IBOutlet weak var kaiL: UILabel!
+    @IBOutlet weak var quL: UILabel!
+    @IBOutlet weak var chiL: UILabel!
     var timeStr : String?
     
     var timeBtn = UIButton()
@@ -99,13 +106,13 @@ extension JDReservedController{
 
 extension JDReservedController{
    fileprivate func setUI() {
-    allBtn.cornerRadius(radius: 20)
-    daiquerenBtn.cornerRadius(radius: 20)
-    querenBtn.cornerRadius(radius: 20)
-    daodianBtn.cornerRadius(radius: 20)
-    kaidianBtn.cornerRadius(radius: 20)
-    cancelBtn.cornerRadius(radius: 20)
-    chidaoBtn.cornerRadius(radius: 20)
+    allL.cornerRadius(radius: 7)
+    daiL.cornerRadius(radius: 7)
+    queL.cornerRadius(radius: 7)
+    daoL.cornerRadius(radius: 7)
+    kaiL.cornerRadius(radius: 7)
+    quL.cornerRadius(radius: 7)
+    chiL.cornerRadius(radius: 7)
     
     
     tableView.delegate = self

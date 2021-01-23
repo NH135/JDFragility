@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "现金.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "现金.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

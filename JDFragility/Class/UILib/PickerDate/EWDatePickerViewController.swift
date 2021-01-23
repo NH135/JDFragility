@@ -12,9 +12,9 @@ class EWDatePickerViewController: UIViewController {
 
     var backDate: ((String) -> Void)?
     var hours:[Int] = [8,9,10,11,12,13,14,15,16,17,18,18,19,20,21,22,23]
-    var points:[Int] = [00,30]
+    var points:[String] = ["00","30"]
     //属性传值第一步
-       var isYuyue:Bool!
+       var isYuyue:Bool = false
     var hoursStr : String?
     var pointStr : String?
     
@@ -52,9 +52,10 @@ class EWDatePickerViewController: UIViewController {
         self.view.insertSubview(self.backgroundView, at: 0)
         self.modalPresentationStyle = .custom//viewcontroller弹出后之前控制器页面不隐藏 .custom代表自定义
 
-        let cancel = UIButton(frame: CGRect(x: 0, y: 10, width: 70, height: 20))
-        let sure = UIButton(frame: CGRect(x: kScreenWidth - 80, y: 10, width: 70, height: 20))
+        let cancel = UIButton(frame: CGRect(x: 0, y: 10, width: 50, height: 50))
+        let sure = UIButton(frame: CGRect(x: kScreenWidth - 80, y: 10, width: 150, height: 50))
         cancel.setTitle("取消", for: .normal)
+        sure.backgroundColor=UIColor.red
         sure.setTitle("确认", for: .normal)
         cancel.setTitleColor(UIColor.red, for: .normal)
         sure.setTitleColor(UIColor.red, for: .normal)
@@ -66,9 +67,10 @@ class EWDatePickerViewController: UIViewController {
         picker.backgroundColor = UIColor.clear
         picker.clipsToBounds = true//如果子视图的范围超出了父视图的边界，那么超出的部分就会被裁剪掉。
         //创建日期选择器
+        self.containV.addSubview(picker)
         self.containV.addSubview(cancel)
         self.containV.addSubview(sure)
-        self.containV.addSubview(picker)
+    
         self.view.addSubview(self.containV)
 
         self.transitioningDelegate = self as UIViewControllerTransitioningDelegate//自定义转场动画
@@ -84,34 +86,12 @@ class EWDatePickerViewController: UIViewController {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         
 
-        if isYuyue {
-            //         如果需求需要不能选择已经过去的日期
-                     let dateSelect = dateFormatter.date(from: dateString)
-                     let date = Date()
-                     let calendar = Calendar.current
-                     let dateNowString = String(format: "%02ld-%02ld-%02ld", calendar.component(.year, from: date) , calendar.component(.month, from: date), calendar.component(.day, from: date))
-
-                    /// 判断选择日期与当前日期关系
-                    let result:ComparisonResult = (dateSelect?.compare(dateFormatter.date(from: dateNowString)!))!
-
-                    if result == ComparisonResult.orderedAscending {
-                        ///
-                        /// 选择日期在当前日期之前,可以选择使用toast提示用户.
-                        
-                        return
-                        }else{
-                        /// 选择日期在当前日期之后. 正常调用
-                        if self.backDate != nil{
-                            self.backDate!("\(dateString) \(hoursStr!):\(pointStr!)")
-                        }
-                    }
-                     
-        }else{
+//        if isYuyue {
         /// 直接回调显示
         if self.backDate != nil {
             self.backDate!(dateString)
         }
-        }
+//        }
         
 
         self.dismiss(animated: true, completion: nil)

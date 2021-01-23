@@ -20,49 +20,46 @@ class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var chapingB: UIButton!
     @IBOutlet weak var dianpingB: UIButton!
     @IBOutlet weak var jiangeB: UIButton!
-    
-    @IBOutlet weak var oneV: UIView!
-    
-    @IBOutlet weak var twoV: UIView!
-    @IBOutlet weak var threeV: UIView!
-    @IBOutlet weak var fourV: UIView!
+    @IBOutlet weak var oneV: UITableView!
+    @IBOutlet weak var twoV: UITableView!
+    @IBOutlet weak var threeV: UITableView!
+    @IBOutlet weak var fourV: UITableView!
     @IBOutlet weak var oneB: UIButton!
     @IBOutlet weak var twoB: UIButton!
     @IBOutlet weak var threeB: UIButton!
     @IBOutlet weak var fourB: UIButton!
+    @IBOutlet weak var kdnL: UILabel!
+    @IBOutlet weak var kedanL: UILabel!
+    @IBOutlet weak var csnL: UILabel!
+    @IBOutlet weak var cishuL: UILabel!
+    @IBOutlet weak var xfnL: UILabel!
+    @IBOutlet weak var xiaofeiL: UILabel!
+    @IBOutlet weak var cznL: UILabel!
+    @IBOutlet weak var chongzhiL: UILabel!
+    @IBOutlet weak var cpnL: UILabel!
+    @IBOutlet weak var chapingL: UILabel!
+    @IBOutlet weak var dpnL: UILabel!
+    @IBOutlet weak var dianpingL: UILabel!
+    @IBOutlet weak var jgnL: UILabel!
+    @IBOutlet weak var jiangeL: UILabel!
+    @IBOutlet weak var yuyueBtn: UIButton!
+    @IBOutlet weak var huiyuanBtn: UIButton!
+    @IBOutlet weak var kaidanBtn: UIButton!
     var memberModel = JDmemberModel()
+    
+    
+    
+    var orderKCArr = [JDhuiyuanDetail]()
+    var orderYFArr = [JDhuiyuanDetail]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                     title="会员360"
         view.backgroundColor=UIColor.k_colorWith(hexStr: "#f8f8f8")
-        
-//        let erwIimage = UIImageView(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
-//        erwIimage.backgroundColor=UIColor.red
-//        erwIimage.k_createQrImage(url: "2131233232", placeholder: UIImage())
-//        view.addSubview(erwIimage)
-        kedanB.titleLabel?.numberOfLines=2
-        kedanB.titleLabel?.textAlignment = .center
-        xiaofeiB.titleLabel?.numberOfLines=2
-        cishuBtn.titleLabel?.numberOfLines=2
-        chongzhiB.titleLabel?.numberOfLines=2
-        chapingB.titleLabel?.numberOfLines=2
-        dianpingB.titleLabel?.numberOfLines=2
-        jiangeB.titleLabel?.numberOfLines=2
-        
-        
-        jiangeB.titleLabel?.textAlignment = .center
-        dianpingB.titleLabel?.textAlignment = .center
-        chapingB.titleLabel?.textAlignment = .center
-        chongzhiB.titleLabel?.textAlignment = .center
-        cishuBtn.titleLabel?.textAlignment = .center
-        xiaofeiB.titleLabel?.textAlignment = .center
-         
         setUI()
+        setfooterUI()
         typeView(with: 1)
     }
-
-
-    
 
 }
 
@@ -70,30 +67,41 @@ extension JDMemberDetailController{
     func setUI()  {
         iconImageV.cornerRadius(radius: 40)
         iconImageV.image=UIImage(named: "Bitmap")
-//        detaileDic["Member"]["cfdMemberName"]
-//        let MemberDic = detaileDic["Member"] as! String.Type<String : Any>
-//        BadNumber = 5;差评
-//        Consume = 10000消费
-//        CycleNumber = 100;间隔
-//        UnitPrice = 100; 客单
-//        MonthsNumber = 50;次数
-//        Recharge = 500;充值
-//        CommentNumber = 10点评
         nameL.text = memberModel.Member.cfdMemberName
 //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
         scoureL.text = "客户来源:\(memberModel.Member.cfdSource ?? "")   手机号:\( memberModel.Member.cfdMoTel ?? "")"
         creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday ?? "")"
+        yuyueBtn.cornerRadius(radius: 15)
+        yuyueBtn.addAction { (_) in
+            self.navigationController?.pushViewController(JDReservedController(), animated: true)
+        }
+        huiyuanBtn.cornerRadius(radius: 15)
+        huiyuanBtn.addAction { (_) in
+            NHMBProgressHud.showSuccesshTips(message: "会员协议")
+//            self.navigationController?.pushViewController(JDReservedController(), animated: true)
+        }
+        kaidanBtn.cornerRadius(radius: 15)
+        kaidanBtn.addAction { (_) in
+            let courseVC = JDCourseController()
+            courseVC.cfdMemberId = self.memberModel.Member.cfdMemberId
+            courseVC.namelTelStr = self.memberModel.Member.cfdMemberName;
+            self.navigationController?.pushViewController(courseVC, animated: true)
+        }
         
-    
-        kedanB.setTitle("\(memberModel.UnitPrice ?? "") \n 客单近三个月", for: .normal)
-        xiaofeiB.setTitle("\(memberModel.MonthsNumber ?? "") \n 次数近三个月", for: .normal)
-        cishuBtn.setTitle("\(memberModel.Consume ?? "") \n 消费近三个月", for: .normal)
-        chongzhiB.setTitle("\(memberModel.Recharge ?? "") \n 充值近三个月", for: .normal)
-        chapingB.setTitle("\(memberModel.BadNumber ?? "") \n 差评所有", for: .normal)
-        dianpingB.setTitle("\(memberModel.CommentNumber ?? "") \n 点评差评所有", for: .normal)
-        jiangeB.setTitle("\(memberModel.CycleNumber ?? "") \n 间隔平均", for: .normal)
-        
-        
+        kdnL.text = memberModel.UnitPrice ?? "0"
+        kedanL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
+        cishuL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
+        xiaofeiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
+        chongzhiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
+        chapingL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "所有")
+        dianpingL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "所有")
+        jiangeL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "平均")
+        csnL.text = memberModel.MonthsNumber ?? "0"
+        xfnL.text = memberModel.Consume ?? "0"
+        cznL.text = memberModel.Recharge ?? "0"
+        cpnL.text = memberModel.BadNumber ?? "0"
+        dpnL.text = memberModel.CommentNumber ?? "0"
+        jgnL.text = memberModel.CycleNumber ?? "0"
         
             oneB.addAction { (btn:UIButton) in
                 btn.isEnabled=false
@@ -125,12 +133,6 @@ extension JDMemberDetailController{
         }
         
     }
-    
-
-    
-    
-
-    
     func typeView(with type:NSInteger) {
         
         self.oneV.isHidden=true;
@@ -140,22 +142,184 @@ extension JDMemberDetailController{
        
         switch type {
         case 1:
-          
             self.oneV.isHidden=false;
-            self.oneV.backgroundColor=UIColor.randomColor()
+//            self.oneV.backgroundColor=UIColor.randomColor()
+            setShpingtype(type: "1")
         case 2:
             self.twoV.isHidden=false;
-            self.twoV.backgroundColor=UIColor.randomColor()
-          
+//            self.twoV.backgroundColor=UIColor.randomColor()
+            lastKecheng()
         case 3:
             self.threeV.isHidden=false;
-            self.threeV.backgroundColor=UIColor.randomColor()
-      
+//            self.threeV.backgroundColor=UIColor.randomColor()
+            setShpingtype(type: "0")
         default:
             
             self.fourV.isHidden=false;
-            self.fourV.backgroundColor=UIColor.randomColor()
+//            self.fourV.backgroundColor=UIColor.randomColor()
+            caozuo()
         }
     }
 
+}
+extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        UIImage(named: "zanwu")
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == oneV {
+            return self.orderKCArr.count
+        }else if tableView == twoV {
+            return 0
+        }else if tableView == threeV {
+            return self.orderYFArr.count
+        }else {
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == oneV {
+            let mode  = orderKCArr[indexPath.row]
+            return mode.kechengHeight ?? 150
+        }else if tableView == twoV {
+            return 0
+        }else if tableView == threeV {
+            let mode  = orderKCArr[indexPath.row]
+            return mode.kechengHeight ?? 150
+        }else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == oneV {
+            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
+            cell.selectionStyle = .none
+//            cell.delegate = self
+//            cell.reserveMode = reserveArr[indexPath.row]
+            cell.goumaiModel = orderKCArr[indexPath.row]
+            return cell
+        }else  if tableView == twoV {
+//            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
+////            cell.delegate = self
+////            cell.reserveMode = reserveArr[indexPath.row]
+//            return cell
+        }else  if tableView == threeV {
+            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
+            cell.selectionStyle = .none
+//            cell.delegate = self
+        cell.yufuModel = orderYFArr[indexPath.row]
+            return cell
+        }else  {
+            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
+//            cell.delegate = self
+//            cell.reserveMode = reserveArr[indexPath.row]
+            return cell
+        }
+         return UITableViewCell()
+    }
+    
+    func setfooterUI(){
+        oneV.delegate = self
+        twoV.delegate = self
+        oneV.emptyDataSetSource = self
+        oneV.emptyDataSetDelegate = self
+        twoV.emptyDataSetSource = self
+        twoV.emptyDataSetDelegate = self
+        threeV.emptyDataSetSource = self
+        threeV.emptyDataSetDelegate = self
+        fourV.emptyDataSetSource = self
+        fourV.emptyDataSetDelegate = self
+        
+        threeV.delegate = self
+        fourV.delegate = self
+        oneV.dataSource = self
+        twoV.dataSource = self
+        threeV.dataSource = self
+        fourV.dataSource = self
+        
+        oneV.k_registerCell(cls: JDgoumaikcCell.self)
+        oneV.tableFooterView = UIView()
+        threeV.k_registerCell(cls: JDgoumaikcCell.self)
+        threeV.tableFooterView = UIView()
+        twoV.tableFooterView = UIView()
+        fourV.tableFooterView = UIView()
+    }
+    
+    func setShpingtype(type:NSString) {
+//        if type == "1"{
+//            if orderKCArr.count>0 {
+//                return
+//            }
+//        }else{
+//            if orderKCArr.count>0 {
+//                return
+//            }
+//        }
+//
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? "","ifdType":type ]) { (dic) in
+   
+            NHMBProgressHud.hideHud()
+            guard let arr = dic as? [[String : Any]] else { return }
+          
+            if type == "1"{
+                self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+                self.oneV.reloadData()
+            }else{
+                self.orderYFArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+                self.threeV.reloadData()
+            }
+        } error: { (error) in
+            NHMBProgressHud.hideHud()
+        }
+
+    }
+    func lastKecheng() {
+        
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQMemberTimeList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? ""  ]) { (dic) in
+            print(dic)
+            NHMBProgressHud.hideHud()
+//            guard let arr = dic as? [[String : Any]] else { return }
+//
+//            if type == "1"{
+//                self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+//                self.oneV.reloadData()
+//            }else{
+//                self.orderYFArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+//                self.threeV.reloadData()
+//            }
+        } error: { (error) in
+            NHMBProgressHud.hideHud()
+        }
+
+        
+    }
+    
+    
+    func caozuo() {
+        
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQTimeUseList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? ""  ]) { (dic) in
+            print(dic)
+            NHMBProgressHud.hideHud()
+//            guard let arr = dic as? [[String : Any]] else { return }
+//
+//            if type == "1"{
+//                self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+//                self.oneV.reloadData()
+//            }else{
+//                self.orderYFArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+//                self.threeV.reloadData()
+//            }
+        } error: { (error) in
+            NHMBProgressHud.hideHud()
+        }
+
+        
+    }
+    
 }

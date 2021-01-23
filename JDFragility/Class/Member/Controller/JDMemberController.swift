@@ -221,22 +221,22 @@ extension JDMemberController{
                 dataPicker.picker.selectRow(0, inComponent: 0, animated: true)
                 dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
                 dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
-                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
+//                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
                 
     //            let findIndex = hours.firstIndex(where: { (e) -> Bool in
     //                return e == NSDate().hour
     //            })
     //            let index = NSDate().minute > 30 ? findIndex ?? 0 + 1 : findIndex
     //
-                let index = hours.firstIndex(of: NSDate.init().hour)
-                let minute = NSDate.init().minute
-                let type = minute > 30
-            
-                
-                dataPicker.picker.selectRow(type == true ? (index ?? 0) + 1 : index ?? 0, inComponent: 3, animated: true)
-                
-                dataPicker.picker.selectRow(type == true ? 0 : 1, inComponent: 4, animated: true)
- 
+//                let index = hours.firstIndex(of: NSDate.init().hour)
+//                let minute = NSDate.init().minute
+//                let type = minute > 30
+//
+//
+//                dataPicker.picker.selectRow(type == true ? (index ?? 0) + 1 : index ?? 0, inComponent: 3, animated: true)
+//
+//                dataPicker.picker.selectRow(type == true ? 0 : 1, inComponent: 4, animated: true)
+//
             }
         }
         

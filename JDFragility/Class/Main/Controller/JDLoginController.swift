@@ -57,6 +57,7 @@ class JDLoginController: JDBaseViewController {
                       "cfdPassWord": yzmF.text ?? ""]
         NetManager.ShareInstance.postWith(url: "api/IPad/IPadLogin", params:params ) { (dic) in
             print(dic)
+            NHMBProgressHud.hideHud()
             NHMBProgressHud.showSuccesshTips(message: "登录成功！")
             let login = JDUserInfo.deserialize(from: dic as? Dictionary)
             
@@ -71,6 +72,7 @@ class JDLoginController: JDBaseViewController {
             
             Kwindow.window?.rootViewController = JDNavViewController(rootViewController: JDMainController())
         } error: { (error) in
+            NHMBProgressHud.hideHud()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 

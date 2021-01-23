@@ -73,27 +73,7 @@ extension JDGoReserveController:UITableViewDelegate,UITableViewDataSource,DZNEmp
   
     func setData()  {
         if kehuTelT.text?.isEmpty == false {
-            
-            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
-            let params = ["cfdMoTel":kehuTelT.text ?? "" ]
-            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQRMember", params: params) { (dic) in
-                NHMBProgressHud.hideHud()
-                if let dics = dic["Member"] as? [String : Any] {
-                    self.memberModel =  dics.kj.model(MemberDetailModel.self)
-                    self.kehuNameL.text = self.memberModel?.cfdMemberName ?? "暂无"
-                }else{
-                    NHMBProgressHud.showErrorMessage(message: "查询暂无结果，请查证后重新输入")
-                }
-                 
-                guard let arr = dic["TimeList"]  as? [[String : Any]] else { return }
-                self.leftArr  = arr.kj.modelArray(ResListModel.self)
-
-                self.leftTableView.reloadData()
-                
-            } error: { (error) in
-            
-            }
-
+            setSearchT()
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -152,13 +132,13 @@ extension JDGoReserveController:UITableViewDelegate,UITableViewDataSource,DZNEmp
     }
      
 }
-extension JDGoReserveController{
+extension JDGoReserveController:UITextFieldDelegate{
     func setUI()  {
         setedDataBtn.k_setCornerRadius(4)
         setedDataBtn.k_setBorder(color: UIColor.k_colorWith(hexStr: "EAEAEA"), width: 1)
         yuangongNameL.text = reaverdMode?.cfdEmployeeName
-        kehuTelT.text="18627912021"
-        
+//        kehuTelT.text="18627912021"
+        kehuTelT.delegate = self
         setedDataBtn.addAction { (birthdayB:UIButton) in
             self.view.endEditing(true)
             let dataPicker = EWDatePickerViewController()
@@ -204,6 +184,40 @@ extension JDGoReserveController{
     }
     
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == kehuTelT {
+//         搜索会员
+            if textField.text?.length != 11 {
+                NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
+               return false
+            }
+            kehuTelT.resignFirstResponder()
+            setSearchT()
+        }
+        return true
+    }
+    
+    func setSearchT() {
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+        let params = ["cfdMoTel":kehuTelT.text ?? "" ]
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQRMember", params: params) { (dic) in
+            NHMBProgressHud.hideHud()
+            if let dics = dic["Member"] as? [String : Any] {
+                self.memberModel =  dics.kj.model(MemberDetailModel.self)
+                self.kehuNameL.text = self.memberModel?.cfdMemberName ?? "暂无"
+            }else{
+                NHMBProgressHud.showErrorMessage(message: "查询暂无结果，请查证后重新输入")
+            }
+             
+            guard let arr = dic["TimeList"]  as? [[String : Any]] else { return }
+            self.leftArr  = arr.kj.modelArray(ResListModel.self)
+
+            self.leftTableView.reloadData()
+            
+        } error: { (error) in
+        
+        }
+    }
     
     
 }

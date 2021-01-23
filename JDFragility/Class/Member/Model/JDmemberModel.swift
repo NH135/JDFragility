@@ -11,15 +11,7 @@ import KakaJSON
 struct JDmemberModel: Convertible {
     var cfdSource:String?
     var cfdSourceId:String?;
-    var cfdCreateUser:String?;
-     
-//    BadNumber = 5;
-//    Consume = 10000;
-//    CycleNumber = 100;
-//    UnitPrice = 100;
-//    MonthsNumber = 50;
-//    Recharge = 500;
-//    CommentNumber = 10
+    var cfdCreateUser:String?
     var Member = MemberDetailModel()
     
     var BadNumber:String?
