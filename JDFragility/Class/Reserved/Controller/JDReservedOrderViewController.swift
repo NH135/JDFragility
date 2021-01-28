@@ -11,7 +11,7 @@ class JDReservedOrderViewController: JDBaseViewController {
 
     
     @IBOutlet weak var ewmI: UIImageView!
-    @IBOutlet weak var yiBtn: UIButton!
+ 
     @IBOutlet weak var timeL: UILabel!
     @IBOutlet weak var yuangongNameL: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -33,7 +33,21 @@ class JDReservedOrderViewController: JDBaseViewController {
         navigationController?.popViewController(animated:true)
     }
     
-//
+    @IBAction func jiezhangClick() {
+        NHMBProgressHud.showLoadingHudView(message: "结帐中～～")
+        let params = ["cfdReserveId":cfdReserveId ?? "" ]
+        NetManager.ShareInstance.postWith(url: "api/IPad/IPadSaveTimeUseList", params: params as [String : Any]) { (dic) in
+            NHMBProgressHud.showSuccesshTips(message: "结帐成功！")
+            self.navigationController?.popViewController(animated:true)
+            NHMBProgressHud.hideHud()
+        } error: { (error) in
+            NHMBProgressHud.hideHud()
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+        }
+
+        
+    }
+    //
 }
 
 extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSource,reveredOrderDelegate{
@@ -134,8 +148,7 @@ extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSour
 
 extension JDReservedOrderViewController{
     
-    func setUI(){
-        yiBtn.cornerRadius(radius: 6)
+    func setUI(){ 
         tableView.k_registerCell(cls: JDreveredOrderCell.self)
         tableView.delegate = self
         tableView.dataSource = self

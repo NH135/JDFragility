@@ -7,7 +7,8 @@
 
 import UIKit
 import MJRefresh
-class JDsaveKCController: JDBaseViewController, HeaderViewDelegate {
+class JDsaveKCController: JDBaseViewController, HeaderViewDelegate, shopingcourseAddDelegate {
+ 
  
 
 
@@ -19,8 +20,10 @@ class JDsaveKCController: JDBaseViewController, HeaderViewDelegate {
     var letftArr = [JDGroupModel]()
     var rightArr = [JDGroupModel]()
     var setedArr = [saveDetailModel]()
-    var numberArr = [saveDetailModel]()
+    var numberArr = [JDGroupModel]()
+ 
     var letfIndex : Int = 0;
+    var money : Float = 0.0;
     
     
     @IBOutlet weak var saveBtn: UIButton!
@@ -60,12 +63,13 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
         letTableView.tableFooterView = UIView()
         rightTableView.tableFooterView = UIView()
         saveBtn.addAction { (_) in
-            NHMBProgressHud.showSuccesshTips(message: "保存成功")
             let letModel = self.letftArr[self.letfIndex]
-            
             let params = ["cfdMemberCardGUID":letModel.cfdMemberCardGUID ?? "","cfdCourseList":self.setedArr.kj.JSONString(),"cfdCourseStr":self.numberArr.kj.JSONString()]
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadSaveMemberTimeList", params: params) { (dic) in
-
+                NHMBProgressHud.showSuccesshTips(message: "保存成功")
+                self.navigationController?.popViewController(animated: true)
+                self.numberArr.removeAll()
+                self.setedArr.removeAll()
             } error: { (error) in
 
             }
@@ -75,7 +79,17 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == rightTableView{
-        return rightArr.count
+            if  self.cfdCourseId?.isEmpty == false {
+                let letModel = self.letftArr[self.letfIndex]
+                
+                if letModel.ifdType == 1 {
+                    return rightArr.count
+                }else{
+                    return 1
+                }
+            }else{
+                return 1
+            }
         }else{
             return 1
         }
@@ -84,9 +98,19 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == rightTableView {
-            let group :JDGroupModel = rightArr[section]
-    //            return group.isOpen == true ? group.list.count : 0
-            return group.ItemList.count
+         
+            if self.cfdCourseId?.isEmpty == false {
+                let letModel = self.letftArr[self.letfIndex]
+                if letModel.ifdType == 1 {
+                    let group :JDGroupModel = rightArr[section]
+                    return group.ItemList.count
+                }else{
+                    return rightArr.count
+                }
+                
+            }else{
+                return 0
+            }
         }else{
             return letftArr.count
         }
@@ -111,40 +135,73 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
         }else if tableView == rightTableView{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
             cell.selectionStyle = .none;
-            let rightMode  = rightArr[indexPath.section]
-            cell.ifdType = ifdType
-            cell.baocunModel = rightMode.ItemList[indexPath.row]
-//            cell.delegate = self
+            
+            
+            let letModel = self.letftArr[self.letfIndex]
+            if letModel.ifdType == 1 {
+                let rightMode  = rightArr[indexPath.section]
+                cell.ifdType = ifdType
+                cell.baocunModel = rightMode.ItemList[indexPath.row]
+            }else{
+                cell.baocunModelT = rightArr[indexPath.row];
+            }
+             
+         
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
     }
     
-//    func shopingaddjianCourse(type: Bool, model: JDGroupProjectModel) {
-//
-//    }
-//
-//    func saveCourse(isSeted: Bool, model: saveDetailModel) {
-//        if isSeted == true {
-//            setedArr.append(model)
-//        }else{
-//            setedArr.removeAll(where: { $0.cfdCourseListId == model.cfdCourseListId})
-//        }
-//    }
-//
+    func shopingaddjianCourse(type: Bool, model: JDGroupModel) {
+        
+        let letModel = self.letftArr[self.letfIndex]
+        
+        
+        if type == true {
+         
+            money += model.ffdPrice ?? 0.0
+//            if money > letModel.ffdOriPrice! {
+//                model.ifdSumNumber! -= 1
+//                self.rightTableView.reloadData()
+//                return
+//            }
+            numberArr.append(model)
+            numberArr = numberArr.filterDuplicates{$0.cfdCourseId}
+           
+        }else{
+            money -= model.ffdPrice ?? 0.0
+            numberArr.removeAll(where: { $0.cfdCourseId == model.cfdCourseId})
+        }
+        allMoeny.text = "总计：\(money)"
+        
+        
+        print(numberArr)
+    }
+ 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == rightTableView {
         let header:HeaderView = HeaderView.headerViewWithTableView(tableView: tableView)
-//         header.delegate = self
+ 
             header.backgroundColor=UIColor.k_colorWith(hexStr: "F7F8FA")
-            header.group = rightArr[section];
+            if self.cfdCourseId?.isEmpty == false {
+                header.group = rightArr[section];
+            }
+        
          return header
      }
         return UIView()
     }
     
-    func headerViewDidClickedNameView(headerView: HeaderView) {
+    func headerViewDidClickedNameView(model:JDGroupModel,isSted:Bool) {
+        
+        for m in rightArr {
+            m.isOpen = false
+            if m.cfdCourseClassId == model.cfdCourseClassId {
+                    m.isOpen = isSted
+            }
+        }
         rightTableView.reloadData()
     }
     
@@ -155,7 +212,7 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
                 allMoeny.isHidden = true
                 return 50
             }else{
-                allMoeny.isHidden = true
+                allMoeny.isHidden = false
                 return 0
             }
           
@@ -212,7 +269,7 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
 }
 extension JDsaveKCController{
     func setData(){
-        let params = ["cfdBusListGUID":cfdBusListGUID ?? "1ca9a06c-9704-4c55-b8b8-c68e9c5973c6" ]
+        let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
         
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadBusListCourse", params: params) { (dic) in
             guard let arr = dic as? [[String : Any]] else { return }

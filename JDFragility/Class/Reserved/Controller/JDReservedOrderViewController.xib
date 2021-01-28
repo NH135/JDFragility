@@ -68,11 +68,26 @@
                                 <constraint firstAttribute="height" constant="50" id="dlA-rl-SLO"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="结帐">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="jiezhangClick" destination="-1" eventType="touchUpInside" id="1GK-vd-GJ6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg3-Dg-0Yu">
+                            <rect key="frame" x="162" y="472" width="160" height="50"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="7MU-1l-4Lr"/>
+                                <constraint firstAttribute="width" constant="160" id="HHW-Be-hCZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <state key="normal" title="关闭">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="closeBtn:" destination="-1" eventType="touchUpInside" id="sep-eF-JIy"/>
+                                <action selector="closeBtn:" destination="-1" eventType="touchUpInside" id="NC4-gA-Xlx"/>
                             </connections>
                         </button>
                     </subviews>
@@ -85,6 +100,8 @@
                         <constraint firstItem="9HR-eu-lCh" firstAttribute="leading" secondItem="UQ5-bL-39S" secondAttribute="trailing" constant="15" id="91h-k4-p0c"/>
                         <constraint firstItem="sIh-gb-jbO" firstAttribute="top" secondItem="fOs-VC-Ang" secondAttribute="top" constant="30" id="Aas-Kp-lRJ"/>
                         <constraint firstAttribute="bottom" secondItem="sIh-gb-jbO" secondAttribute="bottom" constant="100" id="G2W-ay-Zqc"/>
+                        <constraint firstItem="iNJ-Ib-9pm" firstAttribute="leading" secondItem="dg3-Dg-0Yu" secondAttribute="trailing" id="IFc-wn-eWA"/>
+                        <constraint firstItem="dg3-Dg-0Yu" firstAttribute="top" secondItem="iNJ-Ib-9pm" secondAttribute="top" id="OWg-SM-HLs"/>
                         <constraint firstItem="Cuy-hP-dL5" firstAttribute="leading" secondItem="UQ5-bL-39S" secondAttribute="leading" id="TSg-LG-qB6"/>
                         <constraint firstItem="sIh-gb-jbO" firstAttribute="leading" secondItem="8jQ-c5-iyO" secondAttribute="leading" id="Vx8-Y7-Mva"/>
                         <constraint firstItem="Cuy-hP-dL5" firstAttribute="top" secondItem="UQ5-bL-39S" secondAttribute="bottom" constant="20" id="cEL-4T-dhC"/>

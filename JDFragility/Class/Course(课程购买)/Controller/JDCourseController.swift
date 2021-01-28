@@ -31,32 +31,22 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     var groups = Array<JDGroupModel>()
     var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
-     
-//    lazy var groups: NSMutableArray? = {
-//        var arr:NSMutableArray = NSMutableArray()
-//        for i in 0..<4{
-//            let group = JDGroupModel()
-//            group.name = String(format: "组%d", i)
-//
-//            for i in 0...4{
-//
-//                let groupDetaile = JDGroupDetaileModel()
-//                groupDetaile.name = String(format: "详情%d", i)
-//                group.friends = NSMutableArray()
-//                group.friends?.add(groupDetaile)
-//            }
-//
-//            arr.add(group)
-//        }
-//        return arr
-//    }()
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let headerV  = UIView(frame: CGRect(x: 0, y: 0, width: 280, height: 55))
+        headerV.backgroundColor=UIColor.k_colorWith(hexStr: "#409EFF")
+        leftTableView.tableHeaderView = headerV;
+        let tiL = UILabel(frame: CGRect(x: 12, y: 0, width: 100, height: 55))
+        tiL.text = "类别"
+        tiL.font=UIFont.systemFont(ofSize: 18)
+        tiL.textColor=UIColor.white
+        headerV.addSubview(tiL)
+        
         memBerT.delegate = self
         leftTableView.delegate = self;
         leftTableView.dataSource = self;
-        leftTableView.emptyDataSetSource = self;
-        leftTableView.emptyDataSetDelegate = self
         leftTableView.tableFooterView=UIView()
         leftTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
      leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
@@ -77,11 +67,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
                 self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
             })
         }
-        
-        
-    
-
-
+         
  
 }
 
@@ -125,8 +111,8 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             
         let group :JDGroupModel = groups[section]
          
-//            return group.isOpen == true ? group.list.count : 0
-            return group.list.count
+            return group.isOpen == true ? group.list.count : 0
+ 
         }else if tableView == rightTableView{
             return rightGroups.count
         }else{
@@ -139,7 +125,11 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             let cell = tableView.k_dequeueReusableCell(cls: JDgroupCell.self, indexPath: indexPath)
             
             let group  = groups[indexPath.section]
- 
+//            cell.selectedBackgroundView.backgroundColor=[UIColor blackColor];
+            cell.selectedBackgroundView = UIView()
+               cell.selectedBackgroundView?.backgroundColor =
+                UIColor.k_colorWith(hexStr: "#A0CFFF")
+            cell.textLabel?.highlightedTextColor = UIColor.white
             cell.friendData = group.list[indexPath.row]
             return cell
         }else if tableView == rightTableView{
@@ -159,7 +149,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == leftTableView {
-            return 35
+            return 50
         }else if tableView == rightTableView {
             return 110
         }else{
@@ -167,32 +157,37 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         }
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        40
+        50
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == leftTableView {
         let header:HeaderView = HeaderView.headerViewWithTableView(tableView: tableView)
          header.delegate = self
-            header.backgroundColor=UIColor.k_colorWith(hexStr: "F7F8FA")
+            
+            header.backgroundColor=UIColor.k_colorWith(hexStr: "#F7F8FA")
         header.group = groups[section]
          return header
      }
         return UIView()
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        50
+        55
     }
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
+            
+            let group  = groups[indexPath.section]
+            let groupDetail = group.list[indexPath.row]
             guard (cfdMemberId != nil) else {
+                classId = groupDetail.cfdCourseClassId
                 NHMBProgressHud.showSuccesshTips(message: "请先输入会员号码进行查询！")
                 memBerT.becomeFirstResponder()
                 return
             }
             
-        let group  = groups[indexPath.section]
-        let groupDetail = group.list[indexPath.row]
+    
+   
             classId = groupDetail.cfdCourseClassId
             rightTableView.mj_header?.beginRefreshing()
         }else{
@@ -217,7 +212,15 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
 
     }
     
-    func headerViewDidClickedNameView(headerView: HeaderView) {
+    func headerViewDidClickedNameView(model:JDGroupModel,isSted:Bool) {
+        
+        for m in groups {
+            m.isOpen = false
+            if m.cfdCourseClassId == model.cfdCourseClassId {
+                    m.isOpen = isSted
+            }
+        }
+        
         self.leftTableView.reloadData()
     }
     func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
@@ -237,9 +240,7 @@ extension JDCourseController{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == memBerT {
 //         搜索会员
-           
             memBerT.resignFirstResponder()
- 
             NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                 NHMBProgressHud.hideHud()
@@ -257,7 +258,8 @@ extension JDCourseController{
                 self.memberModel =  dics.kj.model(MemberDetailModel.self)
                 self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
                 self.cfdMemberId = self.memberModel.cfdMemberId
-                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+//                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+                self.rightTableView.mj_header?.beginRefreshing()
             } error: { (error) in
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
@@ -283,16 +285,16 @@ extension JDCourseController{
         self.shopingTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
 //        购物车
         goShopingBtn.addAction { (_) in
-            
-//            self.navigationController?.pushViewController(JDsaveKCController(), animated: true)
-//       
-//            return
-            
-            self.shopingTableView.reloadData()
-            UIView.animate(withDuration: 0.25) {
-                self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
-            }
-            self.zheBg.isHidden=false
+            let save =  JDsaveKCController()
+            save.cfdBusListGUID = "d584880b-f388-4b43-9c11-f564b5930111"  //金额
+//          save.cfdBusListGUID = "f8e35198-ccc0-4c32-86fe-0f46940b0614"  //多选
+            self.navigationController?.pushViewController(save, animated: true)
+
+//            self.shopingTableView.reloadData()
+//            UIView.animate(withDuration: 0.25) {
+//                self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
+//            }
+//            self.zheBg.isHidden=false
         }
         
         zheBg.k_addTarget { (_) in

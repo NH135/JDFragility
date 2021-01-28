@@ -8,7 +8,7 @@
 import UIKit
 import KakaJSON
 
-struct JDGroupModel: Convertible {
+class JDGroupModel: Convertible {
 
     var cfdCourseClass:String?
     var list = [JDGroupDetaileModel]()
@@ -19,12 +19,15 @@ struct JDGroupModel: Convertible {
     var dfdCreateDate:String?
     var ifdState:String?
     var ifdOrder:String?
+    var ffdOriPrice:Float?
     
     
 //    保存自选套餐
     var cfdCourseName:String?
     var  cfdMemberCardGUID :String?
-    
+    var  ffdPrice :Float?
+    var ifdTerm :String?
+    var ifdSort :String?
     var ifdType:Int?
     var cfdCourseId:String?
     var ifdSelectNumber : String?
@@ -32,10 +35,15 @@ struct JDGroupModel: Convertible {
     var cfdCIGName : String?
     var cfdCourseItemGroupId : String?
     var ItemList = [saveDetailModel]()
- 
+    
+    
+    var ifdSumNumber : Int?
+    
+    
+    required init() {}
 }
 
-struct JDGroupDetaileModel:Convertible {
+class JDGroupDetaileModel:Convertible {
     
     var cfdCreateUser:String?
     var cfdRemarks:String?
@@ -47,4 +55,6 @@ struct JDGroupDetaileModel:Convertible {
     var ifdState:String?
     var ifdOrder:String?
     var isSeleted:Bool = false
+    
+    required init() {}
 }

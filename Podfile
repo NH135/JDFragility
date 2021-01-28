@@ -16,4 +16,5 @@ target 'JDFragility' do
   pod 'MBProgressHUD'
   pod 'KakaJSON'
   pod 'MJExtension'
+  pod 'swiftScan'
 end

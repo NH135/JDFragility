@@ -39,7 +39,7 @@ struct TimeListModel: Convertible {
     var cfdItemId:String?;
     var ifdAllNumber:String?;
     var ifdYnumber:String?;
-    
+    var ifdRefundNumber:String?
     var ffdUnitPrice:String?;
     var cfdMemberId:String?
     var cfdBusListGUID:String?;

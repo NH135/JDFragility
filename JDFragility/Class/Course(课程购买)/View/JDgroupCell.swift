@@ -8,8 +8,6 @@
 import UIKit
 
 class JDgroupCell: UITableViewCell {
-    
- 
      
     var friendData:JDGroupDetaileModel? {
         didSet {
@@ -20,7 +18,6 @@ class JDgroupCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-      
     }
 }
 
@@ -30,47 +27,48 @@ class JDgroupCell: UITableViewCell {
 // 自定义section的headerView
 // 协议，点击headerView的回调
 protocol HeaderViewDelegate:NSObjectProtocol {
-    func headerViewDidClickedNameView(headerView:HeaderView)
+    func headerViewDidClickedNameView(model:JDGroupModel,isSted:Bool)
 }
 
 class HeaderView: UITableViewHeaderFooterView {
     weak var delegate:HeaderViewDelegate?
  
-    var countView:UILabel? =  {
-        let countView:UILabel = UILabel()
-       
-        countView.textColor = UIColor.gray
-        return countView
+    var letL:UILabel? =  {
+        let letL:UILabel = UILabel()
+        letL.font = UIFont.boldSystemFont(ofSize: 16)
+        letL.textColor = UIColor.black
+        return letL
     }()
  
     var nameView:UIButton? = {
         
         let nameView = UIButton.init(type: .custom)
-//        nameView.setBackgroundImage(UIImage(named: "buddy_header_bg"), for: .normal)
-//        nameView.setBackgroundImage(UIImage(named: "buddy_header_bg_highlighted"), for: .highlighted)s
-//// 设定那个group的小角
-//        nameView.setImage(UIImage(named: "buddy_header_arrow"), for: .normal)
+        nameView.contentHorizontalAlignment = .right
+        nameView.setImage(UIImage(named: "down"), for: .normal)
         nameView.setTitleColor(UIColor.black, for: .normal)
-        
-        nameView.contentHorizontalAlignment = .left
-        nameView.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        nameView.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        
-        nameView.imageView?.contentMode = .center
-        nameView.imageView?.clipsToBounds = false
+        nameView.setTitleColor(UIColor.k_colorWith(hexStr: "#409EFF"), for: .selected)
         return nameView
     }()
  
        var group:JDGroupModel? {
            didSet {
-            if group!.cfdCourseClass?.isEmpty == false {
-                self.nameView?.setTitle(group!.cfdCourseClass!, for: .normal)
-                    didMoveToSuperview()
+            if group?.cfdCourseClass?.isEmpty == false {
+                letL?.text = group?.cfdCourseClass
             }else{
-                self.nameView?.setTitle("\(group!.cfdCIGName!) （\(group?.ItemList.count ?? 0) 选 \(group?.ifdSelectNumber ?? "0") ）", for: .normal)
-                    didMoveToSuperview()
+                letL?.text = "\(group?.cfdCIGName ?? "暂无") (\(group?.ItemList.count ?? 0) 选\(group?.ifdSelectNumber ?? "0"))"
             }
-           
+          
+            if self.group?.isOpen == true {
+                letL?.textColor = UIColor.k_colorWith(hexStr: "#409EFF")
+   //            self.nameView?.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat( M_PI_2))
+                self.nameView?.setImage(UIImage(named: "up"), for: .normal)
+                self.nameView?.isSelected = true;
+            }else {
+   //            self.nameView?.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+                letL?.textColor = UIColor.black
+                self.nameView?.isSelected = false;
+                self.nameView?.setImage(UIImage(named: "down"), for: .normal)
+            }
            }
        }
  
@@ -89,38 +87,26 @@ class HeaderView: UITableViewHeaderFooterView {
            super.init(reuseIdentifier: reuseIdentifier)
            
         self.nameView!.addTarget(self, action: #selector(HeaderView.nameClick), for: .touchUpInside)
-           
+        self.contentView.addSubview(letL!)
            self.contentView.addSubview(nameView!)
            
-           self.contentView.addSubview(countView!)
+      
            
            
        }
     @objc func nameClick() {
-//         self.group?.isOpen = !self.group!.isOpen!
+         
          // 刷新表格
         if ((self.delegate?.responds(to: Selector(("headerViewDidClickedNameView:")))) != nil) {
-            self.delegate?.headerViewDidClickedNameView(headerView: self)
-         }
-     }
-     override func didMoveToSuperview() {
-         super.didMoveToSuperview()
-         if self.group!.isOpen == true {
-            self.nameView?.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat( M_PI_2))
-         }else {
-            self.nameView?.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+            self.delegate?.headerViewDidClickedNameView(model: self.group!,isSted:!self.nameView!.isSelected)
          }
      }
  
      override func layoutSubviews() {
          super.layoutSubviews()
          
-         self.nameView?.frame = self.bounds
-        let countH:CGFloat = self.frame.size.height
-         let countW:CGFloat = 150
-         let countY:CGFloat = 0
-         let countX:CGFloat = self.frame.size.width - 10 - countW
-        self.countView?.frame = CGRect(x: countX, y: countY, width: countW, height: countH)
+        self.nameView?.frame = CGRect(x: 0, y: 0, width: self.width-10, height: self.frame.size.height)
+        self.letL?.frame = CGRect(x: 10, y: 0, width: 150, height: self.frame.size.height)
      }
     required init?(coder aDecoder: NSCoder) {
          fatalError("init(coder:) has not been implemented")

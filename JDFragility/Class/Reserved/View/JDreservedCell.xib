@@ -61,18 +61,28 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5C-dQ-d5Q">
+                        <rect key="frame" x="150" y="0.0" width="1" height="60"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="CUN-YH-pRs"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Kbg-4g-rZO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5A4-ID-Nyd"/>
+                    <constraint firstItem="p5C-dQ-d5Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5ac-vx-sbM"/>
                     <constraint firstAttribute="bottom" secondItem="WaQ-1f-0c5" secondAttribute="bottom" id="A7P-cd-unJ"/>
                     <constraint firstItem="aS5-3F-MOi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Acq-ME-Jdm"/>
                     <constraint firstAttribute="trailing" secondItem="Kbg-4g-rZO" secondAttribute="trailing" id="DoP-C9-LAn"/>
                     <constraint firstAttribute="bottom" secondItem="Kbg-4g-rZO" secondAttribute="bottom" id="IUg-1z-1Ib"/>
                     <constraint firstItem="Kbg-4g-rZO" firstAttribute="leading" secondItem="WaQ-1f-0c5" secondAttribute="trailing" id="MHK-aS-2o9"/>
+                    <constraint firstItem="p5C-dQ-d5Q" firstAttribute="leading" secondItem="WaQ-1f-0c5" secondAttribute="trailing" id="Ooa-BZ-rjT"/>
                     <constraint firstItem="KKd-Qp-K60" firstAttribute="top" secondItem="aS5-3F-MOi" secondAttribute="top" constant="10" id="Qvh-Uw-Y7u"/>
                     <constraint firstItem="WaQ-1f-0c5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Trr-zG-cOO"/>
                     <constraint firstItem="Nsg-7c-bOf" firstAttribute="leading" secondItem="KKd-Qp-K60" secondAttribute="leading" id="Ufz-11-eUZ"/>
                     <constraint firstAttribute="bottom" secondItem="aS5-3F-MOi" secondAttribute="bottom" id="XfC-hd-cSw"/>
+                    <constraint firstAttribute="bottom" secondItem="p5C-dQ-d5Q" secondAttribute="bottom" id="cfT-dW-JPb"/>
                     <constraint firstItem="KKd-Qp-K60" firstAttribute="leading" secondItem="aS5-3F-MOi" secondAttribute="trailing" constant="5" id="h4l-Zo-zmY"/>
                     <constraint firstItem="Nsg-7c-bOf" firstAttribute="top" secondItem="KKd-Qp-K60" secondAttribute="bottom" constant="2" id="lmm-pv-cPb"/>
                     <constraint firstItem="aS5-3F-MOi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mtP-3n-DKn"/>

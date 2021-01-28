@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824977C25B02E5500858644 /* JDjiesuanModel.swift */; };
+		183D0B1E25C2D4230042C76D /* JDsaoEWMController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D0B1D25C2D4230042C76D /* JDsaoEWMController.swift */; };
 		184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B882A259CB73F00998BB1 /* JDReservedController.swift */; };
 		184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B882B259CB73F00998BB1 /* JDReservedController.xib */; };
 		184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B8834259CB76300998BB1 /* JDCourseController.swift */; };
@@ -38,6 +39,8 @@
 		184CD9DD25BBF9A100FACB57 /* JDkechengDetaileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CD9DB25BBF9A100FACB57 /* JDkechengDetaileCell.xib */; };
 		184CD9E325BC010A00FACB57 /* JDorderPaytyoeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CD9E125BC010A00FACB57 /* JDorderPaytyoeCell.swift */; };
 		184CD9E425BC010A00FACB57 /* JDorderPaytyoeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CD9E225BC010A00FACB57 /* JDorderPaytyoeCell.xib */; };
+		184CDA3825BD326400FACB57 /* JDlasteCaozuowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CDA3625BD326400FACB57 /* JDlasteCaozuowCell.swift */; };
+		184CDA3925BD326400FACB57 /* JDlasteCaozuowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184CDA3725BD326400FACB57 /* JDlasteCaozuowCell.xib */; };
 		185286C825AC13460066A009 /* JDGroupProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185286C725AC13460066A009 /* JDGroupProjectModel.swift */; };
 		185287C625AD80570066A009 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 185287C425AD80570066A009 /* UIScrollView+EmptyDataSet.m */; };
 		1861AB3725AEAFE5006158AD /* JDCourseshopingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1861AB3525AEAFE5006158AD /* JDCourseshopingCell.swift */; };
@@ -136,6 +139,7 @@
 
 /* Begin PBXFileReference section */
 		1824977C25B02E5500858644 /* JDjiesuanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDjiesuanModel.swift; sourceTree = "<group>"; };
+		183D0B1D25C2D4230042C76D /* JDsaoEWMController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDsaoEWMController.swift; sourceTree = "<group>"; };
 		184B882A259CB73F00998BB1 /* JDReservedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDReservedController.swift; sourceTree = "<group>"; };
 		184B882B259CB73F00998BB1 /* JDReservedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDReservedController.xib; sourceTree = "<group>"; };
 		184B8834259CB76300998BB1 /* JDCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 		184CD9DB25BBF9A100FACB57 /* JDkechengDetaileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDkechengDetaileCell.xib; sourceTree = "<group>"; };
 		184CD9E125BC010A00FACB57 /* JDorderPaytyoeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDorderPaytyoeCell.swift; sourceTree = "<group>"; };
 		184CD9E225BC010A00FACB57 /* JDorderPaytyoeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDorderPaytyoeCell.xib; sourceTree = "<group>"; };
+		184CDA3625BD326400FACB57 /* JDlasteCaozuowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDlasteCaozuowCell.swift; sourceTree = "<group>"; };
+		184CDA3725BD326400FACB57 /* JDlasteCaozuowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDlasteCaozuowCell.xib; sourceTree = "<group>"; };
 		185286C725AC13460066A009 /* JDGroupProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupProjectModel.swift; sourceTree = "<group>"; };
 		185287C425AD80570066A009 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		185287C525AD80570066A009 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
@@ -419,6 +425,7 @@
 				184CD96B25B8441C00FACB57 /* JDReveredAuthorizationController.xib */,
 				ED0D6D8A25B8783E0081C5B6 /* JDReservedOrderViewController.swift */,
 				ED0D6D8B25B8783E0081C5B6 /* JDReservedOrderViewController.xib */,
+				183D0B1D25C2D4230042C76D /* JDsaoEWMController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -713,6 +720,8 @@
 				184CD9DB25BBF9A100FACB57 /* JDkechengDetaileCell.xib */,
 				184CD9E125BC010A00FACB57 /* JDorderPaytyoeCell.swift */,
 				184CD9E225BC010A00FACB57 /* JDorderPaytyoeCell.xib */,
+				184CDA3625BD326400FACB57 /* JDlasteCaozuowCell.swift */,
+				184CDA3725BD326400FACB57 /* JDlasteCaozuowCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,6 +854,7 @@
 				184CD95A25B7CC3B00FACB57 /* JDaddleftReserveCell.xib in Resources */,
 				18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */,
 				ED0D6D8D25B8783E0081C5B6 /* JDReservedOrderViewController.xib in Resources */,
+				184CDA3925BD326400FACB57 /* JDlasteCaozuowCell.xib in Resources */,
 				18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */,
 				184CD9DD25BBF9A100FACB57 /* JDkechengDetaileCell.xib in Resources */,
 				1872BA5125A7FFF900AAE052 /* JDMemberDetailController.xib in Resources */,
@@ -957,6 +967,7 @@
 				1872BA5025A7FFF900AAE052 /* JDMemberDetailController.swift in Sources */,
 				18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */,
 				EDD5BF7825A97A0C006E94D6 /* JDGoReserveController.swift in Sources */,
+				184CDA3825BD326400FACB57 /* JDlasteCaozuowCell.swift in Sources */,
 				18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */,
 				18B7A9DB25A2FDE100BE4C27 /* Number+Ext.swift in Sources */,
 				18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */,
@@ -983,6 +994,7 @@
 				ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */,
 				EDD5BF9A25A9DCD2006E94D6 /* JDmemberModel.swift in Sources */,
 				1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */,
+				183D0B1E25C2D4230042C76D /* JDsaoEWMController.swift in Sources */,
 				184CD9DC25BBF9A100FACB57 /* JDkechengDetaileCell.swift in Sources */,
 				184CD9BB25BBE6BD00FACB57 /* JDgoumaikcCell.swift in Sources */,
 				184B883D259CB77F00998BB1 /* JDMemberController.swift in Sources */,

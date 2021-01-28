@@ -8,6 +8,7 @@ PODS:
   - MJExtension (3.2.2)
   - MJRefresh (3.5.0)
   - SnapKit (4.2.0)
+  - swiftScan (1.2.1)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - SnapKit
+  - swiftScan
   - SwiftyJSON
 
 SPEC REPOS:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - SnapKit
+    - swiftScan
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -45,8 +48,9 @@ SPEC CHECKSUMS:
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  swiftScan: 0849e7d7c1c641384767a573ee8cb90b88d1ddd9
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6ae4c207a1882076884adb4c55c9d6e80c52d863
+PODFILE CHECKSUM: 4a29699646397ecb09e2b5b042329ab44200aa13
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

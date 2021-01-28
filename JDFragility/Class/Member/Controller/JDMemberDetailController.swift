@@ -52,6 +52,9 @@ class JDMemberDetailController: JDBaseViewController {
     var orderKCArr = [JDhuiyuanDetail]()
     var orderYFArr = [JDhuiyuanDetail]()
     
+    var lastKCArr = [TimeListModel]()
+    var caozuoKCArr = [TimeListModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                     title="会员360"
@@ -143,20 +146,16 @@ extension JDMemberDetailController{
         switch type {
         case 1:
             self.oneV.isHidden=false;
-//            self.oneV.backgroundColor=UIColor.randomColor()
             setShpingtype(type: "1")
         case 2:
             self.twoV.isHidden=false;
-//            self.twoV.backgroundColor=UIColor.randomColor()
             lastKecheng()
         case 3:
             self.threeV.isHidden=false;
-//            self.threeV.backgroundColor=UIColor.randomColor()
             setShpingtype(type: "0")
         default:
             
             self.fourV.isHidden=false;
-//            self.fourV.backgroundColor=UIColor.randomColor()
             caozuo()
         }
     }
@@ -170,11 +169,11 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         if tableView == oneV {
             return self.orderKCArr.count
         }else if tableView == twoV {
-            return 0
+            return lastKCArr.count
         }else if tableView == threeV {
             return self.orderYFArr.count
         }else {
-            return 0
+            return caozuoKCArr.count
         }
         
     }
@@ -184,12 +183,12 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             let mode  = orderKCArr[indexPath.row]
             return mode.kechengHeight ?? 150
         }else if tableView == twoV {
-            return 0
+            return 40
         }else if tableView == threeV {
             let mode  = orderKCArr[indexPath.row]
             return mode.kechengHeight ?? 150
         }else{
-            return 0
+            return 40
         }
     }
     
@@ -202,10 +201,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             cell.goumaiModel = orderKCArr[indexPath.row]
             return cell
         }else  if tableView == twoV {
-//            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
-////            cell.delegate = self
-////            cell.reserveMode = reserveArr[indexPath.row]
-//            return cell
+            let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
+            cell.lastModel = lastKCArr[indexPath.row]
+  
         }else  if tableView == threeV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
@@ -213,8 +211,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         cell.yufuModel = orderYFArr[indexPath.row]
             return cell
         }else  {
-            let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
-//            cell.delegate = self
+            
+            let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
+            cell.lastModel = caozuoKCArr[indexPath.row]
 //            cell.reserveMode = reserveArr[indexPath.row]
             return cell
         }
@@ -246,19 +245,12 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         threeV.tableFooterView = UIView()
         twoV.tableFooterView = UIView()
         fourV.tableFooterView = UIView()
+        
+        twoV.k_registerCell(cls: JDlasteCaozuowCell.self)
+        fourV.k_registerCell(cls: JDlasteCaozuowCell.self)
     }
     
     func setShpingtype(type:NSString) {
-//        if type == "1"{
-//            if orderKCArr.count>0 {
-//                return
-//            }
-//        }else{
-//            if orderKCArr.count>0 {
-//                return
-//            }
-//        }
-//
         NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? "","ifdType":type ]) { (dic) in
    
@@ -283,15 +275,11 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQMemberTimeList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? ""  ]) { (dic) in
             print(dic)
             NHMBProgressHud.hideHud()
-//            guard let arr = dic as? [[String : Any]] else { return }
-//
-//            if type == "1"{
-//                self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
-//                self.oneV.reloadData()
-//            }else{
-//                self.orderYFArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
-//                self.threeV.reloadData()
-//            }
+            guard let arr = dic as? [[String : Any]] else { return }
+ 
+                self.lastKCArr  = arr.kj.modelArray(TimeListModel.self)
+                self.twoV.reloadData()
+ 
         } error: { (error) in
             NHMBProgressHud.hideHud()
         }
@@ -306,15 +294,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQTimeUseList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? ""  ]) { (dic) in
             print(dic)
             NHMBProgressHud.hideHud()
-//            guard let arr = dic as? [[String : Any]] else { return }
-//
-//            if type == "1"{
-//                self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
-//                self.oneV.reloadData()
-//            }else{
-//                self.orderYFArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
-//                self.threeV.reloadData()
-//            }
+            guard let arr = dic as? [[String : Any]] else { return }
+                self.caozuoKCArr  = arr.kj.modelArray(TimeListModel.self)
+                self.fourV.reloadData()
         } error: { (error) in
             NHMBProgressHud.hideHud()
         }

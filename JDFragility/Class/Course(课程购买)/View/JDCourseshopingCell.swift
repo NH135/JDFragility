@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol shopingcourseAddDelegate:NSObjectProtocol {
-    func shopingaddjianCourse(type:Bool, model:JDGroupProjectModel)
+    func shopingaddjianCourse(type:Bool, model:JDGroupModel)
  
 }
 class JDCourseshopingCell: UITableViewCell {
@@ -33,10 +33,10 @@ class JDCourseshopingCell: UITableViewCell {
              
             self.number += 1
             self.numberL.text = String(self.number)
+            self.baocunModelT?.ifdSumNumber = self.number;
             if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
-                self.delegate?.shopingaddjianCourse(type: true, model: self.detaileModel!)
+                self.delegate?.shopingaddjianCourse(type: true, model: self.baocunModelT!)
              }
-         
         }
       
         jianBtn.addAction { (_) in
@@ -46,8 +46,9 @@ class JDCourseshopingCell: UITableViewCell {
             }
             self.number -= 1
             self.numberL.text = String(self.number)
+            self.baocunModelT?.ifdSumNumber = self.number;
             if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
-                self.delegate?.shopingaddjianCourse(type: false, model: self.detaileModel!)
+                self.delegate?.shopingaddjianCourse(type: false, model: self.baocunModelT!)
              }
         }
  
@@ -70,22 +71,38 @@ class JDCourseshopingCell: UITableViewCell {
         }
     }
     
+//    多选保存
     var baocunModel:saveDetailModel? {
         didSet {
             nameL.text = baocunModel?.cfdItemName
 //            detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
-//            numberL.text = "0"
+            detaileL.text =  baocunModel?.ifdTimes
             setedBtn.isSelected = baocunModel?.isseleted ?? false
+            setedBtn.isHidden = false;
+            addV.isHidden = true
         }
     }
+    
+    
+    
+    var baocunModelT:JDGroupModel? {
+        didSet {
+        nameL.text = baocunModelT?.cfdCourseName
+ 
+            detaileL.text = "¥ \(baocunModelT?.ffdPrice ?? 0.0)"
+            
+            addV.isHidden = false
+            setedBtn.isHidden = true;
+        }
+    }
+    
+    
     var ifdType:Int?{
         didSet {
             if ifdType == 1 {
-                setedBtn.isHidden = false;
-                addV.isHidden = true
+            
             }else{
-                addV.isHidden = false
-                setedBtn.isHidden = true;
+        
             }
         }
     }

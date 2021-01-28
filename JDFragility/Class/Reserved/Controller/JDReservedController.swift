@@ -40,6 +40,8 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         
+        print("\(kScreenWidth)====\(view.mj_w)")
         self.timeStr = NSDate.init().string(withFormat: "yyyy-MM-dd")
         view.backgroundColor=UIColor.red
         storeNameL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "暂无")"
@@ -49,9 +51,9 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
             self.setData()
         })
         tableView.mj_header?.beginRefreshing()
-        let width = ( view.width-280)/7
+        let width = (kScreenWidth-100)/8
         
-        let numbs = NSDate.latelyEightTimeCout(7)
+        let numbs = NSDate.latelyEightTimeCout(8)
         for (index,item) in numbs.enumerated() {
             let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: -3, width: width, height: timeView.height))
             btn.setTitle(item as? String, for: .normal)
@@ -98,6 +100,7 @@ extension JDReservedController{
  
             self.tableView.reloadData()
         } error: { (error) in
+            self.tableView.mj_header?.endRefreshing()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 
