@@ -21,7 +21,7 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var yhjB: UIButton!
     @IBOutlet weak var yhjL: UILabel!
     
-    var memberModel : MemberDetailModel?
+   
     
     @IBOutlet weak var payView: UIView!
     @IBOutlet weak var rightTableView: UITableView!
@@ -35,7 +35,7 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     var isMore : Bool = false
     @IBOutlet weak var contenL: UILabel!
     var cfdBusListGUID : String?
-    
+    var memberModel : MemberDetailModel?
     var jiesuanModel : JDjiesuanModel?
     var allMoeny : Int = 0
     var payAllArr = [String]()
@@ -43,7 +43,7 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "课程结帐"
         view.backgroundColor=UIColor.k_colorWith(hexStr: "f8f8f8")
         setletfUI()
         setrightUI()
@@ -61,7 +61,7 @@ extension JDSettlementController:UITextFieldDelegate{
     func setData()  {
         NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         NetManager.ShareInstance.getWith(url:"api/IPad/IPadQueryPayMode", params: nil) { (arr) in
-            NHMBProgressHud.hideHud()
+ 
             guard let payArr = arr as? [[String:Any]] else{return}
             var payList =  payArr.kj.modelArray(payModel.self)
             var yue = payModel()
@@ -74,9 +74,10 @@ extension JDSettlementController:UITextFieldDelegate{
         }
         
 //
+         
         let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ]
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryBusListBySave", params: params as [String : Any]) { (dic) in
-
+            NHMBProgressHud.hideHud()
             guard let dict = dic as? [String : Any] else{
                 return
             }
@@ -87,8 +88,9 @@ extension JDSettlementController:UITextFieldDelegate{
 
             self.rightTableView.reloadData()
         } error: { (error) in
-            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             NHMBProgressHud.hideHud()
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+         
         }
         //        获取优惠卷
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryTokenList", params: ["cfdMemberId":memberModel?.cfdMemberId ?? "" ] as [String : Any]) { (dic) in

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol khAuthorizatioDelegate:NSObjectProtocol {
-    func khAuthorizatio(mode:ResListModel,passwordL:UILabel)
+    func khAuthorizatio(mode:JDauthoizationDetailListModel,passwordL:UILabel)
     
     
 }
@@ -26,7 +26,7 @@ class JDkhAuthorizationCell: UITableViewCell {
         
         sendBtn.addAction { [self] (_) in
             if ((self.delegate?.responds(to: Selector(("khAuthorizatio")))) != nil) {
-                self.delegate?.khAuthorizatio(mode: ResListModel(), passwordL: self.passwordL)
+                self.delegate?.khAuthorizatio(mode: self.authoizatiodetailnModel!, passwordL: self.passwordL)
             }
         }
     }
@@ -43,7 +43,11 @@ class JDkhAuthorizationCell: UITableViewCell {
                     //                    获取
                     sendBtn.backgroundColor=UIColor.k_colorWith(hexStr: "409EFF")
                     sendBtn.setTitleColor(UIColor.white, for: .normal)
+                    sendBtn.setTitle("获取", for: .normal)
+                    passwordL.text = authoizatiodetailnModel?.cfdPassword ?? ""
                 }else{
+                    passwordL.text = ""
+                    sendBtn.setTitle("未获取", for: .normal)
                     //                    未获取
                     sendBtn.backgroundColor=UIColor.k_colorWith(hexStr: "999999")
                     sendBtn.setTitleColor(UIColor.k_colorWith(hexStr: "EEEEEE"), for: .normal)

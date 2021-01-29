@@ -11,10 +11,13 @@ class JDlasteCaozuowCell: UITableViewCell {
 
     @IBOutlet weak var className: UILabel!
     @IBOutlet weak var nameL: UILabel!
-    @IBOutlet weak var goumaiL: UILabel!
+    
+    
+    @IBOutlet weak var zongL: UILabel!
     @IBOutlet weak var caozuoL: UILabel!
     @IBOutlet weak var tuihuanL: UILabel!
-    @IBOutlet weak var lastL: UILabel!
+    @IBOutlet weak var huanL: UILabel!
+    @IBOutlet weak var latL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,11 +34,14 @@ class JDlasteCaozuowCell: UITableViewCell {
 //            ifdLastNumber = 3;    ifdYnumber = 0;    ifdAllNumber = 3
             className.text = lastModel?.cfdCourseName ?? "暂无"
             nameL.text = lastModel?.cfdItemName ?? "暂无"
-            
-            goumaiL.text = lastModel?.ifdAllNumber ?? "0"
+            zongL.text = lastModel?.ifdAllNumber ?? "0"
             caozuoL.text = lastModel?.ifdYnumber ?? "0"
-            tuihuanL.text = lastModel?.ifdRefundNumber ?? "0"
-            lastL.text = lastModel?.ifdLastNumber ?? "0"
+            tuihuanL.text = lastModel?.ifdRetreatTime ?? "0"
+            
+            huanL.text = lastModel?.ifdChangeTime ?? "0"
+          
+            
+            latL.text = lastModel?.ifdLastNumber ?? "0"
             
         }
     }

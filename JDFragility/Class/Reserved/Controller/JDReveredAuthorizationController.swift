@@ -21,6 +21,11 @@ class JDReveredAuthorizationController: JDBaseViewController {
         super.viewDidLoad()
         title="客户授权"
          setUI()
+        
+        
+        yiBtn.addAction { (_) in
+            self.setData()
+        }
          setData()
     }
     @IBAction func closeBtn(_ sender: Any) {
@@ -63,8 +68,31 @@ extension JDReveredAuthorizationController{
     
 }
 extension JDReveredAuthorizationController:UITableViewDelegate,UITableViewDataSource,khAuthorizatioDelegate{
-    func khAuthorizatio(mode: ResListModel, passwordL: UILabel) {
-        passwordL.text = "123"
+    func khAuthorizatio(mode: JDauthoizationDetailListModel, passwordL: UILabel) {
+        
+        let ewm = SwiftQRCodeVC()
+        ewm.modalPresentationStyle = .fullScreen
+        ewm.backLocationString = {(c) in
+             print(c)
+                    let params = ["cfdEquFendianCode":c ,"cfdReserveDetailGUID":mode.cfdReserveDetailGUID ?? ""]
+                    NHMBProgressHud.showLoadingHudView(message: "获取中～～")
+                    NetManager.ShareInstance.postWith(url: "api/IPad/IPadQueryScanCodePwd", params: params) { (dic) in
+                        NHMBProgressHud.hideHud()
+                        NHMBProgressHud.showErrorMessage(message: "获取成功！")
+                        self.setData()
+                    } error: { (error) in
+                        NHMBProgressHud.hideHud()
+                        NHMBProgressHud.showErrorMessage(message: error as? String)
+                    }
+
+        }
+        
+        self.navigationController?.pushViewController(ewm, animated: false)
+//        self.present(ewm, animated: true, completion: nil)
+        
+
+        
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         53

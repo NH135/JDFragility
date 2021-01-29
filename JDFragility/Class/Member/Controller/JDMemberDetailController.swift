@@ -146,13 +146,13 @@ extension JDMemberDetailController{
         switch type {
         case 1:
             self.oneV.isHidden=false;
-            setShpingtype(type: "1")
+            setShpingtype(type: "true")
         case 2:
             self.twoV.isHidden=false;
             lastKecheng()
         case 3:
             self.threeV.isHidden=false;
-            setShpingtype(type: "0")
+            setShpingtype(type: "false")
         default:
             
             self.fourV.isHidden=false;
@@ -161,7 +161,7 @@ extension JDMemberDetailController{
     }
 
 }
-extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,goumaikeSendDelegate{
     func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
         UIImage(named: "zanwu")
     }
@@ -191,13 +191,54 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             return 40
         }
     }
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == twoV  ||  tableView == fourV{
+            return 50
+        }else   {
+            return 0
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == twoV  ||  tableView == fourV{
+            
+            let headerV = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 50))
+            headerV.backgroundColor=UIColor.white
+            let width = (kScreenWidth-360)/5
+            let numbs = ["总次数","操作次数","退课次数","换课次数","剩余次数"]
+            let numbsone = ["课程套餐","项目名称"]
+            for(index,item) in numbsone.enumerated() {
+                let tit = UILabel(frame: CGRect(x: 180 * CGFloat(index) , y: 0, width: 180, height: 50))
+               
+                tit.text = item
+                tit.textAlignment = .center
+                headerV.addSubview(tit)
+            }
+            
+            
+            
+            for (index,item) in numbs.enumerated() {
+                let titt = UILabel(frame: CGRect(x: 360 + width * CGFloat(index) , y: 0, width: width, height: 50))
+               
+                titt.text = item
+                titt.textAlignment = .center
+                headerV.addSubview(titt)
+            }
+              let line = UIView(frame: CGRect(x: 0, y: 49, width: kScreenWidth, height: 1))
+            headerV.addSubview(line)
+            line.backgroundColor=UIColor.k_colorWith(hexStr: "e1e1e1")
+            return headerV;
+        }else   {
+            return UIView()
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == oneV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
 //            cell.delegate = self
 //            cell.reserveMode = reserveArr[indexPath.row]
+//            cell.yufuModel  = JDhuiyuanDetail()
+            cell.ifdType = true;
             cell.goumaiModel = orderKCArr[indexPath.row]
             return cell
         }else  if tableView == twoV {
@@ -207,7 +248,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }else  if tableView == threeV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
-//            cell.delegate = self
+            cell.delegate = self
+//            cell.goumaiModel  = JDhuiyuanDetail()
+            cell.ifdType = false;
         cell.yufuModel = orderYFArr[indexPath.row]
             return cell
         }else  {
@@ -219,7 +262,12 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }
          return UITableViewCell()
     }
-    
+    func reserveSendName(btn:UIButton,reserveMode:JDhuiyuanDetail){
+        let settlement = JDSettlementController()
+        settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
+        settlement.memberModel = self.memberModel.Member;
+        self.navigationController?.pushViewController(settlement, animated: true)
+    }
     func setfooterUI(){
         oneV.delegate = self
         twoV.delegate = self
@@ -248,6 +296,14 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         
         twoV.k_registerCell(cls: JDlasteCaozuowCell.self)
         fourV.k_registerCell(cls: JDlasteCaozuowCell.self)
+        
+     
+        
+//         fourV.tableHeaderView = headerV;
+        
+        
+        
+        
     }
     
     func setShpingtype(type:NSString) {
@@ -256,8 +312,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
    
             NHMBProgressHud.hideHud()
             guard let arr = dic as? [[String : Any]] else { return }
-          
-            if type == "1"{
+//            self.orderKCArr.removeAll()
+//            self.orderYFArr.removeAll()
+            if type == "true"{
                 self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
                 self.oneV.reloadData()
             }else{

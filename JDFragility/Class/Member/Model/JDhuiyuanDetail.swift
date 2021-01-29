@@ -8,7 +8,7 @@
 import UIKit
 import KakaJSON
 
-struct JDhuiyuanDetail: Convertible {
+class JDhuiyuanDetail: Convertible {
     var cfdBusListGUID:String?
     var cfdFendianId:String?;
     var cfdMemberId:String?
@@ -27,27 +27,29 @@ struct JDhuiyuanDetail: Convertible {
     var kechengHeight: CGFloat? {
         return 137 +  CGFloat(TimeList.count) * 30.0
     }
-    
+    required init() {}
     
 }
 
-struct TimeListModel: Convertible {
+class TimeListModel: Convertible {
     var cfdCourseName:String?
     var cfdItemName:String?;
-    var ifdLastNumber:String?;
+    var ifdRetreatTime:String?;
     var cfdMemberTimeId:String?
     var cfdItemId:String?;
     var ifdAllNumber:String?;
     var ifdYnumber:String?;
-    var ifdRefundNumber:String?
+    var ifdChangeTime:String?
+    var ifdLastNumber:String?
     var ffdUnitPrice:String?;
     var cfdMemberId:String?
     var cfdBusListGUID:String?;
     var cfdMemberCardGUID:String?;
     var ifdType:String?;
+    required init() {}
 }
 
-struct CaiWuListModel: Convertible {
+class CaiWuListModel: Convertible {
     var cfdPayMode:String?
     var ifdId:String?;
     var cfdFendianId:String?;
@@ -61,4 +63,5 @@ struct CaiWuListModel: Convertible {
     var cfdBusListGUID:String?;
     var cfdPayId:String?;
     var ifdBillState:String?;
+    required init() {}
 }

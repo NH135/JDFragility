@@ -44,8 +44,8 @@ class SwiftQRCodeVC: JDBaseViewController{
         //初始化界面
         self.initView()
         
-        //初始化ScanSession
-        setupScanSession()
+//        //初始化ScanSession
+//        setupScanSession()
     }
     
     
@@ -73,7 +73,8 @@ class SwiftQRCodeVC: JDBaseViewController{
         if backLocationString != nil {
             backLocationString!(codeString!)
         }
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
+//        self.dismiss(animated: true, completion: nil)
         
 //        self.confirm(title: "扫描结果", message: codeString, controller: self,handler: { (_) in
 //            //继续扫描

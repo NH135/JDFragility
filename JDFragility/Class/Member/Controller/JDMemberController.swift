@@ -57,7 +57,7 @@ extension JDMemberController{
 //        searchT.cornerRadius(radius: 20)
 //        searchT.k_setBorder(color: UIColor.lightText, width: 1)
         searchT.placeholder = "请输入会员手机号";
-        searchT.text="18627912021"
+//        searchT.text="18627912021"
         searchT.borderStyle = .roundedRect
         let imageSear = UIImageView(image: UIImage(named: "搜索-2"))
         imageSear.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
@@ -360,7 +360,12 @@ extension JDMemberController{
             let params = ["cfdMoTel": searchT.text ?? ""]
             NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
-                guard let dics = dic as? [String : Any] else { return }
+                guard let dics = dic as? [String : Any] else {
+                    
+                    
+                    
+                    return
+                }
 //                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
                 let memberDetail = JDMemberDetailController()
                 let member =  dics.kj.model(JDmemberModel.self)

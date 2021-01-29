@@ -29,7 +29,7 @@ class ResListModel:Convertible {
     var cfdMemberName:String?
     var cfdEmployeeId:String?
     var cfdReserveDetailGUID :String?
-    
+    var cfdMoTel :String?
     var cfdTimeStar:String?
     var cfdCreateUser:String?
     var dfdToTime:String?

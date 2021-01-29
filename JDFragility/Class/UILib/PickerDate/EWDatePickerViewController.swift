@@ -55,7 +55,7 @@ class EWDatePickerViewController: UIViewController {
         let cancel = UIButton(frame: CGRect(x: 0, y: 10, width: 50, height: 50))
         let sure = UIButton(frame: CGRect(x: kScreenWidth - 80, y: 10, width: 150, height: 50))
         cancel.setTitle("取消", for: .normal)
-        sure.backgroundColor=UIColor.red
+   
         sure.setTitle("确认", for: .normal)
         cancel.setTitleColor(UIColor.red, for: .normal)
         sure.setTitleColor(UIColor.red, for: .normal)

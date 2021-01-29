@@ -74,15 +74,15 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         }
         
         
-        allBtn.addAction { (_) in
-            
-            let ewm = SwiftQRCodeVC()
-            ewm.backLocationString = {(c) in
-                 print(c)
-            }
-            
-            self.navigationController?.pushViewController(ewm, animated: true)
-        }
+//        allBtn.addAction { (_) in
+//
+//            let ewm = SwiftQRCodeVC()
+//            ewm.backLocationString = {(c) in
+//                 print(c)
+//            }
+//            
+//            self.navigationController?.pushViewController(ewm, animated: true)
+//        }
    
     }
     
@@ -221,8 +221,30 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
                 courseVC.namelTelStr = reserveMode.cfdMemberName;
                 self.navigationController?.pushViewController(courseVC, animated: true)
             }else if cell.titleLab.text == "会员360" {
-                let memberVC = JDMemberDetailController()
-                self.navigationController?.pushViewController(memberVC, animated: true)
+               NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+               DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                   NHMBProgressHud.hideHud()
+               }
+                let params = ["cfdMoTel": reserveMode.cfdMoTel ?? ""]
+               NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
+                   NHMBProgressHud.hideHud()
+                   guard let dics = dic as? [String : Any] else {
+                       
+                       
+                       
+                       return
+                   }
+   //                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
+                   let memberDetail = JDMemberDetailController()
+                   let member =  dics.kj.model(JDmemberModel.self)
+                   
+                   memberDetail.memberModel =  member
+     
+                   self.navigationController?.pushViewController(memberDetail, animated: true)
+               } error: { (error) in
+                   NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+               }
+
             }
     
         } cancelCallBack: {

@@ -38,6 +38,12 @@ class JDGoReserveController:JDBaseViewController {
         setData()
     }
     @IBAction func goAuthorization(_ sender: UIButton) {
+        
+        guard setedDataBtn.titleLabel?.text != "请选择预约日期" else {
+            NHMBProgressHud.showErrorMessage(message: "请选择预约日期")
+            return
+        }
+        
         guard self.memberModel != nil else {
             NHMBProgressHud.showErrorMessage(message: "请输入会员手机号进行查询添加")
             

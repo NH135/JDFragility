@@ -7,13 +7,22 @@
 
 import UIKit
 
-class JDgoumaikcCell: UITableViewCell {
+// 自定义section的headerView
+// 协议，点击headerView的回调
+protocol goumaikeSendDelegate:NSObjectProtocol {
+    func reserveSendName(btn:UIButton,reserveMode:JDhuiyuanDetail)
+    
+}
 
+
+
+class JDgoumaikcCell: UITableViewCell {
+    weak var delegate:goumaikeSendDelegate?
     @IBOutlet weak var iconI: UIImageView!
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var ordernumberL: UILabel!
     @IBOutlet weak var orderTableView: UITableView!
- 
+    
     
     @IBOutlet weak var weikuanPayBtn: UIButton!
     @IBOutlet weak var yufujinPayBtn: UIButton!
@@ -21,7 +30,7 @@ class JDgoumaikcCell: UITableViewCell {
     @IBOutlet weak var orderpayCollectionView: UICollectionView!
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     
-    
+    var ifdType = false
     
     
     override func awakeFromNib() {
@@ -37,6 +46,29 @@ class JDgoumaikcCell: UITableViewCell {
         orderpayCollectionView.k_registerCell(cls: JDorderPaytyoeCell.self)
         orderTableView.k_registerCell(cls: JDkechengDetaileCell.self)
         orderTableView.tableFooterView = UIView()
+        weikuanPayBtn.cornerRadius(radius: 15)
+        yufujinPayBtn.cornerRadius(radius: 15)
+        
+        weikuanPayBtn.addAction { (btn) in
+         
+           if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
+            self.delegate?.reserveSendName(btn:btn,reserveMode:self.yufuModel!)
+            }
+        }
+        yufujinPayBtn.addAction { (btn) in
+            // 添加预约
+//           if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
+//            self.delegate?.reserveSendName(btn:btn,reserveMode:self.yufuModel!)
+//            }
+            
+            JXTAlertView.show(withTitle: "提示", message: "是否申请转余额", cancelButtonTitle: "取消", otherButtonTitle: "确定") { (_) in
+                
+            } otherButtonBlock: { (_) in
+                
+            }
+
+            
+        }
     }
 
     var goumaiModel : JDhuiyuanDetail?{
@@ -64,7 +96,6 @@ class JDgoumaikcCell: UITableViewCell {
     
     var yufuModel : JDhuiyuanDetail?{
         didSet{
-            
             yufujinPayBtn.isHidden = false
             weikuanPayBtn.isHidden = false
             if yufuModel?.TimeList.count ?? 0 > 0 {
@@ -90,17 +121,15 @@ class JDgoumaikcCell: UITableViewCell {
 
 extension JDgoumaikcCell: UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if goumaiModel != nil {
-            
+        if  ifdType == true   {
         return goumaiModel?.CaiWuList.count ?? 0
         }else{
             return yufuModel?.CaiWuList.count ?? 0
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.k_dequeueReusableCell(cls: JDorderPaytyoeCell.self, indexPath: indexPath)
-        if goumaiModel != nil {
+        if  ifdType == true   {
         cell.payModel = goumaiModel?.CaiWuList[indexPath.row]
         }else{
             cell.payModel = yufuModel?.CaiWuList[indexPath.row]
@@ -113,7 +142,7 @@ extension JDgoumaikcCell: UITableViewDelegate,UITableViewDataSource,UICollection
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if goumaiModel != nil {
+        if  ifdType == true  {
             return goumaiModel?.TimeList.count ?? 0
         }else{
             return yufuModel?.TimeList.count ?? 0
@@ -127,8 +156,8 @@ extension JDgoumaikcCell: UITableViewDelegate,UITableViewDataSource,UICollection
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.k_dequeueReusableCell(cls: JDkechengDetaileCell.self, indexPath: indexPath)
         cell.selectionStyle = .none
-        if goumaiModel != nil {
-        cell.kcmodel = goumaiModel?.TimeList[indexPath.row]
+        if ifdType == true  {
+       cell.kcmodel = goumaiModel?.TimeList[indexPath.row]
             
         }else{
             cell.kcmodel = yufuModel?.TimeList[indexPath.row]
