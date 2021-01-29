@@ -72,6 +72,17 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
 
             
         }
+        
+        
+        allBtn.addAction { (_) in
+            
+            let ewm = SwiftQRCodeVC()
+            ewm.backLocationString = {(c) in
+                 print(c)
+            }
+            
+            self.navigationController?.pushViewController(ewm, animated: true)
+        }
    
     }
     

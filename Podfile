@@ -11,10 +11,9 @@ target 'JDFragility' do
   pod 'SnapKit'
   pod 'MJRefresh'
   pod 'IQKeyboardManager'
-  pod 'SnapKit'
   pod 'Kingfisher'
   pod 'MBProgressHUD'
   pod 'KakaJSON'
   pod 'MJExtension'
-  pod 'swiftScan'
+ 
 end

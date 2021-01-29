@@ -285,16 +285,16 @@ extension JDCourseController{
         self.shopingTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
 //        购物车
         goShopingBtn.addAction { (_) in
-            let save =  JDsaveKCController()
-            save.cfdBusListGUID = "d584880b-f388-4b43-9c11-f564b5930111"  //金额
-//          save.cfdBusListGUID = "f8e35198-ccc0-4c32-86fe-0f46940b0614"  //多选
-            self.navigationController?.pushViewController(save, animated: true)
+//            let save =  JDsaveKCController()
+//            save.cfdBusListGUID = "d584880b-f388-4b43-9c11-f564b5930111"  //金额
+////          save.cfdBusListGUID = "f8e35198-ccc0-4c32-86fe-0f46940b0614"  //多选
+//            self.navigationController?.pushViewController(save, animated: true)
 
-//            self.shopingTableView.reloadData()
-//            UIView.animate(withDuration: 0.25) {
-//                self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
-//            }
-//            self.zheBg.isHidden=false
+            self.shopingTableView.reloadData()
+            UIView.animate(withDuration: 0.25) {
+                self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
+            }
+            self.zheBg.isHidden=false
         }
         
         zheBg.k_addTarget { (_) in
