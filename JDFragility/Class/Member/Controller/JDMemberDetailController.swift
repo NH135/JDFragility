@@ -235,9 +235,6 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         if tableView == oneV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
-//            cell.delegate = self
-//            cell.reserveMode = reserveArr[indexPath.row]
-//            cell.yufuModel  = JDhuiyuanDetail()
             cell.ifdType = true;
             cell.goumaiModel = orderKCArr[indexPath.row]
             return cell
@@ -249,24 +246,51 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
             cell.delegate = self
-//            cell.goumaiModel  = JDhuiyuanDetail()
             cell.ifdType = false;
         cell.yufuModel = orderYFArr[indexPath.row]
             return cell
         }else  {
-            
             let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
             cell.lastModel = caozuoKCArr[indexPath.row]
-//            cell.reserveMode = reserveArr[indexPath.row]
             return cell
         }
          return UITableViewCell()
     }
     func reserveSendName(btn:UIButton,reserveMode:JDhuiyuanDetail){
-        let settlement = JDSettlementController()
-        settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
-        settlement.memberModel = self.memberModel.Member;
-        self.navigationController?.pushViewController(settlement, animated: true)
+        print()
+        if btn.titleLabel?.text! == "预付金转金额" {
+            JXTAlertView.show(withTitle: "提示", message: "是否申请转预付金转金额", cancelButtonTitle: "取消", otherButtonTitle: "确定") { (_) in
+                
+            } otherButtonBlock: { (_) in
+                NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditBusListApply", params: ["cfdBusListGUID":reserveMode.cfdBusListGUID ?? ""]) { [self] (_) in
+                    NHMBProgressHud.hideHud()
+                    NHMBProgressHud.showSuccesshTips(message: "转预付金转金额成功！")
+                    for (index,item) in orderYFArr.enumerated(){
+                        
+                        if item.cfdBusListGUID == reserveMode.cfdBusListGUID {
+                            orderYFArr.remove(at: index)
+                            self.threeV.reloadData()
+                            break
+                        }
+                    }
+                    
+                    
+                    
+                } error: { (error) in
+                    NHMBProgressHud.showSuccesshTips(message: "转预付金转金额失败，请重试")
+                    NHMBProgressHud.hideHud()
+                }
+
+            }
+        }else{
+                    let settlement = JDSettlementController()
+                    settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
+                    settlement.memberModel = self.memberModel.Member;
+                    self.navigationController?.pushViewController(settlement, animated: true)
+        }
+        
+
     }
     func setfooterUI(){
         oneV.delegate = self
@@ -312,8 +336,6 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
    
             NHMBProgressHud.hideHud()
             guard let arr = dic as? [[String : Any]] else { return }
-//            self.orderKCArr.removeAll()
-//            self.orderYFArr.removeAll()
             if type == "true"{
                 self.orderKCArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
                 self.oneV.reloadData()

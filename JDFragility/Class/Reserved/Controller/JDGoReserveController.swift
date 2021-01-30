@@ -148,7 +148,7 @@ extension JDGoReserveController:UITextFieldDelegate{
         setedDataBtn.addAction { (birthdayB:UIButton) in
             self.view.endEditing(true)
             let dataPicker = EWDatePickerViewController()
-            dataPicker.isYuyue = true
+         
             self.definesPresentationContext = true
             /// 回调显示方法
             dataPicker.backDate = {  date in

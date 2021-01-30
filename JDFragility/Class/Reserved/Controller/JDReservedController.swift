@@ -38,6 +38,11 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
 //    }
 //
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
          

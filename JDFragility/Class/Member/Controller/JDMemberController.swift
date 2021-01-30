@@ -201,43 +201,14 @@ extension JDMemberController{
 
         birthdayB.addAction { (btn:UIButton) in
             self.view.endEditing(true)
-            let dataPicker = EWDatePickerViewController()
-//            dataPicker.isYuyue = true
-            self.definesPresentationContext = true
-            /// 回调显示方法
-            dataPicker.backDate = {  date in
-//            dataPicker.backDate = { [weak self] date in
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "YYYY-MM-dd"
-//                let dateString: String = dateFormatter.string(from: date)
-//                self?.label.text = dateString
-                birthdayB.setTitle("  \(date)", for: .normal)
-                birthdayB.setTitleColor(UIColor.black, for: .normal)
+            let dataPicker = DateTimePickerView()
+            dataPicker.pickerViewMode = DatePickerViewDateYearMonthDay
+            dataPicker.timeStr = {(date) in
+                birthdayB.setTitle("  \(date ?? "  请选择生日")", for: .normal)
+                                birthdayB.setTitleColor(UIColor.black, for: .normal)
             }
-            dataPicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-            dataPicker.picker.reloadAllComponents()
-            /// 弹出时日期滚动到当前日期效果
-            self.present(dataPicker, animated: true) {
-                dataPicker.picker.selectRow(0, inComponent: 0, animated: true)
-                dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
-                dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
-//                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
-                
-    //            let findIndex = hours.firstIndex(where: { (e) -> Bool in
-    //                return e == NSDate().hour
-    //            })
-    //            let index = NSDate().minute > 30 ? findIndex ?? 0 + 1 : findIndex
-    //
-//                let index = hours.firstIndex(of: NSDate.init().hour)
-//                let minute = NSDate.init().minute
-//                let type = minute > 30
-//
-//
-//                dataPicker.picker.selectRow(type == true ? (index ?? 0) + 1 : index ?? 0, inComponent: 3, animated: true)
-//
-//                dataPicker.picker.selectRow(type == true ? 0 : 1, inComponent: 4, animated: true)
-//
-            }
+            dataPicker.show()
+            Kwindow.window?.addSubview(dataPicker)
         }
         
         

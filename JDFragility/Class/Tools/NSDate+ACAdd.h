@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)stringWithFormat:(NSString *)format
                                timeZone:(nullable NSTimeZone *)timeZone
                                  locale:(nullable NSLocale *)locale;
-
++ (NSDate *)date:(NSString *)datestr WithFormat:(NSString *)format;
 - (nullable NSString *)stringWithISOFormat;
 
 + (nullable NSDate *)dateWithString:(NSString *)dateString format:(NSString *)format;

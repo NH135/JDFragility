@@ -151,7 +151,17 @@
     });
     return [formatter stringFromDate:self];
 }
-
++ (NSDate *)date:(NSString *)datestr WithFormat:(NSString *)format {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    [dateFormatter setDateFormat:format];
+    NSDate *date = [dateFormatter dateFromString:datestr];
+#if ! __has_feature(objc_arc)
+    [dateFormatter release];
+#endif
+    return date;
+}
 + (NSDate *)dateWithString:(NSString *)dateString format:(NSString *)format {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];

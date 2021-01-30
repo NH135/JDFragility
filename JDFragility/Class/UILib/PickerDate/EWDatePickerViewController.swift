@@ -13,8 +13,8 @@ class EWDatePickerViewController: UIViewController {
     var backDate: ((String) -> Void)?
     var hours:[Int] = [8,9,10,11,12,13,14,15,16,17,18,18,19,20,21,22,23]
     var points:[String] = ["00","30"]
-    //属性传值第一步
-       var isYuyue:Bool = false
+    var years:[Int] = []
+ 
     var hoursStr : String?
     var pointStr : String?
     
@@ -51,14 +51,19 @@ class EWDatePickerViewController: UIViewController {
         self.view.backgroundColor = UIColor.clear
         self.view.insertSubview(self.backgroundView, at: 0)
         self.modalPresentationStyle = .custom//viewcontroller弹出后之前控制器页面不隐藏 .custom代表自定义
-
+       
+        for i in 1900 ... currentDateCom.year! {
+            years.append(i)
+        }
+        
+        
         let cancel = UIButton(frame: CGRect(x: 0, y: 10, width: 50, height: 50))
-        let sure = UIButton(frame: CGRect(x: kScreenWidth - 80, y: 10, width: 150, height: 50))
+        let sure = UIButton(frame: CGRect(x: kScreenWidth - 100, y: 10, width: 100, height: 50))
         cancel.setTitle("取消", for: .normal)
    
         sure.setTitle("确认", for: .normal)
-        cancel.setTitleColor(UIColor.red, for: .normal)
-        sure.setTitleColor(UIColor.red, for: .normal)
+        cancel.setTitleColor(UIColor.lightGray, for: .normal)
+        sure.setTitleColor(UIColor.blue, for: .normal)
         cancel.addTarget(self, action: #selector(self.onClickCancel), for: .touchUpInside)
         sure.addTarget(self, action: #selector(self.onClickSure), for: .touchUpInside)
         picker = UIPickerView(frame: CGRect(x: 0, y: 24, width: kScreenWidth, height: 216))
@@ -82,16 +87,15 @@ class EWDatePickerViewController: UIViewController {
     }
     @objc func onClickSure() {
         let dateString = String(format: "%02ld-%02ld-%02ld", self.picker.selectedRow(inComponent: 0) + (self.currentDateCom.year!), self.picker.selectedRow(inComponent: 1) + 1, self.picker.selectedRow(inComponent: 2) + 1)
+          
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
-        
-
-//        if isYuyue {
+         
         /// 直接回调显示
         if self.backDate != nil {
-            self.backDate!(dateString)
+            self.backDate!("\(dateString) \(hours[self.picker.selectedRow(inComponent: 3)]):\(points[self.picker.selectedRow(inComponent: 4)])")
         }
-//        }
+       
         
 
         self.dismiss(animated: true, completion: nil)
@@ -109,11 +113,9 @@ class EWDatePickerViewController: UIViewController {
 // MARK: - PickerViewDelegate
 extension EWDatePickerViewController:UIPickerViewDelegate,UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if isYuyue == true {
+       
             return 5
-        }else{
-        return 3
-        }
+        
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
@@ -152,11 +154,9 @@ extension EWDatePickerViewController:UIPickerViewDelegate,UIPickerViewDataSource
         return 29
     }
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-                if isYuyue == true  {
+            
         return kScreenWidth / 5
-                }else{
-        return kScreenWidth / 3
-                }
+        
        
     }
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -164,7 +164,11 @@ extension EWDatePickerViewController:UIPickerViewDelegate,UIPickerViewDataSource
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return "\((currentDateCom.year!) + row)\("年")"
+             
+                return "\((currentDateCom.year!) + row)\("年")"
+           
+            
+         
         } else if component == 1 {
             return "\(row + 1)\("月")"
         } else if component == 2  {

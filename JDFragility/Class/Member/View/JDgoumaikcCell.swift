@@ -57,15 +57,11 @@ class JDgoumaikcCell: UITableViewCell {
         }
         yufujinPayBtn.addAction { (btn) in
             // 添加预约
-//           if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
-//            self.delegate?.reserveSendName(btn:btn,reserveMode:self.yufuModel!)
-//            }
-            
-            JXTAlertView.show(withTitle: "提示", message: "是否申请转余额", cancelButtonTitle: "取消", otherButtonTitle: "确定") { (_) in
-                
-            } otherButtonBlock: { (_) in
-                
+           if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
+            self.delegate?.reserveSendName(btn:btn,reserveMode:self.yufuModel!)
             }
+            
+      
 
             
         }
