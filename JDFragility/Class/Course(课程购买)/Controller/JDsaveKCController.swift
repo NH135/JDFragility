@@ -8,6 +8,9 @@
 import UIKit
 import MJRefresh
 class JDsaveKCController: JDBaseViewController, HeaderViewDelegate, shopingcourseAddDelegate {
+    func huanaddjianCourse(type: Bool, model: JDGroupProjectModel) {
+    }
+    
  
  
 

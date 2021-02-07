@@ -124,6 +124,12 @@ extension UIView{
     
 }
 extension UIView{
+    
+    class func sg_loadFromNib(_ nibName: String? = nil) -> UIView {
+         let name = nibName == nil ? "\(self)" : nibName!
+         return Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as! UIView
+     }
+    
     /// 获取视图根控制器
     func viewController() -> UIViewController? {
         var next: UIResponder?  = self.next

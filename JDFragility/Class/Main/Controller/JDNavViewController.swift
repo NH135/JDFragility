@@ -44,8 +44,8 @@ class JDNavViewController:UINavigationController,UINavigationControllerDelegate 
 
  //            //添加图片
                         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "leftB")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(leftClick))
- //                       //添加文字
- //                       viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "返回", style: .plain, target: self, action: #selector(leftClick))
+// //                       //添加文字
+//                        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "", style: .plain, target: self, action: #selector(leftClick))
      
              
              

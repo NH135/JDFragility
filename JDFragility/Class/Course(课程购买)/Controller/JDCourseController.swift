@@ -23,6 +23,9 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     @IBOutlet weak var shopingTableView: UITableView!
     @IBOutlet weak var jiesuanBtn: UIButton!
     
+    var TimeList = [JDGroupProjectModel]()
+    var isHuanKe = false
+    
     var memberModel = MemberDetailModel()
     
     var cfdMemberId:String?
@@ -34,6 +37,10 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isHuanKe == true {
+            title = "换课"
+        }
         
         let headerV  = UIView(frame: CGRect(x: 0, y: 0, width: 280, height: 55))
         headerV.backgroundColor=UIColor.k_colorWith(hexStr: "#409EFF")
@@ -205,7 +212,6 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             self.rightTableView.reloadData()
 
         } error: { (error) in
-//            print(error)
             self.rightTableView.mj_header?.endRefreshing()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
@@ -246,6 +252,33 @@ extension JDCourseController{
                 NHMBProgressHud.hideHud()
             }
             let params = ["cfdMoTel": memBerT.text ?? ""]
+            
+            if isHuanKe {
+                NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMemberCourse", params: params) { (dic) in
+                    NHMBProgressHud.hideHud()
+                   
+                    guard let dics = dic as? [String : Any] else {
+                        textField.text = ""
+                        NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                        return
+                        
+                    }
+                    let Memberdic = dics["Member"] as? [String : Any]
+                    self.memberModel =  Memberdic?.kj.model(MemberDetailModel.self) ?? MemberDetailModel()
+                 
+                    self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
+                    self.cfdMemberId = self.memberModel.cfdMemberId
+                    self.rightTableView.mj_header?.beginRefreshing()
+                    
+                    let TimeListArr = dics["TimeList"] as? [[String : Any]]
+                    self.TimeList = TimeListArr?.kj.modelArray(JDGroupProjectModel.self) ?? [JDGroupProjectModel()]
+                    
+                } error: { (error) in
+                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+                }
+
+            }else{
+            
             NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
                
@@ -264,7 +297,7 @@ extension JDCourseController{
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
 
-            
+            }
         }
         
         return true
@@ -276,7 +309,7 @@ extension JDCourseController{
 extension JDCourseController{
     
     func setRightshopingView()  {
-    
+        
         zheBg.backgroundColor=UIColor.black.withAlphaComponent(0.7)
         self.shopingTableView.delegate = self
         self.shopingTableView.dataSource = self
@@ -308,6 +341,16 @@ extension JDCourseController{
             guard self.shopingGroups.count != 0  else {
                 NHMBProgressHud.showErrorMessage(message: "请购买项目")
                 return }
+            
+            if self.isHuanKe == true {
+//              "换课"
+                let huanSave = JDhuanKeSaveController()
+                huanSave.shopingGroups = self.shopingGroups
+                huanSave.TimeList = self.TimeList
+                self.navigationController?.ymPushViewController(huanSave, removeSelf: true, animated: true)
+                
+                
+            }else{
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
             let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
             let aa : String = self.shopingGroups.kj.JSONString()
@@ -332,7 +375,7 @@ extension JDCourseController{
             } error: { (error) in
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
-
+        }
         }
     }
  

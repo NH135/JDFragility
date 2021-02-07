@@ -13,7 +13,7 @@ class JDMainController: JDBaseViewController {
     @IBOutlet weak var yuyueBtn: UIButton!
     @IBOutlet weak var kechengBtn: UIButton!
     @IBOutlet weak var huiyuanBtn: UIButton!
-    @IBOutlet weak var kaoqinBtn: UIButton!
+//    @IBOutlet weak var kaoqinBtn: UIButton!
     @IBOutlet weak var rightView: UIView!
     @IBOutlet weak var dianzhangBtn: UIButton!
     
@@ -31,12 +31,13 @@ class JDMainController: JDBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
  
-                navigationController?.navigationBar.isHidden=true
+        navigationController?.setNavigationBarHidden(true, animated: animated)
   
       }
       override func viewWillDisappear(_ animated: Bool) {
           super.viewDidDisappear(animated)
-                      navigationController?.navigationBar.isHidden=false
+                      
+        navigationController?.setNavigationBarHidden(false, animated: animated)
  
       }
 
@@ -49,7 +50,7 @@ class JDMainController: JDBaseViewController {
         yuyueBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         kechengBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         huiyuanBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
-        kaoqinBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
+//        kaoqinBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         dianzhangBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
      
         yuyueBtn.isEnabled=false
@@ -161,7 +162,7 @@ extension JDMainController {
             btn.isEnabled=false
             self.kechengBtn.isEnabled = true
             self.huiyuanBtn.isEnabled = true
-            self.kaoqinBtn.isEnabled = true
+//            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
         typeView(with: 1)
         }
@@ -170,7 +171,7 @@ extension JDMainController {
             btn.isEnabled=false
             self.yuyueBtn.isEnabled = true
             self.huiyuanBtn.isEnabled = true
-            self.kaoqinBtn.isEnabled = true
+//            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
             typeView(with: 2)
         }
@@ -180,26 +181,26 @@ extension JDMainController {
             btn.isEnabled=false
             self.kechengBtn.isEnabled = true
             self.yuyueBtn.isEnabled = true
-            self.kaoqinBtn.isEnabled = true
+//            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
             typeView(with: 3)
         }
         
         
-        kaoqinBtn.addAction { (btn:UIButton) in
-            btn.isEnabled=false
-            self.kechengBtn.isEnabled = true
-            self.huiyuanBtn.isEnabled = true
-            self.kechengBtn.isEnabled = true
-            self.dianzhangBtn.isEnabled = true
-            typeView(with: 4)
-        }
+//        kaoqinBtn.addAction { (btn:UIButton) in
+//            btn.isEnabled=false
+//            self.kechengBtn.isEnabled = true
+//            self.huiyuanBtn.isEnabled = true
+//            self.kechengBtn.isEnabled = true
+//            self.dianzhangBtn.isEnabled = true
+//            typeView(with: 4)
+//        }
         
         dianzhangBtn.addAction { (btn:UIButton) in
             btn.isEnabled=false
             self.kechengBtn.isEnabled = true
             self.huiyuanBtn.isEnabled = true
-            self.kaoqinBtn.isEnabled = true
+//            self.kaoqinBtn.isEnabled = true
             self.huiyuanBtn.isEnabled = true
             typeView(with:5)
         }

@@ -8,7 +8,7 @@
 import UIKit
 import KakaJSON
 
-struct JDGroupProjectModel: Convertible {
+class JDGroupProjectModel: Convertible {
 //    ItemList = (
 //    );
 //    dfdSaleEndDate = 2025-01-01 00:00:00;
@@ -38,7 +38,30 @@ struct JDGroupProjectModel: Convertible {
     var cfdCourseClassId:String?
     var cfdCourseId:String?
     var ifdTerm:String?
-    var ifdSort:String? 
+    var ifdSort:String?
+    
+    
+    
+    
+    //换课ItemList
+    var cfdItemName:String?
+    var ifdChangeTime:Int?
+    var ffdUnitPrice:Int?
+    var ifdRetreatTime:Int?
+    var ifdType:Int?
+    var cfdBusListGUID :String?
+    var dfdUseStartDate:String?
+    var dfdUseEndDate:String?
+    var cfdMemberCardGUID:String?
+    var cfdMemberId:String?
+    var ifdState:Int?
+    var ifdAllNumber:Int?
+    var cfdItemId:String?
+    var cfdMemberTimeId:String?
+    var ifdYnumber:String?
+    var ifdLastNumber:String?
+    var ifdSumNumber:Int?
+    required init() {}
 }
 
 

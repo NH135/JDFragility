@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JDManageCell" customModule="JDFragility" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="146" height="145"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="146" height="145"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4G6-Qj-tfz">
+                        <rect key="frame" x="0.0" y="0.0" width="146" height="145"/>
+                        <color key="backgroundColor" red="0.55957287550000001" green="0.39299738410000001" blue="0.70906609300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                        <state key="normal">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="4G6-Qj-tfz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Ay-3w-7HY"/>
+                <constraint firstItem="4G6-Qj-tfz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1RD-jK-b2F"/>
+                <constraint firstItem="4G6-Qj-tfz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="OMl-rG-fc2"/>
+                <constraint firstAttribute="bottom" secondItem="4G6-Qj-tfz" secondAttribute="bottom" id="PA0-vW-bNs"/>
+                <constraint firstAttribute="bottom" secondItem="4G6-Qj-tfz" secondAttribute="bottom" id="ic6-wv-pVJ"/>
+                <constraint firstAttribute="trailing" secondItem="4G6-Qj-tfz" secondAttribute="trailing" id="ls8-Kq-we7"/>
+                <constraint firstAttribute="trailing" secondItem="4G6-Qj-tfz" secondAttribute="trailing" id="s26-2I-GIW"/>
+                <constraint firstItem="4G6-Qj-tfz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xVB-Al-mJf"/>
+            </constraints>
+            <size key="customSize" width="146" height="145"/>
+            <connections>
+                <outlet property="titleBtn" destination="4G6-Qj-tfz" id="Vkv-Rw-rOj"/>
+            </connections>
+            <point key="canvasLocation" x="4" y="70"/>
+        </collectionViewCell>
+    </objects>
+</document>

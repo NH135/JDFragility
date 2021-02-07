@@ -9,8 +9,9 @@ import UIKit
 
 
 protocol shopingcourseAddDelegate:NSObjectProtocol {
-    func shopingaddjianCourse(type:Bool, model:JDGroupModel)
  
+    func shopingaddjianCourse(type:Bool, model:JDGroupModel)
+    func huanaddjianCourse(type:Bool, model:JDGroupProjectModel)
 }
 class JDCourseshopingCell: UITableViewCell {
     weak var delegate:shopingcourseAddDelegate?
@@ -30,13 +31,28 @@ class JDCourseshopingCell: UITableViewCell {
         addV.k_setCornerRadius(17)
         addV.k_setBorder(color: UIColor.k_colorWith(hexStr: "429DFF"), width: 1)
         addBtn.addAction { (_) in
-             
-            self.number += 1
-            self.numberL.text = String(self.number)
-            self.baocunModelT?.ifdSumNumber = self.number;
-            if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
-                self.delegate?.shopingaddjianCourse(type: true, model: self.baocunModelT!)
-             }
+          
+            if self.baocunModelT?.cfdCourseName?.isEmpty == false {
+                self.number += 1
+                self.numberL.text = String(self.number)
+                self.baocunModelT?.ifdSumNumber = self.number;
+                if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
+                    self.delegate?.shopingaddjianCourse(type: true, model: self.baocunModelT!)
+                 }
+            }else if self.huanModel?.cfdCourseName?.isEmpty == false{
+                if self.number == self.huanModel?.ifdAllNumber{
+                    NHMBProgressHud.showErrorMessage(message: "不能再加了")
+                    return
+                }
+                self.number += 1
+                self.numberL.text = String(self.number)
+                self.huanModel?.ifdSumNumber = self.number;
+                if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
+                    self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
+                 }
+            }
+            
+           
         }
       
         jianBtn.addAction { (_) in
@@ -44,12 +60,22 @@ class JDCourseshopingCell: UITableViewCell {
                 NHMBProgressHud.showErrorMessage(message: "不能再减了")
                 return
             }
+            
+            if self.baocunModelT?.cfdCourseName?.isEmpty == false {
             self.number -= 1
             self.numberL.text = String(self.number)
             self.baocunModelT?.ifdSumNumber = self.number;
             if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
                 self.delegate?.shopingaddjianCourse(type: false, model: self.baocunModelT!)
              }
+            }else if self.huanModel?.cfdCourseName?.isEmpty == false{
+                self.number -= 1
+                self.numberL.text = String(self.number)
+                self.huanModel?.ifdSumNumber = self.number;
+                if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
+                    self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
+                 }
+            }
         }
  
         
@@ -62,6 +88,21 @@ class JDCourseshopingCell: UITableViewCell {
             numberL.text = "0"
         }
     }
+    var huanModel:JDGroupProjectModel? {
+        didSet {
+            setedBtn.isHidden = true;
+            nameL.text = huanModel?.cfdCourseName
+            detaileL.text = "  \(huanModel?.ifdAllNumber ?? 0)  "
+            detaileL.cornerRadius(radius: detaileL.height/2)
+            detaileL.backgroundColor = UIColor.red
+            detaileL.textColor = UIColor.white
+            numberL.text = "\(huanModel?.ifdSumNumber ?? 0)"
+            addV.isHidden = false
+        }
+    }
+    
+   
+    
     var jiesuanModel:MCListModel? {
         didSet {
             setedBtn.isHidden = true;
