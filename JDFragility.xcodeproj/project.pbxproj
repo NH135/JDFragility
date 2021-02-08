@@ -11,8 +11,13 @@
 		1816CA2425CFBAAE001DD3BB /* JDhuanKeSaveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1816CA2225CFBAAE001DD3BB /* JDhuanKeSaveController.xib */; };
 		181A8B3225CBD64C003B890C /* JDaddCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A8B3025CBD64C003B890C /* JDaddCarController.swift */; };
 		181A8B3325CBD64C003B890C /* JDaddCarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A8B3125CBD64C003B890C /* JDaddCarController.xib */; };
+		18219D1525D1237C00DF14A3 /* JDtuiSaveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */; };
 		1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824977C25B02E5500858644 /* JDjiesuanModel.swift */; };
 		182D7AB625C5327300760CE1 /* DateTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D7AB425C5327300760CE1 /* DateTimePickerView.m */; };
+		184144F825D10D050065CDF7 /* JDtuiSaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184144F625D10D050065CDF7 /* JDtuiSaveController.swift */; };
+		184144F925D10D050065CDF7 /* JDtuiSaveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184144F725D10D050065CDF7 /* JDtuiSaveController.xib */; };
+		184144FF25D11A9F0065CDF7 /* JDtuisaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184144FD25D11A9F0065CDF7 /* JDtuisaveCell.swift */; };
+		1841450025D11A9F0065CDF7 /* JDtuisaveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184144FE25D11A9F0065CDF7 /* JDtuisaveCell.xib */; };
 		184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B882A259CB73F00998BB1 /* JDReservedController.swift */; };
 		184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184B882B259CB73F00998BB1 /* JDReservedController.xib */; };
 		184B8836259CB76300998BB1 /* JDCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B8834259CB76300998BB1 /* JDCourseController.swift */; };
@@ -161,9 +166,14 @@
 		1816CA2225CFBAAE001DD3BB /* JDhuanKeSaveController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDhuanKeSaveController.xib; sourceTree = "<group>"; };
 		181A8B3025CBD64C003B890C /* JDaddCarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDaddCarController.swift; sourceTree = "<group>"; };
 		181A8B3125CBD64C003B890C /* JDaddCarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDaddCarController.xib; sourceTree = "<group>"; };
+		18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuiSaveHeaderView.xib; sourceTree = "<group>"; };
 		1824977C25B02E5500858644 /* JDjiesuanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDjiesuanModel.swift; sourceTree = "<group>"; };
 		182D7AB425C5327300760CE1 /* DateTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimePickerView.m; sourceTree = "<group>"; };
 		182D7AB525C5327300760CE1 /* DateTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimePickerView.h; sourceTree = "<group>"; };
+		184144F625D10D050065CDF7 /* JDtuiSaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDtuiSaveController.swift; sourceTree = "<group>"; };
+		184144F725D10D050065CDF7 /* JDtuiSaveController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuiSaveController.xib; sourceTree = "<group>"; };
+		184144FD25D11A9F0065CDF7 /* JDtuisaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDtuisaveCell.swift; sourceTree = "<group>"; };
+		184144FE25D11A9F0065CDF7 /* JDtuisaveCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuisaveCell.xib; sourceTree = "<group>"; };
 		184B882A259CB73F00998BB1 /* JDReservedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDReservedController.swift; sourceTree = "<group>"; };
 		184B882B259CB73F00998BB1 /* JDReservedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDReservedController.xib; sourceTree = "<group>"; };
 		184B8834259CB76300998BB1 /* JDCourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCourseController.swift; sourceTree = "<group>"; };
@@ -477,6 +487,8 @@
 				18B5DF3225CAACB60056B488 /* JDshengCarController.xib */,
 				18B5DF3F25CAACDF0056B488 /* JDtuiKeController.swift */,
 				18B5DF4025CAACDF0056B488 /* JDtuiKeController.xib */,
+				184144F625D10D050065CDF7 /* JDtuiSaveController.swift */,
+				184144F725D10D050065CDF7 /* JDtuiSaveController.xib */,
 				18B5DF4625CAACF30056B488 /* JDhuanKeController.swift */,
 				18B5DF4725CAACF30056B488 /* JDhuanKeController.xib */,
 				1816CA2125CFBAAE001DD3BB /* JDhuanKeSaveController.swift */,
@@ -511,6 +523,9 @@
 				18B5DF5525CAE9C20056B488 /* JDlingshengCarCell.swift */,
 				18B5DF5625CAE9C20056B488 /* JDlingshengCarCell.xib */,
 				18B5DF6125CAF05F0056B488 /* JDlingshengSecView.xib */,
+				184144FD25D11A9F0065CDF7 /* JDtuisaveCell.swift */,
+				184144FE25D11A9F0065CDF7 /* JDtuisaveCell.xib */,
+				18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -872,6 +887,8 @@
 				18B5DF3425CAACB70056B488 /* JDshengCarController.xib in Resources */,
 				184B8837259CB76300998BB1 /* JDCourseController.xib in Resources */,
 				18FD0408259C6190007FC8C8 /* JDMainController.xib in Resources */,
+				184144F925D10D050065CDF7 /* JDtuiSaveController.xib in Resources */,
+				1841450025D11A9F0065CDF7 /* JDtuisaveCell.xib in Resources */,
 				184B884F259CB7CE00998BB1 /* JDManagementController.xib in Resources */,
 				ED0D6DB425C30FC70081C5B6 /* noticeMusic.caf in Resources */,
 				184CD96D25B8441C00FACB57 /* JDReveredAuthorizationController.xib in Resources */,
@@ -884,6 +901,7 @@
 				184CD96125B7CC5E00FACB57 /* JDaddRightReserveCell.xib in Resources */,
 				18B5DF3B25CAACCB0056B488 /* JDlingCarController.xib in Resources */,
 				184CD9BC25BBE6BD00FACB57 /* JDgoumaikcCell.xib in Resources */,
+				18219D1525D1237C00DF14A3 /* JDtuiSaveHeaderView.xib in Resources */,
 				184CD9E425BC010A00FACB57 /* JDorderPaytyoeCell.xib in Resources */,
 				18B5DF5825CAE9C20056B488 /* JDlingshengCarCell.xib in Resources */,
 				184CD95A25B7CC3B00FACB57 /* JDaddleftReserveCell.xib in Resources */,
@@ -978,6 +996,7 @@
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
 				184CD95925B7CC3B00FACB57 /* JDaddleftReserveCell.swift in Sources */,
 				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
+				184144F825D10D050065CDF7 /* JDtuiSaveController.swift in Sources */,
 				184CD96025B7CC5E00FACB57 /* JDaddRightReserveCell.swift in Sources */,
 				18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */,
 				18B7AA3E25A473FA00BE4C27 /* NSDate+ACAdd.m in Sources */,
@@ -1044,6 +1063,7 @@
 				1861AB3725AEAFE5006158AD /* JDCourseshopingCell.swift in Sources */,
 				18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */,
 				184CD9E325BC010A00FACB57 /* JDorderPaytyoeCell.swift in Sources */,
+				184144FF25D11A9F0065CDF7 /* JDtuisaveCell.swift in Sources */,
 				ED211C9525A18656000F4A96 /* JDGroupModel.swift in Sources */,
 				181A8B3225CBD64C003B890C /* JDaddCarController.swift in Sources */,
 				18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */,

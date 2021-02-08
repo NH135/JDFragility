@@ -28,6 +28,16 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
          tableView.delegate = self
          tableView.dataSource = self
          tableView.k_registerCell(cls: JDlingshengCarCell.self)
+        
+        
+        
+        sureBtn.addAction { (_) in
+            let tuiKe = JDtuiSaveController()
+  
+            self.navigationController?.pushViewController(tuiKe, animated: true)
+            
+        }
+        
      }
   
  }
