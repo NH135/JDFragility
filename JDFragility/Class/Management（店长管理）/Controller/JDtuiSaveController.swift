@@ -9,13 +9,18 @@ import UIKit
 
 class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
 
-    @IBOutlet weak var tel: UIButton!
+    @IBOutlet weak var memberTelL: UIButton!
     @IBOutlet weak var telF: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yuanyinF: UITextView!
     @IBOutlet weak var moneyF: UITextField!
     @IBOutlet weak var typeBtn: UIButton!
     @IBOutlet weak var sureBtn: UIButton!
+    
+    var TimeList = [JDGroupProjectModel]()
+ 
+    
+    var memberModel = MemberDetailModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +38,67 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         tableView.k_registerCell(cls: JDtuisaveCell.self)
+        
+        
+        sureBtn.addAction { (_) in
+            let params = ["cfdMoTel": self.telF.text ?? ""]
+            
+         
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddRefund", params: params) { (dic) in
+                    NHMBProgressHud.hideHud()
+                 
+                } error: { (error) in
+                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+                }
+
+        }
     }
 
  
 }
-extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate{
+extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == telF {
+//         搜索会员
+            telF.resignFirstResponder()
+            NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                NHMBProgressHud.hideHud()
+            }
+            let params = ["cfdMoTel": telF.text ?? ""]
+            
+         
+                NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMemberCourse", params: params) { (dic) in
+                    NHMBProgressHud.hideHud()
+                   
+                    guard let dics = dic as? [String : Any] else {
+                        textField.text = ""
+                        NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                        return
+                        
+                    }
+                    let Memberdic = dics["Member"] as? [String : Any]
+                    self.memberModel =  Memberdic?.kj.model(MemberDetailModel.self) ?? MemberDetailModel()
+                    self.memberTelL.setTitle("\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")", for: .normal)
+              
+//                    self.cfdMemberId = self.memberModel.cfdMemberId
+                    self.tableView.mj_header?.beginRefreshing()
+                    
+                    let TimeListArr = dics["TimeList"] as? [[String : Any]]
+                    self.TimeList = TimeListArr?.kj.modelArray(JDGroupProjectModel.self) ?? [JDGroupProjectModel()]
+                    
+                } error: { (error) in
+                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+                }
+
+            
+        }
+        
+        return true
+    }
+    
+    
    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
        UIImage(named: "zanwu")
    }

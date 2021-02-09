@@ -126,6 +126,7 @@
 		18FD0410259C69BD007FC8C8 /* UIButton+HWExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */; };
 		18FD041B259C6BA5007FC8C8 /* JDUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */; };
 		18FD0420259C769E007FC8C8 /* JDNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD041F259C769E007FC8C8 /* JDNavViewController.swift */; };
+		18FE4EF525D148EA00425897 /* JDdianWuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4EF425D148EA00425897 /* JDdianWuModel.swift */; };
 		836D69E4B1BBB9A7D06C90B4 /* Pods_JDFragility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */; };
 		ED0D6D7125ADF12E0081C5B6 /* JDSettlementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0D6D6F25ADF12E0081C5B6 /* JDSettlementController.swift */; };
 		ED0D6D7225ADF12E0081C5B6 /* JDSettlementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0D6D7025ADF12E0081C5B6 /* JDSettlementController.xib */; };
@@ -296,6 +297,7 @@
 		18FD040F259C69BD007FC8C8 /* UIButton+HWExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+HWExtension.swift"; sourceTree = "<group>"; };
 		18FD041A259C6BA5007FC8C8 /* JDUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDUserInfo.swift; sourceTree = "<group>"; };
 		18FD041F259C769E007FC8C8 /* JDNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDNavViewController.swift; sourceTree = "<group>"; };
+		18FE4EF425D148EA00425897 /* JDdianWuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDdianWuModel.swift; sourceTree = "<group>"; };
 		3F80047D0CAB6808779541A1 /* Pods_JDFragility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JDFragility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF827B3DF7793341B9C11F6 /* Pods-JDFragility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.release.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.release.xcconfig"; sourceTree = "<group>"; };
 		CAC8161C39F093A817316861 /* Pods-JDFragility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDFragility.debug.xcconfig"; path = "Target Support Files/Pods-JDFragility/Pods-JDFragility.debug.xcconfig"; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 		18B5DF2225C952060056B488 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18FE4EF425D148EA00425897 /* JDdianWuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -522,9 +525,9 @@
 				18B5DF2525C952290056B488 /* JDManageCell.xib */,
 				18B5DF5525CAE9C20056B488 /* JDlingshengCarCell.swift */,
 				18B5DF5625CAE9C20056B488 /* JDlingshengCarCell.xib */,
-				18B5DF6125CAF05F0056B488 /* JDlingshengSecView.xib */,
 				184144FD25D11A9F0065CDF7 /* JDtuisaveCell.swift */,
 				184144FE25D11A9F0065CDF7 /* JDtuisaveCell.xib */,
+				18B5DF6125CAF05F0056B488 /* JDlingshengSecView.xib */,
 				18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */,
 			);
 			path = View;
@@ -1046,6 +1049,7 @@
 				18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */,
 				184CD9C125BBF0E100FACB57 /* JDhuiyuanDetail.swift in Sources */,
 				18B5DF2625C952290056B488 /* JDManageCell.swift in Sources */,
+				18FE4EF525D148EA00425897 /* JDdianWuModel.swift in Sources */,
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
 				18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */,
 				184CD99225B95C3700FACB57 /* JDalterEmployee.swift in Sources */,

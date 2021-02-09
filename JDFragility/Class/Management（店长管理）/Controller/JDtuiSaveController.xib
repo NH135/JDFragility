@@ -11,10 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JDtuiSaveController" customModule="JDFragility" customModuleProvider="target">
             <connections>
+                <outlet property="memberTelL" destination="lyN-Kh-Tio" id="ETX-9y-mDU"/>
                 <outlet property="moneyF" destination="35G-Ba-ZNK" id="le7-9z-u3X"/>
                 <outlet property="sureBtn" destination="n4k-y5-VpS" id="weo-Td-EZy"/>
                 <outlet property="tableView" destination="ozX-UU-knY" id="xVD-qc-NuU"/>
-                <outlet property="tel" destination="lyN-Kh-Tio" id="TaE-g2-Nao"/>
                 <outlet property="telF" destination="zf0-EP-bgo" id="niu-Po-Pay"/>
                 <outlet property="typeBtn" destination="ha4-1T-mMn" id="WMx-9d-IY2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -77,16 +77,20 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyN-Kh-Tio">
-                    <rect key="frame" x="60" y="20" width="37" height="40"/>
+                    <rect key="frame" x="60" y="20" width="51" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lWa-TE-2Iu"/>
                     </constraints>
-                    <state key="normal" title="暂无"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="暂无">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zf0-EP-bgo">
-                    <rect key="frame" x="107" y="23" width="150" height="34"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入会员手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zf0-EP-bgo">
+                    <rect key="frame" x="121" y="23" width="200" height="34"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="7pL-k1-fgj"/>
+                        <constraint firstAttribute="width" constant="200" id="7pL-k1-fgj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>

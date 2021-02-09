@@ -51,17 +51,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="早班" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUm-fj-mqL">
-                        <rect key="frame" x="421" y="24" width="50" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李文亮" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUm-fj-mqL">
+                        <rect key="frame" x="371" y="24" width="100" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="j5f-4w-Kkr"/>
+                            <constraint firstAttribute="width" constant="100" id="j5f-4w-Kkr"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="培训部" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pe8-8G-6ol">
-                        <rect key="frame" x="291" y="24" width="120" height="21"/>
+                        <rect key="frame" x="241" y="24" width="120" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="y1y-e0-qDS"/>
                         </constraints>
@@ -79,7 +79,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASA-SDASD-92739" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb6-Ml-3hY">
-                        <rect key="frame" x="200" y="24" width="81" height="21"/>
+                        <rect key="frame" x="200" y="24" width="31" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -116,6 +116,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="carLevelL" destination="GxB-t2-mvC" id="6CW-eK-5Bf"/>
+                <outlet property="cfdEmployeeNameL" destination="Hb6-Ml-3hY" id="q4C-10-yGn"/>
+                <outlet property="cfdMemberNameL" destination="Pe8-8G-6ol" id="AcT-VJ-b1p"/>
+                <outlet property="shuomingL" destination="soN-pY-7Iu" id="cms-bP-EMO"/>
+                <outlet property="stateL" destination="9Uv-dX-vSp" id="QBD-Hz-7Ky"/>
+                <outlet property="telL" destination="SUm-fj-mqL" id="0Lt-H4-KtS"/>
+                <outlet property="timeL" destination="xh1-KM-vF7" id="WtN-Bl-ccD"/>
+            </connections>
             <point key="canvasLocation" x="165.94202898550725" y="75.334821428571431"/>
         </tableViewCell>
     </objects>

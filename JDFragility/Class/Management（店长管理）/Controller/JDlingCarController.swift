@@ -56,8 +56,16 @@ class JDlingCarController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
             Kwindow.window?.addSubview(dataPicker)
         }
         searchBtn.addAction { (_) in
-            
-            
+        
+
+                        if ((self.starTimeBtn.titleLabel?.text?.containsIgnoringCase(find: "请选择开始时间")) != nil){
+                            NHMBProgressHud.showSuccesshTips(message: "请选择开始时间")
+                            return
+                        }
+                        if ((self.endTimeBtn.titleLabel?.text?.containsIgnoringCase(find: "请选择结束时间")) != nil){
+                            NHMBProgressHud.showSuccesshTips(message: "请选择结束时间")
+                            return
+                        }
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
             let params = ["cfdFendianId":cfdFendianId,"StartDateTime":self.starTimeBtn.titleLabel?.text ?? "","EndDateTime":self.endTimeBtn.titleLabel?.text ?? "" ,"ifdApplyType":"false","page":self.page,"limit":"20","Keyword":self.textF.text!] as [String : Any]
 

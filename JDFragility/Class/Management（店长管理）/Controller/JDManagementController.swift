@@ -14,10 +14,10 @@ class JDManagementController: JDBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor=UIColor.purple
-        flow.itemSize = CGSize( width: 255 , height: 269)
+        flow.itemSize = CGSize( width: 380 , height: 269)
         flow.minimumLineSpacing=30;
         flow.minimumInteritemSpacing = 30;
-        flow.sectionInset = UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 30);
+        flow.sectionInset = UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50);
 //        flow.scrollDirection = .horizontal
         collectionView.delegate = self
         collectionView.backgroundColor=UIColor.black
@@ -32,13 +32,13 @@ class JDManagementController: JDBaseViewController {
 
 extension JDManagementController:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.k_dequeueReusableCell(cls: JDManageCell.self, indexPath: indexPath)
         cell.cornerRadius(radius: 8)
-        cell.titleBtn.setTitle(["领卡","升卡","退课","换课","排班"][indexPath.row], for:.normal)
+        cell.titleBtn.setTitle(["升卡","退课","换课","排班"][indexPath.row], for:.normal)
         return cell
         
     }
@@ -50,25 +50,19 @@ extension JDManagementController:UICollectionViewDelegate,UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-//            navigationController?.pushViewController(, animated: true)
-            let lingCar = JDlingCarController()
-        
-            navigationController?.pushViewController(lingCar, animated: true)
-        }else if indexPath.row == 1 {
             let shengCar = JDshengCarController()
         
             navigationController?.pushViewController(shengCar, animated: true)
              
-        }else if indexPath.row == 2{
+        }else if indexPath.row == 1{
             let tuiKe = JDtuiKeController()
         
             navigationController?.pushViewController(tuiKe, animated: true)
-        }else if indexPath.row == 3 {
+        }else if indexPath.row == 2 {
             //换课
             let huanKe = JDhuanKeController()
-        
             navigationController?.pushViewController(huanKe, animated: true)
-        }else if indexPath.row == 4 {
+        }else if indexPath.row == 3 {
             let paiBan = JDAttendanceController()
         
             navigationController?.pushViewController(paiBan, animated: true)

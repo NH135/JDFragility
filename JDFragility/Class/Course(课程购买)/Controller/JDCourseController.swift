@@ -347,6 +347,7 @@ extension JDCourseController{
                 let huanSave = JDhuanKeSaveController()
                 huanSave.shopingGroups = self.shopingGroups
                 huanSave.TimeList = self.TimeList
+                huanSave.cfdMemberId = self.cfdMemberId ?? ""
                 self.navigationController?.ymPushViewController(huanSave, removeSelf: true, animated: true)
                 
                 

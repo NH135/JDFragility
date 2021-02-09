@@ -25,7 +25,7 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
     var TimeList = [JDGroupProjectModel]()
     var addList = [JDGroupProjectModel]()
     var shopingGroups = [JDGroupProjectModel]()
-    
+    var cfdMemberId  = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "选择需兑换的老课程"
@@ -247,7 +247,9 @@ extension JDhuanKeSaveController{
                 }
             }
 //
-            let params = ["cfdRefMemberTime":self.addList.kj.JSONString(),"cfdNewCourse":shopingGroups.kj.JSONString() ,"cfdCaiWustr":moneyArr.kj.JSONString() ]
+            let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
+            let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+            let params = ["cfdRefMemberTime":self.addList.kj.JSONString(),"cfdNewCourse":shopingGroups.kj.JSONString() ,"cfdCaiWustr":moneyArr.kj.JSONString() ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":cfdMemberId,"cfdFendianId":cfdFendianId]
 ////            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddChangeCourse", params: params) { (dic) in
                 print("购买课程支付结果\(dic)")
