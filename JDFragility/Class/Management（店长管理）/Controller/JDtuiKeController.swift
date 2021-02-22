@@ -17,7 +17,7 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
     
     var  starTime :String = ""
     var  endTime :String = ""
-    var Keyword :String = ""
+ 
     var page:Int = 1
     var dataArr = [JDdianWuModel]()
     override func viewDidLoad() {
@@ -98,7 +98,7 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
     func newData(page:Int) {
         NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-        let params = ["cfdFendianId":cfdFendianId,"StartDateTime":self.starTime,"EndDateTime":self.endTime ,"page":self.page,"limit":"20","Keyword":self.Keyword] as [String : Any]
+        let params = ["cfdFendianId":cfdFendianId,"StartDateTime":self.starTime,"EndDateTime":self.endTime ,"page":self.page,"limit":"20","Keyword":self.textF.text ?? ""] as [String : Any]
 
 
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryRefundList", params: params) { (dic) in
@@ -118,11 +118,6 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
                 }
                  
             }
-            
-      
-            
-            
-            
        
             self.tableView.reloadData()
         } error: { (error) in
@@ -142,7 +137,8 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.k_dequeueReusableCell(cls: JDlingshengCarCell.self, indexPath: indexPath)
          cell.backgroundColor = UIColor.lightText
-        cell.huanKeModel = dataArr[indexPath.row]
+        cell.tuiKeModel = dataArr[indexPath.row]
+        cell.selectionStyle = .none
          return cell
          
      }
@@ -151,7 +147,7 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
      }
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
        
-       let xibView = Bundle.main.loadNibNamed("JDlingshengSecView", owner: nil, options: nil)?.first as! UIView
+       let xibView = Bundle.main.loadNibNamed("JDtuiHeaderView", owner: nil, options: nil)?.first as! UIView
          xibView.backgroundColor = UIColor.white
          xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
        return xibView

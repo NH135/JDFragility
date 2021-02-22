@@ -14,7 +14,7 @@ class JDGroupModel: Convertible {
     var list = [JDGroupDetaileModel]()
     // 这个变量是控制分组是否打开的，如果打开则设定展示cell的个数
     var isOpen:Bool? = false
-    
+    var cfdImgSrc : String?
     var cfdCourseClassId:String?
     var dfdCreateDate:String?
     var ifdState:String?

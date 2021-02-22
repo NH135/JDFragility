@@ -53,7 +53,7 @@ extension JDMemberController{
         view.addSubview(leftView)
         
         //        let searchT = UITextField(frame: CGRect(x: 20, y: leftView.centerY, width: leftView.width-30, height: 40))
-        searchT.frame = CGRect(x: 15, y: leftView.centerY, width: leftView.width-30, height: 40)
+        searchT.frame = CGRect(x: 15, y: leftView.centerY, width: leftView.width-110, height: 40)
 //        searchT.cornerRadius(radius: 20)
 //        searchT.k_setBorder(color: UIColor.lightText, width: 1)
         searchT.placeholder = "请输入会员手机号";
@@ -65,8 +65,18 @@ extension JDMemberController{
         searchT.delegate = self
         searchT.k_limitTextLength = 11
         searchT.returnKeyType = .search
- 
         leftView.addSubview(searchT)
+        
+        
+        let searchBtn = UIButton(frame: CGRect(x: searchT.rightX+10, y: searchT.y, width: 70, height: 40))
+        searchBtn.setTitle("搜索", for: .normal)
+        searchBtn.cornerRadius(radius: 4)
+        searchBtn.backgroundColor = UIColor.k_colorWith(hexStr: "409EFF")
+        leftView.addSubview(searchBtn)
+        searchBtn.addAction { (_) in
+            self.searchData()
+        }
+        
         let rightView = UIView(frame: CGRect(x: widthV+60, y: leftView.y, width: widthV, height: kScreenHeight-60))
         rightView.k_cornerRadius = 8
         rightView.backgroundColor=UIColor.k_colorWith(hexStr: "#DC88C6")
@@ -79,6 +89,7 @@ extension JDMemberController{
         tiL.textAlignment = .center
         tiL.textColor=UIColor.white
         rightView.addSubview(tiL)
+        
         
         
         
@@ -287,7 +298,7 @@ extension JDMemberController{
 //            cfdIntroducer介绍人
                 NHMBProgressHud.showLoadingHudView(message: "添加中···")
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":"3b4ee8ea-6180-438a-b1a7-d5835c8741fc","ifdHeight":heightT.text ?? "","ifdWeight":weightT.text ?? ""] as [String : Any]
+            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":self.sourceID ?? "","ifdHeight":heightT.text ?? "","ifdWeight":weightT.text ?? ""] as [String : Any]
             
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddMember", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
@@ -320,38 +331,45 @@ extension JDMemberController{
 extension JDMemberController{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchT {
-//         搜索会员
-           
-            searchT.resignFirstResponder()
- 
-            NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
-                NHMBProgressHud.hideHud()
-            }
-            let params = ["cfdMoTel": searchT.text ?? ""]
-            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
-                NHMBProgressHud.hideHud()
-                guard let dics = dic as? [String : Any] else {
-                    
-                    
-                    
-                    return
-                }
-//                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
-                let memberDetail = JDMemberDetailController()
-                let member =  dics.kj.model(JDmemberModel.self)
-                
-                memberDetail.memberModel =  member
-  
-                self.navigationController?.pushViewController(memberDetail, animated: true)
-            } error: { (error) in
-                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
-            }
-
+            searchData()
             
         }
         
         return true
     }
     
+    
+    
+    func searchData(){
+        //         搜索会员
+                    view.endEditing(true)
+                    guard searchT.text?.length == 11 else {
+                        NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号码")
+                        return
+                    }
+                    NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                        NHMBProgressHud.hideHud()
+                    }
+                    let params = ["cfdMoTel": searchT.text ?? ""]
+                    NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
+                        NHMBProgressHud.hideHud()
+                        guard let dics = dic as? [String : Any] else {
+                            
+                            return
+                        }
+        //                self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
+                        let memberDetail = JDMemberDetailController()
+                        let member =  dics.kj.model(JDmemberModel.self)
+                        
+                        memberDetail.memberModel =  member
+                        self.searchT.text = ""
+                        self.navigationController?.pushViewController(memberDetail, animated: true)
+                    } error: { (error) in
+                        NHMBProgressHud.hideHud()
+                        NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+                    }
+
+                    
+                }
 }

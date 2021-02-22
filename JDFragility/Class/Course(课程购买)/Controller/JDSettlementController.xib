@@ -103,7 +103,7 @@
                         <constraint firstItem="QTi-RW-SGr" firstAttribute="leading" secondItem="4sQ-If-GjO" secondAttribute="leading" constant="20" id="ybV-NE-Hum"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo copy" translatesAutoresizingMaskIntoConstraints="NO" id="lcH-dZ-IcG">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defuHeader" translatesAutoresizingMaskIntoConstraints="NO" id="lcH-dZ-IcG">
                     <rect key="frame" x="100" y="20" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="fn3-6v-4l4"/>
@@ -282,7 +282,7 @@
     </objects>
     <resources>
         <image name="close" width="24" height="24"/>
-        <image name="logo copy" width="97" height="95"/>
+        <image name="defuHeader" width="64" height="64"/>
         <image name="notseated" width="24" height="24"/>
         <image name="seated" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">

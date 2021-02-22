@@ -30,15 +30,28 @@ struct JDdianWuModel: Convertible {
 //    cfdChangeDesc = <null>;
 //    cfdCheckDate = <null>
     
-    
+    var dfdJobDate:String?
+    var cfdApplyType:String?
+    var dfdRefundFactMoney :String?
+    var dfdRefundMoney : String?
     var cfdCheckState:String?
     var  cfdChangeCourseGUID :String?
     var  cfdMemberName :String?
     var cfdFendianNameE :String?
     var cfdEmployeeName :String?
-    var dfdCreateDate:String?
+    var cfdCheckDesc :String?
     
+    var dfdCreateDate:String?
     var cfdMoTel :String?
- 
+    var  cfdCheckDate :String?
+    var cfdStatus :String?
+    var dfdCardApplyDate :String?
+    
+    var cfdCourseNameNew :String?
+    var cfdCourseNameOld  :String?
+    var dfdExchangeAmount :String?
+    var ffdSumMoney :String?
+    
+    
     
 }

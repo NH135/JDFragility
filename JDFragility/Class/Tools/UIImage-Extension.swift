@@ -78,7 +78,7 @@ extension UIImage{
         return newPic!
     }
     
-    
+
     /// 切圆角
     /// - Parameter radius: 角度
     func cornerRadius(radius: CGFloat) -> UIImage{

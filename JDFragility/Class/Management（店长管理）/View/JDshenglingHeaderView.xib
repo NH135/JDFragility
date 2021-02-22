@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="942" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门店名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ6-Qj-iIA">
+                    <rect key="frame" x="90" y="0.0" width="213" height="59"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQp-eD-QL3">
+                    <rect key="frame" x="303" y="0.0" width="213" height="59"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amQ-b0-yT2">
+                    <rect key="frame" x="516" y="0.0" width="213" height="59"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNf-yE-o3I">
+                    <rect key="frame" x="729" y="0.0" width="213" height="59"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWe-GW-Xiy">
+                    <rect key="frame" x="0.0" y="0.0" width="90" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="deI-1f-Qez"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="amQ-b0-yT2" firstAttribute="width" secondItem="pJ6-Qj-iIA" secondAttribute="width" id="0La-R3-Dae"/>
+                <constraint firstItem="FNf-yE-o3I" firstAttribute="top" secondItem="amQ-b0-yT2" secondAttribute="top" id="9fv-pg-w42"/>
+                <constraint firstItem="XWe-GW-Xiy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DnL-ok-ewD"/>
+                <constraint firstItem="amQ-b0-yT2" firstAttribute="top" secondItem="QQp-eD-QL3" secondAttribute="top" id="RSX-yG-PTk"/>
+                <constraint firstItem="pJ6-Qj-iIA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vit-2l-7G9"/>
+                <constraint firstItem="amQ-b0-yT2" firstAttribute="height" secondItem="pJ6-Qj-iIA" secondAttribute="height" id="XWG-op-dhx"/>
+                <constraint firstItem="pJ6-Qj-iIA" firstAttribute="leading" secondItem="XWe-GW-Xiy" secondAttribute="trailing" id="Y6L-GX-M3s"/>
+                <constraint firstItem="FNf-yE-o3I" firstAttribute="height" secondItem="pJ6-Qj-iIA" secondAttribute="height" id="arI-h0-Fez"/>
+                <constraint firstAttribute="bottom" secondItem="pJ6-Qj-iIA" secondAttribute="bottom" id="bkQ-gq-S09"/>
+                <constraint firstItem="QQp-eD-QL3" firstAttribute="height" secondItem="pJ6-Qj-iIA" secondAttribute="height" id="f7A-9Q-q64"/>
+                <constraint firstItem="QQp-eD-QL3" firstAttribute="top" secondItem="pJ6-Qj-iIA" secondAttribute="top" id="frD-co-pLs"/>
+                <constraint firstItem="QQp-eD-QL3" firstAttribute="leading" secondItem="pJ6-Qj-iIA" secondAttribute="trailing" id="iGn-bZ-l6V"/>
+                <constraint firstItem="amQ-b0-yT2" firstAttribute="leading" secondItem="QQp-eD-QL3" secondAttribute="trailing" id="n3T-Kr-h1d"/>
+                <constraint firstItem="FNf-yE-o3I" firstAttribute="width" secondItem="pJ6-Qj-iIA" secondAttribute="width" id="qII-ao-wve"/>
+                <constraint firstAttribute="bottom" secondItem="XWe-GW-Xiy" secondAttribute="bottom" id="rXI-zl-Hvx"/>
+                <constraint firstItem="QQp-eD-QL3" firstAttribute="width" secondItem="pJ6-Qj-iIA" secondAttribute="width" id="tvY-Q1-R2K"/>
+                <constraint firstItem="FNf-yE-o3I" firstAttribute="leading" secondItem="amQ-b0-yT2" secondAttribute="trailing" id="uaR-nY-v81"/>
+                <constraint firstAttribute="trailing" secondItem="FNf-yE-o3I" secondAttribute="trailing" id="wDR-e7-rOi"/>
+                <constraint firstItem="XWe-GW-Xiy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yFT-l8-bFJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="514.49275362318849" y="-146.31696428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

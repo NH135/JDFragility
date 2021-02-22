@@ -82,6 +82,7 @@ class JDCourseshopingCell: UITableViewCell {
     }
     var detaileModel:JDGroupProjectModel? {
         didSet {
+            iconV.setCategorymageUrl(url: detaileModel?.cfdImgSrc ?? "")
             setedBtn.isHidden = true;
             nameL.text = detaileModel?.cfdCourseName
             detaileL.text = "¥\(detaileModel?.ffdPrice ?? "暂无报价")"
@@ -90,6 +91,7 @@ class JDCourseshopingCell: UITableViewCell {
     }
     var huanModel:JDGroupProjectModel? {
         didSet {
+            iconV.setCategorymageUrl(url: huanModel?.cfdImgSrc ?? "")
             setedBtn.isHidden = true;
             nameL.text = huanModel?.cfdCourseName
             detaileL.text = "  \(huanModel?.ifdAllNumber ?? 0)  "
@@ -105,6 +107,7 @@ class JDCourseshopingCell: UITableViewCell {
     
     var jiesuanModel:MCListModel? {
         didSet {
+            iconV.setCategorymageUrl(url: jiesuanModel?.cfdImgSrc ?? "")
             setedBtn.isHidden = true;
             nameL.text = jiesuanModel?.cfdCourseName
             detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
@@ -115,6 +118,7 @@ class JDCourseshopingCell: UITableViewCell {
 //    多选保存
     var baocunModel:saveDetailModel? {
         didSet {
+            iconV.setCategorymageUrl(url: baocunModel?.cfdImgSrc ?? "")
             nameL.text = baocunModel?.cfdItemName
 //            detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
             detaileL.text =  baocunModel?.ifdTimes
@@ -129,7 +133,7 @@ class JDCourseshopingCell: UITableViewCell {
     var baocunModelT:JDGroupModel? {
         didSet {
         nameL.text = baocunModelT?.cfdCourseName
- 
+            iconV.setCategorymageUrl(url: baocunModelT?.cfdImgSrc ?? "")
             detaileL.text = "¥ \(baocunModelT?.ffdPrice ?? 0.0)"
             
             addV.isHidden = false

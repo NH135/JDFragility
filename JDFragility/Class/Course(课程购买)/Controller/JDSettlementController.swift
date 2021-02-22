@@ -113,11 +113,14 @@ extension JDSettlementController:UITextFieldDelegate{
             payView.addSubview(vv)
             let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
             btn.setTitle(item.cfdPayMode, for: .normal)
-            
-            btn.setImage(UIImage(named: item.cfdPayMode ?? ""), for: .normal)
+            btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
+            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
+            btn.imageView?.contentMode = .scaleAspectFit
+//            btn.contentHorizontalAlignment = .left
+            btn.kf.setImage(with: URL(string: item.cfdImgSrc ?? ""), for: .normal, placeholder: UIImage(named: "yue"), options: nil, progressBlock: nil, completionHandler: nil)
             btn.setTitleColor(UIColor.black, for: .normal)
             btn.isUserInteractionEnabled = false
-            btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+//            btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
             vv.addSubview(btn)
             
             let payType = UITextField(frame: CGRect(x: 130, y: 0, width: width-150, height: 50))
@@ -168,6 +171,7 @@ extension JDSettlementController{
         telL.text = memberModel?.cfdMoTel
         lastML.text = "当前余额：\(memberModel?.ffdBalance ?? "0")"
         yhjB.cornerRadius(radius: 6)
+        iconImagV.setHeaderImageUrl(url: memberModel?.cfdPhoto ?? "")
         let cfdFendianName = UserDefaults.standard.string(forKey: "cfdFendianName") ?? ""
         mdL.text = "购买门店：\(cfdFendianName)"
         wanB.addAction { (btn:UIButton) in
@@ -229,7 +233,13 @@ extension JDSettlementController{
                 }
             }
 //
-            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":"true","cfdCaiWustr":moneyArr.kj.JSONString() ]
+            
+            var   payType = "true"
+            if yuB.isEnabled == false{
+                payType = "false"
+            }
+            
+            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":payType,"cfdCaiWustr":moneyArr.kj.JSONString() ]
 //            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadPayBusList", params: params) { (dic) in
                 print("购买课程支付结果\(dic)")

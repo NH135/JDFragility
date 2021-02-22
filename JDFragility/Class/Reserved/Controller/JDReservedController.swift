@@ -224,6 +224,7 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
                 let courseVC = JDCourseController()
                 courseVC.cfdMemberId = reserveMode.cfdMemberId
                 courseVC.namelTelStr = reserveMode.cfdMemberName;
+                courseVC.telStr = reserveMode.cfdMoTel;
                 self.navigationController?.pushViewController(courseVC, animated: true)
             }else if cell.titleLab.text == "会员360" {
                NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")

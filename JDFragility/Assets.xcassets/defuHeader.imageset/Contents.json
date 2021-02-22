@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "defuHeader.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "huiyuan360.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-
+import Kingfisher
 public extension UIImageView {
     
     /// 设置二维码图片
@@ -20,7 +20,12 @@ public extension UIImageView {
         guard let url = url, url.k_isEmpty == false else { return }
         self.image = url.k_createQRCode() ?? placeholder
     }
-    
+    func setHeaderImageUrl(url:String) {
+        self.kf.setImage(with: URL(string: url), placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: nil)
+    }
+    func setCategorymageUrl(url:String) {
+        self.kf.setImage(with: URL(string: url), placeholder: UIImage(named: "xmdefult"), options: nil, progressBlock: nil, completionHandler: nil)
+    }
     /// 设置内容模式
     ///
     /// - Parameters:
@@ -62,6 +67,7 @@ public extension UIImageView {
             }
         }
     }
+    
 }
 
 // MARK: -旋转动画

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 // 自定义section的headerView
 // 协议，点击headerView的回调
 protocol goumaikeSendDelegate:NSObjectProtocol {
@@ -69,9 +69,10 @@ class JDgoumaikcCell: UITableViewCell {
 
     var goumaiModel : JDhuiyuanDetail?{
         didSet{
+            iconI.kf.setImage(with: URL(string: goumaiModel?.cfdPhoto ?? ""), placeholder: UIImage(named: "dingdanICon"), options: nil, progressBlock: nil, completionHandler: nil)
             yufujinPayBtn.isHidden = true
             weikuanPayBtn.isHidden = true
-            if goumaiModel?.TimeList.count ?? 0 > 0 {
+            if goumaiModel?.CardList.count ?? 0 > 0 {
                 orderTableView.k_cornerRadius = 6
                 orderTableView.k_setBorder(color: UIColor.k_colorWith(hexStr: "EBEFF5"), width: 1)
                 orderTableView.reloadData()
@@ -80,21 +81,22 @@ class JDgoumaikcCell: UITableViewCell {
                 orderpayCollectionView.reloadData()
 //            }
             nameL.text = goumaiModel?.cfdFendianName ?? "暂无"
-            ordernumberL.text = "\(goumaiModel?.cfdBusListGUID ?? "暂无")    \(goumaiModel?.dfdDateTime ?? "暂无")"
+            ordernumberL.text = "订单号：\(goumaiModel?.cfdOpertCode ?? "暂无")    消费时间：\(goumaiModel?.dfdDateTime ?? "暂无")"
             if goumaiModel?.ffdArrear ?? 0 > 0 {
                 
-                self.moenyL.text = "订单金额:\(goumaiModel?.ffdBusMoney ?? 0)   预付金:\(goumaiModel?.ffdBusMoney ?? 0 - (goumaiModel?.ffdArrear)! )"
+                self.moenyL.text = "订单金额:¥\(goumaiModel?.ffdBusMoney ?? 0)   预付金:¥\(goumaiModel?.ffdBusMoney ?? 0 - (goumaiModel?.ffdArrear)! )"
             }else{
-                self.moenyL.text = "订单金额:\(goumaiModel?.ffdBusMoney ?? 0) "
+                self.moenyL.text = "订单金额:¥\(goumaiModel?.ffdBusMoney ?? 0) "
             }
         }
     }
     
     var yufuModel : JDhuiyuanDetail?{
         didSet{
+            iconI.kf.setImage(with: URL(string: goumaiModel?.cfdPhoto ?? ""), placeholder: UIImage(named: "dingdanICon"), options: nil, progressBlock: nil, completionHandler: nil)
             yufujinPayBtn.isHidden = false
             weikuanPayBtn.isHidden = false
-            if yufuModel?.TimeList.count ?? 0 > 0 {
+            if yufuModel?.CardList.count ?? 0 > 0 {
                 orderTableView.k_cornerRadius = 6
                 orderTableView.k_setBorder(color: UIColor.k_colorWith(hexStr: "EBEFF5"), width: 1)
                 orderTableView.reloadData()
@@ -103,12 +105,12 @@ class JDgoumaikcCell: UITableViewCell {
                 orderpayCollectionView.reloadData()
             }
             nameL.text = yufuModel?.cfdFendianName ?? "暂无"
-            ordernumberL.text = "\(yufuModel?.cfdBusListGUID ?? "暂无")    \(yufuModel?.dfdDateTime ?? "暂无")"
+            ordernumberL.text = "订单号：\(yufuModel?.cfdOpertCode ?? "暂无")    消费时间：\(yufuModel?.dfdDateTime ?? "暂无")"
             if yufuModel?.ffdArrear ?? 0 > 0 {
                 
-                self.moenyL.text = "订单金额:\(yufuModel?.ffdBusMoney ?? 0)   预付金:\(yufuModel?.ffdBusMoney ?? 0 - (yufuModel?.ffdArrear)! )"
+                self.moenyL.text = "订单金额:¥\(yufuModel?.ffdBusMoney ?? 0)   预付金:¥\(yufuModel?.ffdBusMoney ?? 0 - (yufuModel?.ffdArrear)! )"
             }else{
-                self.moenyL.text = "订单金额:\(yufuModel?.ffdBusMoney ?? 0) "
+                self.moenyL.text = "订单金额:¥\(yufuModel?.ffdBusMoney ?? 0) "
             }
         }
     }
@@ -139,9 +141,9 @@ extension JDgoumaikcCell: UITableViewDelegate,UITableViewDataSource,UICollection
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  ifdType == true  {
-            return goumaiModel?.TimeList.count ?? 0
+            return goumaiModel?.CardList.count ?? 0
         }else{
-            return yufuModel?.TimeList.count ?? 0
+            return yufuModel?.CardList.count ?? 0
         }
         
  
@@ -153,10 +155,10 @@ extension JDgoumaikcCell: UITableViewDelegate,UITableViewDataSource,UICollection
         let cell = tableView.k_dequeueReusableCell(cls: JDkechengDetaileCell.self, indexPath: indexPath)
         cell.selectionStyle = .none
         if ifdType == true  {
-       cell.kcmodel = goumaiModel?.TimeList[indexPath.row]
+       cell.kcmodel = goumaiModel?.CardList[indexPath.row]
             
         }else{
-            cell.kcmodel = yufuModel?.TimeList[indexPath.row]
+            cell.kcmodel = yufuModel?.CardList[indexPath.row]
         }
         return cell
     }

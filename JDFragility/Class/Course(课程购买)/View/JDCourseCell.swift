@@ -57,6 +57,7 @@ class JDCourseCell: UITableViewCell {
     var detaileModel:JDGroupProjectModel? {
         didSet {
             self.number = 0
+            IconImageV.setCategorymageUrl(url: detaileModel?.cfdImgSrc ?? "")
             nameL.text = detaileModel?.cfdCourseName
             priceL.text = "¥\(detaileModel?.ffdPrice ?? "暂无报价")"
             numberL.text = "0"

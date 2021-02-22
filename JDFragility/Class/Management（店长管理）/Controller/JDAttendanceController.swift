@@ -30,6 +30,7 @@ class JDAttendanceController: JDBaseViewController, DZNEmptyDataSetSource, DZNEm
          tableView.delegate = self
          tableView.dataSource = self
          tableView.k_registerCell(cls: JDlingshengCarCell.self)
+        tableView.tableFooterView = UIView()
      }
   
  }
@@ -44,6 +45,7 @@ class JDAttendanceController: JDBaseViewController, DZNEmptyDataSetSource, DZNEm
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.k_dequeueReusableCell(cls: JDlingshengCarCell.self, indexPath: indexPath)
          cell.backgroundColor = UIColor.lightText
+        cell.selectionStyle = .none
          return cell
          
      }
@@ -52,7 +54,7 @@ class JDAttendanceController: JDBaseViewController, DZNEmptyDataSetSource, DZNEm
      }
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
        
-       let xibView = Bundle.main.loadNibNamed("JDlingshengSecView", owner: nil, options: nil)?.first as! UIView
+       let xibView = Bundle.main.loadNibNamed("JDtuihuanHeaderView", owner: nil, options: nil)?.first as! UIView
          xibView.backgroundColor = UIColor.lightText
          xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
        return xibView

@@ -20,10 +20,10 @@ class JDkechengDetaileCell: UITableViewCell {
     }
     var kcmodel : TimeListModel?{
         didSet{
-            nameL.text = "课程：\(kcmodel?.cfdCourseName ?? "暂无")"
-            lastContL.text = "购买数：\(kcmodel?.ifdAllNumber ?? "0")"
-            moenyL.text = "价格：\(kcmodel?.ffdUnitPrice ?? "0")"
-            caozuoL.text = "操作次数：\(kcmodel?.ifdYnumber ?? "0")"
+            nameL.text = "课程名称：\(kcmodel?.cfdCourseName ?? "暂无")"
+            lastContL.text = "原价：¥\(kcmodel?.ffdOriPrice ?? "0")"
+            moenyL.text = "现价：¥\(kcmodel?.ffdNowPrice ?? "0")"
+            caozuoL.text = "数量：\(kcmodel?.ifdNumber ?? "0")"
             nameL.wl_changeFont(withTextFont:UIFont.systemFont(ofSize: 12) , changeText: "课程：")
             lastContL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "999999"), changeText: "购买数：")
             moenyL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "999999"), changeText: "价格：")

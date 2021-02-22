@@ -11,10 +11,6 @@ class JDsaveKCController: JDBaseViewController, HeaderViewDelegate, shopingcours
     func huanaddjianCourse(type: Bool, model: JDGroupProjectModel) {
     }
     
- 
- 
-
-
     @IBOutlet weak var letTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
     

@@ -21,6 +21,7 @@ class JDaddleftReserveCell: UITableViewCell {
     
     var addReserve : ResListModel? {
         didSet{
+            iconI.setCategorymageUrl(url: addReserve?.cfdImgSrc ?? "")
             nameL.text =  addReserve?.cfdCourseName ?? "暂无"
             lastCount.text = "\(addReserve?.ifdLastNumber ?? 0)"
         }

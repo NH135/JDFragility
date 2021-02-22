@@ -87,8 +87,8 @@ extension JDReveredAuthorizationController:UITableViewDelegate,UITableViewDataSo
 
         }
         
-        self.navigationController?.pushViewController(ewm, animated: false)
-//        self.present(ewm, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(ewm, animated: false)
+        self.present(ewm, animated: true, completion: nil)
         
 
         

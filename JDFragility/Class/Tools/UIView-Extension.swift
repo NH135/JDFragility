@@ -359,6 +359,17 @@ public extension UIView {
         shapeLayer.path = path
         self.layer.addSublayer(shapeLayer)
     }
+    
+    func add_topLine(linrColot:UIColor = UIColor.red) {
+       let top_line = UIView(frame: CGRect(x: 0, y: self.y, width: self.width, height: 0.5))
+        top_line.backgroundColor = UIColor.k_colorWith(hexStr: "e1e1e1")
+        self.addSubview(top_line)
+    }
+    func add_boLine(linrColot:UIColor = UIColor.red) {
+       let bo_line = UIView(frame: CGRect(x: 0, y: self.height-1, width: self.width, height: 0.5))
+        bo_line.backgroundColor = UIColor.k_colorWith(hexStr: "e1e1e1")
+        self.addSubview(bo_line)
+    }
 }
 
 // MARK: -截屏当前View,生成图片

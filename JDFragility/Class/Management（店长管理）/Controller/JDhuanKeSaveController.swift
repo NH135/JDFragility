@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableViewDataSource, shopingcourseAddDelegate {
   
     
@@ -65,12 +65,14 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
        if tableView == rightTableView {
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
         cell.detaileModel = shopingGroups[indexPath.row]
+        cell.selectionStyle = .none
             return cell
        }else{
         let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
     
         cell.delegate = self
         cell.huanModel = self.TimeList[indexPath.row]
+        cell.selectionStyle = .none
         cell.selectionStyle = .none;
         return cell
        }
@@ -126,11 +128,14 @@ extension JDhuanKeSaveController:UITextFieldDelegate{
             payView.addSubview(vv)
             let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: height))
             btn.setTitle(item.cfdPayMode, for: .normal)
-            
-            btn.setImage(UIImage(named: item.cfdPayMode ?? ""), for: .normal)
+            btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: -20, bottom: 10, right: 0)
+            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -70, bottom: 0, right: 0)
+            btn.imageView?.contentMode = .scaleAspectFit
+//            btn.setImage(UIImage(named: item.cfdImgSrc ?? ""), for: .normal)
+            btn.kf.setImage(with: URL(string: item.cfdImgSrc ?? ""), for: .normal, placeholder: UIImage(named: "yue"), options: nil, progressBlock: nil, completionHandler: nil)
             btn.setTitleColor(UIColor.black, for: .normal)
             btn.isUserInteractionEnabled = false
-            btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+          
             vv.addSubview(btn)
             
             let payType = UITextField(frame: CGRect(x: 100, y: 0, width: width-110, height: height))

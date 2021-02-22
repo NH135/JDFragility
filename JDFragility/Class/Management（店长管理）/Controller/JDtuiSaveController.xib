@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="memberTelL" destination="lyN-Kh-Tio" id="ETX-9y-mDU"/>
                 <outlet property="moneyF" destination="35G-Ba-ZNK" id="le7-9z-u3X"/>
+                <outlet property="searchBtn" destination="MgV-o0-OV9" id="lnU-Qo-OK2"/>
                 <outlet property="sureBtn" destination="n4k-y5-VpS" id="weo-Td-EZy"/>
                 <outlet property="tableView" destination="ozX-UU-knY" id="xVD-qc-NuU"/>
                 <outlet property="telF" destination="zf0-EP-bgo" id="niu-Po-Pay"/>
@@ -99,7 +100,7 @@
                     <rect key="frame" x="0.0" y="80" width="935" height="448"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo copy" translatesAutoresizingMaskIntoConstraints="NO" id="3Ui-cH-ys2">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defuHeader" translatesAutoresizingMaskIntoConstraints="NO" id="3Ui-cH-ys2">
                     <rect key="frame" x="16" y="23" width="34" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="ILq-E5-sDW"/>
@@ -117,6 +118,16 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgV-o0-OV9">
+                    <rect key="frame" x="341" y="25" width="70" height="30"/>
+                    <color key="backgroundColor" red="0.25098039220000001" green="0.61960784310000006" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="OQp-Vy-tXL"/>
+                    </constraints>
+                    <state key="normal" title="搜索">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -131,6 +142,7 @@
                 <constraint firstItem="35G-Ba-ZNK" firstAttribute="leading" secondItem="7Kk-pw-gn7" secondAttribute="trailing" id="L5b-bY-Opl"/>
                 <constraint firstItem="n4k-y5-VpS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Muh-ji-m4s"/>
                 <constraint firstItem="ozX-UU-knY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NXR-vS-gRz"/>
+                <constraint firstItem="MgV-o0-OV9" firstAttribute="centerY" secondItem="zf0-EP-bgo" secondAttribute="centerY" id="SJh-bP-jp9"/>
                 <constraint firstItem="1E1-nz-kf1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Sv6-rl-4K3"/>
                 <constraint firstItem="ozX-UU-knY" firstAttribute="top" secondItem="lyN-Kh-Tio" secondAttribute="bottom" constant="20" id="TRz-54-3tU"/>
                 <constraint firstItem="0RY-wA-SCY" firstAttribute="top" secondItem="ozX-UU-knY" secondAttribute="bottom" constant="20" id="VXU-Y9-wou"/>
@@ -143,13 +155,14 @@
                 <constraint firstItem="zf0-EP-bgo" firstAttribute="centerY" secondItem="lyN-Kh-Tio" secondAttribute="centerY" id="uZg-ne-nfl"/>
                 <constraint firstItem="lyN-Kh-Tio" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="x0t-PG-KeJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0RY-wA-SCY" secondAttribute="bottom" constant="20" id="xeB-wA-7ha"/>
+                <constraint firstItem="MgV-o0-OV9" firstAttribute="leading" secondItem="zf0-EP-bgo" secondAttribute="trailing" constant="20" id="zak-Xo-S1F"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="62.402343749999993" y="-300"/>
         </view>
     </objects>
     <resources>
-        <image name="logo copy" width="97" height="95"/>
+        <image name="defuHeader" width="64" height="64"/>
         <image name="me-arrow-right" width="8" height="14"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

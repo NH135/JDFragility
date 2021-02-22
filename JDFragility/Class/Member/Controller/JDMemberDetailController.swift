@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var iconImageV: UIImageView!
     @IBOutlet weak var nameL: UILabel!
@@ -68,12 +68,12 @@ class JDMemberDetailController: JDBaseViewController {
 
 extension JDMemberDetailController{
     func setUI()  {
-        iconImageV.cornerRadius(radius: 40)
-        iconImageV.image=UIImage(named: "Bitmap")
+//        iconImageV.cornerRadius(radius: 40)
+  
         nameL.text = memberModel.Member.cfdMemberName
 //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
         scoureL.text = "客户来源:\(memberModel.Member.cfdSource ?? "")   手机号:\( memberModel.Member.cfdMoTel ?? "")"
-        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday ?? "")"
+        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")"
         yuyueBtn.cornerRadius(radius: 15)
         yuyueBtn.addAction { (_) in
             self.navigationController?.pushViewController(JDReservedController(), animated: true)
@@ -86,26 +86,30 @@ extension JDMemberDetailController{
         kaidanBtn.cornerRadius(radius: 15)
         kaidanBtn.addAction { (_) in
             let courseVC = JDCourseController()
+            courseVC.title = "课程购买"
             courseVC.cfdMemberId = self.memberModel.Member.cfdMemberId
+            courseVC.telStr = self.memberModel.Member.cfdMoTel
             courseVC.namelTelStr = self.memberModel.Member.cfdMemberName;
             self.navigationController?.pushViewController(courseVC, animated: true)
         }
         
-        kdnL.text = memberModel.UnitPrice ?? "0"
-        kedanL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
-        cishuL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
-        xiaofeiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
-        chongzhiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近三个月")
+
+        kedanL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近1年")
+        cishuL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近1年")
+        xiaofeiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近1年")
+        chongzhiL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "近3个月")
         chapingL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "所有")
-        dianpingL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "所有")
+        dianpingL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "最后")
         jiangeL.wl_changeColor(withTextColor: UIColor.k_colorWith(hexStr: "cccccc"), changeText: "平均")
-        csnL.text = memberModel.MonthsNumber ?? "0"
-        xfnL.text = memberModel.Consume ?? "0"
-        cznL.text = memberModel.Recharge ?? "0"
-        cpnL.text = memberModel.BadNumber ?? "0"
-        dpnL.text = memberModel.CommentNumber ?? "0"
-        jgnL.text = memberModel.CycleNumber ?? "0"
-        
+        kdnL.text = memberModel.UnitPrice ?? "0"   //1
+        csnL.text = memberModel.MonthsNumber ?? "0"  //2
+        xfnL.text = memberModel.ffdPayMoney ?? "0"  //3
+        cznL.text = memberModel.ffdConMoney ?? "0"   //4
+        cpnL.text = memberModel.BadNumber ?? "0"  //5
+        dpnL.text = memberModel.LastDataTime ?? "0" //6
+        jgnL.text = memberModel.CycleNumber ?? "0"  //7
+//        iconImageV.kf.setImage(with: URL(string: memberModel.cfdPhoto ?? ""), placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: nil)
+        iconImageV.setHeaderImageUrl(url: memberModel.Member.cfdPhoto ?? "")
             oneB.addAction { (btn:UIButton) in
                 btn.isEnabled=false
                 self.twoB.isEnabled = true
@@ -181,12 +185,12 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == oneV {
             let mode  = orderKCArr[indexPath.row]
-            return mode.kechengHeight ?? 150
+            return mode.goumaiHeight ?? 150
         }else if tableView == twoV {
             return 40
         }else if tableView == threeV {
             let mode  = orderKCArr[indexPath.row]
-            return mode.kechengHeight ?? 150
+            return mode.goumaiHeight ?? 150
         }else{
             return 40
         }
@@ -199,15 +203,15 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if tableView == twoV  ||  tableView == fourV{
+        if tableView == twoV{
             
-            let headerV = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 50))
+            let headerV = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-20, height: 50))
             headerV.backgroundColor=UIColor.white
-            let width = (kScreenWidth-360)/5
-            let numbs = ["总次数","操作次数","退课次数","换课次数","剩余次数"]
-            let numbsone = ["课程套餐","项目名称"]
+            let width = (kScreenWidth-440)/6
+            let numbs = ["总次数","操作次数","退课次数","换课次数","冻结次数","剩余次数"]
+            let numbsone = ["日期","课程套餐","项目名称"]
             for(index,item) in numbsone.enumerated() {
-                let tit = UILabel(frame: CGRect(x: 180 * CGFloat(index) , y: 0, width: 180, height: 50))
+                let tit = UILabel(frame: CGRect(x: 140 * CGFloat(index) , y: 0, width: 140, height: 50))
                
                 tit.text = item
                 tit.textAlignment = .center
@@ -217,18 +221,35 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             
             
             for (index,item) in numbs.enumerated() {
-                let titt = UILabel(frame: CGRect(x: 360 + width * CGFloat(index) , y: 0, width: width, height: 50))
+                let titt = UILabel(frame: CGRect(x: 420 + width * CGFloat(index) , y: 0, width: width, height: 50))
                
                 titt.text = item
                 titt.textAlignment = .center
                 headerV.addSubview(titt)
             }
-              let line = UIView(frame: CGRect(x: 0, y: 49, width: kScreenWidth, height: 1))
+            let line = UIView(frame: CGRect(x: 0, y: 49, width: kScreenWidth, height: 0.5))
             headerV.addSubview(line)
             line.backgroundColor=UIColor.k_colorWith(hexStr: "e1e1e1")
             return headerV;
-        }else   {
-            return UIView()
+        }else  if  tableView == fourV {
+            let headerV = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth-20, height: 50))
+            headerV.backgroundColor=UIColor.white
+            let width = (kScreenWidth-20)/6
+            let numbs = ["日期","分店名称","课程名称","操作项目","操作员工","操作次数"]
+           
+            for(index,item) in numbs.enumerated() {
+                let tit = UILabel(frame: CGRect(x: width * CGFloat(index) , y: 0, width: width, height: 50))
+                tit.text = item
+                tit.textAlignment = .center
+                headerV.addSubview(tit)
+            }
+             
+            let line = UIView(frame: CGRect(x: 0, y: 49, width: kScreenWidth, height: 0.5))
+            headerV.addSubview(line)
+            line.backgroundColor=UIColor.k_colorWith(hexStr: "e1e1e1")
+            return headerV;
+        }else{
+            return UIView();
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -250,7 +271,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         cell.yufuModel = orderYFArr[indexPath.row]
             return cell
         }else  {
-            let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
+            let cell = tableView.k_dequeueReusableCell(cls: JDNewcaozuoCell.self, indexPath: indexPath)
             cell.lastModel = caozuoKCArr[indexPath.row]
             return cell
         }
@@ -274,8 +295,6 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
                             break
                         }
                     }
-                    
-                    
                     
                 } error: { (error) in
                     NHMBProgressHud.showSuccesshTips(message: "转预付金转金额失败，请重试")
@@ -319,7 +338,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         fourV.tableFooterView = UIView()
         
         twoV.k_registerCell(cls: JDlasteCaozuowCell.self)
-        fourV.k_registerCell(cls: JDlasteCaozuowCell.self)
+        fourV.k_registerCell(cls: JDNewcaozuoCell.self)
         
      
         

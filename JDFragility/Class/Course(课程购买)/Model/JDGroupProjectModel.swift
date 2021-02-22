@@ -32,7 +32,8 @@ class JDGroupProjectModel: Convertible {
     
     var cfdCourseName:String?
 //    var ItemList = []
- 
+    var cfdImgSrc:String?
+    
     var ffdPrice:String?
     var dfdCreateDate:String?
     var cfdCourseClassId:String?
@@ -44,6 +45,7 @@ class JDGroupProjectModel: Convertible {
     
     
     //换课ItemList
+ 
     var cfdItemName:String?
     var ifdChangeTime:Int?
     var ffdUnitPrice:Int?

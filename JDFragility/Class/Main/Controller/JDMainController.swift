@@ -99,7 +99,7 @@ extension JDMainController {
            
         
         func typeView(with type:NSInteger) {
-            
+            view.endEditing(true)
             self.reserver?.view.isHidden=true;
             self.course?.view.isHidden=true;
             self.member?.view.isHidden=true;
@@ -201,7 +201,7 @@ extension JDMainController {
             self.kechengBtn.isEnabled = true
             self.huiyuanBtn.isEnabled = true
 //            self.kaoqinBtn.isEnabled = true
-            self.huiyuanBtn.isEnabled = true
+            self.yuyueBtn.isEnabled = true
             typeView(with:5)
         }
     }

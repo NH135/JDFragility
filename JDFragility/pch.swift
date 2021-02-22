@@ -29,7 +29,9 @@ let kUserDefaults = UserDefaults.standard
 let kNotife = NotificationCenter.default
 let kAppVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
 let kUUID =  UIDevice.current.identifierForVendor?.uuidString.replacingOccurrences(of: "-", with: "")
-   
+let placeholderImage = UIImage(named: "dingdanICon")
+
+
 let kLineHeight = 0.5
  
 /*TabBar高度*/

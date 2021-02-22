@@ -40,6 +40,7 @@ class ResListModel:Convertible {
     var cfdFendianId:String?
     var ifdState:Int?
     var dfdCreateDate:String?
+    var cfdImgSrc :String?
     
     var cfdCourseName:String?
     var cfdBusListGUID:String?

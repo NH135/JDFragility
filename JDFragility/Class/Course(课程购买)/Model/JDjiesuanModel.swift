@@ -53,6 +53,7 @@ struct BusListModel: Convertible {
 struct MCListModel: Convertible {
     var ffdNowPrice : String?
     var cfdCourseName : String?
+    var cfdImgSrc:String?
     //    cfdCreateUser = 罗俊杰;
     //    ifdTerm = 1;
     //    cfdCourseName = CYS全身溶脂;
@@ -86,6 +87,8 @@ struct CodeMsgModel: Convertible {
 //支付的model
 struct payModel: Convertible {
     var cfdPayMode : String?
+    var cfdImgSrc : String?
+    
     var cfdPayModeId : String?
     var ffdIncome : String?
     var ifdId : Int?
@@ -126,6 +129,7 @@ class saveDetailModel: Convertible {
     var ifdSelectNumber : String?
     var cfdCourseItemGroupId : String?
     var cfdItemName : String?
+    var cfdImgSrc : String?
     
     var ifdTimes : String?
     var cfdCourseListId : String?

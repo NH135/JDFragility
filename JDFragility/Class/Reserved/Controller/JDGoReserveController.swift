@@ -20,6 +20,7 @@ class JDGoReserveController:JDBaseViewController {
     @IBOutlet weak var kehuTelT: UITextField!
     @IBOutlet weak var kehuNameL: UILabel!
     @IBOutlet weak var rightTablView: UITableView!
+    @IBOutlet weak var searchBtn: UIButton!
     
     
     
@@ -45,8 +46,8 @@ class JDGoReserveController:JDBaseViewController {
         }
         
         guard self.memberModel != nil else {
+            self.kehuTelT.becomeFirstResponder()
             NHMBProgressHud.showErrorMessage(message: "请输入会员手机号进行查询添加")
-            
             return
         }
         if self.rightArr.count == 0 {
@@ -63,17 +64,14 @@ class JDGoReserveController:JDBaseViewController {
             NHMBProgressHud.showSuccesshTips(message: "预约成功啦～～")
 //            self.navigationController?.pushViewController(JDyuyueAuthorization_Controller(), animated: true)
             self.navigationController?.popViewController(animated: true)
-        print("\(dic)")
+        
         } error: { (error) in
             NHMBProgressHud.hideHud()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
 
     }
-    
-    
- 
-
+     
 }
 extension JDGoReserveController:UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate, DZNEmptyDataSetSource,leftModelDelegate,rightModelDelegate{
   
@@ -140,6 +138,7 @@ extension JDGoReserveController:UITableViewDelegate,UITableViewDataSource,DZNEmp
 }
 extension JDGoReserveController:UITextFieldDelegate{
     func setUI()  {
+        searchBtn.cornerRadius(radius: 4)
         setedDataBtn.k_setCornerRadius(4)
         setedDataBtn.k_setBorder(color: UIColor.k_colorWith(hexStr: "EAEAEA"), width: 1)
         yuangongNameL.text = reaverdMode?.cfdEmployeeName
@@ -186,6 +185,9 @@ extension JDGoReserveController:UITextFieldDelegate{
         rightTablView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         rightTablView.tableFooterView=UIView()
         rightTablView.k_registerCell(cls: JDaddRightReserveCell.classForCoder())
+        searchBtn.addAction { (_) in
+            self.setSearchT()
+        }
          
     }
     
@@ -193,17 +195,19 @@ extension JDGoReserveController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == kehuTelT {
 //         搜索会员
-            if textField.text?.length != 11 {
-                NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
-               return false
-            }
-            kehuTelT.resignFirstResponder()
+       
+    
             setSearchT()
         }
         return true
     }
     
     func setSearchT() {
+        
+        if kehuTelT.text?.length != 11 {
+            NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
+           return
+        }
         NHMBProgressHud.showLoadingHudView(message: "加载中～～")
         let params = ["cfdMoTel":kehuTelT.text ?? "" ]
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQRMember", params: params) { (dic) in
@@ -211,6 +215,7 @@ extension JDGoReserveController:UITextFieldDelegate{
             if let dics = dic["Member"] as? [String : Any] {
                 self.memberModel =  dics.kj.model(MemberDetailModel.self)
                 self.kehuNameL.text = self.memberModel?.cfdMemberName ?? "暂无"
+                self.kehuTelT.resignFirstResponder()
             }else{
                 NHMBProgressHud.showErrorMessage(message: "查询暂无结果，请查证后重新输入")
             }

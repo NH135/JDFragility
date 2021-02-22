@@ -22,26 +22,32 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     @IBOutlet weak var zheBg: UIView!
     @IBOutlet weak var shopingTableView: UITableView!
     @IBOutlet weak var jiesuanBtn: UIButton!
+    @IBOutlet weak var searchBtn: UIButton!
     
     var TimeList = [JDGroupProjectModel]()
     var isHuanKe = false
     
+    @IBOutlet weak var topH: NSLayoutConstraint!
     var memberModel = MemberDetailModel()
     
     var cfdMemberId:String?
+    var telStr:String?
     var namelTelStr:String?
     var shopingGroups = Array<JDGroupProjectModel>()
     var groups = Array<JDGroupModel>()
     var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
- 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         if isHuanKe == true {
             title = "换课"
         }
-        
+        memBerT.text = telStr
+        extendedLayoutIncludesOpaqueBars = false
+        automaticallyAdjustsScrollViewInsets = false
+//        edgesForExtendedLayout = .bottom
+        view.backgroundColor=UIColor.k_colorWith(hexStr: "e1e1e1")
         let headerV  = UIView(frame: CGRect(x: 0, y: 0, width: 280, height: 55))
         headerV.backgroundColor=UIColor.k_colorWith(hexStr: "#409EFF")
         leftTableView.tableHeaderView = headerV;
@@ -50,7 +56,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
         tiL.font=UIFont.systemFont(ofSize: 18)
         tiL.textColor=UIColor.white
         headerV.addSubview(tiL)
-        
+     
         memBerT.delegate = self
         leftTableView.delegate = self;
         leftTableView.dataSource = self;
@@ -61,7 +67,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
      rightTableView.dataSource = self;
           rightTableView.emptyDataSetSource = self;
         rightTableView.emptyDataSetDelegate = self
-      rightTableView.contentInset=UIEdgeInsets(top: -20, left: 0, bottom: 20, right: 0)
+      rightTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         rightTableView.tableFooterView=UIView()
      rightTableView.k_registerCell(cls: JDCourseCell.classForCoder())
             setData()
@@ -73,6 +79,11 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
                 }
                 self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
             })
+        
+        
+        searchBtn.addAction { (_) in
+            self.search()
+        }
         }
          
  
@@ -81,8 +92,10 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
 extension JDCourseController{
     
     func setData()  {
+      
         NHMBProgressHud.showLoadingHudView(message: "加载中···")
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseClassList", params: nil) { (dic) in
+     
             NHMBProgressHud.hideHud()
             guard let arr = dic as? [[String : Any]] else { return }
             self.groups  = arr.kj.modelArray(JDGroupModel.self)
@@ -90,6 +103,7 @@ extension JDCourseController{
             if self.namelTelStr?.isEmpty == false {
                 self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
                 self.memberTelL.text = self.namelTelStr ?? "请输入会员手机号进行查询：";
+                self.memBerT.becomeFirstResponder()
             }
          
 
@@ -178,7 +192,11 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         return UIView()
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        55
+        if tableView == leftTableView {
+            return 50
+        }else{
+            return 0
+        }
     }
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -245,62 +263,79 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
 extension JDCourseController{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == memBerT {
+            search()
+        }
+        
+        return true
+    }
+  
+    func search() {
+        memBerT.resignFirstResponder()
+        guard memBerT.text?.length == 11 else {
+            NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
+            return
+        }
+        print("sssssss:\(view.frame)")
+       print("sssssss:\(view.y)")
+        if view.width > 1000 {
+            topH.constant = kNabBarHeight
+        }
 //         搜索会员
-            memBerT.resignFirstResponder()
-            NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
-                NHMBProgressHud.hideHud()
-            }
-            let params = ["cfdMoTel": memBerT.text ?? ""]
-            
-            if isHuanKe {
-                NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMemberCourse", params: params) { (dic) in
-                    NHMBProgressHud.hideHud()
-                   
-                    guard let dics = dic as? [String : Any] else {
-                        textField.text = ""
-                        NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
-                        return
-                        
-                    }
-                    let Memberdic = dics["Member"] as? [String : Any]
-                    self.memberModel =  Memberdic?.kj.model(MemberDetailModel.self) ?? MemberDetailModel()
-                 
-                    self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
-                    self.cfdMemberId = self.memberModel.cfdMemberId
-                    self.rightTableView.mj_header?.beginRefreshing()
-                    
-                    let TimeListArr = dics["TimeList"] as? [[String : Any]]
-                    self.TimeList = TimeListArr?.kj.modelArray(JDGroupProjectModel.self) ?? [JDGroupProjectModel()]
-                    
-                } error: { (error) in
-                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
-                }
-
-            }else{
-            
-            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
+        
+        NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+            NHMBProgressHud.hideHud()
+        }
+        let params = ["cfdMoTel": memBerT.text ?? ""]
+     
+        
+        if isHuanKe {
+            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMemberCourse", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
                
                 guard let dics = dic as? [String : Any] else {
-                    textField.text = ""
+                    self.memBerT.text = ""
                     NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
                     return
                     
                 }
-                self.memberModel =  dics.kj.model(MemberDetailModel.self)
+                let Memberdic = dics["Member"] as? [String : Any]
+                self.memberModel =  Memberdic?.kj.model(MemberDetailModel.self) ?? MemberDetailModel()
+                self.iconImageV.setHeaderImageUrl(url: self.memberModel.cfdPhoto ?? "")
                 self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
                 self.cfdMemberId = self.memberModel.cfdMemberId
-//                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
                 self.rightTableView.mj_header?.beginRefreshing()
+                
+                let TimeListArr = dics["TimeList"] as? [[String : Any]]
+                self.TimeList = TimeListArr?.kj.modelArray(JDGroupProjectModel.self) ?? [JDGroupProjectModel()]
+                
             } error: { (error) in
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
 
-            }
-        }
+        }else{
         
-        return true
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
+            NHMBProgressHud.hideHud()
+           
+            guard let dics = dic as? [String : Any] else {
+                self.memBerT.text = ""
+                NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                return
+                
+            }
+            self.memberModel =  dics.kj.model(MemberDetailModel.self)
+            self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
+            self.view.endEditing(true)
+            self.iconImageV.setHeaderImageUrl(url: self.memberModel.cfdPhoto ?? "")
+            self.cfdMemberId = self.memberModel.cfdMemberId
+//                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+            self.rightTableView.mj_header?.beginRefreshing()
+        } error: { (error) in
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+        }
+
+        }
     }
     
 }
@@ -316,6 +351,7 @@ extension JDCourseController{
         self.shopingTableView.emptyDataSetSource = self
         self.shopingTableView.emptyDataSetDelegate = self
         self.shopingTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
+        shopingTableView.tableFooterView = UIView()
 //        购物车
         goShopingBtn.addAction { (_) in
 //            let save =  JDsaveKCController()

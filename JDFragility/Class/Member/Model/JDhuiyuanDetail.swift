@@ -13,6 +13,7 @@ class JDhuiyuanDetail: Convertible {
     var cfdFendianId:String?;
     var cfdMemberId:String?
     var TimeList = [TimeListModel]()
+    var CardList = [TimeListModel]()
     var CaiWuList = [CaiWuListModel]()
     var cfdEmployeeId:String?
     var dfdDateTime:String?;
@@ -22,24 +23,37 @@ class JDhuiyuanDetail: Convertible {
     var cfdOpertCode:String?;
     var ifdType:String?;
     var cfdFendianName:String?;
-    
+    var cfdPhoto:String?;
     /// 展开以后的高度
     var kechengHeight: CGFloat? {
         return 137 +  CGFloat(TimeList.count) * 30.0
+    }
+    var goumaiHeight: CGFloat? {
+        return 137 +  CGFloat(CardList.count) * 30.0
     }
     required init() {}
     
 }
 
 class TimeListModel: Convertible {
+    var dfdTimeUseDate:String?
     var cfdCourseName:String?
+    var ffdOriPrice :String?
+    var ffdNowPrice :String?
+    var ifdNumber :String?
+   var dfdUseStartDate :String?
     var cfdItemName:String?;
     var ifdRetreatTime:String?;
     var cfdMemberTimeId:String?
     var cfdItemId:String?;
     var ifdAllNumber:String?;
     var ifdYnumber:String?;
+    var ifdOpretCount:String?;
+    
     var ifdChangeTime:String?
+    var ifdFreezeNumber:String?
+    var cfdFendianName:String?
+    var cfdEmployeeName:String?
     var ifdLastNumber:String?
     var ffdUnitPrice:String?;
     var cfdMemberId:String?
@@ -57,6 +71,7 @@ class CaiWuListModel: Convertible {
     var dfdDateTime:String?;
     var cfdClass:String?;
     var ffdIncome:String?;
+    var cfdImgSrc:String?;
     
     var ffdPayout:String?;
     var cfdPayModeId:String?

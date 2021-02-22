@@ -104,8 +104,8 @@
         comps = [calendar0 components:unitFlags fromDate:[NSDate date]];
         NSInteger year=[comps year];
         
-        startYear = year - 15;
-        yearRange = 50;
+        startYear = year - 79;
+        yearRange = 90;
         [self setCurrentDate:[NSDate date]];
     }
     return self;

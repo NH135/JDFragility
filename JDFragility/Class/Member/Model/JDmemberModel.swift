@@ -15,12 +15,14 @@ struct JDmemberModel: Convertible {
     var Member = MemberDetailModel()
     
     var BadNumber:String?
-    var Consume:String?;
+    var ffdPayMoney:String?;
     var CycleNumber:String?;
     var UnitPrice:String?
     var MonthsNumber:String?;
-    var Recharge:String?;
-    var CommentNumber:String?;
+    var cfdPhoto:String?
+    
+    var ffdConMoney:String?;
+    var LastDataTime:String?;
 }
 
 class MemberDetailModel : Convertible {
@@ -31,6 +33,8 @@ class MemberDetailModel : Convertible {
     var dfdCreateDate:String?
     var cfdFendianName:String?
     var dfdBirthday:String?
+    var cfdPhoto:String?
+    
     var cfdMemberId:String?
     var ffdBalance:String?
     var cfdLevelID:String?

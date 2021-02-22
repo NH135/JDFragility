@@ -6,10 +6,11 @@
 //
 
 import UIKit
-
+import Kingfisher
 class JDorderPaytyoeCell: UICollectionViewCell {
     @IBOutlet weak var payTypeL: UIButton!
     
+    @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var timeL: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,11 +23,10 @@ class JDorderPaytyoeCell: UICollectionViewCell {
 //            moenyL.text = "价格：\(kcmodel?.ffdUnitPrice ?? "0")"
 //            caozuoL.text = "操作次数：\(kcmodel?.ifdYnumber ?? "0")"
             
-            
-            payTypeL.setImage(UIImage(named: payModel?.cfdPayMode ?? ""), for: .normal)
-            payTypeL.setTitle(payModel?.cfdPayMode, for: .normal)
-            timeL.text = payModel?.dfdDateTime ?? ""
-            
+            icon.kf.setImage(with: URL(string: payModel?.cfdImgSrc ?? ""), placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: nil)
+ 
+            payTypeL.setTitle(payModel?.cfdPayMode ?? "暂无", for: .normal)
+            timeL.text = "¥\(payModel?.ffdIncome ?? "")"
             if payModel?.cfdPayMode == "现金" {
                 payTypeL.setTitleColor(UIColor.k_colorWith(hexStr: "7ABBFF"), for: .normal)
             }else  if payModel?.cfdPayMode == "支付宝" {

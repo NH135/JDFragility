@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="申请卡级" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdL-KS-Itz">
-                    <rect key="frame" x="558" y="21.5" width="120" height="21"/>
+                    <rect key="frame" x="680" y="21.5" width="120" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="3Ub-sh-X3E"/>
                     </constraints>
@@ -24,7 +24,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="状态" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2om-Oe-Wh5">
-                    <rect key="frame" x="688" y="21.5" width="120" height="21"/>
+                    <rect key="frame" x="800" y="21.5" width="120" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="Dpo-wh-tbm"/>
                     </constraints>
@@ -32,32 +32,32 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="说明" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOH-mB-QId">
-                    <rect key="frame" x="808" y="21.5" width="184" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="类型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOH-mB-QId">
+                    <rect key="frame" x="920" y="21.5" width="72" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请员工" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Fs-5xq">
-                    <rect key="frame" x="448" y="21.5" width="100" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原卡级" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Fs-5xq">
+                    <rect key="frame" x="560" y="21.5" width="120" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="pnR-Gb-5n9"/>
+                        <constraint firstAttribute="width" constant="120" id="pnR-Gb-5n9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0s-OT-gJP">
-                    <rect key="frame" x="318" y="22" width="120" height="20.5"/>
+                    <rect key="frame" x="400" y="21.5" width="150" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="tCU-mY-FP7"/>
+                        <constraint firstAttribute="width" constant="150" id="tCU-mY-FP7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请日期" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-8c-7Xv">
-                    <rect key="frame" x="40" y="21.5" width="150" height="21"/>
+                    <rect key="frame" x="20" y="21.5" width="150" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="R2L-NQ-A8u"/>
                     </constraints>
@@ -66,7 +66,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员姓名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QH-xQ-aK0">
-                    <rect key="frame" x="200" y="21.5" width="108" height="21"/>
+                    <rect key="frame" x="180" y="21.5" width="100" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="4Zf-M7-DHK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -86,6 +89,15 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="qF9-DL-IuK"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请员工" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbp-l5-yHj">
+                    <rect key="frame" x="290" y="21.5" width="100" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="J5r-hj-0P9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
@@ -93,27 +105,28 @@
                 <constraint firstItem="vDc-pq-OTq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3Tb-RT-7fF"/>
                 <constraint firstItem="gdL-KS-Itz" firstAttribute="centerY" secondItem="2om-Oe-Wh5" secondAttribute="centerY" id="4dr-0F-8kX"/>
                 <constraint firstItem="3QH-xQ-aK0" firstAttribute="leading" secondItem="4Se-8c-7Xv" secondAttribute="trailing" constant="10" id="5Rt-7T-xSR"/>
-                <constraint firstItem="4Se-8c-7Xv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="5k1-kM-Ic8"/>
-                <constraint firstItem="gdL-KS-Itz" firstAttribute="leading" secondItem="CVI-Fs-5xq" secondAttribute="trailing" constant="10" id="6vC-eU-PVB"/>
+                <constraint firstItem="4Se-8c-7Xv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="5k1-kM-Ic8"/>
+                <constraint firstItem="gdL-KS-Itz" firstAttribute="leading" secondItem="CVI-Fs-5xq" secondAttribute="trailing" id="6vC-eU-PVB"/>
                 <constraint firstItem="2om-Oe-Wh5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9av-OX-lJ9"/>
                 <constraint firstAttribute="trailing" secondItem="vDc-pq-OTq" secondAttribute="trailing" id="Bq0-QL-1Kk"/>
                 <constraint firstAttribute="bottom" secondItem="wpf-3I-Hpf" secondAttribute="bottom" id="BtB-Fs-BfR"/>
                 <constraint firstItem="3QH-xQ-aK0" firstAttribute="top" secondItem="4Se-8c-7Xv" secondAttribute="top" id="DFE-uI-vsL"/>
                 <constraint firstItem="CVI-Fs-5xq" firstAttribute="leading" secondItem="u0s-OT-gJP" secondAttribute="trailing" constant="10" id="Ehf-ag-Bbw"/>
-                <constraint firstItem="u0s-OT-gJP" firstAttribute="leading" secondItem="3QH-xQ-aK0" secondAttribute="trailing" constant="10" id="Fbu-3P-nGF"/>
                 <constraint firstItem="QOH-mB-QId" firstAttribute="leading" secondItem="2om-Oe-Wh5" secondAttribute="trailing" id="Fej-NH-ruW"/>
+                <constraint firstItem="jbp-l5-yHj" firstAttribute="leading" secondItem="3QH-xQ-aK0" secondAttribute="trailing" constant="10" id="L08-oK-7MS"/>
                 <constraint firstItem="vDc-pq-OTq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OV9-iY-8g0"/>
                 <constraint firstItem="CVI-Fs-5xq" firstAttribute="centerY" secondItem="gdL-KS-Itz" secondAttribute="centerY" id="bSf-zV-OHp"/>
-                <constraint firstItem="2om-Oe-Wh5" firstAttribute="leading" secondItem="gdL-KS-Itz" secondAttribute="trailing" constant="10" id="cAK-Cq-UdT"/>
+                <constraint firstItem="2om-Oe-Wh5" firstAttribute="leading" secondItem="gdL-KS-Itz" secondAttribute="trailing" id="cAK-Cq-UdT"/>
                 <constraint firstAttribute="trailing" secondItem="QOH-mB-QId" secondAttribute="trailing" id="dFM-hz-lKJ"/>
                 <constraint firstItem="QOH-mB-QId" firstAttribute="centerY" secondItem="2om-Oe-Wh5" secondAttribute="centerY" id="gtF-7N-sJg"/>
                 <constraint firstItem="u0s-OT-gJP" firstAttribute="centerY" secondItem="CVI-Fs-5xq" secondAttribute="centerY" id="h25-eh-bQv"/>
-                <constraint firstAttribute="trailing" secondItem="2om-Oe-Wh5" secondAttribute="trailing" constant="184" id="lMV-R5-gZy"/>
+                <constraint firstItem="jbp-l5-yHj" firstAttribute="centerY" secondItem="3QH-xQ-aK0" secondAttribute="centerY" id="iwF-18-BuQ"/>
                 <constraint firstItem="4Se-8c-7Xv" firstAttribute="centerY" secondItem="u0s-OT-gJP" secondAttribute="centerY" id="p77-Lv-ykd"/>
                 <constraint firstAttribute="trailing" secondItem="wpf-3I-Hpf" secondAttribute="trailing" id="q9e-rG-xQ1"/>
+                <constraint firstItem="u0s-OT-gJP" firstAttribute="leading" secondItem="jbp-l5-yHj" secondAttribute="trailing" constant="10" id="u7z-az-zzp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="156.52173913043478" y="316.07142857142856"/>
+            <point key="canvasLocation" x="65" y="302"/>
         </view>
     </objects>
     <resources>

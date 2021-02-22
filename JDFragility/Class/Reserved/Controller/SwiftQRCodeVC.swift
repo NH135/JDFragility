@@ -73,8 +73,8 @@ class SwiftQRCodeVC: JDBaseViewController{
         if backLocationString != nil {
             backLocationString!(codeString!)
         }
-        navigationController?.popViewController(animated: false)
-//        self.dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: false)
+        self.dismiss(animated: true, completion: nil)
         
 //        self.confirm(title: "扫描结果", message: codeString, controller: self,handler: { (_) in
 //            //继续扫描

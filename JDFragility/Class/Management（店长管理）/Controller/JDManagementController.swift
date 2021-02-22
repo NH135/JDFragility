@@ -23,7 +23,6 @@ class JDManagementController: JDBaseViewController {
         collectionView.backgroundColor=UIColor.black
         collectionView.dataSource = self
         collectionView.k_registerCell(cls: JDManageCell.self)
-            print("店长管理网络请求啦")
        
     }
 
@@ -50,7 +49,7 @@ extension JDManagementController:UICollectionViewDelegate,UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let shengCar = JDshengCarController()
+            let shengCar = JDlingCarController()
         
             navigationController?.pushViewController(shengCar, animated: true)
              
