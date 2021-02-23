@@ -33,6 +33,7 @@ class JDtuiKeController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyD
         tableView.emptyDataSetDelegate = self
          tableView.delegate = self
          tableView.dataSource = self
+
          tableView.k_registerCell(cls: JDlingshengCarCell.self)
         tableView.tableFooterView = UIView()
         

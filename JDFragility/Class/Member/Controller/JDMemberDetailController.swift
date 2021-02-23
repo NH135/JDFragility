@@ -13,6 +13,8 @@ class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var scoureL: UILabel!
     @IBOutlet weak var creatL: UILabel!
     
+    @IBOutlet weak var xieyiI: UIImageView!
+    @IBOutlet weak var xieyiV: UIView!
     @IBOutlet weak var kedanB: UIButton!
     @IBOutlet weak var xiaofeiB: UIButton!
     @IBOutlet weak var cishuBtn: UIButton!
@@ -68,21 +70,25 @@ class JDMemberDetailController: JDBaseViewController {
 
 extension JDMemberDetailController{
     func setUI()  {
-//        iconImageV.cornerRadius(radius: 40)
-  
+        iconImageV.cornerRadius(radius: 10)
+        self.xieyiV.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        xieyiV.k_addTarget { (_) in
+            self.xieyiV.isHidden = true
+        }
+        huiyuanBtn.addAction { (_) in
+            self.xieyiV.isHidden = false
+        }
         nameL.text = memberModel.Member.cfdMemberName
 //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
         scoureL.text = "客户来源:\(memberModel.Member.cfdSource ?? "")   手机号:\( memberModel.Member.cfdMoTel ?? "")"
         creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")"
         yuyueBtn.cornerRadius(radius: 15)
+        xieyiI.setCategorymageUrl(url: memberModel.Member.cfdAgreeMentImg ?? "")
         yuyueBtn.addAction { (_) in
             self.navigationController?.pushViewController(JDReservedController(), animated: true)
         }
         huiyuanBtn.cornerRadius(radius: 15)
-        huiyuanBtn.addAction { (_) in
-            NHMBProgressHud.showSuccesshTips(message: "会员协议")
-//            self.navigationController?.pushViewController(JDReservedController(), animated: true)
-        }
+      
         kaidanBtn.cornerRadius(radius: 15)
         kaidanBtn.addAction { (_) in
             let courseVC = JDCourseController()

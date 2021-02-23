@@ -6,11 +6,8 @@
 //
 
 import UIKit
-
+import KakaJSON
 class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, tuiKeAddDelegate{
- 
-    
-
     @IBOutlet weak var memberTelL: UIButton!
     @IBOutlet weak var telF: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -24,7 +21,7 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
     var payAllArr = [payModel]()
     var tuiList = [JDGroupProjectModel]()
     var memberModel = MemberDetailModel()
-    var payId : Int?
+    var payId : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +37,15 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         yuanyinF.k_placeholderColor = UIColor.lightGray;
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         tableView.k_registerCell(cls: JDtuisaveCell.self)
         
         
+
         sureBtn.addAction { (_) in
-            
-            guard self.tuiList.count != 0 else{
+            if self.tuiList.count == 0 {
                 NHMBProgressHud.showErrorMessage(message: "请选择退课课程")
                 return
             }
@@ -61,13 +59,14 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
             }
             let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            //let params = ["cfdRefMemberTime":self.addList.kj.JSONString(),"cfdNewCourse":shopingGroups.kj.JSONString() ,"cfdCaiWustr":moneyArr.kj.JSONString() ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":cfdMemberId,"cfdFendianId":cfdFendianId]
-            
-            let params = ["cfdMemberTime":self.tuiList.kj.JSONString(),"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":self.memberModel.cfdMemberId!,"cfdFendianId":cfdFendianId,"dfdRefundMoney":self.moneyF.text!]
+            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+            let params = ["cfdMemberTime":self.tuiList.kj.JSONString(),"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":self.memberModel.cfdMemberId!,"cfdFendianId":cfdFendianId,"dfdRefundMoney":self.moneyF.text!,"cfdPayModeId":self.payId!] as [String : Any]
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddRefund", params: params) { (dic) in
+                NHMBProgressHud.hideHud()
                     NHMBProgressHud.showSuccesshTips(message: "添加成功！")
                 self.navigationController?.popViewController(animated: true)
                 } error: { (error) in
+                    NHMBProgressHud.hideHud()
                     NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
                 }
 
@@ -87,6 +86,7 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         }
         
         typeBtn.addAction { (btn) in
+            self.view.endEditing(true)
             var payArr = [String]()
             for mode in self.payAllArr{
                 payArr.append(mode.cfdPayMode!)
@@ -97,13 +97,13 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
               
                 if cell.titleLab.text == "余额"{
                     btn.setTitle("余额", for: .normal)
-                    self.payId = 0
+                    self.payId = ""
                 }else{
                     btn.setTitle(cell.titleLab.text, for: .normal)
       
                     for pmode in self.payAllArr{
                         if pmode.cfdPayMode == cell.titleLab.text{
-                            self.payId = pmode.ifdId
+                            self.payId = pmode.cfdPayModeId
                         }
                     }
                     
@@ -126,7 +126,7 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
 extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+       
         if textField == telF {
             
             searchData()
@@ -135,11 +135,34 @@ extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate,UITextFi
         return true
     }
     func tuikejianCourse(type: Bool, model: JDGroupProjectModel) {
-        if type == true {
-         self.tuiList.append(model)
-        }else{
-            self.tuiList.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
+         if model.ifdRefNumber! == 0 {
+            tuiList.removeAll(where: { $0.cfdMemberCardGUID == model.cfdMemberCardGUID})
+        }else if model.ifdRefNumber! == 1 {
+            tuiList.append(model)
+        }else if model.ifdRefNumber! > 1 {
+            tuiList.removeAll(where: { $0.cfdMemberCardGUID == model.cfdMemberCardGUID})
+            tuiList.append(model)
         }
+        
+        print(tuiList.count)
+        
+//        if type == true {
+//         tuiList.append(model)
+//
+//        }else{
+//            for (index,m) in tuiList.enumerated() {
+//                if m.cfdCourseClassId == model.cfdCourseClassId {
+//                    tuiList.remove(at: index)
+//                    break
+//                }
+//            }
+//
+////            tuiList.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
+//        }
+        
+        
+        
+        
     }
     
    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
@@ -173,7 +196,7 @@ extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate,UITextFi
         
     }
     func searchData()  {
-        
+       view.endEditing(true)
         guard telF.text?.length == 11 else {
             NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
             return

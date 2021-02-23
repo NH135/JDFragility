@@ -36,17 +36,19 @@ class JDCourseshopingCell: UITableViewCell {
                 self.number += 1
                 self.numberL.text = String(self.number)
                 self.baocunModelT?.ifdSumNumber = self.number;
+//                self.baocunModel?.ifdRefNumber = self.number;
                 if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
                     self.delegate?.shopingaddjianCourse(type: true, model: self.baocunModelT!)
                  }
             }else if self.huanModel?.cfdCourseName?.isEmpty == false{
-                if self.number == self.huanModel?.ifdAllNumber{
+                if self.number == self.huanModel?.ifdLastNumber{
                     NHMBProgressHud.showErrorMessage(message: "不能再加了")
                     return
                 }
                 self.number += 1
                 self.numberL.text = String(self.number)
                 self.huanModel?.ifdSumNumber = self.number;
+                self.huanModel?.ifdChangeNumber = self.number;
                 if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
                     self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
                  }
@@ -72,6 +74,7 @@ class JDCourseshopingCell: UITableViewCell {
                 self.number -= 1
                 self.numberL.text = String(self.number)
                 self.huanModel?.ifdSumNumber = self.number;
+                self.huanModel?.ifdChangeNumber = self.number;
                 if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
                     self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
                  }
@@ -94,7 +97,7 @@ class JDCourseshopingCell: UITableViewCell {
             iconV.setCategorymageUrl(url: huanModel?.cfdImgSrc ?? "")
             setedBtn.isHidden = true;
             nameL.text = huanModel?.cfdCourseName
-            detaileL.text = "  \(huanModel?.ifdAllNumber ?? 0)  "
+            detaileL.text = "  \(huanModel?.ifdLastNumber ?? 0)  "
             detaileL.cornerRadius(radius: detaileL.height/2)
             detaileL.backgroundColor = UIColor.red
             detaileL.textColor = UIColor.white

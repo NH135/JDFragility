@@ -22,7 +22,7 @@ class JDReveredAuthorizationController: JDBaseViewController {
         title="客户授权"
          setUI()
         
-        
+        tableView.backgroundColor = UIColor.white
         yiBtn.addAction { (_) in
             self.setData()
         }
@@ -71,7 +71,7 @@ extension JDReveredAuthorizationController:UITableViewDelegate,UITableViewDataSo
     func khAuthorizatio(mode: JDauthoizationDetailListModel, passwordL: UILabel) {
         
         let ewm = SwiftQRCodeVC()
-        ewm.modalPresentationStyle = .fullScreen
+//        ewm.modalPresentationStyle = .fullScreen
         ewm.backLocationString = {(c) in
              print(c)
                     let params = ["cfdEquFendianCode":c ,"cfdReserveDetailGUID":mode.cfdReserveDetailGUID ?? ""]
@@ -87,7 +87,7 @@ extension JDReveredAuthorizationController:UITableViewDelegate,UITableViewDataSo
 
         }
         
-//        self.navigationController?.pushViewController(ewm, animated: false)
+//        navigationController?.pushViewController(ewm, animated: false)
         self.present(ewm, animated: true, completion: nil)
         
 
@@ -104,6 +104,7 @@ extension JDReveredAuthorizationController:UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.k_dequeueReusableCell(cls: JDkhAuthorizationCell.self, indexPath: indexPath)
         cell.selectionStyle = .none;
+        cell.backgroundColor = UIColor.white
         cell.authoizatiodetailnModel = self.authoizationM?.DetailList[indexPath.row]
         cell.delegate = self
         return cell

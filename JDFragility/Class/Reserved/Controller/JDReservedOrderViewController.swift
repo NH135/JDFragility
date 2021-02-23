@@ -112,12 +112,13 @@ extension JDReservedOrderViewController: UITableViewDelegate,UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.k_dequeueReusableCell(cls: JDreveredOrderCell.self, indexPath: indexPath)
+        cell.backgroundColor = UIColor.white
         cell.selectionStyle = .none;
         cell.authoizatioOrederModel = self.authoizationM?.DetailList[indexPath.row]
         cell.delegate = self
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         let listmodel = self.authoizationM?.DetailList[indexPath.row]
@@ -152,7 +153,7 @@ extension JDReservedOrderViewController{
         tableView.k_registerCell(cls: JDreveredOrderCell.self)
         tableView.delegate = self
         tableView.dataSource = self
-     
+        tableView.backgroundColor = UIColor.white
         tableView.tableFooterView = UIView()
     }
 }

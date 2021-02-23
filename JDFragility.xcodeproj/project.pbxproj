@@ -327,7 +327,7 @@
 		ED0D6D8B25B8783E0081C5B6 /* JDReservedOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDReservedOrderViewController.xib; sourceTree = "<group>"; };
 		ED0D6D9125B879C30081C5B6 /* JDreveredOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreveredOrderCell.swift; sourceTree = "<group>"; };
 		ED0D6D9225B879C30081C5B6 /* JDreveredOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDreveredOrderCell.xib; sourceTree = "<group>"; };
-		ED0D6DAE25C30FB20081C5B6 /* SwiftQRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftQRCodeVC.swift; sourceTree = "<group>"; };
+		ED0D6DAE25C30FB20081C5B6 /* SwiftQRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftQRCodeVC.swift; sourceTree = "<group>"; tabWidth = 5; };
 		ED0D6DB325C30FC70081C5B6 /* noticeMusic.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = noticeMusic.caf; sourceTree = "<group>"; };
 		ED211C9425A18656000F4A96 /* JDGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDGroupModel.swift; sourceTree = "<group>"; };
 		ED211CB425A189AB000F4A96 /* JDgroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDgroupCell.swift; sourceTree = "<group>"; };
@@ -1297,7 +1297,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -1324,7 +1324,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

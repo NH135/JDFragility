@@ -39,9 +39,14 @@ class JDaddCarController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpty
     var goumaiIndexs = Array<Any>()
     var moeny :Int = 0
     var seltedMoeny :Int = 0
+    var selteifdCumulativeMoney :Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        if self.ifdApplyType == false {
+            title = "领卡"
+        }else{
+            title = "升卡"
+        }
         setUI()
     }
 
@@ -74,6 +79,7 @@ extension JDaddCarController{
         footertableView.tableFooterView = UIView()
         
         shenBtn.addAction { (btn) in
+            self.title = "升卡"
             self.moeny = 0
             self.seltedMoeny = 0
             self.allMoenyL.isHidden = true
@@ -101,6 +107,7 @@ extension JDaddCarController{
             self.footertableView.reloadData()
         }
         shengBtn.addAction { (btn) in
+            self.title = "领卡"
             self.moeny = 0
             self.seltedMoeny = 0
             self.allMoenyL.isHidden = true
@@ -130,8 +137,10 @@ extension JDaddCarController{
         }
         
         submitBtn.addAction { (_) in
+          
             
-            guard self.moeny - self.seltedMoeny < 0 else{
+            if self.moeny - self.seltedMoeny > 0  || self.allMoenyL.isHidden == true || self.moeny == 0{
+                
                 NHMBProgressHud.showErrorMessage(message: "选择的购买记录不足以升级次卡")
                 
              return
@@ -141,8 +150,7 @@ extension JDaddCarController{
             let cfdEmployeeId =  UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
             
             
-            print(self.cfdCaiWuList.count)
-            print(self.cfdCaiWuList )
+            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
             let params = ["cfdFendianId":cfdFendianId ,"ifdApplyType":self.ifdApplyType,"cfdCaiWu":self.cfdCaiWuList.kj.JSONString(),"cfdMemberId":self.cfdMemberId!,"cfdCourseId":self.cfdCourseId!,"cfdEmployeeId":cfdEmployeeId,"cfdOldCardApplyGUID":self.cfdCardApplyGUID ?? ""] as [String : Any]
               //获取查询已领取会员卡
               NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddCardApply", params: params) { (dic) in
@@ -156,6 +164,7 @@ extension JDaddCarController{
                 self.navigationController?.popViewController(animated: true)
               } error: { (error) in
                   NHMBProgressHud.hideHud()
+                NHMBProgressHud.showErrorMessage(message: error as? String )
               }
         }
         searchBtn.addAction { (_) in
@@ -164,6 +173,7 @@ extension JDaddCarController{
     }
     
     func setData() {
+        view.endEditing(true)
         self.moeny = 0
         self.seltedMoeny = 0
         self.allMoenyL.isHidden = true
@@ -215,7 +225,7 @@ extension JDaddCarController{
 extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.setData()
-        view.endEditing(true)
+    
         return true
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -245,7 +255,7 @@ extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFie
             return cell
         }else{
             let cell = tableView.k_dequeueReusableCell(cls: JDlsCarCell.self, indexPath: indexPath)
-            cell.shengModel = shengList[indexPath.row]
+            cell.lingModel = shengList[indexPath.row]
             cell.backgroundColor = UIColor.lightText
             cell.selectionStyle = .none
             return cell
@@ -276,7 +286,7 @@ extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFie
                 return
             }
             let mode = shenList[indexPath.row]
-            if mode.ifdCumulativeMoney ?? 0 <=  seltedMoeny{
+            if mode.ifdCumulativeMoney ?? 0 <=  selteifdCumulativeMoney{
                 NHMBProgressHud.showErrorMessage(message: "不能升级为当前选择的卡级，请重新选择")
                 return
             }
@@ -290,7 +300,7 @@ extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFie
                         m.isSeted = true
                         allMoenyL.isHidden = false
                         moeny = m.ifdCumulativeMoney ?? 0
-                        allMoenyL.text = "累计金额：¥\(moeny)   已选金额：¥\(seltedMoeny)   还差金额：¥\(moeny - seltedMoeny)"
+                        allMoenyL.text = "累计金额：¥\(moeny)   已选金额：¥\(seltedMoeny)   还差金额：¥\(moeny - seltedMoeny>0 ? moeny - seltedMoeny : 0)"
                         cfdCourseId = mode.cfdCourseId ?? ""
 //                        print("cfdCourseId====" + cfdCourseId!)
                     }else{
@@ -310,7 +320,9 @@ extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFie
                 for m in shengList {
                     if m.cfdCourseId == mode.cfdCourseId {
                         m.isSeted = true
-                        seltedMoeny += mode.ifdCumulativeMoney ?? 0
+                        
+                        selteifdCumulativeMoney = mode.ifdCumulativeMoney ?? 0
+                        seltedMoeny += mode.ffdCardApplyMoney ?? 0
 //                        moeny = m.ifdCumulativeMoney ?? 0
 //                        allMoenyL.isHidden = false
 //                        allMoenyL.text = "累计金额：¥\(moeny)   已选金额：¥\(seltedMoeny)   还差金额：¥\(moeny - seltedMoeny)"

@@ -17,11 +17,19 @@ class JDlsCarCell: UITableViewCell {
         // Initialization code
     }
 
+    var lingModel:JDlingshengModel? {
+        didSet {
+            nameL.text = lingModel?.cfdCourseName ?? "暂无"
+            isSeted.isSelected = lingModel?.isSeted ?? false
+            moenyL.text = "¥\(lingModel?.ffdCardApplyMoney ?? 0)"
+
+        }
+    }
     var shengModel:JDlingshengModel? {
         didSet {
             nameL.text = shengModel?.cfdCourseName ?? "暂无"
             isSeted.isSelected = shengModel?.isSeted ?? false
-            moenyL.text = "¥\(shengModel?.ifdCumulativeMoney != nil ? shengModel?.ifdCumulativeMoney ?? 0 : shengModel?.ffdCardApplyMoney ?? 0)"
+            moenyL.text = "¥\( shengModel?.ifdCumulativeMoney ?? 0 )"
 
         }
     }

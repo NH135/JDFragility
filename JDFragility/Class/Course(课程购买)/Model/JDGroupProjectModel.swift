@@ -40,8 +40,9 @@ class JDGroupProjectModel: Convertible {
     var cfdCourseId:String?
     var ifdTerm:String?
     var ifdSort:String?
+    var ifdRefNumber:Int?
     
-    
+    var ifdChangeNumber :Int?
     
     
     //换课ItemList
@@ -61,7 +62,7 @@ class JDGroupProjectModel: Convertible {
     var cfdItemId:String?
     var cfdMemberTimeId:String?
     var ifdYnumber:String?
-    var ifdLastNumber:String?
+    var ifdLastNumber:Int?
     var ifdSumNumber:Int?
     required init() {}
 }

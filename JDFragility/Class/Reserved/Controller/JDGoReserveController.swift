@@ -196,7 +196,7 @@ extension JDGoReserveController:UITextFieldDelegate{
         if textField == kehuTelT {
 //         搜索会员
        
-    
+            view.endEditing(true)
             setSearchT()
         }
         return true

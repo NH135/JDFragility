@@ -54,6 +54,7 @@ extension JDMemberController{
         
         //        let searchT = UITextField(frame: CGRect(x: 20, y: leftView.centerY, width: leftView.width-30, height: 40))
         searchT.frame = CGRect(x: 15, y: leftView.centerY, width: leftView.width-110, height: 40)
+ 
 //        searchT.cornerRadius(radius: 20)
 //        searchT.k_setBorder(color: UIColor.lightText, width: 1)
         searchT.placeholder = "请输入会员手机号";

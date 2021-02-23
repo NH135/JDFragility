@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>纤美将要打开您的相机进行扫码使用</string>
+	<string>纤美想访问您的相机进行扫码确认</string>
 	<key>NSCameraUsageDescriptionApp</key>
 	<string>saa</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

@@ -26,6 +26,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     
     var TimeList = [JDGroupProjectModel]()
     var isHuanKe = false
+    var ffdBalance :String?
     
     @IBOutlet weak var topH: NSLayoutConstraint!
     var memberModel = MemberDetailModel()
@@ -39,7 +40,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     var classId : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        title = "课程购买"
         if isHuanKe == true {
             title = "换课"
         }
@@ -256,7 +257,16 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         if type == true {
          self.shopingGroups.append(model)
         }else{
-            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
+            for (index,m) in shopingGroups.enumerated() {
+                if m.cfdCourseClassId == model.cfdCourseClassId {
+                    shopingGroups.remove(at: index)
+                    break
+                }
+            }
+            
+            
+            
+//            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
         }
     }
 }
@@ -275,11 +285,23 @@ extension JDCourseController{
             NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
             return
         }
-        print("sssssss:\(view.frame)")
-       print("sssssss:\(view.y)")
-        if view.width > 1000 {
-            topH.constant = kNabBarHeight
+ 
+        if title != "换课" {
+            
+            if view.width > 1000  && kScreenWidth == 1024{
+                topH.constant = kNabBarHeight
+            }
+            if view.width > 1000  && kScreenWidth == 1112{
+                topH.constant = kNabBarHeight
+            }
+            if view.width > 1000  && kScreenWidth == 1080{
+                topH.constant = kNabBarHeight
+            }
+            if view.width > 1000  && kScreenWidth == 1194{
+                topH.constant = kNabBarHeight
+            }
         }
+      
 //         搜索会员
         
         NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
@@ -305,7 +327,7 @@ extension JDCourseController{
                 self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
                 self.cfdMemberId = self.memberModel.cfdMemberId
                 self.rightTableView.mj_header?.beginRefreshing()
-                
+                self.ffdBalance = self.memberModel.ffdBalance
                 let TimeListArr = dics["TimeList"] as? [[String : Any]]
                 self.TimeList = TimeListArr?.kj.modelArray(JDGroupProjectModel.self) ?? [JDGroupProjectModel()]
                 
@@ -384,6 +406,7 @@ extension JDCourseController{
                 huanSave.shopingGroups = self.shopingGroups
                 huanSave.TimeList = self.TimeList
                 huanSave.cfdMemberId = self.cfdMemberId ?? ""
+                huanSave.yueStr = self.ffdBalance ?? ""
                 self.navigationController?.ymPushViewController(huanSave, removeSelf: true, animated: true)
                 
                 

@@ -17,6 +17,7 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
     @IBOutlet weak var payView: UIView!
+    @IBOutlet weak var yueL: UILabel!
     
     var allMoeny : Double = 0.0
     var yingMoeny : Double = 0.0
@@ -26,20 +27,23 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
     var addList = [JDGroupProjectModel]()
     var shopingGroups = [JDGroupProjectModel]()
     var cfdMemberId  = String()
+    var yueStr = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "选择需兑换的老课程"
         diMoenyTf.delegate = self
         leftTableView.delegate = self
+        leftTableView.tableFooterView = UIView()
         leftTableView.dataSource = self
-       leftTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
+        leftTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
         rightTableView.dataSource = self
         rightTableView.delegate = self
         rightTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
         setletfUI()
         setrightUI()
         setData()
-        
+        yueL.text = yueStr.k_isEmpty == false ? "当前余额:¥"+yueStr : ""
         
         
     }
@@ -83,16 +87,18 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
     }
     
     func huanaddjianCourse(type: Bool, model: JDGroupProjectModel) {
-  
+ 
         
-        if type == true {
-            addList.append(model)
-        }else{
-      
-            addList.removeAll(where: { $0.cfdItemId == model.cfdItemId})
-        }
-        print(addList)
-        leftTableView.reloadData()
+        if model.ifdChangeNumber! == 0 {
+            addList.removeAll(where: { $0.cfdMemberCardGUID == model.cfdMemberCardGUID})
+       }else if model.ifdChangeNumber! == 1 {
+        addList.append(model)
+       }else if model.ifdChangeNumber! > 1 {
+        addList.removeAll(where: { $0.cfdMemberCardGUID == model.cfdMemberCardGUID})
+        addList.append(model)
+       }
+        print(addList.count)
+//        leftTableView.reloadData()
     }
     
     func shopingaddjianCourse(type: Bool, model: JDGroupModel) {
@@ -128,8 +134,8 @@ extension JDhuanKeSaveController:UITextFieldDelegate{
             payView.addSubview(vv)
             let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: height))
             btn.setTitle(item.cfdPayMode, for: .normal)
-            btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: -20, bottom: 10, right: 0)
-            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -70, bottom: 0, right: 0)
+            btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
+            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
             btn.imageView?.contentMode = .scaleAspectFit
 //            btn.setImage(UIImage(named: item.cfdImgSrc ?? ""), for: .normal)
             btn.kf.setImage(with: URL(string: item.cfdImgSrc ?? ""), for: .normal, placeholder: UIImage(named: "yue"), options: nil, progressBlock: nil, completionHandler: nil)
@@ -150,33 +156,42 @@ extension JDhuanKeSaveController:UITextFieldDelegate{
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == diMoenyTf {
-            var mm = 0.0
+             
             for item in shopingGroups {
-                mm += Double(item.ffdPrice ?? "0") ?? 0.0
+                allMoeny += Double(item.ffdPrice ?? "0") ?? 0.0
                 
             }
             shifuML.textColor = UIColor.k_colorWith(hexStr: "#FB6260")
-            yingMoeny = mm - Double(textField.text ?? "0")!
+             
+            yingMoeny = allMoeny -  Double(diMoenyTf.text ?? "0")!
             shifuML.text = "应补金额：¥\(yingMoeny)"
             shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "应补金额：")
         }else{
-        allMoeny = 0
+            
+            if yingMoeny == 0.0 {
+                NHMBProgressHud.showErrorMessage(message: "请先输入抵扣金额")
+                textField.text = ""
+                return
+            }
+            yingMoeny = Double(diMoenyTf.text ?? "0") ?? 0.0
         for (_,textF) in textArr.enumerated() {
             
             if textF.text?.k_isNumber == true {
-                allMoeny  = allMoeny + Double(textF.text ?? "0")!
+                yingMoeny  = yingMoeny + Double(textF.text ?? "0")!
             }
         }
             
-            guard allMoeny <= yingMoeny else {
+            if allMoeny < yingMoeny {
                 NHMBProgressHud.showErrorMessage(message: "实付金额大于应补今日，请重新输入")
                 textField.text = ""
                 return
             }
+             
             
             
         shifuML.textColor = UIColor.k_colorWith(hexStr: "#FB6260")
-        shifuML.text = "应补金额：¥\(yingMoeny - allMoeny)"
+            yingMoeny = allMoeny - yingMoeny
+        shifuML.text = "应补金额：¥\(yingMoeny)"
         shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "应补金额：")
 //
 //        if allMoeny >= Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
@@ -191,11 +206,11 @@ extension JDhuanKeSaveController:UITextFieldDelegate{
     }
 func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
-    guard textField.text?.k_isNumber == true else {
-        NHMBProgressHud.showErrorMessage(message: "只能输入数字，请重新输入")
+    if textField.text?.k_isNumber == false {
         textField.text = ""
         return false
     }
+   
     return true
 }
 
@@ -222,13 +237,12 @@ extension JDhuanKeSaveController{
                 NHMBProgressHud.showErrorMessage(message: "请选择左侧课程进行兑换！")
                 return
             }
-            
-            guard allMoeny != 0 else{
-                NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
-                return
-            }
-            
-            guard allMoeny == yingMoeny else{
+//            guard allMoeny != 0 else{
+//                NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
+//                return
+//            }
+//
+            guard yingMoeny == 0 else{
                 
                 NHMBProgressHud.showErrorMessage(message: "输入支付金额不符合")
                 return
@@ -254,16 +268,18 @@ extension JDhuanKeSaveController{
 //
             let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            let params = ["cfdRefMemberTime":self.addList.kj.JSONString(),"cfdNewCourse":shopingGroups.kj.JSONString() ,"cfdCaiWustr":moneyArr.kj.JSONString() ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":cfdMemberId,"cfdFendianId":cfdFendianId]
+            let params = ["cfdRefMemberTime":self.addList.kj.JSONString(),"cfdNewCourse":shopingGroups.kj.JSONString() ,"cfdCaiWustr":moneyArr.kj.JSONString() ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":cfdMemberId,"cfdFendianId":cfdFendianId,"ffdMemberBalance":ffdMemberBalance ?? "","dfdExchangeAmount":self.diMoenyTf.text ?? ""]
+            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
 ////            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddChangeCourse", params: params) { (dic) in
                 print("购买课程支付结果\(dic)")
-
+                NHMBProgressHud.hideHud()
                 NHMBProgressHud.showErrorMessage(message: "支付成功啦～")
              
                     self.navigationController?.popViewController(animated: true)
                  
             } error: { (error) in
+                NHMBProgressHud.hideHud()
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
         }

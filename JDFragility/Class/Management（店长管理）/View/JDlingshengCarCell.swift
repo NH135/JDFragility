@@ -14,12 +14,12 @@ class JDlingshengCarCell: UITableViewCell {
     
     @IBOutlet weak var shuomingL: UILabel!
     @IBOutlet weak var carLevelL: UILabel!
-    @IBOutlet weak var telL: UILabel!
+    @IBOutlet weak var telL: UILabel! 
     @IBOutlet weak var cfdMemberNameL: UILabel!
     @IBOutlet weak var stateL: UILabel!
     var huanKeModel:JDdianWuModel? {
         didSet {
-            timeL.text = huanKeModel?.dfdCreateDate
+           timeL.text = huanKeModel?.dfdCreateDate
             cfdEmployeeNameL.text =  huanKeModel?.cfdMemberName
             cfdMemberNameL.text = huanKeModel?.cfdMoTel
             telL.text = huanKeModel?.cfdEmployeeName

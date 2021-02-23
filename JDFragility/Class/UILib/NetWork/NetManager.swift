@@ -217,6 +217,7 @@ class NetManager: NSObject {
         if code == 300 || code == 301 || code == 302 {
             (UIApplication.shared.delegate as! AppDelegate).showWindowOutLogin()
         }else{
+            NHMBProgressHud.hideHud()
             NHMBProgressHud.showErrorMessage(message: message as String)
         }
 

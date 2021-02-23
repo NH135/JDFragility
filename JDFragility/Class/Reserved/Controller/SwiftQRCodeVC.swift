@@ -17,13 +17,8 @@ private let scanBoxImagePath = "QRCode_ScanBox" //扫描框图片
 private let scanLineImagePath = "QRCode_ScanLine" //扫描线图片
 private let soundFilePath = "noticeMusic.caf" //声音文件
 
-
-
-
-class SwiftQRCodeVC: JDBaseViewController{
+class SwiftQRCodeVC: UIViewController{
     public var backLocationString: ((String)->())?
-    
-    
     
     var scanPane: UIImageView!///扫描框
     var scanPreviewLayer : AVCaptureVideoPreviewLayer! //预览图层
@@ -40,14 +35,13 @@ class SwiftQRCodeVC: JDBaseViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        title="扫描二维码"
+        
         //初始化界面
         self.initView()
         
-//        //初始化ScanSession
-//        setupScanSession()
+        //初始化ScanSession
+        setupScanSession()
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool){
@@ -70,25 +64,25 @@ class SwiftQRCodeVC: JDBaseViewController{
     
     //扫描完成回调
     func qrCodeCallBack(_ codeString : String?) {
-        if backLocationString != nil {
-            backLocationString!(codeString!)
-        }
-//        navigationController?.popViewController(animated: false)
-        self.dismiss(animated: true, completion: nil)
-        
 //        self.confirm(title: "扫描结果", message: codeString, controller: self,handler: { (_) in
 //            //继续扫描
 //            self.startScan()
 //        })
+        
+        if backLocationString != nil {
+            backLocationString!(codeString!)
+        }
+        self.dismiss(animated: true, completion: nil)
+                navigationController?.popViewController(animated: false)
     }
     
     func addConstraint() {
         scanPane.translatesAutoresizingMaskIntoConstraints = false
         //创建约束
-        let widthConstraint = NSLayoutConstraint(item: scanPane!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: scanWidth)
-        let heightConstraint = NSLayoutConstraint(item: scanPane!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: scanHeight)
-        let centerX = NSLayoutConstraint(item: scanPane!, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
-        let centerY = NSLayoutConstraint(item: scanPane!, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: scanPane, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: scanWidth)
+        let heightConstraint = NSLayoutConstraint(item: scanPane, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: scanHeight)
+        let centerX = NSLayoutConstraint(item: scanPane, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let centerY = NSLayoutConstraint(item: scanPane, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
         //添加多个约束
         view.addConstraints([widthConstraint,heightConstraint,centerX,centerY])
     }

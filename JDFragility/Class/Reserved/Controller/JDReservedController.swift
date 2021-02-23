@@ -52,6 +52,7 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         storeNameL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "暂无")"
         setUI()
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.white
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.setData()
         })
@@ -77,17 +78,7 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
 
             
         }
-        
-        
-//        allBtn.addAction { (_) in
-//
-//            let ewm = SwiftQRCodeVC()
-//            ewm.backLocationString = {(c) in
-//                 print(c)
-//            }
-//            
-//            self.navigationController?.pushViewController(ewm, animated: true)
-//        }
+ 
    
     }
     
@@ -154,6 +145,7 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.k_dequeueReusableCell(cls: JDreservedCell.self, indexPath: indexPath)
+        cell.backgroundColor = UIColor.white
         cell.delegate = self
 //        let group  = groups[indexPath.section] as? JDGroupModel
 //        cell.textLabel?.text = "friendData!.name!"

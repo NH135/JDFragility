@@ -31,14 +31,15 @@ class JDtuisaveCell: UITableViewCell {
         addV.k_setCornerRadius(17)
         addV.k_setBorder(color: UIColor.k_colorWith(hexStr: "429DFF"), width: 1)
         addBtn.addAction { (_) in
-            guard self.number <  (self.tuiModel?.ifdAllNumber)! else{
+            guard self.number <  (self.tuiModel?.ifdLastNumber)! else{
                 NHMBProgressHud.showErrorMessage(message: "不能再加了")
                 return
             }
             self.number += 1
             self.numberL.text = String(self.number)
+            self.tuiModel?.ifdRefNumber = self.number
             if ((self.delegate?.responds(to: Selector(("tuikejianCourse:")))) != nil) {
-                self.delegate?.tuikejianCourse(type: true, model: JDGroupProjectModel())
+                self.delegate?.tuikejianCourse(type: true, model: self.tuiModel!)
              }
          
         }
@@ -51,8 +52,9 @@ class JDtuisaveCell: UITableViewCell {
             
             self.number -= 1
             self.numberL.text = String(self.number)
+            self.tuiModel?.ifdRefNumber = self.number
             if ((self.delegate?.responds(to: Selector(("tuikejianCourse:")))) != nil) {
-                self.delegate?.tuikejianCourse(type: false, model: JDGroupProjectModel())
+                self.delegate?.tuikejianCourse(type: false, model: self.tuiModel!)
              }
         }
         
@@ -64,18 +66,8 @@ class JDtuisaveCell: UITableViewCell {
             priceL.text = "\(tuiModel?.ffdUnitPrice ?? 0)";
             xiangmuNameL.text = tuiModel?.cfdItemName
             goumaiCountL.text = "\(tuiModel?.ifdAllNumber ?? 0)"
-            lastCountL.text = tuiModel?.ifdLastNumber
-//            setedBtn.isHidden = true;
-//            nameL.text = huanModel?.cfdCourseName
-//            detaileL.text = "  \(huanModel?.ifdAllNumber ?? 0)  "
-//            detaileL.cornerRadius(radius: detaileL.height/2)
-//            detaileL.backgroundColor = UIColor.red
-//            detaileL.textColor = UIColor.white
-            
-            
-            
-//            numberL.text = "\(huanModel?.ifdSumNumber ?? 0)"
-//            addV.isHidden = false
+            lastCountL.text = "\(tuiModel?.ifdLastNumber ?? 0)"
+ 
         }
     }
 }
