@@ -57,6 +57,7 @@ extension JDaddCarController{
     
     func setUI() {
         telF.delegate = self
+        telF.k_limitTextLength = 11
         tableView.delegate = self
         tableView.dataSource = self
         tableView.emptyDataSetSource = self

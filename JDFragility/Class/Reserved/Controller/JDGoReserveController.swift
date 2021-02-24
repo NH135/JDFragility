@@ -143,6 +143,7 @@ extension JDGoReserveController:UITextFieldDelegate{
         setedDataBtn.k_setBorder(color: UIColor.k_colorWith(hexStr: "EAEAEA"), width: 1)
         yuangongNameL.text = reaverdMode?.cfdEmployeeName
 //        kehuTelT.text="18627912021"
+        kehuTelT.k_limitTextLength = 11
         kehuTelT.delegate = self
         setedDataBtn.addAction { (birthdayB:UIButton) in
             self.view.endEditing(true)

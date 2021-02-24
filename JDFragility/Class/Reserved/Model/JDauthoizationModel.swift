@@ -19,6 +19,8 @@ struct JDauthoizationModel: Convertible {
     var DetailList = [JDauthoizationDetailListModel]()
 }
 struct JDauthoizationDetailListModel: Convertible {
+  
+    
     var cfdItemId :String?
     var cfdEmployeeNameC : String?
     var cfdItemName :String?
@@ -35,6 +37,7 @@ struct JDauthoizationDetailListModel: Convertible {
     var ifdReserveItemStatus :Int?
     var ispassword :Int?
     var cfdPassword :String?
+    var ifdIspassword : Bool?
     
     
 }

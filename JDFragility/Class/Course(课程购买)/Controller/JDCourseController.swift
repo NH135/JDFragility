@@ -57,7 +57,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
         tiL.font=UIFont.systemFont(ofSize: 18)
         tiL.textColor=UIColor.white
         headerV.addSubview(tiL)
-     
+        memBerT.k_limitTextLength = 11
         memBerT.delegate = self
         leftTableView.delegate = self;
         leftTableView.dataSource = self;

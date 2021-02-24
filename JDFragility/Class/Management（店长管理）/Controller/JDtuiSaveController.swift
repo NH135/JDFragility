@@ -27,7 +27,7 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         super.viewDidLoad()
        title = "退课"
         telF.delegate = self
-        
+        telF.k_limitTextLength = 11
         typeBtn.k_cornerRadius = 15;
         typeBtn.k_setBorder(color: UIColor.k_colorWith(hexStr: "e3e3e3"), width: 1)
         typeBtn.hw_locationAdjust(buttonMode: .Right, spacing: 10)

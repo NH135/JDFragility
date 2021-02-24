@@ -37,7 +37,9 @@ extension JDManagementController:UICollectionViewDelegate,UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.k_dequeueReusableCell(cls: JDManageCell.self, indexPath: indexPath)
         cell.cornerRadius(radius: 8)
-        cell.titleBtn.setTitle(["领卡/升卡","退课","换课","排班"][indexPath.row], for:.normal)
+//        cell.titleBtn.setTitle(, for:.normal)
+//        cell.titleBtn.setImage(["hy","tk","hk","pb"][indexPath.row], for: .normal)
+        cell.titleBtn.k_setBtn(image: UIImage(named: ["hy","tk","gh","pb"][indexPath.row]), title: ["领卡/升卡","退课","换课","排班"][indexPath.row], titlePosition: .bottom, spacing: 20, state: .normal)
         return cell
         
     }

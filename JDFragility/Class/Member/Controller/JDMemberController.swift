@@ -63,6 +63,7 @@ extension JDMemberController{
         let imageSear = UIImageView(image: UIImage(named: "搜索-2"))
         imageSear.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
         searchT.leftView = imageSear
+        searchT.keyboardType = .phonePad
         searchT.delegate = self
         searchT.k_limitTextLength = 11
         searchT.returnKeyType = .search
@@ -84,7 +85,7 @@ extension JDMemberController{
         view.addSubview(rightView)
         
         let textfH = 40
-        let textfW = rightView.width-100
+        let textfW = rightView.width-150
         let tiL = UILabel(frame: CGRect(x: 0, y: 30, width: Int(rightView.width), height: textfH))
         tiL.text = "新增会员"
         tiL.textAlignment = .center
@@ -94,20 +95,21 @@ extension JDMemberController{
         
         
         
-        let teL = UILabel(frame: CGRect(x: 30, y:Int(tiL.bottomY)+20, width: 50, height: textfH))
+        let teL = UILabel(frame: CGRect(x: 30, y:Int(tiL.bottomY)+20, width: 100, height: textfH))
         teL.text = "手机"
         teL.textColor=UIColor.white
         rightView.addSubview(teL)
         
         let teT = UITextField(frame: CGRect(x: teL.rightX, y:teL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
         teT.placeholder = "请输入手机号"
-        
+        teT.k_limitTextLength = 11
+        teT.keyboardType = .phonePad
         teT.borderStyle = .roundedRect
         teT.textColor=UIColor.black
         rightView.addSubview(teT)
         
         
-        let nameL = UILabel(frame: CGRect(x: 30, y:Int(teT.bottomY)+20, width: 50, height: textfH))
+        let nameL = UILabel(frame: CGRect(x: 30, y:Int(teT.bottomY)+20, width: 100, height: textfH))
         nameL.text = "姓名"
         nameL.textColor=UIColor.white
         rightView.addSubview(nameL)
@@ -120,7 +122,7 @@ extension JDMemberController{
         
         
         
-        let sourceL = UILabel(frame: CGRect(x: 30, y:Int(nameL.bottomY)+20, width: 50, height: textfH))
+        let sourceL = UILabel(frame: CGRect(x: 30, y:Int(nameL.bottomY)+20, width: 100, height: textfH))
         sourceL.text = "来源"
         sourceL.textColor=UIColor.white
         rightView.addSubview(sourceL)
@@ -155,7 +157,25 @@ extension JDMemberController{
             }
         }
         
-        let sexL = UILabel(frame: CGRect(x: 30, y:Int(sourceL.bottomY)+20, width: 50, height: textfH))
+        
+        let cfdIntroducerL = UILabel(frame: CGRect(x: 30, y:Int(sourceL.bottomY)+20, width: 100, height: textfH))
+        cfdIntroducerL.text = "嘉宾手机号"
+        
+        cfdIntroducerL.textColor=UIColor.white
+        rightView.addSubview(cfdIntroducerL)
+        
+        let cfdIntroducerT = UITextField(frame: CGRect(x: cfdIntroducerL.rightX, y:cfdIntroducerL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+        cfdIntroducerT.placeholder = "请输入嘉宾的手机号"
+        cfdIntroducerT.k_limitTextLength = 11
+        cfdIntroducerT.keyboardType = .phonePad
+        cfdIntroducerT.borderStyle = .roundedRect
+        cfdIntroducerT.textColor=UIColor.black
+        rightView.addSubview(cfdIntroducerT)
+        
+        
+        
+        
+        let sexL = UILabel(frame: CGRect(x: 30, y:Int(cfdIntroducerT.bottomY)+20, width: 100, height: textfH))
         sexL.text = "性别"
         sexL.textColor=UIColor.white
         rightView.addSubview(sexL)
@@ -194,7 +214,7 @@ extension JDMemberController{
         
         
         
-        let birthdayL = UILabel(frame: CGRect(x: 30, y:Int(sexL.bottomY)+20, width: 50, height: textfH))
+        let birthdayL = UILabel(frame: CGRect(x: 30, y:Int(sexL.bottomY)+20, width: 100, height: textfH))
         birthdayL.text = "生日"
         birthdayL.textColor=UIColor.white
         rightView.addSubview(birthdayL)
@@ -223,48 +243,37 @@ extension JDMemberController{
             Kwindow.window?.addSubview(dataPicker)
         }
         
-        
-        let heightL = UILabel(frame: CGRect(x: 30, y:Int(birthdayL.bottomY)+20, width: 50, height: textfH))
-        heightL.text = "身高"
-        heightL.textColor=UIColor.white
-        rightView.addSubview(heightL)
-        
-        let heightT = UITextField(frame: CGRect(x: heightL.rightX, y:heightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        heightT.placeholder = "请输入身高"
-        heightT.keyboardType = .phonePad
-        heightT.borderStyle = .roundedRect
-        heightT.textColor=UIColor.black
-        rightView.addSubview(heightT)
+       
         
         
         
-        let weightL = UILabel(frame: CGRect(x: 30, y:Int(heightL.bottomY)+20, width: 50, height: textfH))
-        weightL.text = "体重"
-        weightL.textColor=UIColor.white
-        rightView.addSubview(weightL)
+//        let weightL = UILabel(frame: CGRect(x: 30, y:Int(heightL.bottomY)+20, width: 50, height: textfH))
+//        weightL.text = "体重"
+//        weightL.textColor=UIColor.white
+//        rightView.addSubview(weightL)
+//
+//        let weightT = UITextField(frame: CGRect(x: weightL.rightX, y:weightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+//        weightT.placeholder = "请输入体重"
+//        weightT.keyboardType = .phonePad
+//        weightT.borderStyle = .roundedRect
+//        weightT.textColor=UIColor.black
+//        rightView.addSubview(weightT)
+//
         
-        let weightT = UITextField(frame: CGRect(x: weightL.rightX, y:weightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        weightT.placeholder = "请输入体重"
-        weightT.keyboardType = .phonePad
-        weightT.borderStyle = .roundedRect
-        weightT.textColor=UIColor.black
-        rightView.addSubview(weightT)
         
-        
-        
-        let overweightL = UILabel(frame: CGRect(x: 30, y:Int(weightL.bottomY)+20, width: 50, height: textfH))
-        overweightL.text = "超重"
-        overweightL.textColor=UIColor.white
-        rightView.addSubview(overweightL)
-        
-        let overweightT = UITextField(frame: CGRect(x: overweightL.rightX, y:overweightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        overweightT.placeholder = "请输入超重"
-        overweightT.keyboardType = .phonePad
-        overweightT.borderStyle = .roundedRect
-        overweightT.textColor=UIColor.black
-        rightView.addSubview(overweightT)
-        
-        let sendBtn = UIButton(frame: CGRect(x: 40, y: overweightL.bottomY+50, width: rightView.width-80, height: 50))
+//        let overweightL = UILabel(frame: CGRect(x: 30, y:Int(weightL.bottomY)+20, width: 50, height: textfH))
+//        overweightL.text = "超重"
+//        overweightL.textColor=UIColor.white
+//        rightView.addSubview(overweightL)
+//
+//        let overweightT = UITextField(frame: CGRect(x: overweightL.rightX, y:overweightL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+//        overweightT.placeholder = "请输入超重"
+//        overweightT.keyboardType = .phonePad
+//        overweightT.borderStyle = .roundedRect
+//        overweightT.textColor=UIColor.black
+//        rightView.addSubview(overweightT)
+//
+        let sendBtn = UIButton(frame: CGRect(x: 40, y: birthdayL.bottomY+50, width: rightView.width-80, height: 50))
 //        sendBtn.centerX = rightView.centerX
         sendBtn.setTitle("提交", for: .normal)
         sendBtn.setTitleColor(UIColor.black, for: .normal)
@@ -288,27 +297,25 @@ extension JDMemberController{
             }else if (birthdayB.titleLabel?.text?.containsIgnoringCase(find: "请选择生日") ?? false ){
                 NHMBProgressHud.showErrorMessage(message: "请选择生日")
                 return
-            }else if heightT.text?.length == 0{
-                NHMBProgressHud.showErrorMessage(message: "请输入身高")
-                return
-            }else if weightT.text?.length == 0{
-                NHMBProgressHud.showErrorMessage(message: "请输入体重")
-                return
+//            }else if heightT.text?.length == 0{
+//                NHMBProgressHud.showErrorMessage(message: "请输入身高")
+//                return
+//            }else if weightT.text?.length == 0{
+//                NHMBProgressHud.showErrorMessage(message: "请输入体重")
+//                return
             } 
             
 //            cfdIntroducer介绍人
                 NHMBProgressHud.showLoadingHudView(message: "添加中···")
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":self.sourceID ?? "","ifdHeight":heightT.text ?? "","ifdWeight":weightT.text ?? ""] as [String : Any]
+            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":self.sourceID ?? "", "cfdIntroducer":cfdIntroducerT.text ?? ""] as [String : Any]
             
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddMember", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
                 NHMBProgressHud.showSuccesshTips(message: "添加成功")
                 teT.text = ""
                 nameT.text = ""
-                heightT.text = ""
-                overweightT.text = ""
-                weightT.text = ""
+                cfdIntroducerT.text = ""
                 sourceB.setTitle("  请选择来源", for: .normal)
                 sourceB.setTitleColor(UIColor.lightGray, for: .normal)
                 sexB.setTitle("  请选择性别", for: .normal)

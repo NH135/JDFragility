@@ -41,7 +41,7 @@ class ResListModel:Convertible {
     var ifdState:Int?
     var dfdCreateDate:String?
     var cfdImgSrc :String?
-    
+    var cfdItemName :String?
     var cfdCourseName:String?
     var cfdBusListGUID:String?
     var cfdMemberCardGUID:String?

@@ -27,7 +27,7 @@ class JDaddRightReserveCell: UITableViewCell {
 
     var addReserve : ResListModel? {
         didSet{
-            nameL.text =  addReserve?.cfdCourseName ?? "暂无"
+            nameL.text =  addReserve?.cfdItemName ?? "暂无"
         }
     }
     
