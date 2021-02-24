@@ -30,6 +30,9 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var coseB: UIButton!
     @IBOutlet weak var yhjTableView: UITableView!
     @IBOutlet weak var contenView: UIView!
+    
+    var isYf = false
+    
     var lastSelectIndex : IndexPath?
     var selectIndexs = Array<Any>()
     var isMore : Bool = false
@@ -49,6 +52,10 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
         setrightUI()
         setcontenUI()
         setData()
+        if isYf == true {
+            title = "预付款课程结帐"
+            yuB.isUserInteractionEnabled = false
+        }
     }
     
     @IBAction func showYhjBt() {
@@ -84,7 +91,16 @@ extension JDSettlementController:UITextFieldDelegate{
             self.jiesuanModel = dict.kj.model(JDjiesuanModel.self)
 
             self.ewmL.image = self.jiesuanModel?.CodeMsg.cfdCodeMsgId?.k_createQRCode()
-            self.fuML.text = "应付：\(self.jiesuanModel?.BusList.ffdBusMoney ?? "0")"
+            
+            if self.isYf{
+//                let yingfu = (self.jiesuanModel?.BusList.ffdBusMoney ?? 0) - (self.jiesuanModel?.BusList.ffdArrear ?? 0)
+                
+                self.fuML.text = "应付：¥\(self.jiesuanModel?.BusList.ffdArrear ?? 0)"
+            }else{
+                self.fuML.text = "应付：¥\(self.jiesuanModel?.BusList.ffdBusMoney ?? 0)"
+            }
+            
+         
 
             self.rightTableView.reloadData()
         } error: { (error) in
@@ -144,11 +160,11 @@ extension JDSettlementController:UITextFieldDelegate{
             shifuML.text = "实付金额：\(allMoeny)"
             shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "实付金额：")
             
-            if allMoeny >= Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+            if allMoeny >=  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
                 self.wanB.isEnabled = false
                 self.yuB.isEnabled = true
             }
-            if allMoeny > Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
+            if allMoeny >  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
                 NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
             }
         }
@@ -199,16 +215,31 @@ extension JDSettlementController{
         
         sureB.addAction { [self] (_) in
             if self.wanB.isEnabled == false{
-                if allMoeny < Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
-//                    self.wanB.isEnabled = false
-//                    self.yuB.isEnabled = true
-                    NHMBProgressHud.showErrorMessage(message: "您选择了完款，但您输入的金额小于应付金额")
-                    return
+                
+                if self.isYf {
+//                    let yingf = (self.jiesuanModel?.BusList.ffdBusMoney ?? 0) - (self.jiesuanModel?.BusList.ffdArrear ?? 0)
+                    
+                    if allMoeny < self.jiesuanModel?.BusList.ffdArrear ?? 0    {
+                        NHMBProgressHud.showErrorMessage(message: "输入的金额小于应付金额")
+                        return
+                    }
+                    if allMoeny >  self.jiesuanModel?.BusList.ffdArrear ?? 0   {
+                        NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+                        return
+                    }
+                    
+                }else{
+                    if allMoeny < self.jiesuanModel?.BusList.ffdBusMoney ?? 0    {
+                        NHMBProgressHud.showErrorMessage(message: "您选择了完款，但您输入的金额小于应付金额")
+                        return
+                    }
+                    if allMoeny >  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
+                        NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+                        return
+                    }
                 }
-                if allMoeny > Int(self.jiesuanModel?.BusList.ffdBusMoney ?? "0") ?? 0   {
-                    NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
-                    return
-                }
+                
+              
             }
             if self.yuB.isEnabled == false{
             if allMoeny == 0{
@@ -238,12 +269,12 @@ extension JDSettlementController{
             if yuB.isEnabled == false{
                 payType = "false"
             }
-            
-            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":payType,"cfdCaiWustr":moneyArr.kj.JSONString() ]
+            NHMBProgressHud.showLoadingHudView(message: "结帐中～～")
+            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":payType,"cfdCaiWustr":moneyArr.kj.JSONString(),"isRest":self.jiesuanModel?.isRest ?? ""] as [String : Any]
 //            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadPayBusList", params: params) { (dic) in
                 print("购买课程支付结果\(dic)")
-                
+                NHMBProgressHud.hideHud()
                 NHMBProgressHud.showErrorMessage(message: "支付成功啦～")
                 if dic["ifdJump"] as? Bool == true{
                     let save =  JDsaveKCController()
@@ -255,6 +286,7 @@ extension JDSettlementController{
                 }
                 
             } error: { (error) in
+                NHMBProgressHud.hideHud()
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
         }

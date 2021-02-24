@@ -34,9 +34,12 @@ struct JDjiesuanModel: Convertible {
     var BusList = BusListModel()
     var CodeMsg = CodeMsgModel()
     var MCList = [MCListModel]()
+    var isRest :Bool?
+    
 }
 struct BusListModel: Convertible {
-    var ffdBusMoney : String?
+    var ffdBusMoney : Int?
+    var ffdArrear : Int?
     
 //    cfdBusListGUID = d7f9402f-f176-47c9-94d2-a5d9be9c0563;
 //    cfdEmployeeId = 146ad23c-7d78-4152-be45-c626ccbd36cd;

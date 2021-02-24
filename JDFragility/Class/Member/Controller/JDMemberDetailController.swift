@@ -195,7 +195,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }else if tableView == twoV {
             return 40
         }else if tableView == threeV {
-            let mode  = orderKCArr[indexPath.row]
+            let mode  = orderYFArr[indexPath.row]
             return mode.goumaiHeight ?? 150
         }else{
             return 40
@@ -271,20 +271,22 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }else  if tableView == twoV {
             let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
             cell.lastModel = lastKCArr[indexPath.row]
-  
+            cell.selectionStyle = .none
+            return cell
         }else  if tableView == threeV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
             cell.delegate = self
             cell.ifdType = false;
-        cell.yufuModel = orderYFArr[indexPath.row]
+             cell.yufuModel = orderYFArr[indexPath.row]
             return cell
         }else  {
             let cell = tableView.k_dequeueReusableCell(cls: JDNewcaozuoCell.self, indexPath: indexPath)
+            cell.selectionStyle = .none
             cell.lastModel = caozuoKCArr[indexPath.row]
             return cell
         }
-         return UITableViewCell()
+          
     }
     func reserveSendName(btn:UIButton,reserveMode:JDhuiyuanDetail){
         print()
@@ -315,6 +317,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
                     let settlement = JDSettlementController()
                     settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
                     settlement.memberModel = self.memberModel.Member;
+            settlement.isYf = true
                     self.navigationController?.pushViewController(settlement, animated: true)
         }
         

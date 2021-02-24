@@ -6,7 +6,7 @@
 //会员信息
 
 import UIKit
-
+import IQKeyboardManager
 class JDMemberController: JDBaseViewController, UITextFieldDelegate {
     private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day,.hour], from: Date())
     let searchT = UITextField() 
@@ -337,6 +337,9 @@ extension JDMemberController{
     
 }
 extension JDMemberController{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        IQKeyboardManager.shared().isEnabled = true
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchT {
             searchData()

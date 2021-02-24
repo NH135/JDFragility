@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import IQKeyboardManager
 class JDMainController: JDBaseViewController {
 
     @IBOutlet weak var iconB: UIButton!
@@ -77,28 +77,10 @@ extension JDMainController {
         rightView.addSubview(self.reserver?.view ?? UIView())
 
       
-     
       
-        
-        
-  
-       
-//        self.addChild(self.member ?? UIViewController())
-      
-        
-        
-       
-//        self.addChild(self.attendance ?? UIViewController())
-    
-        
-        
-        
-      
-//        self.addChild(self.management ?? UIViewController())
-        
-           
         
         func typeView(with type:NSInteger) {
+            IQKeyboardManager.shared().isEnabled = true
             view.endEditing(true)
             self.reserver?.view.isHidden=true;
             self.course?.view.isHidden=true;
@@ -109,8 +91,9 @@ extension JDMainController {
             case 1:
               
                 self.reserver?.view.isHidden=false;
-            
+    
             case 2:
+              
                 self.course?.view.isHidden=false;
                 
                 if one == false {

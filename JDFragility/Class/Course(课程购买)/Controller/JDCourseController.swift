@@ -8,6 +8,7 @@
 import UIKit
 import MJRefresh
 import KakaJSON
+import IQKeyboardManager
 class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
    
     
@@ -38,6 +39,18 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     var groups = Array<JDGroupModel>()
     var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.shared().isEnabled = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.shared().isEnabled = true
+        rightTableView.mj_header?.beginRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "课程购买"
@@ -45,6 +58,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
             title = "换课"
         }
         memBerT.text = telStr
+        
         extendedLayoutIncludesOpaqueBars = false
         automaticallyAdjustsScrollViewInsets = false
 //        edgesForExtendedLayout = .bottom
@@ -76,12 +90,12 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
             rightTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
                 if self.classId == nil{
                     self.rightTableView.mj_header?.endRefreshing()
+                
                     return
                 }
+                self.search()
                 self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
             })
-        
-        
         searchBtn.addAction { (_) in
             self.search()
         }
@@ -263,10 +277,6 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
                     break
                 }
             }
-            
-            
-            
-//            self.shopingGroups.removeAll(where: { $0.cfdCourseClassId == model.cfdCourseClassId})
         }
     }
 }
@@ -280,28 +290,11 @@ extension JDCourseController{
     }
   
     func search() {
-        memBerT.resignFirstResponder()
+        view.endEditing(true)
         guard memBerT.text?.length == 11 else {
             NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
             return
         }
- 
-        if title != "换课" {
-            
-            if view.width > 1000  && kScreenWidth == 1024{
-                topH.constant = kNabBarHeight
-            }
-            if view.width > 1000  && kScreenWidth == 1112{
-                topH.constant = kNabBarHeight
-            }
-            if view.width > 1000  && kScreenWidth == 1080{
-                topH.constant = kNabBarHeight
-            }
-            if view.width > 1000  && kScreenWidth == 1194{
-                topH.constant = kNabBarHeight
-            }
-        }
-      
 //         搜索会员
         
         NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")

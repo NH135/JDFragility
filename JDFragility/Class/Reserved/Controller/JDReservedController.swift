@@ -13,19 +13,19 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var allBtn: UIButton!
     @IBOutlet weak var daiquerenBtn: UIButton!
     @IBOutlet weak var querenBtn: UIButton!
-    @IBOutlet weak var daodianBtn: UIButton!
+   
     @IBOutlet weak var kaidianBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
-    @IBOutlet weak var chidaoBtn: UIButton!
+ 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeView: UIView!
     @IBOutlet weak var allL: UILabel!
     @IBOutlet weak var daiL: UILabel!
     @IBOutlet weak var queL: UILabel!
-    @IBOutlet weak var daoL: UILabel!
+ 
     @IBOutlet weak var kaiL: UILabel!
     @IBOutlet weak var quL: UILabel!
-    @IBOutlet weak var chiL: UILabel!
+ 
     var timeStr : String?
     
     var timeBtn = UIButton()
@@ -102,10 +102,26 @@ extension JDReservedController{
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserveView", params: params) { (reserve) in
             self.tableView.mj_header?.endRefreshing()
  
-            guard let arr = reserve as? [[String : Any]] else { return }
-            self.reserveArr  = arr.kj.modelArray(JDreserverModel.self)
- 
+         let arr = reserve["EmpList"] as? [[String : Any]]
+            self.reserveArr  = arr?.kj.modelArray(JDreserverModel.self) ?? [JDreserverModel()]
+     
+//            WholeNumber = 6; //全部
+//            WaitNumber = 0; //待确认
+//            AlreadyNumber = 3 //已确认
+//            CompleteNumber = 1; //完成
+//            CancelNumber = 2; //取消
+//           
+            
+            
             self.tableView.reloadData()
+            self.allL.text = "  \(reserve["WholeNumber"] as? Int ?? 0)  "
+            self.daiL.text = "  \(reserve["WaitNumber"] as? Int ?? 0)  "
+            self.queL.text = "  \(reserve["AlreadyNumber"] as? Int ?? 0)  "
+            self.kaiL.text = "  \(reserve["CompleteNumber"] as? Int ?? 0)  "
+            self.quL.text = "  \(reserve["CancelNumber"] as? Int ?? 0)  "
+            
+            
+            
         } error: { (error) in
             self.tableView.mj_header?.endRefreshing()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
@@ -116,13 +132,12 @@ extension JDReservedController{
 
 extension JDReservedController{
    fileprivate func setUI() {
-    allL.cornerRadius(radius: 7)
-    daiL.cornerRadius(radius: 7)
-    queL.cornerRadius(radius: 7)
-    daoL.cornerRadius(radius: 7)
-    kaiL.cornerRadius(radius: 7)
-    quL.cornerRadius(radius: 7)
-    chiL.cornerRadius(radius: 7)
+    allL.k_cornerRadius = 7
+    daiL.k_cornerRadius = 7
+    queL.k_cornerRadius = 7
+    kaiL.k_cornerRadius = 7
+    quL.k_cornerRadius = 7
+    
     
     
     tableView.delegate = self

@@ -22,9 +22,9 @@ class JDreserveItemCell: UICollectionViewCell {
         didSet{
 
             if resListModel?.ifdState == 0{
-                bgV.backgroundColor=UIColor.k_colorWith(hexStr: "19BE6B")
-            }else if resListModel?.ifdState == 1{
                 bgV.backgroundColor=UIColor.k_colorWith(hexStr: "8167F5")
+            }else if resListModel?.ifdState == 1{
+                bgV.backgroundColor=UIColor.k_colorWith(hexStr: "FB6260")
             }else if resListModel?.ifdState == 2{
                 bgV.backgroundColor=UIColor.k_colorWith(hexStr: "58A3F7")
             }else if resListModel?.ifdState == 3{
