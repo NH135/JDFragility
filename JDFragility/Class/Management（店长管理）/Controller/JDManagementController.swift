@@ -13,14 +13,14 @@ class JDManagementController: JDBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor=UIColor.purple
+  
         flow.itemSize = CGSize( width: 380 , height: 269)
         flow.minimumLineSpacing=30;
         flow.minimumInteritemSpacing = 30;
         flow.sectionInset = UIEdgeInsets(top: 100, left: 50, bottom: 100, right: 50);
 //        flow.scrollDirection = .horizontal
         collectionView.delegate = self
-        collectionView.backgroundColor=UIColor.black
+        collectionView.backgroundColor=UIColor.white
         collectionView.dataSource = self
         collectionView.k_registerCell(cls: JDManageCell.self)
        

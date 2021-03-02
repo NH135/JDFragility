@@ -103,6 +103,8 @@
 		18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */; };
 		18B95D3A25A5BA18007B8AEE /* JDreserverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */; };
 		18B95D6E25A5C949007B8AEE /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D6D25A5C949007B8AEE /* JsonUtil.swift */; };
+		18D3B6F325ECAD00005D50B6 /* JDCZView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3B6F225ECAD00005D50B6 /* JDCZView.swift */; };
+		18D3B6F825ECAD18005D50B6 /* JDCZView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D3B6F725ECAD18005D50B6 /* JDCZView.xib */; };
 		18E2E7E625DFCD5A0077AD0B /* JDtuihuanHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2E7E525DFCD5A0077AD0B /* JDtuihuanHeaderView.xib */; };
 		18E2E7EC25DFD2220077AD0B /* JDtuihuanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2E7EA25DFD2220077AD0B /* JDtuihuanCell.swift */; };
 		18E2E7ED25DFD2220077AD0B /* JDtuihuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2E7EB25DFD2220077AD0B /* JDtuihuanCell.xib */; };
@@ -275,6 +277,8 @@
 		18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDreserveItemCell.xib; sourceTree = "<group>"; };
 		18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreserverModel.swift; sourceTree = "<group>"; };
 		18B95D6D25A5C949007B8AEE /* JsonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
+		18D3B6F225ECAD00005D50B6 /* JDCZView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDCZView.swift; sourceTree = "<group>"; };
+		18D3B6F725ECAD18005D50B6 /* JDCZView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = JDCZView.xib; path = JDFragility/Class/Member/Controller/JDCZView.xib; sourceTree = SOURCE_ROOT; };
 		18E2E7E525DFCD5A0077AD0B /* JDtuihuanHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuihuanHeaderView.xib; sourceTree = "<group>"; };
 		18E2E7EA25DFD2220077AD0B /* JDtuihuanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDtuihuanCell.swift; sourceTree = "<group>"; };
 		18E2E7EB25DFD2220077AD0B /* JDtuihuanCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuihuanCell.xib; sourceTree = "<group>"; };
@@ -393,6 +397,8 @@
 				184B883C259CB77F00998BB1 /* JDMemberController.xib */,
 				1872BA4E25A7FFF800AAE052 /* JDMemberDetailController.swift */,
 				1872BA4F25A7FFF800AAE052 /* JDMemberDetailController.xib */,
+				18D3B6F225ECAD00005D50B6 /* JDCZView.swift */,
+				18D3B6F725ECAD18005D50B6 /* JDCZView.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -957,6 +963,7 @@
 				18E2E7E625DFCD5A0077AD0B /* JDtuihuanHeaderView.xib in Resources */,
 				184B8845259CB79400998BB1 /* JDAttendanceController.xib in Resources */,
 				1861AB3825AEAFE5006158AD /* JDCourseshopingCell.xib in Resources */,
+				18D3B6F825ECAD18005D50B6 /* JDCZView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1077,7 @@
 				EDD5BF7825A97A0C006E94D6 /* JDGoReserveController.swift in Sources */,
 				184CDA3825BD326400FACB57 /* JDlasteCaozuowCell.swift in Sources */,
 				18FD03CA259C5248007FC8C8 /* BaseModel.swift in Sources */,
+				18D3B6F325ECAD00005D50B6 /* JDCZView.swift in Sources */,
 				18B7A9DB25A2FDE100BE4C27 /* Number+Ext.swift in Sources */,
 				18FD03522599D3E0007FC8C8 /* UITextField-Extension.swift in Sources */,
 				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
@@ -1297,7 +1305,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -1324,7 +1332,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

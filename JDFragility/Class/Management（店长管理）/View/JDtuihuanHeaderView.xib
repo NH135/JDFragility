@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -74,33 +73,49 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM0-dj-1Cs">
+                    <rect key="frame" x="0.0" y="0.0" width="972" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="Uq5-U8-id8"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="ofb-NS-7ia"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRC-vZ-zoa">
+                    <rect key="frame" x="0.0" y="70.5" width="972" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="V7p-FG-iel"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="mP1-uG-myP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="5sx-3w-Ij8"/>
                 <constraint firstAttribute="bottom" secondItem="mP1-uG-myP" secondAttribute="bottom" id="8Av-y1-uSo"/>
                 <constraint firstItem="sKa-LR-Mdr" firstAttribute="centerY" secondItem="ZRC-Np-uyR" secondAttribute="centerY" id="Dlj-y3-RxZ"/>
                 <constraint firstItem="ZRC-Np-uyR" firstAttribute="centerY" secondItem="mP1-uG-myP" secondAttribute="centerY" id="JrU-qE-wMB"/>
+                <constraint firstItem="BRC-vZ-zoa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LDI-jf-dlX"/>
                 <constraint firstItem="mP1-uG-myP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MvZ-MQ-iLz"/>
                 <constraint firstItem="xps-Xj-sy9" firstAttribute="leading" secondItem="1sv-cB-adK" secondAttribute="trailing" id="O9j-6f-cuz"/>
                 <constraint firstItem="1OV-Ho-Uup" firstAttribute="centerY" secondItem="sKa-LR-Mdr" secondAttribute="centerY" id="QkK-qW-1FW"/>
                 <constraint firstItem="ZRC-Np-uyR" firstAttribute="leading" secondItem="mP1-uG-myP" secondAttribute="trailing" id="RJ1-tN-Dbl"/>
                 <constraint firstItem="Ef5-0b-PoZ" firstAttribute="centerY" secondItem="1OV-Ho-Uup" secondAttribute="centerY" id="Sf7-gv-vMt"/>
                 <constraint firstItem="1OV-Ho-Uup" firstAttribute="leading" secondItem="sKa-LR-Mdr" secondAttribute="trailing" constant="10" id="Sxj-QP-soj"/>
+                <constraint firstAttribute="bottom" secondItem="BRC-vZ-zoa" secondAttribute="bottom" id="VyX-iP-juc"/>
+                <constraint firstAttribute="trailing" secondItem="BRC-vZ-zoa" secondAttribute="trailing" id="WJc-xC-BHy"/>
                 <constraint firstItem="xps-Xj-sy9" firstAttribute="centerY" secondItem="1sv-cB-adK" secondAttribute="centerY" id="ZIS-oN-8xQ"/>
                 <constraint firstItem="Ef5-0b-PoZ" firstAttribute="leading" secondItem="1OV-Ho-Uup" secondAttribute="trailing" constant="10" id="axA-Sg-hKq"/>
+                <constraint firstAttribute="trailing" secondItem="FM0-dj-1Cs" secondAttribute="trailing" id="ib5-J6-Yfy"/>
                 <constraint firstItem="sKa-LR-Mdr" firstAttribute="leading" secondItem="ZRC-Np-uyR" secondAttribute="trailing" id="jj3-QB-Cqa"/>
+                <constraint firstItem="FM0-dj-1Cs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kYu-QV-lOy"/>
                 <constraint firstItem="1sv-cB-adK" firstAttribute="centerY" secondItem="Ef5-0b-PoZ" secondAttribute="centerY" id="nzg-qw-aZK"/>
                 <constraint firstItem="1sv-cB-adK" firstAttribute="leading" secondItem="Ef5-0b-PoZ" secondAttribute="trailing" constant="10" id="prh-nU-xeh"/>
                 <constraint firstAttribute="trailing" secondItem="xps-Xj-sy9" secondAttribute="trailing" constant="10" id="xVM-LL-Edn"/>
+                <constraint firstItem="FM0-dj-1Cs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="y7v-uD-HkE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="552" y="349"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

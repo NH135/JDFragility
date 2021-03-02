@@ -75,29 +75,50 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-KN-mny">
+                    <rect key="frame" x="0.0" y="0.0" width="1118" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="i2H-gV-bLX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-oV-oHC">
+                    <rect key="frame" x="0.0" y="106.5" width="1118" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="B2D-aT-7oh"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="GSB-qJ-5MK"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="mwu-oV-oHC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1Nj-bT-j0j"/>
                 <constraint firstItem="Bvc-fy-AoI" firstAttribute="leading" secondItem="q5C-V7-kPL" secondAttribute="trailing" id="1kF-8y-xFK"/>
                 <constraint firstItem="0j9-bd-t8S" firstAttribute="leading" secondItem="y1w-MC-TzB" secondAttribute="trailing" constant="10" id="4OG-RR-CDD"/>
                 <constraint firstItem="Bvc-fy-AoI" firstAttribute="centerY" secondItem="q5C-V7-kPL" secondAttribute="centerY" id="50S-Oo-Sec"/>
+                <constraint firstItem="FgR-KN-mny" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8gI-JL-SxB"/>
                 <constraint firstItem="q5C-V7-kPL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DHe-se-LQ0"/>
                 <constraint firstItem="zed-la-wqU" firstAttribute="centerY" secondItem="0j9-bd-t8S" secondAttribute="centerY" id="EBa-u8-5mP"/>
                 <constraint firstItem="TMh-Hw-Koa" firstAttribute="centerY" secondItem="zed-la-wqU" secondAttribute="centerY" id="GJr-Ea-XfZ"/>
                 <constraint firstItem="zed-la-wqU" firstAttribute="leading" secondItem="0j9-bd-t8S" secondAttribute="trailing" constant="10" id="MeN-ha-t6G"/>
                 <constraint firstAttribute="bottom" secondItem="q5C-V7-kPL" secondAttribute="bottom" id="PId-Mt-FWZ"/>
                 <constraint firstItem="K15-LU-SqE" firstAttribute="centerY" secondItem="TMh-Hw-Koa" secondAttribute="centerY" id="SAN-es-aHP"/>
+                <constraint firstItem="FgR-KN-mny" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UHO-u6-Ga0"/>
                 <constraint firstItem="TMh-Hw-Koa" firstAttribute="leading" secondItem="zed-la-wqU" secondAttribute="trailing" id="XrO-lp-tcH"/>
                 <constraint firstItem="0j9-bd-t8S" firstAttribute="centerY" secondItem="y1w-MC-TzB" secondAttribute="centerY" id="Zhd-6h-pqK"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="K15-LU-SqE" secondAttribute="trailing" constant="10" id="a6L-Za-bWu"/>
                 <constraint firstItem="K15-LU-SqE" firstAttribute="leading" secondItem="TMh-Hw-Koa" secondAttribute="trailing" id="aPD-Sz-Vdg"/>
+                <constraint firstAttribute="trailing" secondItem="FgR-KN-mny" secondAttribute="trailing" id="kV2-WT-Kqm"/>
                 <constraint firstItem="q5C-V7-kPL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="mfh-Rd-LIN"/>
+                <constraint firstAttribute="bottom" secondItem="mwu-oV-oHC" secondAttribute="bottom" id="pRy-ZL-I84"/>
                 <constraint firstItem="y1w-MC-TzB" firstAttribute="centerY" secondItem="Bvc-fy-AoI" secondAttribute="centerY" id="pv2-SF-gm2"/>
                 <constraint firstItem="y1w-MC-TzB" firstAttribute="leading" secondItem="Bvc-fy-AoI" secondAttribute="trailing" id="rww-Nf-yuc"/>
+                <constraint firstAttribute="trailing" secondItem="mwu-oV-oHC" secondAttribute="trailing" id="tK2-kY-eGU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="642.02898550724638" y="128.23660714285714"/>
+            <point key="canvasLocation" x="186.95652173913044" y="127.56696428571428"/>
         </view>
     </objects>
     <resources>

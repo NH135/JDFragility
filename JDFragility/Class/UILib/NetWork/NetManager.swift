@@ -54,7 +54,6 @@ class NetManager: NSObject {
         //            let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData)
         let userDefault = UserDefaults.standard
         let stringValue = userDefault.string(forKey: "Ticket") ?? ""
-//        let stringValue =  "0111CBEB351657B3061C44EAE2968E21EC8A99CE04DA64EF1E7EB168339A6F14CBA6B287885457522B86FA7BCC95138904BE7BD222EB3EDA92CA0C20B0DD13916AB778CC4A27C99E88313E8A3DE20D2B2715604CF7373AE1309521EBE1E40FFBB6221E1B080E46E73187A1A76582CA96FBEC74FAB63B6A4F2F1DB2729B13A79CDEA5E34C6DD13156B89C5A70C27E12B4CC9338FEE6A178B2663B3BE80E25F701C06FBE9C5AFC56FD5720E0F5490BCB75BDD855A83CB9875898257BEB15FDA500D22D7B7FCB5AC18EE47DEF229600E6844B5BC89CCE5EB6619B2C0E91A9B7E777290D3F872A69BF69D3718894F5104EA2BEA12FD9D3F390D6750506D14F895F9C92EABE27AA4131BA2CF306E59E139E5FAB20432E0B6BC20143828C431BE607EE7B7DF76A862309FB72212A3460452F036C4D397A9E3399C5391EE93F6D68D5630A272D5BCBDC25C94D83682F7FD9018CFDD3DB1F391481EC90F3F8B7C0F240DB5B864F6C93CDA452C4592C7CBFF75AC11F45A069E5BCC2E76C6772B86B0F7818F99BA88632F48FE3A57C13F151887A8C36231E86AD3CFE6E7488999A31301494"
         return ["Authorization": "BasicAuth " + stringValue]
     }
     ///缓存存储地址
@@ -146,7 +145,7 @@ class NetManager: NSObject {
                                     ////                                            _ = Keychain.clear()
                                     //                                            return
                                     //                                        }
-                                    
+                                    NHMBProgressHud.hideHud()
                                     print("url=\(url)接口返回的 =\(value)")
                                     if value["code"] != nil {
                                         let code = value["code"] ?? 400
@@ -180,6 +179,7 @@ class NetManager: NSObject {
                         headers: ewHttpHeaders).responseJSON { (response) in
                             switch response.result {
                             case .success:
+                                NHMBProgressHud.hideHud()
                                 if let value = response.result.value as? [String: Any] {
                                     ///添加一些全部接口都有的一些状态判断
                                     //                                        if value["status"] as? Int == 1010 {

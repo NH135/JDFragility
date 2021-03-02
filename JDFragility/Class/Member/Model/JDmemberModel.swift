@@ -35,9 +35,10 @@ class MemberDetailModel : Convertible {
     var dfdBirthday:String?
     var cfdPhoto:String?
     var cfdAgreeMentImg:String?
+    var ffdBalance:String?
     
     var cfdMemberId:String?
-    var ffdBalance:String?
+ 
     var cfdLevelID:String?
     var cfdCardId:String?
     var ImageUrl:String?

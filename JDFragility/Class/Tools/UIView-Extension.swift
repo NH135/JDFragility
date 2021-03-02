@@ -271,7 +271,12 @@ public extension UIView {
         tap.minimumPressDuration = 0.5
         self.addGestureRecognizer(tap)
     }
-    
+    /// 移除所有子控件
+    @objc func removeAllSubViews(){
+          if self.subviews.count>0{
+              self.subviews.forEach({$0.removeFromSuperview()})
+          }
+    }
     /// UIView点击事件
     @objc func k_tapAction(tap: UIGestureRecognizer) {
         DispatchQueue.main.async {

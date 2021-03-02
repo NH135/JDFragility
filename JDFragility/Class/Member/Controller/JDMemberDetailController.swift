@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManager
 import Kingfisher
 class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var iconImageV: UIImageView!
@@ -47,8 +48,12 @@ class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var yuyueBtn: UIButton!
     @IBOutlet weak var huiyuanBtn: UIButton!
     @IBOutlet weak var kaidanBtn: UIButton!
-    var memberModel = JDmemberModel()
     
+    var memberModel = JDmemberModel()
+    var vv = UIView()
+
+    @IBOutlet weak var chongzhiBtn: UIButton!
+//    var czView = JDCZView()
     
     
     var orderKCArr = [JDhuiyuanDetail]()
@@ -59,7 +64,7 @@ class JDMemberDetailController: JDBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                    title="会员360"
+        title="会员360"
         view.backgroundColor=UIColor.k_colorWith(hexStr: "#f8f8f8")
         setUI()
         setfooterUI()
@@ -69,19 +74,152 @@ class JDMemberDetailController: JDBaseViewController {
 }
 
 extension JDMemberDetailController{
+    
+    
+    
+    //键盘弹起
+      @objc func keyboardWillAppear(notification: NSNotification) {
+  
+          //设置中心点偏移
+          UIView.animate(withDuration: 0.5) {
+//              if y < 0 {
+                  self.vv.origin.y = -200
+//              }
+          }
+      }
+      
+      //键盘落下
+      @objc func keyboardWillDisappear(notification:NSNotification){
+ 
+          UIView.animate(withDuration: 0.5) {
+              self.vv.origin.y = 0
+          }
+      }
+    func searchData(){
+        //         搜索会员
+                   
+        let params = ["cfdMoTel": memberModel.Member.cfdMoTel ?? ""]
+                    NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
+                        NHMBProgressHud.hideHud()
+                        guard let dics = dic as? [String : Any] else {
+                            
+                            return
+                        }
+                        self.memberModel =  dics.kj.model(JDmemberModel.self)
+
+                    } error: { (error) in
+                        NHMBProgressHud.hideHud()
+                        NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+                    }
+
+                    
+                }
+    @objc func resh()  {
+        searchData()
+    }
     func setUI()  {
+  
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+               NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+ 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(resh))
         iconImageV.cornerRadius(radius: 10)
         self.xieyiV.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         xieyiV.k_addTarget { (_) in
             self.xieyiV.isHidden = true
+ 
         }
         huiyuanBtn.addAction { (_) in
+ 
             self.xieyiV.isHidden = false
         }
+       
+        self.vv = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        self.vv.isHidden = true
+        self.vv.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        Kwindow.window?.addSubview(self.vv)
+        let coloseViewBtn = UIButton(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
+        
+        self.vv.addSubview(coloseViewBtn)
+ 
+        let czView = JDCZView.sg_loadFromNib() as! JDCZView
+        czView.frame = CGRect(x: 150, y: 100, width: kScreenWidth-300, height: 500)
+        czView.cornerRadius(radius:  10)
+        self.vv.addSubview(czView)
+ 
+  
+        
+        
+     czView.iconI.setHeaderImageUrl(url: memberModel.Member.ImageUrl ?? "")
+     czView.nameL.text = " \(memberModel.Member.cfdMemberName ?? "")/\( memberModel.Member.cfdMoTel ?? "")"
+      czView.lastMoneyL.text = "当前余额：\(memberModel.Member.ffdBalance ?? "")"
+      czView.mendianL.text = "充值门店：\(memberModel.Member.cfdFendianName ?? "")"
+        chongzhiBtn.cornerRadius(radius: 15)
+        chongzhiBtn.addAction { (_) in
+            self.vv.isHidden = false
+//            self.vv.removeAllSubViews()
+        }
+        czView.closeBtn.addAction { (_) in
+            
+            for (_,textF) in czView.textArr.enumerated() {
+                textF.text = ""
+                
+            }
+            czView.MoneyL.text = "充值金额：¥0"
+            self.vv.isHidden = true
+ 
+            self.view.endEditing(true)
+        }
+        czView.sureB.addAction { (_) in
+            
+            if czView.allMoeny == 0{
+                NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
+                return
+            } 
+            var moneyArr = [payModel]()
+            for (_, item) in czView.textArr.enumerated(){
+                
+                    if item.text?.isEmpty == false {
+                        var pmodel = payModel()
+                        pmodel.ifdId = item.tag;
+                        pmodel.ffdIncome = item.text ?? ""
+                        moneyArr.append(pmodel)
+                    }
+            }
+            
+            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+            
+            let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
+            let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+            NetManager.ShareInstance.postWith(url: "api/IPad/IPadMemberRecharge", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? "","cfdEmployeeId":cfdEmployeeId,"cfdFendianId":cfdFendianId,"cfdCaiWustr":moneyArr.kj.JSONString()]) {  (_) in
+                NHMBProgressHud.showSuccesshTips(message: "充值成功，请刷新查看")
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                self.vv.isHidden = true
+                czView.MoneyL.text = "充值金额：¥0"
+                for (_,textF) in czView.textArr.enumerated() {
+                    textF.text = ""
+                }
+                self.searchData()
+            } error: { (error) in
+                NHMBProgressHud.showSuccesshTips(message: "转预付金转金额失败，请重试")
+                NHMBProgressHud.hideHud()
+            }
+
+        }
+        coloseViewBtn.addAction { (_) in
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            self.vv.isHidden = true
+            czView.MoneyL.text = "充值金额：¥0"
+            for (_,textF) in czView.textArr.enumerated() {
+                textF.text = ""
+                
+            }
+        }
+
         nameL.text = memberModel.Member.cfdMemberName
 //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
         scoureL.text = "客户来源:\(memberModel.Member.cfdSource ?? "")   手机号:\( memberModel.Member.cfdMoTel ?? "")"
-        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")"
+        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")  余额:\( memberModel.Member.ffdBalance ?? "")"
         yuyueBtn.cornerRadius(radius: 15)
         xieyiI.setCategorymageUrl(url: memberModel.Member.cfdAgreeMentImg ?? "")
         yuyueBtn.addAction { (_) in
@@ -295,7 +433,10 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
                 
             } otherButtonBlock: { (_) in
                 NHMBProgressHud.showLoadingHudView(message: "加载中～～")
-                NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditBusListApply", params: ["cfdBusListGUID":reserveMode.cfdBusListGUID ?? ""]) { [self] (_) in
+                
+                let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
+                let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadEditBusListApply", params: ["cfdBusListGUID":reserveMode.cfdBusListGUID ?? "","cfdEmployeeId":cfdEmployeeId,"cfdFendianId":cfdFendianId]) { [self] (_) in
                     NHMBProgressHud.hideHud()
                     NHMBProgressHud.showSuccesshTips(message: "转预付金转金额成功！")
                     for (index,item) in orderYFArr.enumerated(){
