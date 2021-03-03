@@ -27,10 +27,13 @@ class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var twoV: UITableView!
     @IBOutlet weak var threeV: UITableView!
     @IBOutlet weak var fourV: UITableView!
+    @IBOutlet weak var fiveV: UITableView!
     @IBOutlet weak var oneB: UIButton!
     @IBOutlet weak var twoB: UIButton!
     @IBOutlet weak var threeB: UIButton!
     @IBOutlet weak var fourB: UIButton!
+    @IBOutlet weak var fiveB: UIButton!
+    
     @IBOutlet weak var kdnL: UILabel!
     @IBOutlet weak var kedanL: UILabel!
     @IBOutlet weak var csnL: UILabel!
@@ -47,6 +50,7 @@ class JDMemberDetailController: JDBaseViewController {
     @IBOutlet weak var jiangeL: UILabel!
     @IBOutlet weak var yuyueBtn: UIButton!
     @IBOutlet weak var huiyuanBtn: UIButton!
+
     @IBOutlet weak var kaidanBtn: UIButton!
     
     var memberModel = JDmemberModel()
@@ -58,6 +62,7 @@ class JDMemberDetailController: JDBaseViewController {
     
     var orderKCArr = [JDhuiyuanDetail]()
     var orderYFArr = [JDhuiyuanDetail]()
+    var yhjArr = [JDhuiyuanDetail]()
     
     var lastKCArr = [TimeListModel]()
     var caozuoKCArr = [TimeListModel]()
@@ -259,6 +264,7 @@ extension JDMemberDetailController{
                 self.twoB.isEnabled = true
                 self.threeB.isEnabled = true
                 self.fourB.isEnabled = true
+                self.fiveB.isEnabled = true
                 self.typeView(with: 1)
             }
         twoB.addAction { (btn:UIButton) in
@@ -266,13 +272,16 @@ extension JDMemberDetailController{
             self.oneB.isEnabled = true
             self.threeB.isEnabled = true
             self.fourB.isEnabled = true
+            self.fiveB.isEnabled = true
             self.typeView(with: 2)
+            
         }
         threeB.addAction { (btn:UIButton) in
             btn.isEnabled=false
             self.twoB.isEnabled = true
             self.oneB.isEnabled = true
             self.fourB.isEnabled = true
+            self.fiveB.isEnabled = true
             self.typeView(with: 3)
         }
         fourB.addAction { (btn:UIButton) in
@@ -280,31 +289,41 @@ extension JDMemberDetailController{
             self.twoB.isEnabled = true
             self.threeB.isEnabled = true
             self.oneB.isEnabled = true
+            self.fiveB.isEnabled = true
             self.typeView(with: 4)
         }
-        
+        fiveB.addAction { (btn:UIButton) in
+            btn.isEnabled=false
+            self.twoB.isEnabled = true
+            self.threeB.isEnabled = true
+            self.oneB.isEnabled = true
+            self.fourB.isEnabled = true
+            self.typeView(with: 5)
+        }
     }
     func typeView(with type:NSInteger) {
         
-        self.oneV.isHidden=true;
-        self.twoV.isHidden=true;
-        self.threeV.isHidden=true;
-        self.fourV.isHidden=true;
-       
+         oneV.isHidden=true;
+         twoV.isHidden=true;
+         threeV.isHidden=true;
+         fourV.isHidden=true;
+        fiveV.isHidden = true
         switch type {
         case 1:
-            self.oneV.isHidden=false;
+       oneV.isHidden=false;
             setShpingtype(type: "true")
         case 2:
-            self.twoV.isHidden=false;
+            twoV.isHidden=false;
             lastKecheng()
         case 3:
-            self.threeV.isHidden=false;
+           threeV.isHidden=false;
             setShpingtype(type: "false")
-        default:
-            
-            self.fourV.isHidden=false;
+        case 4:
+             fourV.isHidden=false;
             caozuo()
+        default:
+             fiveV.isHidden = false
+            youhuijuan()
         }
     }
 
@@ -320,6 +339,8 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             return lastKCArr.count
         }else if tableView == threeV {
             return self.orderYFArr.count
+        }else if tableView == fiveV {
+            return yhjArr.count
         }else {
             return caozuoKCArr.count
         }
@@ -335,6 +356,9 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         }else if tableView == threeV {
             let mode  = orderYFArr[indexPath.row]
             return mode.goumaiHeight ?? 150
+        }else if tableView == fiveV {
+          
+            return   120
         }else{
             return 40
         }
@@ -361,9 +385,6 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
                 tit.textAlignment = .center
                 headerV.addSubview(tit)
             }
-            
-            
-            
             for (index,item) in numbs.enumerated() {
                 let titt = UILabel(frame: CGRect(x: 420 + width * CGFloat(index) , y: 0, width: width, height: 50))
                
@@ -396,9 +417,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             return UIView();
         }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return
-    }
+  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == oneV {
             let cell = tableView.k_dequeueReusableCell(cls: JDgoumaikcCell.self, indexPath: indexPath)
@@ -418,10 +437,16 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             cell.ifdType = false;
              cell.yufuModel = orderYFArr[indexPath.row]
             return cell
-        }else  {
+        }else if tableView == fourV{
             let cell = tableView.k_dequeueReusableCell(cls: JDNewcaozuoCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
             cell.lastModel = caozuoKCArr[indexPath.row]
+            return cell
+        }
+        else  {
+            let cell = tableView.k_dequeueReusableCell(cls: JDDetaileYhjCell.self, indexPath: indexPath)
+            cell.selectionStyle = .none
+            cell.yhjModel = yhjArr[indexPath.row]
             return cell
         }
           
@@ -475,7 +500,10 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         threeV.emptyDataSetDelegate = self
         fourV.emptyDataSetSource = self
         fourV.emptyDataSetDelegate = self
-        
+        fiveV.emptyDataSetSource = self
+        fiveV.emptyDataSetDelegate = self
+        fiveV.delegate = self
+        fiveV.dataSource = self
         threeV.delegate = self
         fourV.delegate = self
         oneV.dataSource = self
@@ -492,7 +520,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         
         twoV.k_registerCell(cls: JDlasteCaozuowCell.self)
         fourV.k_registerCell(cls: JDNewcaozuoCell.self)
-        
+        fiveV.k_registerCell(cls: JDDetaileYhjCell.self)
      
         
 //         fourV.tableHeaderView = headerV;
@@ -551,8 +579,19 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         } error: { (error) in
             NHMBProgressHud.hideHud()
         }
-
-        
     }
     
+    func youhuijuan() {
+        
+        NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryTokenList", params: ["cfdMemberId":self.memberModel.Member.cfdMemberId ?? ""  ]) { (dic) in
+            print(dic)
+            NHMBProgressHud.hideHud()
+            guard let arr = dic as? [[String : Any]] else { return }
+                self.yhjArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+                self.fiveV.reloadData()
+        } error: { (error) in
+            NHMBProgressHud.hideHud()
+        }
+    }
 }

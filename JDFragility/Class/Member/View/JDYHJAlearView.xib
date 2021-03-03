@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JDYHJAlearView" customModule="JDFragility" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="718" height="593"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sot-A9-uJg">
+                    <rect key="frame" x="0.0" y="0.0" width="718" height="593"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQb-Us-qco">
+                    <rect key="frame" x="159" y="46.5" width="400" height="500"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAe-dT-cDp">
+                            <rect key="frame" x="350" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="AbQ-hE-hx1"/>
+                                <constraint firstAttribute="width" constant="50" id="nbU-YH-md6"/>
+                            </constraints>
+                            <state key="normal" title="X">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用规则" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5F-Aw-mE4">
+                            <rect key="frame" x="20" y="60" width="73.5" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.srs.rerw温热 2.34534分地方" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omp-le-awu">
+                            <rect key="frame" x="20" y="91" width="104.5" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.45355761690295388" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="400" id="4t6-nv-SzP"/>
+                        <constraint firstItem="omp-le-awu" firstAttribute="leading" secondItem="T5F-Aw-mE4" secondAttribute="leading" id="5QF-tc-98D"/>
+                        <constraint firstItem="T5F-Aw-mE4" firstAttribute="leading" secondItem="FQb-Us-qco" secondAttribute="leading" constant="20" id="FFU-bZ-fvc"/>
+                        <constraint firstItem="T5F-Aw-mE4" firstAttribute="top" secondItem="mAe-dT-cDp" secondAttribute="bottom" constant="10" id="Stk-AI-Aev"/>
+                        <constraint firstItem="omp-le-awu" firstAttribute="top" secondItem="T5F-Aw-mE4" secondAttribute="bottom" constant="10" id="eUF-5U-0iX"/>
+                        <constraint firstAttribute="trailing" secondItem="mAe-dT-cDp" secondAttribute="trailing" id="g22-D3-rsN"/>
+                        <constraint firstItem="mAe-dT-cDp" firstAttribute="top" secondItem="FQb-Us-qco" secondAttribute="top" id="jbL-FI-t7T"/>
+                        <constraint firstAttribute="height" constant="500" id="x4g-qO-d0b"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.38998527267352251" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Sot-A9-uJg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ws9-C0-lTg"/>
+                <constraint firstItem="FQb-Us-qco" firstAttribute="centerY" secondItem="Sot-A9-uJg" secondAttribute="centerY" id="aWE-gH-Vic"/>
+                <constraint firstItem="Sot-A9-uJg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gW6-7G-Usk"/>
+                <constraint firstAttribute="trailing" secondItem="Sot-A9-uJg" secondAttribute="trailing" id="mEd-sD-Neh"/>
+                <constraint firstAttribute="bottom" secondItem="Sot-A9-uJg" secondAttribute="bottom" id="nNB-qE-jKH"/>
+                <constraint firstItem="FQb-Us-qco" firstAttribute="centerX" secondItem="Sot-A9-uJg" secondAttribute="centerX" id="qsx-d7-s8G"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="guizeL" destination="omp-le-awu" id="xBz-eL-WnO"/>
+            </connections>
+            <point key="canvasLocation" x="352.17391304347831" y="406.80803571428572"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -24,6 +24,14 @@ class JDhuiyuanDetail: Convertible {
     var ifdType:String?;
     var cfdFendianName:String?;
     var cfdPhoto:String?;
+    
+    var cfdTokenType:String?;
+    var dfdCreateDate:String?;
+    var dfdUseEndDatetime:String?;
+    var dfdFaceValue:String?;
+    var cfdSImgSrc:String?;
+    var cfdRemark:String?;
+    
     /// 展开以后的高度
     var kechengHeight: CGFloat? {
         return 137 +  CGFloat(TimeList.count) * 30.0
