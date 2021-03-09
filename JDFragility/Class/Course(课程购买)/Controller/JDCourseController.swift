@@ -10,9 +10,9 @@ import MJRefresh
 import KakaJSON
 import IQKeyboardManager
 class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-   
     
-
+    
+    
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
     @IBOutlet weak var iconImageV: UIImageView!
@@ -58,10 +58,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
             title = "换课"
         }
         memBerT.text = telStr
-        
-        extendedLayoutIncludesOpaqueBars = false
-        automaticallyAdjustsScrollViewInsets = false
-//        edgesForExtendedLayout = .bottom
+        iconImageV.cornerRadius(radius: 20)
         view.backgroundColor=UIColor.k_colorWith(hexStr: "e1e1e1")
         let headerV  = UIView(frame: CGRect(x: 0, y: 0, width: 280, height: 55))
         headerV.backgroundColor=UIColor.k_colorWith(hexStr: "#409EFF")
@@ -77,40 +74,40 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
         leftTableView.dataSource = self;
         leftTableView.tableFooterView=UIView()
         leftTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
-     leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
-      rightTableView.delegate = self;
-     rightTableView.dataSource = self;
-          rightTableView.emptyDataSetSource = self;
+        leftTableView.k_registerCell(cls: JDgroupCell.classForCoder())
+        rightTableView.delegate = self;
+        rightTableView.dataSource = self;
+        rightTableView.emptyDataSetSource = self;
         rightTableView.emptyDataSetDelegate = self
-      rightTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        rightTableView.contentInset=UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         rightTableView.tableFooterView=UIView()
-     rightTableView.k_registerCell(cls: JDCourseCell.classForCoder())
-            setData()
+        rightTableView.k_registerCell(cls: JDCourseCell.classForCoder())
+        setData()
         setRightshopingView()
-            rightTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-                if self.classId == nil{
-                    self.rightTableView.mj_header?.endRefreshing()
+        rightTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            if self.classId == nil{
+                self.rightTableView.mj_header?.endRefreshing()
                 
-                    return
-                }
-                self.search()
-                self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
-            })
+                return
+            }
+            self.search()
+            self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
+        })
         searchBtn.addAction { (_) in
             self.search()
         }
-        }
-         
- 
+    }
+    
+    
 }
 
 extension JDCourseController{
     
     func setData()  {
-      
+        
         NHMBProgressHud.showLoadingHudView(message: "加载中···")
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseClassList", params: nil) { (dic) in
-     
+            
             NHMBProgressHud.hideHud()
             guard let arr = dic as? [[String : Any]] else { return }
             self.groups  = arr.kj.modelArray(JDGroupModel.self)
@@ -120,35 +117,53 @@ extension JDCourseController{
                 self.memberTelL.text = self.namelTelStr ?? "请输入会员手机号进行查询：";
                 self.memBerT.becomeFirstResponder()
             }
-         
-
+            
+            
         } error: { (error) in
- 
+            
             NHMBProgressHud.hideHud()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
-
+        
     }
 }
 
 extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderViewDelegate,courseAddDelegate{
- 
-      
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == leftTableView{
-        return groups.count
+            return groups.count
         }else{
             return 1
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == shopingTableView{
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                shopingGroups.remove(at: indexPath.row)
+                shopingTableView.reloadData()
+                //                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableView.RowAnimationn.Fade)
+            }
+        }
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        "删除"
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tableView == shopingTableView{
+            return true
+        }
+        return false
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == leftTableView{
             
-        let group :JDGroupModel = groups[section]
-         
+            let group :JDGroupModel = groups[section]
+            
             return group.isOpen == true ? group.list.count : 0
- 
+            
         }else if tableView == rightTableView{
             return rightGroups.count
         }else{
@@ -156,14 +171,14 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if tableView == leftTableView{
             let cell = tableView.k_dequeueReusableCell(cls: JDgroupCell.self, indexPath: indexPath)
             
             let group  = groups[indexPath.section]
-//            cell.selectedBackgroundView.backgroundColor=[UIColor blackColor];
+            //            cell.selectedBackgroundView.backgroundColor=[UIColor blackColor];
             cell.selectedBackgroundView = UIView()
-               cell.selectedBackgroundView?.backgroundColor =
+            cell.selectedBackgroundView?.backgroundColor =
                 UIColor.k_colorWith(hexStr: "#A0CFFF")
             cell.textLabel?.highlightedTextColor = UIColor.white
             cell.friendData = group.list[indexPath.row]
@@ -177,11 +192,11 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         }else{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
             cell.detaileModel = shopingGroups[indexPath.row]
-//            cell.delegate = self
+            //            cell.delegate = self
             cell.selectionStyle = .none;
             return cell
         }
-       
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == leftTableView {
@@ -197,13 +212,13 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == leftTableView {
-        let header:HeaderView = HeaderView.headerViewWithTableView(tableView: tableView)
-         header.delegate = self
+            let header:HeaderView = HeaderView.headerViewWithTableView(tableView: tableView)
+            header.delegate = self
             
             header.backgroundColor=UIColor.k_colorWith(hexStr: "#F7F8FA")
-        header.group = groups[section]
-         return header
-     }
+            header.group = groups[section]
+            return header
+        }
         return UIView()
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -213,7 +228,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             return 0
         }
     }
-   
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == leftTableView {
             
@@ -226,8 +241,8 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
                 return
             }
             
-    
-   
+            
+            
             classId = groupDetail.cfdCourseClassId
             rightTableView.mj_header?.beginRefreshing()
         }else{
@@ -237,18 +252,18 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     
     func getCargarycfdCourseClassId(cfdCourseClassId:String)  {
         let params = ["cfdCourseClassId":cfdCourseClassId]
-      
+        
         NetManager.ShareInstance.getWith(url: "api/IPad/IPadQCourseList", params: params) { (dic) in
             self.rightTableView.mj_header?.endRefreshing()
             guard let arr = dic as? [[String : Any]] else { return }
             self.rightGroups = arr.kj.modelArray(JDGroupProjectModel.self)
             self.rightTableView.reloadData()
-
+            
         } error: { (error) in
             self.rightTableView.mj_header?.endRefreshing()
             NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
-
+        
     }
     
     func headerViewDidClickedNameView(model:JDGroupModel,isSted:Bool) {
@@ -256,7 +271,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
         for m in groups {
             m.isOpen = false
             if m.cfdCourseClassId == model.cfdCourseClassId {
-                    m.isOpen = isSted
+                m.isOpen = isSted
             }
         }
         
@@ -269,7 +284,7 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     
     func addjianCourse(type: Bool, model: JDGroupProjectModel) {
         if type == true {
-         self.shopingGroups.append(model)
+            self.shopingGroups.append(model)
         }else{
             for (index,m) in shopingGroups.enumerated() {
                 if m.cfdCourseClassId == model.cfdCourseClassId {
@@ -288,26 +303,26 @@ extension JDCourseController{
         
         return true
     }
-  
+    
     func search() {
         view.endEditing(true)
         guard memBerT.text?.length == 11 else {
             NHMBProgressHud.showErrorMessage(message: "请输入正确的手机号")
             return
         }
-//         搜索会员
+        //         搜索会员
         
         NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
             NHMBProgressHud.hideHud()
         }
         let params = ["cfdMoTel": memBerT.text ?? ""]
-     
+        
         
         if isHuanKe {
             NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMemberCourse", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
-               
+                
                 guard let dics = dic as? [String : Any] else {
                     self.memBerT.text = ""
                     NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
@@ -327,29 +342,29 @@ extension JDCourseController{
             } error: { (error) in
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
-
+            
         }else{
-        
-        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
-            NHMBProgressHud.hideHud()
-           
-            guard let dics = dic as? [String : Any] else {
-                self.memBerT.text = ""
-                NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
-                return
+            
+            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: params) { (dic) in
+                NHMBProgressHud.hideHud()
                 
+                guard let dics = dic as? [String : Any] else {
+                    self.memBerT.text = ""
+                    NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                    return
+                    
+                }
+                self.memberModel =  dics.kj.model(MemberDetailModel.self)
+                self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
+                self.view.endEditing(true)
+                self.iconImageV.setHeaderImageUrl(url: self.memberModel.cfdPhoto ?? "")
+                self.cfdMemberId = self.memberModel.cfdMemberId
+                //                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+                self.rightTableView.mj_header?.beginRefreshing()
+            } error: { (error) in
+                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
-            self.memberModel =  dics.kj.model(MemberDetailModel.self)
-            self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
-            self.view.endEditing(true)
-            self.iconImageV.setHeaderImageUrl(url: self.memberModel.cfdPhoto ?? "")
-            self.cfdMemberId = self.memberModel.cfdMemberId
-//                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
-            self.rightTableView.mj_header?.beginRefreshing()
-        } error: { (error) in
-            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
-        }
-
+            
         }
     }
     
@@ -367,13 +382,13 @@ extension JDCourseController{
         self.shopingTableView.emptyDataSetDelegate = self
         self.shopingTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
         shopingTableView.tableFooterView = UIView()
-//        购物车
+        //        购物车
         goShopingBtn.addAction { (_) in
-//            let save =  JDsaveKCController()
-//            save.cfdBusListGUID = "d584880b-f388-4b43-9c11-f564b5930111"  //金额
-////          save.cfdBusListGUID = "f8e35198-ccc0-4c32-86fe-0f46940b0614"  //多选
-//            self.navigationController?.pushViewController(save, animated: true)
-
+            //            let save =  JDsaveKCController()
+            //            save.cfdBusListGUID = "d584880b-f388-4b43-9c11-f564b5930111"  //金额
+            ////          save.cfdBusListGUID = "f8e35198-ccc0-4c32-86fe-0f46940b0614"  //多选
+            //            self.navigationController?.pushViewController(save, animated: true)
+            
             self.shopingTableView.reloadData()
             UIView.animate(withDuration: 0.25) {
                 self.shopingView.transform = CGAffineTransform(translationX: -300, y: 0)
@@ -383,8 +398,8 @@ extension JDCourseController{
         
         zheBg.k_addTarget { (_) in
             UIView.animate(withDuration: 0.25) {
-            self.shopingView.transform = CGAffineTransform.identity
-            self.zheBg.isHidden = true
+                self.shopingView.transform = CGAffineTransform.identity
+                self.zheBg.isHidden = true
             }
         }
         
@@ -394,7 +409,7 @@ extension JDCourseController{
                 return }
             
             if self.isHuanKe == true {
-//              "换课"
+                //              "换课"
                 let huanSave = JDhuanKeSaveController()
                 huanSave.shopingGroups = self.shopingGroups
                 huanSave.TimeList = self.TimeList
@@ -404,34 +419,34 @@ extension JDCourseController{
                 
                 
             }else{
-            let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
-            let aa : String = self.shopingGroups.kj.JSONString()
-
-
-            let params = ["cfdFendianId":cfdFendianId ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":self.cfdMemberId,"cfdCourseStr":aa]
-            
-            NHMBProgressHud.showLoadingHudView(message: "正在生成账单～～")
-            NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddBusList", params: params as [String : Any]) { (dic) in
-                NHMBProgressHud.hideHud()
-                self.shopingGroups.removeAll()
-                self.shopingTableView.reloadData()
-                self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
-                let settlement = JDSettlementController()
-                settlement.cfdBusListGUID  = (dic["cfdBusListGUID"] as! String)
-                settlement.memberModel = self.memberModel;
-                self.navigationController?.pushViewController(settlement, animated: true)
-                UIView.animate(withDuration: 0.25) {
-                self.shopingView.transform = CGAffineTransform.identity
-                self.zheBg.isHidden = true
+                let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
+                let cfdEmployeeId = UserDefaults.standard.string(forKey: "cfdEmployeeId") ?? ""
+                let aa : String = self.shopingGroups.kj.JSONString()
+                
+                
+                let params = ["cfdFendianId":cfdFendianId ,"cfdEmployeeId":cfdEmployeeId,"cfdMemberId":self.cfdMemberId,"cfdCourseStr":aa]
+                
+                NHMBProgressHud.showLoadingHudView(message: "正在生成账单～～")
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddBusList", params: params as [String : Any]) { (dic) in
+                    NHMBProgressHud.hideHud()
+                    self.shopingGroups.removeAll()
+                    self.shopingTableView.reloadData()
+                    self.getCargarycfdCourseClassId(cfdCourseClassId: self.classId ?? "")
+                    let settlement = JDSettlementController()
+                    settlement.cfdBusListGUID  = (dic["cfdBusListGUID"] as! String)
+                    settlement.memberModel = self.memberModel;
+                    self.navigationController?.pushViewController(settlement, animated: true)
+                    UIView.animate(withDuration: 0.25) {
+                        self.shopingView.transform = CGAffineTransform.identity
+                        self.zheBg.isHidden = true
+                    }
+                } error: { (error) in
+                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
                 }
-            } error: { (error) in
-                NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
         }
-        }
     }
- 
+    
     func ObjectToJSONString(object: Any) -> String? {
         do {
             let data = try JSONSerialization.data(withJSONObject: object, options: []);
@@ -442,7 +457,7 @@ extension JDCourseController{
         }
         return nil;
     }
-
+    
     
 }
 //open

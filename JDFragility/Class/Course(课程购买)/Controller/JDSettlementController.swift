@@ -32,18 +32,16 @@ class JDSettlementController: JDBaseViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var contenView: UIView!
     
     var isYf = false
-    
-    var lastSelectIndex : IndexPath?
-    var selectIndexs = Array<Any>()
-    var isMore : Bool = false
-    @IBOutlet weak var contenL: UILabel!
+    @IBOutlet weak var contenL: UIButton!
     var cfdBusListGUID : String?
     var memberModel : MemberDetailModel?
     var jiesuanModel : JDjiesuanModel?
     var allMoeny : Int = 0
+    var yhjMoeny : Int = 0
     var payAllArr = [String]()
     var textArr = [UITextField]()
-    
+    var yhjArr = [JDhuiyuanDetail]()
+    var setedyhjArr = [JDhuiyuanDetail]()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "课程结帐"
@@ -109,15 +107,16 @@ extension JDSettlementController:UITextFieldDelegate{
          
         }
         //        获取优惠卷
-        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryTokenList", params: ["cfdMemberId":memberModel?.cfdMemberId ?? "" ] as [String : Any]) { (dic) in
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryTokenList", params: ["cfdMemberId":memberModel?.cfdMemberId ?? "","cfdBusListGUID":self.cfdBusListGUID ?? "" ] as [String : Any]) { (dic) in
             print("优惠卷\(dic)")
-            //            guard let dict = dic as? [[String : Any]] else{
-            //                return
-            //            }
-            //            self.jiesuanModel = dict.kj.modelArray(JDjiesuanModel.self)
-            //            self.rightTableView.reloadData()
+            
+            if let arr = dic as? [[String : Any]] {
+                self.yhjArr  = arr.kj.modelArray(JDhuiyuanDetail.self)
+            }
+            self.yhjTableView.reloadData()
         } error: { (error) in
-//            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+            NHMBProgressHud.hideHud()
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
         }
     }
     func addPayType(list:[payModel]) {
@@ -129,8 +128,14 @@ extension JDSettlementController:UITextFieldDelegate{
             payView.addSubview(vv)
             let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
             btn.setTitle(item.cfdPayMode, for: .normal)
-            btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
-            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
+           
+            if item.cfdPayMode == "余额" {
+                btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -30, bottom: 12, right: 10)
+                btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -70, bottom: 0, right: 0)
+            }else{
+                btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
+                btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
+            }
             btn.imageView?.contentMode = .scaleAspectFit
 //            btn.contentHorizontalAlignment = .left
             btn.kf.setImage(with: URL(string: item.cfdImgSrc ?? ""), for: .normal, placeholder: UIImage(named: "yue"), options: nil, progressBlock: nil, completionHandler: nil)
@@ -151,20 +156,21 @@ extension JDSettlementController:UITextFieldDelegate{
     }
         func textFieldDidEndEditing(_ textField: UITextField) {
             allMoeny = 0
+//            allMoeny += yhjMoeny
             for (_,textF) in textArr.enumerated() {
                 
                 if textF.text?.k_isNumber == true {
                     allMoeny  = allMoeny + Int(textF.text ?? "0")!
                 }
             }
-            shifuML.text = "实付金额：\(allMoeny)"
+            shifuML.text = "实付金额：¥\(allMoeny)"
             shifuML.wl_changeColor(withTextColor: UIColor.black, changeText: "实付金额：")
             
-            if allMoeny >=  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
+            if allMoeny >= (self.jiesuanModel?.BusList.ffdBusMoney  ?? 0 - yhjMoeny)   {
                 self.wanB.isEnabled = false
                 self.yuB.isEnabled = true
             }
-            if allMoeny >  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
+            if allMoeny > (self.jiesuanModel?.BusList.ffdBusMoney  ?? 0 - yhjMoeny)   {
                 NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
             }
         }
@@ -183,6 +189,7 @@ extension JDSettlementController:UITextFieldDelegate{
 
 extension JDSettlementController{
     func setletfUI()  {
+        iconImagV.cornerRadius(radius: 40)
         nameL.text = memberModel?.cfdMemberName
         telL.text = memberModel?.cfdMoTel
         lastML.text = "当前余额：\(memberModel?.ffdBalance ?? "0")"
@@ -215,26 +222,30 @@ extension JDSettlementController{
         
         sureB.addAction { [self] (_) in
             if self.wanB.isEnabled == false{
-                
+                allMoeny += yhjMoeny
                 if self.isYf {
 //                    let yingf = (self.jiesuanModel?.BusList.ffdBusMoney ?? 0) - (self.jiesuanModel?.BusList.ffdArrear ?? 0)
                     
                     if allMoeny < self.jiesuanModel?.BusList.ffdArrear ?? 0    {
                         NHMBProgressHud.showErrorMessage(message: "输入的金额小于应付金额")
+                        allMoeny -= yhjMoeny
                         return
                     }
                     if allMoeny >  self.jiesuanModel?.BusList.ffdArrear ?? 0   {
                         NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+                        allMoeny -= yhjMoeny
                         return
                     }
                     
                 }else{
                     if allMoeny < self.jiesuanModel?.BusList.ffdBusMoney ?? 0    {
                         NHMBProgressHud.showErrorMessage(message: "您选择了完款，但您输入的金额小于应付金额")
+                        allMoeny -= yhjMoeny
                         return
                     }
                     if allMoeny >  self.jiesuanModel?.BusList.ffdBusMoney ?? 0   {
                         NHMBProgressHud.showErrorMessage(message: "您输入的金额大于了应付金额")
+                        allMoeny -= yhjMoeny
                         return
                     }
                 }
@@ -244,6 +255,7 @@ extension JDSettlementController{
             if self.yuB.isEnabled == false{
             if allMoeny == 0{
                 NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
+                allMoeny -= yhjMoeny
                 return
             }
             }
@@ -270,7 +282,7 @@ extension JDSettlementController{
                 payType = "false"
             }
             NHMBProgressHud.showLoadingHudView(message: "结帐中～～")
-            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":"","ifdType":payType,"cfdCaiWustr":moneyArr.kj.JSONString(),"isRest":self.jiesuanModel?.isRest ?? ""] as [String : Any]
+            let params = ["cfdBusListGUID":self.cfdBusListGUID ?? "","ffdMemberBalance":ffdMemberBalance ?? "","cfdTokeStr":setedyhjArr.kj.JSONString() ,"ifdType":payType,"cfdCaiWustr":moneyArr.kj.JSONString(),"isRest":self.jiesuanModel?.isRest ?? ""] as [String : Any]
 //            //            ffdMemberBalance 支付金额。 cfdTokeStr 优惠卷 ifdType true完整 false预付
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadPayBusList", params: params) { (dic) in
                 print("购买课程支付结果\(dic)")
@@ -279,13 +291,14 @@ extension JDSettlementController{
                 if dic["ifdJump"] as? Bool == true{
                     let save =  JDsaveKCController()
                     save.cfdBusListGUID = dic["cfdBusListGUID"] as? String ?? ""
-//                    self.navigationController?.pushViewController(save, animated: true)
+ 
                     self.navigationController?.ymPushViewController(save, removeSelf: true, animated: true)
                 }else{
                     self.navigationController?.popViewController(animated: true)
                 }
                 
             } error: { (error) in
+                allMoeny -= yhjMoeny
                 NHMBProgressHud.hideHud()
                 NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
             }
@@ -305,26 +318,73 @@ extension JDSettlementController{
         }
       
         yhjB.addAction { (_) in
-//            self.contenView.isHidden = false
-            NHMBProgressHud.showErrorMessage(message: "暂无优惠卷")
+            
+            if  self.yuB.isEnabled == true{
+            
+//            NHMBProgressHud.showErrorMessage(message: "暂无优惠卷")
+            self.contenView.isHidden = false;
+                
+            }else{
+                NHMBProgressHud.showErrorMessage(message: "预付款不能使用优惠卷")
+            }
+            
         }
-        
-        
-        
         yhjTableView.delegate = self
         yhjTableView.dataSource = self
-        yhjTableView.k_registerCell(cls: UITableViewCell.self)
+        yhjTableView.k_registerCell(cls: JDkechengYHJCell.self)
         
         
-        
-    }
 
-    
-    
+    }
 }
 
 
-extension JDSettlementController{
+extension JDSettlementController:jiezhangYhjSetedDelegate{
+    func jzyhj(isEnd: Bool, model: JDhuiyuanDetail?) {
+        print("\(isEnd)====\(String(describing: model))")
+        if isEnd == true {
+            setedyhjArr.append(model ?? JDhuiyuanDetail())
+        }else{
+            for (index,m) in setedyhjArr.enumerated() {
+                if m.cfdTokenCode == model?.cfdTokenCode {
+                    setedyhjArr.remove(at: index)
+                    break;
+                }
+            }
+      
+        }
+        let params = ["cfdBusListGUID":cfdBusListGUID ?? "" ,"cfdTokeStr":setedyhjArr.kj.JSONString()]
+        NetManager.ShareInstance.postWith(url: "api/IPad/IPadUseToken", params: params) { (dic) in
+            print(dic)
+            
+//            self.fuML.text = "应付：¥\( String(describing: dic["SuppMoney"] ?? "0" ) ) 优惠劵抵扣：¥\(String(describing: dic["DiscountMoney"] ?? "0"))"
+            if let payDic = dic as? [String:Any] {
+                self.fuML.text = "应付：¥\(payDic["SuppMoney"] ?? "0" ) "
+//                let yhjMonys =  payDic["DiscountMoney"]
+                self.yhjMoeny = payDic["DiscountMoney"] as! Int
+//                self.yhjMoeny = Int(payDic["DiscountMoney"] ?? 0)
+                self.yhjL.text = "优惠劵抵扣：¥\( payDic["DiscountMoney"] ?? "0")"
+                
+                self.allMoeny = 0
+
+                for (_,textF) in self.textArr.enumerated() {
+                    
+                    if textF.text?.k_isNumber == true {
+                        self.allMoeny  = self.allMoeny + Int(textF.text ?? "0")!
+                    }
+                }
+                
+            }
+        
+            
+            
+         
+        } error: { (err) in
+            print(err)
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == rightTableView {
             return 110
@@ -334,7 +394,7 @@ extension JDSettlementController{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == yhjTableView {
-            return 20
+            return self.yhjArr.count;
         }else if tableView == rightTableView {
             return self.jiesuanModel?.MCList.count ?? 0
         }else{
@@ -343,67 +403,19 @@ extension JDSettlementController{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == yhjTableView {
-            let cell = tableView.k_dequeueReusableCell(cls: UITableViewCell.self, indexPath: indexPath)
-            
-            cell.textLabel?.text = "优惠卷\(indexPath.row)"
-            if self.isMore == true {
-                for index in selectIndexs {
-                    if index as? IndexPath  == indexPath{
-                        cell.accessoryType = .checkmark
-                    }
-                }
-            }else{
-                if lastSelectIndex == indexPath {
-                    cell.accessoryType = .checkmark
-                }else{
-                    cell.accessoryView = .none
-                }
-            }
+            let cell = tableView.k_dequeueReusableCell(cls: JDkechengYHJCell.self, indexPath: indexPath)
+            cell.kcYhjModel = self.yhjArr[indexPath.row]
+            cell.delegate = self
+            cell.selectionStyle = .none
             return cell
             
         }else if tableView == rightTableView {
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
             cell.jiesuanModel = self.jiesuanModel?.MCList[indexPath.row]
+            cell.selectionStyle = .none
             return cell
         }
         return UITableViewCell()
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == yhjTableView {
-            if self.isMore == true {
-                let cell = tableView.cellForRow(at: indexPath)
-                
-                if  cell?.accessoryType == .checkmark  {
-                    cell?.accessoryType = .none
-                    for (index,item) in selectIndexs.enumerated() {
-                        if item as? IndexPath == indexPath {
-                            selectIndexs.remove(at: index)
-                        }
-                    }
-                    
-                }else{
-                    cell?.accessoryType = .checkmark
-                    selectIndexs.append(indexPath)
-                }
-                
-            }else{
-                if lastSelectIndex == nil {
-                    lastSelectIndex = indexPath
-                    let cell = tableView.cellForRow(at: indexPath)
-                    cell?.accessoryType = .checkmark
-                }else{
-                    let celled = tableView.cellForRow(at: lastSelectIndex! )
-                    celled?.accessoryType = .none
-                    
-                    lastSelectIndex = indexPath
-                    let cell = tableView.cellForRow(at: indexPath)
-                    cell?.accessoryType = .checkmark
-                    
-                    
-                }
-            }
-            
-        }
-        
-    }
+ 
 }

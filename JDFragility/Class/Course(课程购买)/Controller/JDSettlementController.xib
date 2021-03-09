@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JDSettlementController" customModule="JDFragility" customModuleProvider="target">
             <connections>
-                <outlet property="contenL" destination="buy-OD-6nf" id="p0M-MO-Rmv"/>
+                <outlet property="contenL" destination="NOy-kA-N95" id="gvr-Lb-ZzB"/>
                 <outlet property="contenView" destination="W4B-Vp-AHn" id="Ub8-4n-nbB"/>
                 <outlet property="coseB" destination="zNV-Jx-KJQ" id="ren-K4-Mpe"/>
                 <outlet property="ewmL" destination="Hbb-bp-fBH" id="rPQ-AZ-RZu"/>
@@ -199,17 +199,18 @@
                                 <action selector="showYhjBt" destination="-1" eventType="touchUpInside" id="cEq-AS-Axy"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择优惠卷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buy-OD-6nf">
-                            <rect key="frame" x="323.5" y="190.5" width="450" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOy-kA-N95">
+                            <rect key="frame" x="323.5" y="170.5" width="450" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="450" id="DPp-Tx-Rqh"/>
-                                <constraint firstAttribute="height" constant="40" id="Ejw-zV-BrX"/>
+                                <constraint firstAttribute="height" constant="60" id="9Yw-p1-6ip"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="VEK-0u-VFU"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.25098039220000001" green="0.61960784310000006" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                            <state key="normal" title="选择优惠卷">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-UQ-8gZ">
                             <rect key="frame" x="323.5" y="230.5" width="450" height="330"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -219,7 +220,7 @@
                             </constraints>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNV-Jx-KJQ">
-                            <rect key="frame" x="713.5" y="190.5" width="60" height="40"/>
+                            <rect key="frame" x="713.5" y="180.5" width="60" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="2jz-gg-nbE"/>
                                 <constraint firstAttribute="height" constant="40" id="gbB-GQ-4Rb"/>
@@ -230,15 +231,15 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="a9t-UQ-8gZ" firstAttribute="centerY" secondItem="W4B-Vp-AHn" secondAttribute="centerY" id="3xk-sx-Klm"/>
-                        <constraint firstItem="a9t-UQ-8gZ" firstAttribute="top" secondItem="buy-OD-6nf" secondAttribute="bottom" id="4yI-RV-ce8"/>
                         <constraint firstItem="a9t-UQ-8gZ" firstAttribute="centerX" secondItem="W4B-Vp-AHn" secondAttribute="centerX" id="85U-R4-XHD"/>
                         <constraint firstAttribute="bottom" secondItem="zh7-g4-BVS" secondAttribute="bottom" id="Dmw-It-Nan"/>
-                        <constraint firstItem="buy-OD-6nf" firstAttribute="leading" secondItem="a9t-UQ-8gZ" secondAttribute="leading" id="Eqf-8Q-bqi"/>
                         <constraint firstAttribute="trailing" secondItem="zh7-g4-BVS" secondAttribute="trailing" id="Myg-GT-Hdy"/>
                         <constraint firstItem="zh7-g4-BVS" firstAttribute="leading" secondItem="W4B-Vp-AHn" secondAttribute="leading" id="g06-gd-egt"/>
                         <constraint firstItem="zh7-g4-BVS" firstAttribute="top" secondItem="W4B-Vp-AHn" secondAttribute="top" id="mhR-Za-5C3"/>
-                        <constraint firstItem="zNV-Jx-KJQ" firstAttribute="centerY" secondItem="buy-OD-6nf" secondAttribute="centerY" id="qWl-ne-1BJ"/>
+                        <constraint firstItem="a9t-UQ-8gZ" firstAttribute="top" secondItem="NOy-kA-N95" secondAttribute="bottom" id="qi2-LI-SCw"/>
+                        <constraint firstItem="NOy-kA-N95" firstAttribute="leading" secondItem="a9t-UQ-8gZ" secondAttribute="leading" id="r8w-vu-EQ3"/>
                         <constraint firstItem="zNV-Jx-KJQ" firstAttribute="trailing" secondItem="a9t-UQ-8gZ" secondAttribute="trailing" id="rXn-7S-32O"/>
+                        <constraint firstItem="zNV-Jx-KJQ" firstAttribute="centerY" secondItem="NOy-kA-N95" secondAttribute="centerY" id="y19-6f-Mbo"/>
                     </constraints>
                 </view>
             </subviews>

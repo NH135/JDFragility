@@ -20,9 +20,18 @@ class JDDetaileYhjCell: UITableViewCell {
         
         
         guizeBtn.addAction { (_) in
-            let guizeV = JDYHJAlearView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight))
-            
-            Kwindow.window?.addSubview(guizeV)
+//            if self.yhjModel?.cfdRemark?.isEmpty == false {
+        
+            let guizeV = JDYHJAlearView.sg_loadFromNib() as? JDYHJAlearView
+            guizeV?.tag = 10010
+            guizeV?.guizeL.text = self.yhjModel?.cfdRemark ?? "暂无"
+            guizeV?.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+//            guizeV.gui
+            Kwindow.window?.addSubview(guizeV ?? JDYHJAlearView())
+  
+                
+//            }
+           
             
         }
         // Initialization code

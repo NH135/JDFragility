@@ -361,8 +361,8 @@ extension JDMemberController{
                     NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                         NHMBProgressHud.hideHud()
-                    }
-                    let params = ["cfdMoTel": searchT.text ?? ""]
+                    } 
+        let params = ["cfdMoTel": searchT.text ?? "","cfdFendianId":UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""]
                     NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                         NHMBProgressHud.hideHud()
                         guard let dics = dic as? [String : Any] else {

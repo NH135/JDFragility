@@ -134,8 +134,13 @@ extension JDhuanKeSaveController:UITextFieldDelegate{
             payView.addSubview(vv)
             let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: height))
             btn.setTitle(item.cfdPayMode, for: .normal)
-            btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
-            btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
+            if item.cfdPayMode == "余额" {
+                btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -30, bottom: 12, right: 10)
+                btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -70, bottom: 0, right: 0)
+            }else{
+                btn.imageEdgeInsets = UIEdgeInsets(top: 12, left: -70, bottom: 12, right: 10)
+                btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -140, bottom: 0, right: 0)
+            }
             btn.imageView?.contentMode = .scaleAspectFit
 //            btn.setImage(UIImage(named: item.cfdImgSrc ?? ""), for: .normal)
             btn.kf.setImage(with: URL(string: item.cfdImgSrc ?? ""), for: .normal, placeholder: UIImage(named: "yue"), options: nil, progressBlock: nil, completionHandler: nil)

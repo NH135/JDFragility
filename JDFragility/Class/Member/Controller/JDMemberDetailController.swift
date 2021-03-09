@@ -103,7 +103,7 @@ extension JDMemberDetailController{
     func searchData(){
         //         搜索会员
                    
-        let params = ["cfdMoTel": memberModel.Member.cfdMoTel ?? ""]
+        let params = ["cfdMoTel": memberModel.Member.cfdMoTel ?? "","cfdFendianId":UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""]
                     NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                         NHMBProgressHud.hideHud()
                         guard let dics = dic as? [String : Any] else {
@@ -111,6 +111,10 @@ extension JDMemberDetailController{
                             return
                         }
                         self.memberModel =  dics.kj.model(JDmemberModel.self)
+                        self.nameL.text = self.memberModel.Member.cfdMemberName
+                        //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
+                        self.scoureL.text = "客户来源:\(self.memberModel.Member.cfdSource ?? "")   手机号:\( self.memberModel.Member.cfdMoTel ?? "")"
+                        self.creatL.text = "注册时间:\(self.memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( self.memberModel.Member.cfdFendianName ?? "")   生日:\( self.memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")  余额:¥ \( self.memberModel.Member.ffdBalance ?? "")"
 
                     } error: { (error) in
                         NHMBProgressHud.hideHud()
@@ -157,11 +161,12 @@ extension JDMemberDetailController{
         
      czView.iconI.setHeaderImageUrl(url: memberModel.Member.ImageUrl ?? "")
      czView.nameL.text = " \(memberModel.Member.cfdMemberName ?? "")/\( memberModel.Member.cfdMoTel ?? "")"
-      czView.lastMoneyL.text = "当前余额：\(memberModel.Member.ffdBalance ?? "")"
+      czView.lastMoneyL.text = "当前余额：¥\(memberModel.Member.ffdBalance ?? "")"
       czView.mendianL.text = "充值门店：\(memberModel.Member.cfdFendianName ?? "")"
         chongzhiBtn.cornerRadius(radius: 15)
         chongzhiBtn.addAction { (_) in
             self.vv.isHidden = false
+            czView.lastMoneyL.text = "当前余额：¥\(self.memberModel.Member.ffdBalance ?? "")"
 //            self.vv.removeAllSubViews()
         }
         czView.closeBtn.addAction { (_) in
@@ -176,7 +181,17 @@ extension JDMemberDetailController{
             self.view.endEditing(true)
         }
         czView.sureB.addAction { (_) in
-            
+            UIApplication.shared.keyWindow?.endEditing(true)
+            czView.allMoeny = 0
+            for (_,textF) in czView.textArr.enumerated() {
+                
+                if textF.text?.k_isNumber == true {
+                    czView.allMoeny  = czView.allMoeny + Int(textF.text ?? "0")!
+                }
+            }
+          
+            czView.MoneyL.text = "充值金额：¥\(czView.allMoeny)"
+             
             if czView.allMoeny == 0{
                 NHMBProgressHud.showErrorMessage(message: "请输入支付金额")
                 return
@@ -224,7 +239,7 @@ extension JDMemberDetailController{
         nameL.text = memberModel.Member.cfdMemberName
 //            (String(describing: MemberDic["cfdMemberName"]  ?? "暂无"))
         scoureL.text = "客户来源:\(memberModel.Member.cfdSource ?? "")   手机号:\( memberModel.Member.cfdMoTel ?? "")"
-        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")  余额:\( memberModel.Member.ffdBalance ?? "")"
+        creatL.text = "注册时间:\(memberModel.Member.dfdCreateDate?.k_subText(to: 10) ?? "暂无")   归属门店:\( memberModel.Member.cfdFendianName ?? "")   生日:\( memberModel.Member.dfdBirthday?.k_subText(to: 10) ?? "")  余额:¥ \( memberModel.Member.ffdBalance ?? "")"
         yuyueBtn.cornerRadius(radius: 15)
         xieyiI.setCategorymageUrl(url: memberModel.Member.cfdAgreeMentImg ?? "")
         yuyueBtn.addAction { (_) in
@@ -357,7 +372,6 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             let mode  = orderYFArr[indexPath.row]
             return mode.goumaiHeight ?? 150
         }else if tableView == fiveV {
-          
             return   120
         }else{
             return 40
@@ -517,7 +531,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
         threeV.tableFooterView = UIView()
         twoV.tableFooterView = UIView()
         fourV.tableFooterView = UIView()
-        
+        fiveV.tableFooterView = UIView()
         twoV.k_registerCell(cls: JDlasteCaozuowCell.self)
         fourV.k_registerCell(cls: JDNewcaozuoCell.self)
         fiveV.k_registerCell(cls: JDDetaileYhjCell.self)

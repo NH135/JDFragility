@@ -93,7 +93,7 @@ class JDgoumaikcCell: UITableViewCell {
     
     var yufuModel : JDhuiyuanDetail?{
         didSet{
-            iconI.kf.setImage(with: URL(string: goumaiModel?.cfdPhoto ?? ""), placeholder: UIImage(named: "dingdanICon"), options: nil, progressBlock: nil, completionHandler: nil)
+            iconI.kf.setImage(with: URL(string: yufuModel?.cfdPhoto ?? ""), placeholder: UIImage(named: "dingdanICon"), options: nil, progressBlock: nil, completionHandler: nil)
             yufujinPayBtn.isHidden = false
             weikuanPayBtn.isHidden = false
             if yufuModel?.CardList.count ?? 0 > 0 {
@@ -107,11 +107,16 @@ class JDgoumaikcCell: UITableViewCell {
             nameL.text = yufuModel?.cfdFendianName ?? "暂无"
             ordernumberL.text = "订单号：\(yufuModel?.cfdOpertCode ?? "暂无")    消费时间：\(yufuModel?.dfdDateTime ?? "暂无")"
             if yufuModel?.ffdArrear ?? 0 > 0 {
-                
-                self.moenyL.text = "订单金额:¥\(yufuModel?.ffdBusMoney ?? 0)   预付金:¥\(yufuModel?.ffdBusMoney ?? 0 - (yufuModel?.ffdArrear)! )"
+                let yufuMoney = yufuModel?.ffdArrear ?? 0
+                let allMoney = yufuModel?.ffdBusMoney ?? 0
+                print("预付金:¥\(yufuMoney)")
+                self.moenyL.text = "订单金额:¥\(allMoney)   预付金:¥\(allMoney - yufuMoney  )"
             }else{
                 self.moenyL.text = "订单金额:¥\(yufuModel?.ffdBusMoney ?? 0) "
             }
+            
+            
+            print("订单金额:¥\(yufuModel?.ffdBusMoney ?? 0)   预付金:¥\(yufuModel?.ffdArrear ?? 0 )")
         }
     }
     

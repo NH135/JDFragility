@@ -110,6 +110,12 @@
 		18B95D3525A5AAD5007B8AEE /* JDreserveItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */; };
 		18B95D3A25A5BA18007B8AEE /* JDreserverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */; };
 		18B95D6E25A5C949007B8AEE /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B95D6D25A5C949007B8AEE /* JsonUtil.swift */; };
+		18BD674725F5BFE0007F4A49 /* JDkechengYHJCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD674525F5BFE0007F4A49 /* JDkechengYHJCell.swift */; };
+		18BD674825F5BFE0007F4A49 /* JDkechengYHJCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BD674625F5BFE0007F4A49 /* JDkechengYHJCell.xib */; };
+		18BD697D25F75E85007F4A49 /* JDtimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD697B25F75E85007F4A49 /* JDtimeCell.swift */; };
+		18BD697E25F75E85007F4A49 /* JDtimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BD697C25F75E85007F4A49 /* JDtimeCell.xib */; };
+		18BD698725F773B8007F4A49 /* JDMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD698525F773B8007F4A49 /* JDMeController.swift */; };
+		18BD698825F773B8007F4A49 /* JDMeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BD698625F773B8007F4A49 /* JDMeController.xib */; };
 		18E2E7E625DFCD5A0077AD0B /* JDtuihuanHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2E7E525DFCD5A0077AD0B /* JDtuihuanHeaderView.xib */; };
 		18E2E7EC25DFD2220077AD0B /* JDtuihuanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2E7EA25DFD2220077AD0B /* JDtuihuanCell.swift */; };
 		18E2E7ED25DFD2220077AD0B /* JDtuihuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2E7EB25DFD2220077AD0B /* JDtuihuanCell.xib */; };
@@ -288,6 +294,12 @@
 		18B95D3325A5AAD5007B8AEE /* JDreserveItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDreserveItemCell.xib; sourceTree = "<group>"; };
 		18B95D3925A5BA18007B8AEE /* JDreserverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDreserverModel.swift; sourceTree = "<group>"; };
 		18B95D6D25A5C949007B8AEE /* JsonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
+		18BD674525F5BFE0007F4A49 /* JDkechengYHJCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JDkechengYHJCell.swift; path = "../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/bd7d3493c699e9b95fdf071e6835b261/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/JDFragility/JDFragility/Class/Course(课程购买)/View/JDkechengYHJCell.swift"; sourceTree = "<group>"; };
+		18BD674625F5BFE0007F4A49 /* JDkechengYHJCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JDkechengYHJCell.xib; path = "../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/bd7d3493c699e9b95fdf071e6835b261/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/JDFragility/JDFragility/Class/Course(课程购买)/View/JDkechengYHJCell.xib"; sourceTree = "<group>"; };
+		18BD697B25F75E85007F4A49 /* JDtimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDtimeCell.swift; sourceTree = "<group>"; };
+		18BD697C25F75E85007F4A49 /* JDtimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtimeCell.xib; sourceTree = "<group>"; };
+		18BD698525F773B8007F4A49 /* JDMeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDMeController.swift; sourceTree = "<group>"; };
+		18BD698625F773B8007F4A49 /* JDMeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDMeController.xib; sourceTree = "<group>"; };
 		18E2E7E525DFCD5A0077AD0B /* JDtuihuanHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuihuanHeaderView.xib; sourceTree = "<group>"; };
 		18E2E7EA25DFD2220077AD0B /* JDtuihuanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDtuihuanCell.swift; sourceTree = "<group>"; };
 		18E2E7EB25DFD2220077AD0B /* JDtuihuanCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuihuanCell.xib; sourceTree = "<group>"; };
@@ -482,6 +494,8 @@
 				1872B9B325A706FD00AAE052 /* JDCourseCell.xib */,
 				1861AB3525AEAFE5006158AD /* JDCourseshopingCell.swift */,
 				1861AB3625AEAFE5006158AD /* JDCourseshopingCell.xib */,
+				18BD674525F5BFE0007F4A49 /* JDkechengYHJCell.swift */,
+				18BD674625F5BFE0007F4A49 /* JDkechengYHJCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -536,6 +550,8 @@
 				184CD97225B85E9000FACB57 /* JDkhAuthorizationCell.xib */,
 				ED0D6D9125B879C30081C5B6 /* JDreveredOrderCell.swift */,
 				ED0D6D9225B879C30081C5B6 /* JDreveredOrderCell.xib */,
+				18BD697B25F75E85007F4A49 /* JDtimeCell.swift */,
+				18BD697C25F75E85007F4A49 /* JDtimeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -781,6 +797,8 @@
 				18FD03422599CF4B007FC8C8 /* JDLoginController.xib */,
 				18FD0405259C6190007FC8C8 /* JDMainController.swift */,
 				18FD0406259C6190007FC8C8 /* JDMainController.xib */,
+				18BD698525F773B8007F4A49 /* JDMeController.swift */,
+				18BD698625F773B8007F4A49 /* JDMeController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -928,6 +946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FD02F12599A32B007FC8C8 /* LaunchScreen.storyboard in Resources */,
+				18BD698825F773B8007F4A49 /* JDMeController.xib in Resources */,
 				184B882D259CB73F00998BB1 /* JDReservedController.xib in Resources */,
 				184CD97425B85E9000FACB57 /* JDkhAuthorizationCell.xib in Resources */,
 				18B5DF4225CAACDF0056B488 /* JDtuiKeController.xib in Resources */,
@@ -949,11 +968,13 @@
 				1825EC8525DE592A002B2170 /* JDshenglingHeaderView.xib in Resources */,
 				1825EC8C25DE5A3B002B2170 /* JDlsCarCell.xib in Resources */,
 				ED0D6DB425C30FC70081C5B6 /* noticeMusic.caf in Resources */,
+				18BD697E25F75E85007F4A49 /* JDtimeCell.xib in Resources */,
 				184CD96D25B8441C00FACB57 /* JDReveredAuthorizationController.xib in Resources */,
 				18FD02EE2599A32B007FC8C8 /* Assets.xcassets in Resources */,
 				1872B9B525A706FD00AAE052 /* JDCourseCell.xib in Resources */,
 				18E2E7ED25DFD2220077AD0B /* JDtuihuanCell.xib in Resources */,
 				18EE5B1225B28C290063F871 /* JDsaveKCController.xib in Resources */,
+				18BD674825F5BFE0007F4A49 /* JDkechengYHJCell.xib in Resources */,
 				18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */,
 				180D28AC25E0B86500BEFCD4 /* JDtuiHeaderView.xib in Resources */,
 				1830E1D725EF317800683C55 /* JDorderPaytyoeCell.xib in Resources */,
@@ -1057,6 +1078,7 @@
 				1830E1D225EF317800683C55 /* JDkechengDetaileCell.swift in Sources */,
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
 				1830E1D525EF317800683C55 /* JDorderPaytyoeCell.swift in Sources */,
+				18BD674725F5BFE0007F4A49 /* JDkechengYHJCell.swift in Sources */,
 				184CD95925B7CC3B00FACB57 /* JDaddleftReserveCell.swift in Sources */,
 				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
 				184144F825D10D050065CDF7 /* JDtuiSaveController.swift in Sources */,
@@ -1100,6 +1122,7 @@
 				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
 				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
 				18B95D6E25A5C949007B8AEE /* JsonUtil.swift in Sources */,
+				18BD698725F773B8007F4A49 /* JDMeController.swift in Sources */,
 				18B7AA4925A4743700BE4C27 /* EWDatePickerViewController.swift in Sources */,
 				ED0D6D8C25B8783E0081C5B6 /* JDReservedOrderViewController.swift in Sources */,
 				184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */,
@@ -1115,6 +1138,7 @@
 				18FD03B9259C4F11007FC8C8 /* NetManager.swift in Sources */,
 				18B7AA0825A30BB700BE4C27 /* UITextView+Ext.swift in Sources */,
 				184CD99225B95C3700FACB57 /* JDalterEmployee.swift in Sources */,
+				18BD697D25F75E85007F4A49 /* JDtimeCell.swift in Sources */,
 				18B7A9D625A2FDB500BE4C27 /* Date+Ext.swift in Sources */,
 				1830E1CA25EF317800683C55 /* JDhuiyuanDetail.swift in Sources */,
 				18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */,
@@ -1321,7 +1345,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -1348,7 +1372,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

@@ -101,6 +101,11 @@
                     <rect key="frame" x="100" y="0.0" width="704" height="592"/>
                     <color key="backgroundColor" red="0.31286379689999999" green="0.32264983650000001" blue="0.4552890658" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncn-AQ-Po2">
+                    <rect key="frame" x="-19" y="133" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -14,7 +14,7 @@ class JDorderPaytyoeCell: UICollectionViewCell {
     @IBOutlet weak var timeL: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+  
     }
     var payModel : CaiWuListModel?{
         didSet{

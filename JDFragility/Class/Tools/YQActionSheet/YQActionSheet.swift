@@ -76,7 +76,7 @@ class YQActionSheet: UIView {
     /// 取消的那行cell
     @objc public var cancelCell: YQActionSheetCell = {
         let cell = YQActionSheetCell()
-        cell.title = "取消"
+        cell.title = "关闭"
         return cell
     }()
     

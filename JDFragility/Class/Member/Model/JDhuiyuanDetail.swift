@@ -17,13 +17,21 @@ class JDhuiyuanDetail: Convertible {
     var CaiWuList = [CaiWuListModel]()
     var cfdEmployeeId:String?
     var dfdDateTime:String?;
-    var ffdBusMoney:Float?;
-    var ffdArrear:Float?
+    var ffdBusMoney:Int?;
+    var ffdIncome:Int?;
+    
+    var ffdArrear:Int?
     var ifdState:String?;
     var cfdOpertCode:String?;
     var ifdType:String?;
     var cfdFendianName:String?;
     var cfdPhoto:String?;
+    
+    var isUse:Bool?   // 是否可使用
+    var CouponUse :Int?  //状态0未使用，1已使用，2已过期
+    var cfdTokenId :String?
+    var isSeted :Bool?
+    
     
     var cfdTokenType:String?;
     var dfdCreateDate:String?;
@@ -31,6 +39,7 @@ class JDhuiyuanDetail: Convertible {
     var dfdFaceValue:String?;
     var cfdSImgSrc:String?;
     var cfdRemark:String?;
+    var cfdTokenCode :String?;
     
     /// 展开以后的高度
     var kechengHeight: CGFloat? {

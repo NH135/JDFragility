@@ -60,21 +60,6 @@
             <rect key="frame" x="0.0" y="0.0" width="837" height="473"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hev-rZ-Sof">
-                    <rect key="frame" x="0.0" y="0.0" width="837" height="473"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="HWC-3c-pql">
-                            <rect key="frame" x="50" y="50" width="737" height="373"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="HWC-3c-pql" secondAttribute="trailing" constant="50" id="5qH-DB-gS9"/>
-                        <constraint firstItem="HWC-3c-pql" firstAttribute="leading" secondItem="Hev-rZ-Sof" secondAttribute="leading" constant="50" id="fwY-EI-EYp"/>
-                        <constraint firstItem="HWC-3c-pql" firstAttribute="top" secondItem="Hev-rZ-Sof" secondAttribute="top" constant="50" id="kXK-eD-uqb"/>
-                        <constraint firstAttribute="bottom" secondItem="HWC-3c-pql" secondAttribute="bottom" constant="50" id="yI4-bR-WzF"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lf6-CX-XG0">
                     <rect key="frame" x="10" y="10" width="817" height="200"/>
                     <subviews>
@@ -359,6 +344,21 @@
                         <constraint firstItem="nfb-SN-aL0" firstAttribute="top" secondItem="Gew-1v-kTH" secondAttribute="top" id="wmF-HQ-1pO"/>
                         <constraint firstItem="Ppp-yW-Cg0" firstAttribute="centerY" secondItem="NnS-uA-Z60" secondAttribute="centerY" id="wrx-Ke-yZB"/>
                         <constraint firstItem="nfb-SN-aL0" firstAttribute="height" secondItem="qpr-0f-caH" secondAttribute="height" id="zHf-97-kUx"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hev-rZ-Sof">
+                    <rect key="frame" x="0.0" y="0.0" width="837" height="473"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="HWC-3c-pql">
+                            <rect key="frame" x="50" y="50" width="737" height="373"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HWC-3c-pql" secondAttribute="trailing" constant="50" id="5qH-DB-gS9"/>
+                        <constraint firstItem="HWC-3c-pql" firstAttribute="leading" secondItem="Hev-rZ-Sof" secondAttribute="leading" constant="50" id="fwY-EI-EYp"/>
+                        <constraint firstItem="HWC-3c-pql" firstAttribute="top" secondItem="Hev-rZ-Sof" secondAttribute="top" constant="50" id="kXK-eD-uqb"/>
+                        <constraint firstAttribute="bottom" secondItem="HWC-3c-pql" secondAttribute="bottom" constant="50" id="yI4-bR-WzF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-Eu-cGp">

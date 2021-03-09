@@ -16,6 +16,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sot-A9-uJg">
                     <rect key="frame" x="0.0" y="0.0" width="718" height="593"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.36198207310267855" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQb-Us-qco">
@@ -37,8 +38,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.srs.rerw温热 2.34534分地方" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omp-le-awu">
-                            <rect key="frame" x="20" y="91" width="104.5" height="36"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.使用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omp-le-awu">
+                            <rect key="frame" x="20" y="91" width="41.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.45355761690295388" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -55,9 +56,14 @@
                         <constraint firstItem="mAe-dT-cDp" firstAttribute="top" secondItem="FQb-Us-qco" secondAttribute="top" id="jbL-FI-t7T"/>
                         <constraint firstAttribute="height" constant="500" id="x4g-qO-d0b"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.38998527267352251" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Sot-A9-uJg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ws9-C0-lTg"/>
                 <constraint firstItem="FQb-Us-qco" firstAttribute="centerY" secondItem="Sot-A9-uJg" secondAttribute="centerY" id="aWE-gH-Vic"/>
@@ -68,6 +74,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="closeB" destination="Sot-A9-uJg" id="yZ1-2y-rMo"/>
+                <outlet property="closeB1" destination="mAe-dT-cDp" id="Wz2-pV-vYI"/>
                 <outlet property="guizeL" destination="omp-le-awu" id="xBz-eL-WnO"/>
             </connections>
             <point key="canvasLocation" x="352.17391304347831" y="406.80803571428572"/>

@@ -10,12 +10,15 @@ import UIKit
 class JDYHJAlearView: UIView {
 
     @IBOutlet weak var guizeL: UILabel!
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var closeB: UIButton!
+    @IBOutlet weak var closeB1: UIButton!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        closeB.addAction { (_) in
+            Kwindow.window?.viewWithTag(10010)?.removeFromSuperview()
+        }
+        closeB1.addAction { (_) in
+            Kwindow.window?.viewWithTag(10010)?.removeFromSuperview()
+        }
     }
-    */
-
 }

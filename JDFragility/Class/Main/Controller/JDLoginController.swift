@@ -6,18 +6,21 @@
 //
 
 import UIKit
-
+import AdSupport
 class JDLoginController: JDBaseViewController {
 
     @IBOutlet weak var telF: UITextField!
- 
+    @IBOutlet weak var vbg: UIView!
+    
+    @IBOutlet weak var addUD: UIButton!
     @IBOutlet weak var yzmF: UITextField!
     
     @IBOutlet weak var loginBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 //        https://www.jianshu.com/u/1e9554bab9b3
-        loginBtn.layer.cornerRadius=23;
+        loginBtn.layer.cornerRadius=10;
+        addUD.layer.cornerRadius=10;
         loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
 //          sendCodeBtn.addTarget(self, action: #selector(buttonClick(button01:)), for: .touchUpInside)
 //        sendCodeBtn.addTarget(self, action: #selector(buttonClick (button01:)), for: .touchUpInside)
@@ -38,7 +41,42 @@ class JDLoginController: JDBaseViewController {
 //        for index in stride(from: 0, through: 4, by: 2) {
 //           print(index)
 //        }
+        vbg.cornerRadius(corners: [UIRectCorner.bottomRight,UIRectCorner.topRight] , radius: 4)
+        let vv = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        vv.cornerRadius(corners: [UIRectCorner.bottomLeft,UIRectCorner.topLeft] , radius: 4)
         
+             let searchImageView = UIImageView(image: UIImage(named: "ti"))
+             searchImageView.backgroundColor = UIColor.k_colorWith(hexStr: "DED9D8")
+             searchImageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        searchImageView.contentMode = .scaleAspectFill
+        searchImageView.center = vv.center
+        vv.addSubview(searchImageView)
+             self.telF.leftView = vv
+             self.telF.leftViewMode = .always
+        
+        
+        let vv1 = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        vv1.cornerRadius(corners: [UIRectCorner.bottomLeft,UIRectCorner.topLeft] , radius: 4)
+             let searchImageView1 = UIImageView(image: UIImage(named: "mi"))
+             searchImageView1.backgroundColor = UIColor.k_colorWith(hexStr: "DED9D8")
+             searchImageView1.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        searchImageView1.contentMode = .scaleAspectFit
+        searchImageView1.center = vv1.center
+        vv1.addSubview(searchImageView1)
+             self.yzmF.leftView = vv1
+             self.yzmF.leftViewMode = .always
+        
+        
+        
+        addUD.addAction { (_) in
+            let adId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+//                ASIdentifierManager.shared().advertisingIdentifier.uuidString
+            print(adId)
+            
+            JXTAlertView.show(withTitle: "备注", message: "") { (title) in
+                print(title)
+            }
+        }
     }
 
     @objc func loginClick()  {

@@ -23,9 +23,13 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var daiL: UILabel!
     @IBOutlet weak var queL: UILabel!
  
+    @IBOutlet weak var rightBtn: UIButton!
     @IBOutlet weak var kaiL: UILabel!
     @IBOutlet weak var quL: UILabel!
- 
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var layout: UICollectionViewFlowLayout!
+    var setedRow :Int = 0
+    
     var timeStr : String?
     
     var timeBtn = UIButton()
@@ -37,6 +41,7 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)
 //    }
 //
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,41 +62,45 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
             self.setData()
         })
         tableView.mj_header?.beginRefreshing()
-        let width = (kScreenWidth-100)/8
-        
-        let numbs = NSDate.latelyEightTimeCout(8)
-        for (index,item) in numbs.enumerated() {
-            let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: -3, width: width, height: timeView.height))
-            btn.setTitle(item as? String, for: .normal)
-            btn.setTitle(item as? String, for: .disabled)
-            btn.tag = index
-            btn.titleLabel?.numberOfLines = 2
-            btn.titleLabel?.textAlignment = .center
-            btn.setTitleColor(UIColor.black, for: .normal)
-            btn.setTitleColor(UIColor.k_colorWith(hexStr: "409EFF"), for: .disabled)
-            if btn.tag == 0 {
-                btn.isEnabled = false
-                timeBtn = btn
-            }
-            btn.addTarget(self, action: #selector(timeBtn(btn:)),  for: .touchUpInside)
-            timeView.addSubview(btn)
-
+//        let width = (timeView.width-100)/8
+//        let timeScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: timeView.width, height: 70))
+//        timeScrollView.contentSize = CGSize(width: width * 30, height: 70)
+//        timeView.addSubview(timeScrollView)
+//
+//
+//
+//        let numbs = NSDate.latelyEightTimeCout(30)
+//        for (index,item) in numbs.enumerated() {
+//            let btn = UIButton(frame: CGRect(x: width * CGFloat(index), y: -3, width: width, height: timeView.height))
+//            btn.setTitle(item as? String, for: .normal)
+//            btn.setTitle(item as? String, for: .disabled)
+//            btn.tag = index
+//            btn.titleLabel?.numberOfLines = 2
+//            btn.titleLabel?.textAlignment = .center
+//            btn.setTitleColor(UIColor.black, for: .normal)
+//            btn.setTitleColor(UIColor.k_colorWith(hexStr: "409EFF"), for: .disabled)
+//            if btn.tag == 0 {
+//                btn.isEnabled = false
+//                timeBtn = btn
+//            }
+//            btn.addTarget(self, action: #selector(timeBtn(btn:)),  for: .touchUpInside)
+//            timeScrollView.addSubview(btn)
+//
+//
+//        }
+        rightBtn.addAction { (_) in
             
         }
- 
    
     }
     
-    @objc func timeBtn(btn:UIButton) {
-        timeBtn.isEnabled = true
-        btn.isEnabled = false
-        timeBtn = btn
-        let time = btn.titleLabel?.text?.stringCutToEnd(star: 3)
-//        setData(time:time ?? Date.init().k_toDateStr("yyyy-MM-dd"))
-        self.timeStr = time;
-        self.tableView.mj_header?.beginRefreshing()
-        
-    }
+//    @objc func timeBtn(btn:UIButton) {
+//        timeBtn.isEnabled = true
+//        btn.isEnabled = false
+//        timeBtn = btn
+//
+//
+//    }
 
 }
 extension JDReservedController{
@@ -143,14 +152,46 @@ extension JDReservedController{
     tableView.delegate = self
     tableView.dataSource = self
     tableView.k_registerCell(cls: JDreservedCell.self)
-    
-   
+    collectionView.delegate = self
+    collectionView.dataSource = self
+    collectionView.k_registerCell(cls: JDtimeCell.self)
+    layout.itemSize = CGSize(width: 110, height: 70)
+    layout.scrollDirection = .horizontal
+    collectionView.showsVerticalScrollIndicator = true
+//    layout.minimumLineSpacing = 10
     
     }
     
 }
 
-extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
+extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       30
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.k_dequeueReusableCell(cls: JDtimeCell.self, indexPath: indexPath)
+        let numbs = NSDate.latelyEightTimeCout(30)
+        cell.timeL.text = numbs[indexPath.row] as? String
+        if indexPath.item == setedRow {
+            cell.timeL.textColor = UIColor.k_colorWith(hexStr: "409EFF")
+        }else{
+            cell.timeL.textColor = UIColor.black
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        setedRow = indexPath.row
+        let numbs = NSDate.latelyEightTimeCout(30)
+        print(numbs[setedRow])
+        collectionView.reloadData()
+        
+        let time = numbs[setedRow]
+//        setData(time:time ?? Date.init().k_toDateStr("yyyy-MM-dd"))
+        self.timeStr = (time as! String).stringCutToEnd(star: 3);
+        self.tableView.mj_header?.beginRefreshing()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         reserveArr.count
     }
@@ -238,7 +279,7 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate{
                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                    NHMBProgressHud.hideHud()
                }
-                let params = ["cfdMoTel": reserveMode.cfdMoTel ?? ""]
+                let params = ["cfdMoTel": reserveMode.cfdMoTel ?? "","cfdFendianId":UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""]
                NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                    NHMBProgressHud.hideHud()
                    guard let dics = dic as? [String : Any] else {
