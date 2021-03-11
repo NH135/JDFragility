@@ -11,7 +11,7 @@ import UIKit
 // 协议，点击headerView的回调
 protocol reserveSendDelegate:NSObjectProtocol {
     func reserveSendName(reserveMode:JDreserverModel)
-    func ediReserveSendName(reserveMode:ResListModel)
+    func ediReserveSendName(reserveMode:ResListModel,cfdEmployeeName:String?)
 }
 
 
@@ -68,7 +68,7 @@ extension JDreservedCell:UICollectionViewDelegate,UICollectionViewDataSource{
        if ((self.delegate?.responds(to: Selector(("ediReserveSendName")))) != nil) {
         let mode = self.reserveMode?.ResList[indexPath.row]
         
-        self.delegate?.ediReserveSendName(reserveMode:mode!)
+        self.delegate?.ediReserveSendName(reserveMode:mode!,cfdEmployeeName:self.reserveMode?.cfdEmployeeName)
         }
     }
     func setUI() {

@@ -29,7 +29,7 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         telF.delegate = self
         telF.k_limitTextLength = 11
         typeBtn.k_cornerRadius = 15;
-        typeBtn.k_setBorder(color: UIColor.k_colorWith(hexStr: "e3e3e3"), width: 1)
+        typeBtn.k_setBorder(color: UIColor.white, width: 1)
         typeBtn.hw_locationAdjust(buttonMode: .Right, spacing: 10)
         yuanyinF.k_cornerRadius = 4;
         yuanyinF.k_setBorder(color: UIColor.k_colorWith(hexStr: "e3e3e3"), width: 1)
@@ -41,8 +41,8 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         tableView.k_registerCell(cls: JDtuisaveCell.self)
-        
-        
+      
+        typeBtn.backgroundColor = UIColor.white
 
         sureBtn.addAction { (_) in
             if self.tuiList.count == 0 {
@@ -97,10 +97,11 @@ class JDtuiSaveController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpt
               
                 if cell.titleLab.text == "余额"{
                     btn.setTitle("余额", for: .normal)
+                    btn.setImage(UIImage(named: "me-arrow-right"), for: .normal)
                     self.payId = ""
                 }else{
                     btn.setTitle(cell.titleLab.text, for: .normal)
-      
+                    btn.setImage(UIImage(named: "me-arrow-right"), for: .normal)
                     for pmode in self.payAllArr{
                         if pmode.cfdPayMode == cell.titleLab.text{
                             self.payId = pmode.cfdPayModeId
@@ -190,7 +191,7 @@ extension JDtuiSaveController:UITableViewDataSource,UITableViewDelegate,UITextFi
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
       
       let xibView = Bundle.main.loadNibNamed("JDtuiSaveHeaderView", owner: nil, options: nil)?.first as! UIView
-        xibView.backgroundColor = UIColor.k_colorWith(hexStr: "e9e9e9")
+       
         xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
       return xibView
         

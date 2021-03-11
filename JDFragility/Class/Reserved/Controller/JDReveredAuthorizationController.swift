@@ -19,10 +19,10 @@ class JDReveredAuthorizationController: JDBaseViewController {
     var authoizationM :JDauthoizationModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        title="客户授权"
+        title="预约详情及授权"
          setUI()
         
-        tableView.backgroundColor = UIColor.white
+//        tableView.backgroundColor = UIColor.white
         yiBtn.addAction { (_) in
             self.setData()
         }

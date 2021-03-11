@@ -56,6 +56,7 @@ class JDaddCarController: JDBaseViewController , DZNEmptyDataSetSource, DZNEmpty
 extension JDaddCarController{
     
     func setUI() {
+ 
         telF.delegate = self
         telF.k_limitTextLength = 11
         tableView.delegate = self
@@ -78,7 +79,8 @@ extension JDaddCarController{
         footertableView.emptyDataSetDelegate = self
         footertableView.k_registerCell(cls: JDlsCarCell.self)
         footertableView.tableFooterView = UIView()
-        
+        footertableView.backgroundColor = UIColor.k_colorWith(hexStr: "#ECECEC")
+        toptableView.backgroundColor = UIColor.k_colorWith(hexStr: "#ECECEC")
         shenBtn.addAction { (btn) in
             self.title = "升卡"
             self.moeny = 0
@@ -364,7 +366,7 @@ extension JDaddCarController:UITableViewDataSource,UITableViewDelegate,UITextFie
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == self.tableView  {
       let xibView = Bundle.main.loadNibNamed("JDshenglingHeaderView", owner: nil, options: nil)?.first as! UIView
-        xibView.backgroundColor = UIColor.white
+   
         xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
       return xibView
         }else if tableView == self.toptableView  {

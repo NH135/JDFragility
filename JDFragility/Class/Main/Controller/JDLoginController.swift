@@ -75,6 +75,15 @@ class JDLoginController: JDBaseViewController {
             
             JXTAlertView.show(withTitle: "备注", message: "") { (title) in
                 print(title)
+                if title.length > 0{
+                let params = ["cfdIPadName": title ?? "" ,"cfdEquipment":kUUID ?? ""];
+                NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddGrandIpad", params: params) { (dic) in
+                    print(dic)
+                    NHMBProgressHud.showSuccesshTips(message: "绑定成功！")
+                } error: { (error) in
+                    
+                }
+                }
             }
         }
     }
@@ -92,7 +101,7 @@ class JDLoginController: JDBaseViewController {
         NHMBProgressHud.showLoadingHudView(message: "登录中。。。")
  
         let params = ["cfdUserName": telF.text ?? "",
-                      "cfdPassWord": yzmF.text ?? ""]
+                      "cfdPassWord": yzmF.text ?? "","cfdEquipment":kUUID ?? ""]
         NetManager.ShareInstance.postWith(url: "api/IPad/IPadLogin", params:params ) { (dic) in
             print(dic)
             NHMBProgressHud.hideHud()

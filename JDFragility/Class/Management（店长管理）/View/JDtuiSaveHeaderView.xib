@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -51,7 +50,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.87058823529411766" green="0.85098039215686272" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Cvb-Kk-Sd7" firstAttribute="height" secondItem="IrL-fv-SHl" secondAttribute="height" id="0HF-yQ-s0S"/>
                 <constraint firstItem="wY5-Ls-hwi" firstAttribute="width" secondItem="IrL-fv-SHl" secondAttribute="width" id="3NI-Yi-RGe"/>
@@ -82,9 +81,4 @@
             <point key="canvasLocation" x="-99.275362318840592" y="475.78125"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

@@ -27,6 +27,10 @@
             <rect key="frame" x="0.0" y="0.0" width="935" height="658"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VvY-Q3-HKp">
+                    <rect key="frame" x="0.0" y="528" width="935" height="130"/>
+                    <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款原因：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E1-nz-kf1">
                     <rect key="frame" x="10" y="558" width="73" height="17"/>
                     <constraints>
@@ -142,10 +146,13 @@
                 <constraint firstItem="35G-Ba-ZNK" firstAttribute="leading" secondItem="7Kk-pw-gn7" secondAttribute="trailing" id="L5b-bY-Opl"/>
                 <constraint firstItem="n4k-y5-VpS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Muh-ji-m4s"/>
                 <constraint firstItem="ozX-UU-knY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NXR-vS-gRz"/>
+                <constraint firstItem="VvY-Q3-HKp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QZX-SR-hur"/>
+                <constraint firstItem="VvY-Q3-HKp" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RRv-LO-hEK"/>
                 <constraint firstItem="MgV-o0-OV9" firstAttribute="centerY" secondItem="zf0-EP-bgo" secondAttribute="centerY" id="SJh-bP-jp9"/>
                 <constraint firstItem="1E1-nz-kf1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Sv6-rl-4K3"/>
                 <constraint firstItem="ozX-UU-knY" firstAttribute="top" secondItem="lyN-Kh-Tio" secondAttribute="bottom" constant="20" id="TRz-54-3tU"/>
                 <constraint firstItem="0RY-wA-SCY" firstAttribute="top" secondItem="ozX-UU-knY" secondAttribute="bottom" constant="20" id="VXU-Y9-wou"/>
+                <constraint firstItem="VvY-Q3-HKp" firstAttribute="top" secondItem="ozX-UU-knY" secondAttribute="bottom" id="aAb-Y8-pWh"/>
                 <constraint firstItem="35G-Ba-ZNK" firstAttribute="centerY" secondItem="7Kk-pw-gn7" secondAttribute="centerY" id="eEm-C7-nbZ"/>
                 <constraint firstItem="ha4-1T-mMn" firstAttribute="leading" secondItem="35G-Ba-ZNK" secondAttribute="trailing" constant="30" id="lRi-mP-hRP"/>
                 <constraint firstItem="0RY-wA-SCY" firstAttribute="leading" secondItem="1E1-nz-kf1" secondAttribute="trailing" id="mGc-ni-WdR"/>
@@ -155,6 +162,7 @@
                 <constraint firstItem="zf0-EP-bgo" firstAttribute="centerY" secondItem="lyN-Kh-Tio" secondAttribute="centerY" id="uZg-ne-nfl"/>
                 <constraint firstItem="lyN-Kh-Tio" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="x0t-PG-KeJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0RY-wA-SCY" secondAttribute="bottom" constant="20" id="xeB-wA-7ha"/>
+                <constraint firstAttribute="bottom" secondItem="VvY-Q3-HKp" secondAttribute="bottom" id="zY0-xl-na5"/>
                 <constraint firstItem="MgV-o0-OV9" firstAttribute="leading" secondItem="zf0-EP-bgo" secondAttribute="trailing" constant="20" id="zak-Xo-S1F"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -185,7 +185,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="7Rw-3p-DXM"/>
                     </constraints>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="使用优惠卷">
+                    <state key="normal" title="使用优惠劵">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <state key="disabled" image="seated"/>
@@ -207,7 +207,7 @@
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="VEK-0u-VFU"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                            <state key="normal" title="选择优惠卷">
+                            <state key="normal" title="选择优惠劵">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>

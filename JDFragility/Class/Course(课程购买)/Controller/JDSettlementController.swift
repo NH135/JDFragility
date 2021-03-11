@@ -321,11 +321,11 @@ extension JDSettlementController{
             
             if  self.yuB.isEnabled == true{
             
-//            NHMBProgressHud.showErrorMessage(message: "暂无优惠卷")
+//            NHMBProgressHud.showErrorMessage(message: "暂无优惠劵")
             self.contenView.isHidden = false;
                 
             }else{
-                NHMBProgressHud.showErrorMessage(message: "预付款不能使用优惠卷")
+                NHMBProgressHud.showErrorMessage(message: "预付款不能使用优惠劵")
             }
             
         }

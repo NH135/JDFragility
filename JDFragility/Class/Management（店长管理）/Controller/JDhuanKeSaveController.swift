@@ -40,6 +40,7 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
         rightTableView.dataSource = self
         rightTableView.delegate = self
         rightTableView.k_registerCell(cls: JDCourseshopingCell.classForCoder())
+        leftTableView.backgroundColor = UIColor.k_colorWith(hexStr: "#ECECEC")
         setletfUI()
         setrightUI()
         setData()
@@ -73,11 +74,11 @@ class JDhuanKeSaveController: JDBaseViewController,UITableViewDelegate,UITableVi
             return cell
        }else{
         let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
-    
+        cell.backgroundColor = UIColor.clear
         cell.delegate = self
         cell.huanModel = self.TimeList[indexPath.row]
         cell.selectionStyle = .none
-        cell.selectionStyle = .none;
+      
         return cell
        }
     }

@@ -12,6 +12,7 @@ class JDMemberController: JDBaseViewController, UITextFieldDelegate {
     let searchT = UITextField() 
     var sourceID :String?
     
+    var cfdIntroducerT = UITextField()
     var sourceArr = [JDmemberModel]()
     
     override func viewDidLoad() {
@@ -166,12 +167,15 @@ extension JDMemberController{
         
         let cfdIntroducerT = UITextField(frame: CGRect(x: cfdIntroducerL.rightX, y:cfdIntroducerL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
         cfdIntroducerT.placeholder = "请输入嘉宾的手机号"
-        cfdIntroducerT.k_limitTextLength = 11
+//        cfdIntroducerT.k_limitTextLength = 11
+        cfdIntroducerT.delegate = self
         cfdIntroducerT.keyboardType = .phonePad
         cfdIntroducerT.borderStyle = .roundedRect
         cfdIntroducerT.textColor=UIColor.black
         rightView.addSubview(cfdIntroducerT)
+        self.cfdIntroducerT = cfdIntroducerT
         
+//        cfdIntroducerT.addTarget(self, action: #selector(textChengaes(string:)), for: .editingChanged)
         
         
         
@@ -243,7 +247,7 @@ extension JDMemberController{
             Kwindow.window?.addSubview(dataPicker)
         }
         
-       
+  
         
         
         
@@ -308,7 +312,7 @@ extension JDMemberController{
 //            cfdIntroducer介绍人
                 NHMBProgressHud.showLoadingHudView(message: "添加中···")
             let cfdFendianId = UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""
-            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":self.sourceID ?? "", "cfdIntroducer":cfdIntroducerT.text ?? ""] as [String : Any]
+            let params = ["cfdMoTel": teT.text ?? "","cfdFendianId":cfdFendianId,"cfdMemberName":nameT.text ?? "","dfdBirthday":birthdayB.titleLabel?.text ?? "" ,"cfdSex":(sexB.titleLabel?.text == "男") ? "1"  : "0" ,"cfdSourceId":self.sourceID ?? "", "cfdIntroducer":self.cfdIntroducerT.text?.k_subText(to: 11) ?? ""] as [String : Any]
             
             NetManager.ShareInstance.postWith(url: "api/IPad/IPadAddMember", params: params) { (dic) in
                 NHMBProgressHud.hideHud()
@@ -336,19 +340,71 @@ extension JDMemberController{
     }
     
 }
+ 
 extension JDMemberController{
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         IQKeyboardManager.shared().isEnabled = true
+      
+        
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if(textField == cfdIntroducerT){
+            if textField.text?.length == 11 {
+                textChengaes(string: textField.text ?? "")
+            }
+       
+        }
+        return true
+    }
+//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+////        print(textField.text ?? "")
+//    }
+    func textChengaes(string:String){
+        NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember", params: ["cfdMoTel": string]) { (dic) in
+            NHMBProgressHud.hideHud()
+            
+            guard let dics = dic as? [String : Any] else {
+          
+                NHMBProgressHud.showSuccesshTips(message: "未查到该会员信息,请重新输入！")
+                return
+                
+            }
+            print(dics["cfdMemberName"] ?? "")
+            self.cfdIntroducerT.text = "\(self.cfdIntroducerT.text ?? "")  \(dics["cfdMemberName"] ?? "")"
+//                self.memberModel =  dics.kj.model(MemberDetailModel.self)
+//                self.memberTelL.text = "\(self.memberModel.cfdMemberName ?? "暂无")    \(self.memberModel.cfdMoTel?.securePhoneStr ?? "暂无")"
+//                self.view.endEditing(true)
+//                self.iconImageV.setHeaderImageUrl(url: self.memberModel.cfdPhoto ?? "")
+//                self.cfdMemberId = self.memberModel.cfdMemberId
+//                //                self.tableView(self.leftTableView, didSelectRowAt: NSIndexPath(item: 0, section: 0) as IndexPath)
+//                self.rightTableView.mj_header?.beginRefreshing()
+        } error: { (error) in
+            NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
+        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchT {
             searchData()
-            
+        }else if(textField == cfdIntroducerT){
+            if textField.text?.length == 11 {
+                textChengaes(string: textField.text ?? "")
+            }
         }
-        
         return true
     }
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+ 
+        return true
+    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == self.cfdIntroducerT {
+//            var str = textField.text?.string
+//            print(str)
+//        }
+//
+//        return true
+//    }
     
     
     func searchData(){
@@ -361,7 +417,7 @@ extension JDMemberController{
                     NHMBProgressHud.showLoadingHudView(message: "加载中‘’‘’")
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                         NHMBProgressHud.hideHud()
-                    } 
+                    }
         let params = ["cfdMoTel": searchT.text ?? "","cfdFendianId":UserDefaults.standard.string(forKey: "cfdFendianId") ?? ""]
                     NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryMember360", params: params) { (dic) in
                         NHMBProgressHud.hideHud()

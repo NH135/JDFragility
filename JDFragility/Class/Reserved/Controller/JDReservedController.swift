@@ -8,6 +8,8 @@
 import UIKit
 import MJRefresh
 class JDReservedController: JDBaseViewController, reserveSendDelegate {
+ 
+    
 
     @IBOutlet weak var storeNameL: UILabel!
     @IBOutlet weak var allBtn: UIButton!
@@ -28,14 +30,23 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
     @IBOutlet weak var quL: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
+    
+    @IBOutlet weak var canleLefttableView: UITableView!
+    @IBOutlet weak var cancleRighttableView: UITableView!
+    @IBOutlet weak var cancleBgV: UIView!
+    @IBOutlet weak var cancleContenV: UIView!
+    var memberModel : MemberDetailModel?
+    @IBOutlet weak var cancleB: UIButton!
+    
     var setedRow :Int = 0
     
     var timeStr : String?
     
     var timeBtn = UIButton()
-    
+   
     var reserveArr = [JDreserverModel]()
-    
+    var leftArr = [String]()
+    var rightArr = [JDauthoizationDetailListModel]()
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -56,6 +67,7 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         view.backgroundColor=UIColor.red
         storeNameL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "暂无")"
         setUI()
+        setCancleUI()
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.white
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
@@ -91,7 +103,15 @@ class JDReservedController: JDBaseViewController, reserveSendDelegate {
         rightBtn.addAction { (_) in
             
         }
-   
+        
+        cancleB.addAction { (_) in
+            self.cancleBgV.isHidden = true
+        }
+    }
+    
+    @IBAction func cancelClick() {
+        cancleBgV.isHidden = true
+        
     }
     
 //    @objc func timeBtn(btn:UIButton) {
@@ -164,6 +184,20 @@ extension JDReservedController{
     
 }
 
+extension JDReservedController{
+    func setCancleUI() {
+        cancleContenV.cornerRadius(radius: 10)
+        cancleB.cornerRadius(radius: 25)
+        
+        cancleRighttableView.delegate = self
+        cancleRighttableView.dataSource = self
+        
+        canleLefttableView.delegate = self
+        canleLefttableView.dataSource = self
+        cancleRighttableView.tableFooterView = UIView()
+        canleLefttableView.tableFooterView = UIView()
+    }
+}
 extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -193,13 +227,23 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UIColle
         self.tableView.mj_header?.beginRefreshing()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        reserveArr.count
+        if tableView == self.tableView {
+           return reserveArr.count
+        }else  if tableView == self.cancleRighttableView{
+            return rightArr.count
+        }else{
+            return leftArr.count
+        }
+        
+      
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         60
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if tableView == self.tableView {
         let cell = tableView.k_dequeueReusableCell(cls: JDreservedCell.self, indexPath: indexPath)
         cell.backgroundColor = UIColor.white
         cell.delegate = self
@@ -208,6 +252,28 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UIColle
  
         cell.reserveMode = reserveArr[indexPath.row]
         return cell
+            
+            
+        }else  if tableView == self.cancleRighttableView{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "canclerightyuyueID")
+            if (cell == nil) {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "canclerightyuyueID")
+            }
+//            ResListModel
+            let model = rightArr[indexPath.row]
+           
+            cell?.backgroundColor = UIColor.k_colorWith(hexStr: "#CCCCCC")
+            cell?.textLabel?.text = model.cfdItemName
+            return cell!
+        }else{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "cancleyuyueID")
+            if (cell == nil) {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "cancleyuyueID")
+            }
+            cell?.textLabel?.text = leftArr[indexPath.row]
+            cell?.backgroundColor = UIColor.k_colorWith(hexStr: "#E4E4E4")
+            return cell!
+        }
     }
     //添加预约
     func reserveSendName(reserveMode:JDreserverModel) {
@@ -218,16 +284,51 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UIColle
         
     }
     //编辑预约
-    func ediReserveSendName(reserveMode:ResListModel){
+    func ediReserveSendName(reserveMode: ResListModel, cfdEmployeeName: String?) {
+//        if reserveMode.ifdState == 3 {
+//
+//            self.leftArr = ["客户手机号：\(reserveMode.cfdMoTel ?? "")","客户姓名：\(reserveMode.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(cfdEmployeeName ?? "" )","状态：取消"]
+//
+//            NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+//            let params = ["cfdReserveId":reserveMode.cfdReserveId!]
+//            NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserve", params: params as [String : Any]) { (dic) in
+//                NHMBProgressHud.hideHud()
+//
+////                if let dics = dic["Member"] as? [String : Any] {
+////                    self.memberModel =  dics.kj.model(MemberDetailModel.self)
+//////                    self.kehuNameL.text = self.memberModel?.cfdMemberName ?? "暂无"
+//////                    self.kehuTelT.resignFirstResponder()
+////                    self.leftArr = ["客户手机号：\(self.memberModel?.cfdMoTel ?? "")","客户姓名：\(self.memberModel?.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(self.memberModel?.cfdMemberName ?? ","状态：取消"]
+////                }else{
+////                    NHMBProgressHud.showErrorMessage(message: "查询暂无结果，请查证后重新输入")
+////                }
+////
+//
+//                if let dics = dic["Reserve"] as? [String : Any] {
+//                guard let arr = dics["DetailList"]  as? [[String : Any]] else { return }
+//                self.rightArr  = arr.kj.modelArray(JDauthoizationDetailListModel.self)
+//////
+//                self.cancleRighttableView.reloadData()
+//                self.canleLefttableView.reloadData()
+//                self.cancleBgV.isHidden = false
+//
+//                }
+//            } error: { (error) in
+//
+//            }
+//
+//
+//        }else{
         var actions = [String]()
         if reserveMode.ifdState == 0 {
             actions = ["确认预约","取消预约"]
         }else if reserveMode.ifdState == 1 {
-            actions = ["授权","结账","会员360","课程购买"]
+//            actions = ["授权","结账","会员360","课程购买"]
+            actions = ["授权","结账","课程购买"]
         }else if reserveMode.ifdState == 2 {
-            actions = ["会员360","课程购买"]
+            actions = ["预约详情","课程购买"]
         }else if reserveMode.ifdState == 3 {
-            return
+            actions = ["预约详情"]
         }
         if actions.count == 0 {
             return
@@ -299,11 +400,43 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UIColle
                    NHMBProgressHud.showErrorMessage(message: (error as? String) ?? "请稍后重试")
                }
 
+            }else if cell.titleLab.text == "预约详情" {
+                
+                self.leftArr = ["客户手机号：\(reserveMode.cfdMoTel ?? "")","客户姓名：\(reserveMode.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(cfdEmployeeName ?? "" )","状态：取消"]
+                
+                NHMBProgressHud.showLoadingHudView(message: "加载中～～")
+                let params = ["cfdReserveId":reserveMode.cfdReserveId!]
+                NetManager.ShareInstance.getWith(url: "api/IPad/IPadQueryReserve", params: params as [String : Any]) { (dic) in
+                    NHMBProgressHud.hideHud()
+
+    //                if let dics = dic["Member"] as? [String : Any] {
+    //                    self.memberModel =  dics.kj.model(MemberDetailModel.self)
+    ////                    self.kehuNameL.text = self.memberModel?.cfdMemberName ?? "暂无"
+    ////                    self.kehuTelT.resignFirstResponder()
+    //                    self.leftArr = ["客户手机号：\(self.memberModel?.cfdMoTel ?? "")","客户姓名：\(self.memberModel?.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(self.memberModel?.cfdMemberName ?? ","状态：取消"]
+    //                }else{
+    //                    NHMBProgressHud.showErrorMessage(message: "查询暂无结果，请查证后重新输入")
+    //                }
+    //
+                    
+                    if let dics = dic["Reserve"] as? [String : Any] {
+                    guard let arr = dics["DetailList"]  as? [[String : Any]] else { return }
+                    self.rightArr  = arr.kj.modelArray(JDauthoizationDetailListModel.self)
+    ////
+                    self.cancleRighttableView.reloadData()
+                    self.canleLefttableView.reloadData()
+                    self.cancleBgV.isHidden = false
+                        
+                    }
+                } error: { (error) in
+                
+                }
+                
             }
     
         } cancelCallBack: {
             
         }.show()
-
+//    }
     }
 }

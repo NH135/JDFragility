@@ -99,7 +99,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.87058823529411766" green="0.85098039215686272" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="wpf-3I-Hpf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="17z-eS-Ge8"/>
                 <constraint firstItem="vDc-pq-OTq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3Tb-RT-7fF"/>
@@ -130,9 +130,6 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

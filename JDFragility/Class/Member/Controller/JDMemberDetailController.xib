@@ -346,21 +346,6 @@
                         <constraint firstItem="nfb-SN-aL0" firstAttribute="height" secondItem="qpr-0f-caH" secondAttribute="height" id="zHf-97-kUx"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hev-rZ-Sof">
-                    <rect key="frame" x="0.0" y="0.0" width="837" height="473"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="HWC-3c-pql">
-                            <rect key="frame" x="50" y="50" width="737" height="373"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="HWC-3c-pql" secondAttribute="trailing" constant="50" id="5qH-DB-gS9"/>
-                        <constraint firstItem="HWC-3c-pql" firstAttribute="leading" secondItem="Hev-rZ-Sof" secondAttribute="leading" constant="50" id="fwY-EI-EYp"/>
-                        <constraint firstItem="HWC-3c-pql" firstAttribute="top" secondItem="Hev-rZ-Sof" secondAttribute="top" constant="50" id="kXK-eD-uqb"/>
-                        <constraint firstAttribute="bottom" secondItem="HWC-3c-pql" secondAttribute="bottom" constant="50" id="yI4-bR-WzF"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-Eu-cGp">
                     <rect key="frame" x="10" y="220" width="817" height="243"/>
                     <subviews>
@@ -437,7 +422,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCs-qC-qI3">
                             <rect key="frame" x="653.5" y="0.0" width="163.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="优惠卷">
+                            <state key="normal" title="优惠劵">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="disabled">
@@ -489,6 +474,21 @@
                         <constraint firstItem="pQI-a8-Klb" firstAttribute="leading" secondItem="0KF-0u-ngl" secondAttribute="trailing" id="teU-09-ZzF"/>
                         <constraint firstItem="2hv-rO-WqM" firstAttribute="top" secondItem="XcE-Jd-JxZ" secondAttribute="top" id="tja-vR-sgo"/>
                         <constraint firstItem="iCs-qC-qI3" firstAttribute="width" secondItem="53D-pw-rOL" secondAttribute="width" id="yeB-qV-UWx"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hev-rZ-Sof">
+                    <rect key="frame" x="0.0" y="0.0" width="837" height="473"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="HWC-3c-pql">
+                            <rect key="frame" x="50" y="50" width="737" height="373"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HWC-3c-pql" secondAttribute="trailing" constant="50" id="5qH-DB-gS9"/>
+                        <constraint firstItem="HWC-3c-pql" firstAttribute="leading" secondItem="Hev-rZ-Sof" secondAttribute="leading" constant="50" id="fwY-EI-EYp"/>
+                        <constraint firstItem="HWC-3c-pql" firstAttribute="top" secondItem="Hev-rZ-Sof" secondAttribute="top" constant="50" id="kXK-eD-uqb"/>
+                        <constraint firstAttribute="bottom" secondItem="HWC-3c-pql" secondAttribute="bottom" constant="50" id="yI4-bR-WzF"/>
                     </constraints>
                 </view>
             </subviews>

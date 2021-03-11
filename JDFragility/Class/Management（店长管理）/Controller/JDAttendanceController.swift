@@ -17,7 +17,7 @@ class JDAttendanceController: JDBaseViewController, DZNEmptyDataSetSource, DZNEm
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor=UIColor.blue
+      
         title = "排班"
         starTimeBtn.k_cornerRadius = 4
         endTimeBtn.k_cornerRadius = 4
@@ -55,7 +55,7 @@ class JDAttendanceController: JDBaseViewController, DZNEmptyDataSetSource, DZNEm
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
        
        let xibView = Bundle.main.loadNibNamed("JDtuihuanHeaderView", owner: nil, options: nil)?.first as! UIView
-         xibView.backgroundColor = UIColor.lightText
+   
          xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
        return xibView
          

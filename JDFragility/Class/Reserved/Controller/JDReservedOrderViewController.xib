@@ -113,6 +113,10 @@
                         <constraint firstItem="fOs-VC-Ang" firstAttribute="leading" secondItem="Cuy-hP-dL5" secondAttribute="leading" id="u9p-GJ-XR3"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUS-qI-FV4">
+                    <rect key="frame" x="0.0" y="0.0" width="380" height="522"/>
+                    <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请扫码确认操作详情" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99A-h4-BDe">
                     <rect key="frame" x="0.0" y="50" width="380" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -137,15 +141,19 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wxL-Q6-q4l" secondAttribute="bottom" id="053-v3-HtC"/>
+                <constraint firstItem="dUS-qI-FV4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="06x-Cz-Un8"/>
                 <constraint firstItem="4CL-OL-e7o" firstAttribute="top" secondItem="99A-h4-BDe" secondAttribute="bottom" constant="25" id="0aa-zi-4P5"/>
                 <constraint firstItem="lns-hQ-i01" firstAttribute="centerX" secondItem="4CL-OL-e7o" secondAttribute="centerX" id="2we-q6-YqH"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="leading" secondItem="99A-h4-BDe" secondAttribute="trailing" id="EPT-B2-8AP"/>
                 <constraint firstItem="99A-h4-BDe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GQf-IK-CIo"/>
                 <constraint firstItem="4CL-OL-e7o" firstAttribute="centerX" secondItem="99A-h4-BDe" secondAttribute="centerX" id="GcU-SV-9zv"/>
+                <constraint firstItem="wxL-Q6-q4l" firstAttribute="leading" secondItem="dUS-qI-FV4" secondAttribute="trailing" id="NaK-fR-b6D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dUS-qI-FV4" secondAttribute="bottom" id="SsS-Da-Sqi"/>
                 <constraint firstItem="99A-h4-BDe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="aHQ-Qo-Z7W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wxL-Q6-q4l" secondAttribute="trailing" id="h8e-G3-1cr"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="380" id="m0P-qt-svm"/>
                 <constraint firstItem="wxL-Q6-q4l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oSx-cC-GVa"/>
+                <constraint firstItem="dUS-qI-FV4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uCc-4v-HBI"/>
                 <constraint firstItem="lns-hQ-i01" firstAttribute="top" secondItem="4CL-OL-e7o" secondAttribute="bottom" constant="30" id="yYl-b6-PgQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

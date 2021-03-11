@@ -24,7 +24,7 @@ class JDReservedOrderViewController: JDBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                title="预约订单结账"
+                title="预约详情及授权"
          setUI()
          setData()
         setRefreshhData()

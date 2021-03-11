@@ -156,7 +156,7 @@ class JDhuanKeController: JDBaseViewController, DZNEmptyDataSetSource, DZNEmptyD
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
        
        let xibView = Bundle.main.loadNibNamed("JDtuihuanHeaderView", owner: nil, options: nil)?.first as! UIView
-         xibView.backgroundColor = UIColor.white
+     
          xibView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: 40)
        return xibView
          

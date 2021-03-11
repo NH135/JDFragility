@@ -28,6 +28,16 @@ class JDMainController: JDBaseViewController {
     var three :Bool = false
     var four :Bool = false
     
+    @IBOutlet weak var closeB: UIButton!
+    @IBOutlet weak var hiddenB: UIButton!
+    @IBOutlet weak var nameL: UILabel!
+    @IBOutlet weak var mendianL: UILabel!
+    @IBOutlet weak var versionL: UILabel!
+    @IBOutlet weak var szBgV: UIView!
+    
+    @IBOutlet weak var outBtn: UIButton!
+    
+    
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
  
@@ -46,6 +56,7 @@ class JDMainController: JDBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title="首页"
+    
         iconB.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         yuyueBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         kechengBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
@@ -58,11 +69,41 @@ class JDMainController: JDBaseViewController {
             iconB.setTitle(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "", for: .normal)
         clickAction()
         
+        setting();
+        
     }
  
 }
 
+extension JDMainController {
+    //设置
+    private func setting() {
+        iconB.addAction { (_) in
+            self.szBgV.isHidden = false
+        }
+        hiddenB.addAction { (_) in
+            self.szBgV.isHidden = true
+        }
+        closeB.addAction { (_) in
+            self.szBgV.isHidden = true
+        }
  
+        nameL.text = "当前登陆：\( UserDefaults.standard.string(forKey: "cfdEmployeeName") ?? "")"
+        mendianL.text = "当前门店：\(UserDefaults.standard.string(forKey: "cfdFendianName") ?? "")"
+        versionL.text = "当前版本：V \(kAppVersion ?? 0)"
+        outBtn.k_cornerRadius = 23
+        outBtn.addAction { (_) in
+            JXTAlertView.show(withTitle: "提示", message: "确定要退出吗？", cancelButtonTitle: "取消", otherButtonTitle: "确认") { (_) in
+                
+            } otherButtonBlock: { (index) in
+                print(index)
+                (UIApplication.shared.delegate as! AppDelegate).showWindowOutLogin()
+            }
+ 
+        }
+    }
+    
+}
 
 
 extension JDMainController {
