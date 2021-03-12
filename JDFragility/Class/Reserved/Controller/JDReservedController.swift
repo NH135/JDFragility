@@ -401,8 +401,9 @@ extension JDReservedController:UITableViewDataSource,UITableViewDelegate,UIColle
                }
 
             }else if cell.titleLab.text == "预约详情" {
+                let state = (reserveMode.ifdState == 2) ? "完成" : "取消"
                 
-                self.leftArr = ["客户手机号：\(reserveMode.cfdMoTel ?? "")","客户姓名：\(reserveMode.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(cfdEmployeeName ?? "" )","状态：取消"]
+                self.leftArr = ["客户手机号：\(reserveMode.cfdMoTel ?? "")","客户姓名：\(reserveMode.cfdMemberName ?? "")","预约时间：\(reserveMode.cfdTimeStar ?? "") - \(reserveMode.cfdTimeEnd ?? "")","预约员工：\(cfdEmployeeName ?? "" )","状态：\(state)"]
                 
                 NHMBProgressHud.showLoadingHudView(message: "加载中～～")
                 let params = ["cfdReserveId":reserveMode.cfdReserveId!]

@@ -438,6 +438,7 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
             cell.selectionStyle = .none
             cell.ifdType = true;
             cell.goumaiModel = orderKCArr[indexPath.row]
+            cell.delegate = self
             return cell
         }else  if tableView == twoV {
             let cell = tableView.k_dequeueReusableCell(cls: JDlasteCaozuowCell.self, indexPath: indexPath)
@@ -493,12 +494,17 @@ extension JDMemberDetailController:UITableViewDelegate,UITableViewDataSource, DZ
                 }
 
             }
+        }else  if btn.titleLabel?.text! == "选课程" {
+            let save =  JDsaveKCController()
+            save.cfdBusListGUID = reserveMode.cfdBusListGUID 
+
+            self.navigationController?.ymPushViewController(save, removeSelf: true, animated: true)
         }else{
-                    let settlement = JDSettlementController()
-                    settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
-                    settlement.memberModel = self.memberModel.Member;
-            settlement.isYf = true
-                    self.navigationController?.pushViewController(settlement, animated: true)
+            let settlement = JDSettlementController()
+            settlement.cfdBusListGUID  = reserveMode.cfdBusListGUID!
+            settlement.memberModel = self.memberModel.Member;
+              settlement.isYf = true
+            self.navigationController?.pushViewController(settlement, animated: true)
         }
         
 

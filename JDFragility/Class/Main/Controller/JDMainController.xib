@@ -14,6 +14,7 @@
                 <outlet property="closeB" destination="vmP-r0-xR5" id="DtH-5q-8ys"/>
                 <outlet property="dianzhangBtn" destination="Lfv-UN-e6u" id="1uA-H9-eD0"/>
                 <outlet property="hiddenB" destination="CBo-X0-lm9" id="pgf-5F-JT6"/>
+                <outlet property="huankBtn" destination="eqA-wV-wu8" id="HPw-7P-Kk5"/>
                 <outlet property="huiyuanBtn" destination="twB-Lj-8t3" id="cFP-HG-1is"/>
                 <outlet property="iconB" destination="Ok8-Xn-KmT" id="Gvc-pR-cdD"/>
                 <outlet property="kechengBtn" destination="Xro-aS-5JN" id="7MC-vJ-XUY"/>
@@ -22,6 +23,7 @@
                 <outlet property="outBtn" destination="c4Q-tM-5wv" id="Qz9-TR-nAo"/>
                 <outlet property="rightView" destination="dLG-ug-ORH" id="AyT-sT-chN"/>
                 <outlet property="szBgV" destination="ncn-AQ-Po2" id="2dQ-YB-xfc"/>
+                <outlet property="tuikBtn" destination="qKc-U9-5cq" id="b9s-eJ-hQY"/>
                 <outlet property="versionL" destination="knG-Nh-f00" id="zLL-mp-x1h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yuyueBtn" destination="6NT-vW-b79" id="UHP-2y-LnJ"/>
@@ -32,13 +34,17 @@
             <rect key="frame" x="0.0" y="0.0" width="804" height="592"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLG-ug-ORH">
+                    <rect key="frame" x="100" y="0.0" width="704" height="592"/>
+                    <color key="backgroundColor" red="0.31286379689999999" green="0.32264983650000001" blue="0.4552890658" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mj-qG-jLD">
                     <rect key="frame" x="0.0" y="0.0" width="100" height="592"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ok8-Xn-KmT">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="200" id="0Ww-Uo-wcc"/>
+                                <constraint firstAttribute="height" constant="140" id="0Ww-Uo-wcc"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="培训部" image="CICIlogo"/>
@@ -46,15 +52,15 @@
                             <state key="highlighted" image="CICIlogo"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NT-vW-b79">
-                            <rect key="frame" x="0.0" y="200" width="100" height="98"/>
+                            <rect key="frame" x="0.0" y="140" width="100" height="75.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="预约" image="yuyueOn"/>
                             <state key="disabled" title="预约" image="yuyueOut">
-                                <color key="titleColor" red="0.65593224760000002" green="0.47270530459999999" blue="0.75883817669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.65490196078431373" green="0.47450980392156861" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xro-aS-5JN">
-                            <rect key="frame" x="0.0" y="298" width="100" height="98"/>
+                            <rect key="frame" x="0.0" y="215.5" width="100" height="75"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="课程购买" image="proOn"/>
                             <state key="disabled" title="课程购买" image="proOut">
@@ -62,7 +68,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twB-Lj-8t3">
-                            <rect key="frame" x="0.0" y="396" width="100" height="98"/>
+                            <rect key="frame" x="0.0" y="290.5" width="100" height="75.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="会员信息" image="vipOn"/>
                             <state key="disabled" title="会员信息" image="vipOut">
@@ -70,10 +76,26 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfv-UN-e6u">
-                            <rect key="frame" x="0.0" y="494" width="100" height="98"/>
+                            <rect key="frame" x="0.0" y="366" width="100" height="75.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <state key="normal" title="店务管理" image="managerOn"/>
-                            <state key="disabled" title="店长管理" image="managerOut">
+                            <state key="normal" title="领卡升卡" image="lingshengnorm"/>
+                            <state key="disabled" title="领卡升卡" image="lingshengseted">
+                                <color key="titleColor" red="0.65593224760000002" green="0.47270530459999999" blue="0.75883817669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqA-wV-wu8">
+                            <rect key="frame" x="0.0" y="441.5" width="100" height="75"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="换课" image="huankenorm"/>
+                            <state key="disabled" title="换课" image="huankeseted">
+                                <color key="titleColor" red="0.65593224760000002" green="0.47270530459999999" blue="0.75883817669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKc-U9-5cq">
+                            <rect key="frame" x="0.0" y="516.5" width="100" height="75.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" title="退课" image="tuikenorm"/>
+                            <state key="disabled" title="退课" image="tuikeseted">
                                 <color key="titleColor" red="0.65593224760000002" green="0.47270530459999999" blue="0.75883817669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -83,14 +105,21 @@
                         <constraint firstItem="Lfv-UN-e6u" firstAttribute="top" secondItem="twB-Lj-8t3" secondAttribute="bottom" id="1lg-rm-ZqL"/>
                         <constraint firstItem="Xro-aS-5JN" firstAttribute="top" secondItem="6NT-vW-b79" secondAttribute="bottom" id="2Ph-Nj-F48"/>
                         <constraint firstItem="Xro-aS-5JN" firstAttribute="leading" secondItem="6NT-vW-b79" secondAttribute="leading" id="2jg-ya-mFf"/>
+                        <constraint firstItem="eqA-wV-wu8" firstAttribute="leading" secondItem="Lfv-UN-e6u" secondAttribute="leading" id="3eD-hl-KdO"/>
+                        <constraint firstItem="qKc-U9-5cq" firstAttribute="top" secondItem="eqA-wV-wu8" secondAttribute="bottom" id="49W-N7-UZS"/>
                         <constraint firstItem="twB-Lj-8t3" firstAttribute="leading" secondItem="9Mj-qG-jLD" secondAttribute="leading" id="8ug-Le-1NV"/>
+                        <constraint firstItem="eqA-wV-wu8" firstAttribute="height" secondItem="Lfv-UN-e6u" secondAttribute="height" id="939-mP-qVq"/>
                         <constraint firstItem="Lfv-UN-e6u" firstAttribute="width" secondItem="6NT-vW-b79" secondAttribute="width" id="ALn-q6-ieo"/>
+                        <constraint firstItem="qKc-U9-5cq" firstAttribute="height" secondItem="eqA-wV-wu8" secondAttribute="height" id="Dwt-tB-C0m"/>
+                        <constraint firstItem="qKc-U9-5cq" firstAttribute="trailing" secondItem="eqA-wV-wu8" secondAttribute="trailing" id="JDc-5U-u9R"/>
                         <constraint firstItem="Lfv-UN-e6u" firstAttribute="height" secondItem="6NT-vW-b79" secondAttribute="height" id="JQU-za-4DH"/>
+                        <constraint firstItem="eqA-wV-wu8" firstAttribute="top" secondItem="Lfv-UN-e6u" secondAttribute="bottom" id="Lx3-q7-WqK"/>
                         <constraint firstItem="6NT-vW-b79" firstAttribute="leading" secondItem="9Mj-qG-jLD" secondAttribute="leading" id="Mzb-qu-1UG"/>
                         <constraint firstAttribute="trailing" secondItem="Lfv-UN-e6u" secondAttribute="trailing" id="PbP-y9-RP9"/>
                         <constraint firstItem="Ok8-Xn-KmT" firstAttribute="leading" secondItem="9Mj-qG-jLD" secondAttribute="leading" id="S6g-c8-1WO"/>
                         <constraint firstItem="twB-Lj-8t3" firstAttribute="height" secondItem="6NT-vW-b79" secondAttribute="height" id="TKt-Wr-Wz7"/>
                         <constraint firstItem="6NT-vW-b79" firstAttribute="top" secondItem="Ok8-Xn-KmT" secondAttribute="bottom" id="VGh-th-ORh"/>
+                        <constraint firstAttribute="bottom" secondItem="qKc-U9-5cq" secondAttribute="bottom" id="Va4-10-H3z"/>
                         <constraint firstItem="Ok8-Xn-KmT" firstAttribute="top" secondItem="9Mj-qG-jLD" secondAttribute="top" id="X2S-jK-piV"/>
                         <constraint firstAttribute="trailing" secondItem="twB-Lj-8t3" secondAttribute="trailing" id="cxG-Om-Zmo"/>
                         <constraint firstItem="Lfv-UN-e6u" firstAttribute="leading" secondItem="9Mj-qG-jLD" secondAttribute="leading" id="d30-oE-jsZ"/>
@@ -98,15 +127,12 @@
                         <constraint firstItem="Xro-aS-5JN" firstAttribute="width" secondItem="6NT-vW-b79" secondAttribute="width" id="hqh-Oj-dKN"/>
                         <constraint firstItem="twB-Lj-8t3" firstAttribute="width" secondItem="6NT-vW-b79" secondAttribute="width" id="i8s-YM-96O"/>
                         <constraint firstItem="twB-Lj-8t3" firstAttribute="top" secondItem="Xro-aS-5JN" secondAttribute="bottom" id="k2x-i5-Zxt"/>
+                        <constraint firstItem="eqA-wV-wu8" firstAttribute="trailing" secondItem="Lfv-UN-e6u" secondAttribute="trailing" id="kJw-Hh-Fgl"/>
                         <constraint firstAttribute="trailing" secondItem="6NT-vW-b79" secondAttribute="trailing" id="lPI-RS-C5w"/>
                         <constraint firstItem="Xro-aS-5JN" firstAttribute="height" secondItem="6NT-vW-b79" secondAttribute="height" id="uGm-yn-ZAC"/>
+                        <constraint firstItem="qKc-U9-5cq" firstAttribute="leading" secondItem="eqA-wV-wu8" secondAttribute="leading" id="ue7-DU-RIA"/>
                         <constraint firstAttribute="width" constant="100" id="uuD-3L-95I"/>
-                        <constraint firstAttribute="bottom" secondItem="Lfv-UN-e6u" secondAttribute="bottom" id="yUc-UX-TFX"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLG-ug-ORH">
-                    <rect key="frame" x="100" y="0.0" width="704" height="592"/>
-                    <color key="backgroundColor" red="0.31286379689999999" green="0.32264983650000001" blue="0.4552890658" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncn-AQ-Po2">
                     <rect key="frame" x="0.0" y="0.0" width="804" height="592"/>
@@ -272,10 +298,14 @@
     <resources>
         <image name="CICIlogo" width="90" height="40"/>
         <image name="close" width="24" height="24"/>
-        <image name="managerOn" width="45" height="45"/>
-        <image name="managerOut" width="45" height="45"/>
+        <image name="huankenorm" width="45" height="45"/>
+        <image name="huankeseted" width="45" height="45"/>
+        <image name="lingshengnorm" width="45" height="45"/>
+        <image name="lingshengseted" width="45" height="45"/>
         <image name="proOn" width="45" height="45"/>
         <image name="proOut" width="45" height="45"/>
+        <image name="tuikenorm" width="45" height="45"/>
+        <image name="tuikeseted" width="45" height="45"/>
         <image name="vipOn" width="45" height="45"/>
         <image name="vipOut" width="45" height="45"/>
         <image name="yuyueOn" width="45" height="45"/>

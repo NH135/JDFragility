@@ -226,9 +226,18 @@ extension JDsaveKCController:UITableViewDataSource,UITableViewDelegate, DZNEmpty
             let group  = letftArr[indexPath.row]
             cfdCourseId = group.cfdCourseId
             rightTableView.mj_header?.beginRefreshing()
+            ifdType = group.ifdType ?? 1
             self.setedArr.removeAll()
             self.numberArr.removeAll()
+            self.letfIndex = indexPath.row
         }else{
+            let leftgroup  = self.letftArr[self.letfIndex]
+            if leftgroup.ifdType == 2 {
+                return
+            }
+            
+            
+            
             let group  = rightArr[indexPath.section]
             let groupDetail = group.ItemList[indexPath.row]
  

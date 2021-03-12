@@ -41,15 +41,20 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYF-ZL-K0M">
-                            <rect key="frame" x="310" y="120" width="260" height="60"/>
+                            <rect key="frame" x="310" y="110" width="260" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="i0A-OC-mXe"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4X-82-ThB">
+                            <rect key="frame" x="328" y="299" width="46" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-s0-ysQ">
-                            <rect key="frame" x="310" y="200" width="260" height="50"/>
+                            <rect key="frame" x="310" y="190" width="260" height="50"/>
                             <color key="backgroundColor" red="0.93784952160000001" green="0.47340613599999998" blue="0.33330351110000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Iby-43-kCE"/>
@@ -59,7 +64,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCw-Sy-dpN">
-                            <rect key="frame" x="310" y="260" width="260" height="50"/>
+                            <rect key="frame" x="310" y="250" width="260" height="50"/>
                             <color key="backgroundColor" red="0.93784952160000001" green="0.47340613599999998" blue="0.33330351110000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Zwi-yF-L1e"/>
@@ -70,7 +75,7 @@
                             </state>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="system" borderStyle="roundedRect" placeholder="账户" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0O-go-qMh">
-                            <rect key="frame" x="310" y="40" width="260" height="60"/>
+                            <rect key="frame" x="310" y="30" width="260" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="ZWV-qw-wOB"/>
                                 <constraint firstAttribute="width" constant="260" id="eyv-Uf-6QC"/>
@@ -121,7 +126,7 @@
                         <constraint firstItem="bCw-Sy-dpN" firstAttribute="leading" secondItem="9Wr-s0-ysQ" secondAttribute="leading" id="MEr-PL-QCW"/>
                         <constraint firstAttribute="trailing" secondItem="yhd-n4-kWt" secondAttribute="trailing" id="QwA-Ec-heA"/>
                         <constraint firstItem="xYF-ZL-K0M" firstAttribute="leading" secondItem="t0O-go-qMh" secondAttribute="leading" id="SvV-p8-nm1"/>
-                        <constraint firstItem="t0O-go-qMh" firstAttribute="top" secondItem="Dai-CU-By0" secondAttribute="top" constant="40" id="WQh-GD-KoY"/>
+                        <constraint firstItem="t0O-go-qMh" firstAttribute="top" secondItem="Dai-CU-By0" secondAttribute="top" constant="30" id="WQh-GD-KoY"/>
                         <constraint firstItem="xYF-ZL-K0M" firstAttribute="trailing" secondItem="t0O-go-qMh" secondAttribute="trailing" id="XIb-78-9yk"/>
                         <constraint firstItem="byl-7N-zJc" firstAttribute="centerY" secondItem="Dai-CU-By0" secondAttribute="centerY" id="Z6I-hY-SHB"/>
                         <constraint firstItem="byl-7N-zJc" firstAttribute="top" secondItem="2oX-VV-bhi" secondAttribute="bottom" constant="20" id="Zkf-Qm-9tq"/>

@@ -26,6 +26,7 @@ class JDhuiyuanDetail: Convertible {
     var ifdType:String?;
     var cfdFendianName:String?;
     var cfdPhoto:String?;
+    var ifdJump :Bool?
     
     var isUse:Bool?   // 是否可使用
     var CouponUse :Int?  //状态0未使用，1已使用，2已过期

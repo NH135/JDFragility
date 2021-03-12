@@ -121,7 +121,7 @@ class JDCourseshopingCell: UITableViewCell {
 //    多选保存
     var baocunModel:saveDetailModel? {
         didSet {
-            iconV.setCategorymageUrl(url: baocunModel?.cfdImgSrc ?? "")
+            iconV.setCategorymageUrl(url: baocunModel?.cfdImgSrcA ?? "")
             nameL.text = baocunModel?.cfdItemName
 //            detaileL.text = "¥\(jiesuanModel?.ffdNowPrice ?? "暂无报价")"
             detaileL.text =  baocunModel?.ifdTimes

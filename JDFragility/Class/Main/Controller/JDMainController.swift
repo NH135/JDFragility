@@ -20,13 +20,21 @@ class JDMainController: JDBaseViewController {
     private var reserver:JDReservedController?
     private var member:JDMemberController?
     private var attendance:JDAttendanceController?
-    private var management:JDManagementController?
+    private var management:JDlingCarController?
     private var course:JDCourseController?
+    
+    private var shengling:JDlingCarController?
+    private var huanke:JDhuanKeController?
+    private var tuike:JDtuiKeController?
+    
     
     var one :Bool = false
     var two :Bool = false
     var three :Bool = false
     var four :Bool = false
+    var five :Bool = false
+    var six :Bool = false
+
     
     @IBOutlet weak var closeB: UIButton!
     @IBOutlet weak var hiddenB: UIButton!
@@ -36,7 +44,8 @@ class JDMainController: JDBaseViewController {
     @IBOutlet weak var szBgV: UIView!
     
     @IBOutlet weak var outBtn: UIButton!
-    
+    @IBOutlet weak var huankBtn: UIButton!
+    @IBOutlet weak var tuikBtn: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
@@ -61,7 +70,8 @@ class JDMainController: JDBaseViewController {
         yuyueBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         kechengBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         huiyuanBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
-//        kaoqinBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
+        huankBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
+                tuikBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
         dianzhangBtn.hw_locationAdjust(buttonMode: .Top, spacing: 10)
      
         yuyueBtn.isEnabled=false
@@ -128,6 +138,8 @@ extension JDMainController {
             self.member?.view.isHidden=true;
             self.attendance?.view.isHidden=true;
             self.management?.view.isHidden=true;
+            self.tuike?.view.isHidden=true;
+            self.huanke?.view.isHidden=true;
             switch type {
             case 1:
               
@@ -157,25 +169,39 @@ extension JDMainController {
                     two = true
                 }
             case 4:
-                self.attendance?.view.isHidden=false;
-                if three == false {
-                    self.attendance = JDAttendanceController()
-                    self.attendance?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
-//                    self.attendance?.view.isHidden=true;
-                    self.addChild(self.attendance ?? UIViewController())
-                    rightView.addSubview(self.attendance?.view ?? UIView())
-                    three = true
-                }
-            default:
                 
                 self.management?.view.isHidden=false;
-                if four == false {
-                    self.management = JDManagementController()
+                if three == false {
+                    self.management = JDlingCarController()
                     self.management?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
 //                    self.management?.view.isHidden=true;
                     self.addChild(self.management ?? UIViewController())
                     rightView.addSubview(self.management?.view ?? UIView())
+                    three = true
+                }
+            case 5:
+                
+                self.huanke?.view.isHidden=false;
+                if four == false {
+                    self.huanke = JDhuanKeController()
+                    self.huanke?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.management?.view.isHidden=true;
+                    self.addChild(self.huanke ?? UIViewController())
+                    rightView.addSubview(self.huanke?.view ?? UIView())
                     four = true
+                }
+                
+                
+            default:
+                
+                self.tuike?.view.isHidden=false;
+                if five == false {
+                    self.tuike = JDtuiKeController()
+                    self.tuike?.view.frame=CGRect(x: 0, y: 0, width: kScreenWidth-100, height: kScreenHeight)
+//                    self.management?.view.isHidden=true;
+                    self.addChild(self.tuike ?? UIViewController())
+                    rightView.addSubview(self.tuike?.view ?? UIView())
+                    five = true
                 }
             }
         }
@@ -188,6 +214,9 @@ extension JDMainController {
             self.huiyuanBtn.isEnabled = true
 //            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
+            self.huankBtn.isEnabled = true;
+            self.tuikBtn.isEnabled = true;
+            
         typeView(with: 1)
         }
         
@@ -197,6 +226,9 @@ extension JDMainController {
             self.huiyuanBtn.isEnabled = true
 //            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
+            self.huankBtn.isEnabled = true;
+            self.tuikBtn.isEnabled = true;
+            
             typeView(with: 2)
         }
         
@@ -207,18 +239,14 @@ extension JDMainController {
             self.yuyueBtn.isEnabled = true
 //            self.kaoqinBtn.isEnabled = true
             self.dianzhangBtn.isEnabled = true
+            self.huankBtn.isEnabled = true;
+            self.tuikBtn.isEnabled = true;
+            
             typeView(with: 3)
         }
         
         
-//        kaoqinBtn.addAction { (btn:UIButton) in
-//            btn.isEnabled=false
-//            self.kechengBtn.isEnabled = true
-//            self.huiyuanBtn.isEnabled = true
-//            self.kechengBtn.isEnabled = true
-//            self.dianzhangBtn.isEnabled = true
-//            typeView(with: 4)
-//        }
+ 
         
         dianzhangBtn.addAction { (btn:UIButton) in
             btn.isEnabled=false
@@ -226,8 +254,33 @@ extension JDMainController {
             self.huiyuanBtn.isEnabled = true
 //            self.kaoqinBtn.isEnabled = true
             self.yuyueBtn.isEnabled = true
-            typeView(with:5)
+            self.huankBtn.isEnabled = true;
+            self.tuikBtn.isEnabled = true;
+
+            typeView(with:4)
         }
+        
+        huankBtn.addAction { (btn:UIButton) in
+                        btn.isEnabled=false
+                        self.kechengBtn.isEnabled = true
+                        self.huiyuanBtn.isEnabled = true
+            //            self.kaoqinBtn.isEnabled = true
+                        self.yuyueBtn.isEnabled = true
+                        self.dianzhangBtn.isEnabled = true;
+                        self.tuikBtn.isEnabled = true;
+            typeView(with: 5)
+        }
+        tuikBtn.addAction { (btn:UIButton) in
+                        btn.isEnabled=false
+                        self.kechengBtn.isEnabled = true
+                        self.huiyuanBtn.isEnabled = true
+            //            self.kaoqinBtn.isEnabled = true
+                        self.yuyueBtn.isEnabled = true
+                        self.dianzhangBtn.isEnabled = true;
+                        self.huankBtn.isEnabled = true;
+            typeView(with: 6)
+        }
+        
     }
     
     

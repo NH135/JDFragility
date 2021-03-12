@@ -58,7 +58,7 @@ class JDgoumaikcCell: UITableViewCell {
         yufujinPayBtn.addAction { (btn) in
             // 添加预约
            if ((self.delegate?.responds(to: Selector(("reserveSendName")))) != nil) {
-            self.delegate?.reserveSendName(btn:btn,reserveMode:self.yufuModel!)
+            self.delegate?.reserveSendName(btn:btn,reserveMode:((self.yufuModel != nil) ? self.yufuModel : self.goumaiModel) ?? JDhuiyuanDetail())
             }
             
       
@@ -70,7 +70,13 @@ class JDgoumaikcCell: UITableViewCell {
     var goumaiModel : JDhuiyuanDetail?{
         didSet{
             iconI.kf.setImage(with: URL(string: goumaiModel?.cfdPhoto ?? ""), placeholder: UIImage(named: "dingdanICon"), options: nil, progressBlock: nil, completionHandler: nil)
-            yufujinPayBtn.isHidden = true
+            if goumaiModel?.ifdJump == true {
+                yufujinPayBtn.isHidden = false
+                yufujinPayBtn.setTitle("选课程", for: .normal)
+            }else{
+                yufujinPayBtn.isHidden = true
+            }
+ 
             weikuanPayBtn.isHidden = true
             if goumaiModel?.CardList.count ?? 0 > 0 {
                 orderTableView.k_cornerRadius = 6

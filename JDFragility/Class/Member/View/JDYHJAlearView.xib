@@ -39,7 +39,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.使用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omp-le-awu">
-                            <rect key="frame" x="20" y="91" width="41.5" height="18"/>
+                            <rect key="frame" x="20" y="91" width="360" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="0.45355761690295388" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                         <constraint firstItem="omp-le-awu" firstAttribute="top" secondItem="T5F-Aw-mE4" secondAttribute="bottom" constant="10" id="eUF-5U-0iX"/>
                         <constraint firstAttribute="trailing" secondItem="mAe-dT-cDp" secondAttribute="trailing" id="g22-D3-rsN"/>
                         <constraint firstItem="mAe-dT-cDp" firstAttribute="top" secondItem="FQb-Us-qco" secondAttribute="top" id="jbL-FI-t7T"/>
+                        <constraint firstAttribute="trailing" secondItem="omp-le-awu" secondAttribute="trailing" constant="20" id="su3-xf-x9v"/>
                         <constraint firstAttribute="height" constant="500" id="x4g-qO-d0b"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

@@ -133,7 +133,7 @@ class saveDetailModel: Convertible {
     var cfdCourseItemGroupId : String?
     var cfdItemName : String?
     var cfdImgSrc : String?
-    
+    var cfdImgSrcA : String?
     var ifdTimes : String?
     var cfdCourseListId : String?
     var cfdItemId : String?
