@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (stringValue != nil) {
             window.rootViewController=JDNavViewController(rootViewController: JDMainController())
         }else{
-            window.rootViewController=JDLoginController()
+            window.rootViewController=JDNavViewController(rootViewController:JDLoginController())
         }
                self.window = window
                window.makeKeyAndVisible()
@@ -37,11 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //获取应用域的所有字符串
         guard let appDomainString = Bundle.main.bundleIdentifier else {
             UserDefaults.standard.set(nil, forKey: "cfdRealName")
-            self.window?.rootViewController = JDLoginController()
+            self.window?.rootViewController = JDNavViewController(rootViewController:JDLoginController())
             return
         }
         UserDefaults.standard.removePersistentDomain(forName: appDomainString)
-        self.window?.rootViewController = JDLoginController()
+        self.window?.rootViewController = JDNavViewController(rootViewController:JDLoginController())
     }
     
     

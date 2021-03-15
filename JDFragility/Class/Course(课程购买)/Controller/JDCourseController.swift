@@ -10,9 +10,7 @@ import MJRefresh
 import KakaJSON
 import IQKeyboardManager
 class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
-    
-    
+ 
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
     @IBOutlet weak var iconImageV: UIImageView!
@@ -22,6 +20,7 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     @IBOutlet weak var shopingView: UIView!
     @IBOutlet weak var zheBg: UIView!
     @IBOutlet weak var shopingTableView: UITableView!
+    @IBOutlet weak var shopingCount: UILabel!
     @IBOutlet weak var jiesuanBtn: UIButton!
     @IBOutlet weak var searchBtn: UIButton!
     
@@ -35,11 +34,15 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
     var cfdMemberId:String?
     var telStr:String?
     var namelTelStr:String?
-    var shopingGroups = Array<JDGroupProjectModel>()
+    var shopingGroups = [JDGroupProjectModel]()
     var groups = Array<JDGroupModel>()
     var rightGroups = Array<JDGroupProjectModel>()
     var classId : String?
     
+    lazy var viewArray:[UIView] = {
+        let viewArray = [UIView]()
+        return viewArray
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,6 +71,8 @@ class JDCourseController: JDBaseViewController, UITextFieldDelegate, DZNEmptyDat
         tiL.font=UIFont.systemFont(ofSize: 18)
         tiL.textColor=UIColor.white
         headerV.addSubview(tiL)
+        shopingCount.k_cornerRadius = 10
+        
         memBerT.k_limitTextLength = 11
         memBerT.delegate = self
         leftTableView.delegate = self;
@@ -191,13 +196,21 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
             return cell
         }else{
             let cell = tableView.k_dequeueReusableCell(cls: JDCourseshopingCell.self, indexPath: indexPath)
-            cell.detaileModel = shopingGroups[indexPath.row]
-            //            cell.delegate = self
+            cell.kcshopingModel = shopingGroups[indexPath.row]
             cell.selectionStyle = .none;
             return cell
         }
         
     }
+    
+//    func shopingaddjianCourse(type: Bool, model: JDGroupModel) {
+//
+//    }
+//
+//    func huanaddjianCourse(type: Bool, model: JDGroupProjectModel) {
+//
+//    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == leftTableView {
             return 50
@@ -282,19 +295,96 @@ extension JDCourseController:UITableViewDataSource,UITableViewDelegate,HeaderVie
     }
     
     
-    func addjianCourse(type: Bool, model: JDGroupProjectModel) {
+    func addjianCourse(cell: JDCourseCell, type:Bool, model:JDGroupProjectModel) {
         if type == true {
-            self.shopingGroups.append(model)
+            
+            var isTo = false
+            if  shopingGroups.count > 0 {
+                for m in shopingGroups{
+                    if m.cfdCourseId == model.cfdCourseId {
+                        m.ifdSumNumber += 1
+                        isTo = true
+                        break;
+                    }
+                }
+                
+                if isTo == false {
+                    shopingGroups.append(model)
+                }
+                
+            }else{
+                shopingGroups.append(model)
+            }
+           
+            let rect = cell.convert(cell.addBtn.frame, to: self.view)
+         
+            self.addAnimation(rect: rect)
+       
         }else{
+            //根据需求没有减了
             for (index,m) in shopingGroups.enumerated() {
-                if m.cfdCourseClassId == model.cfdCourseClassId {
+                if m.cfdCourseId == model.cfdCourseClassId {
                     shopingGroups.remove(at: index)
                     break
                 }
             }
         }
+        shopingCount.isHidden = false;
+        shopingCount.text = "  \(shopingGroups.count)  "
     }
 }
+extension JDCourseController: CAAnimationDelegate {
+    
+    func addAnimation(rect: CGRect) {
+        
+        autoreleasepool{
+            let squr = UIView()
+            squr.backgroundColor = UIColor.red
+            squr.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
+            squr.layer.cornerRadius = 23/2
+            squr.layer.masksToBounds = true
+            self.view.insertSubview(squr, aboveSubview: self.rightTableView)
+            self.viewArray.append(squr)
+            
+        }
+        let lastSquar = self.viewArray.last
+        let path =  CGMutablePath()
+        let beginPoint = CGPoint(x: rect.origin.x + rect.size.width / 2, y: rect.origin.y + rect.size.height / 2)
+        
+        path.move(to: beginPoint)
+        
+        path.addQuadCurve(to:self.goShopingBtn.center,  control: CGPoint(x: 150, y: rect.origin.y))
+        //获取贝塞尔曲线的路径
+        let animationPath = CAKeyframeAnimation.init(keyPath: "position")
+        animationPath.path = path
+        animationPath.rotationMode = CAAnimationRotationMode.rotateAuto
+        
+        //缩小图片到0
+        let scale:CABasicAnimation = CABasicAnimation()
+        scale.keyPath = "transform.scale"
+        scale.toValue = 0.5
+        
+        //组合动画
+        let animationGroup:CAAnimationGroup = CAAnimationGroup()
+        animationGroup.animations = [scale,animationPath];
+        animationGroup.duration = 0.8;
+        animationGroup.fillMode = CAMediaTimingFillMode.forwards;
+        animationGroup.isRemovedOnCompletion = false
+        animationGroup.delegate = self
+        lastSquar!.layer.add(animationGroup, forKey:
+            nil)
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        let redview = self.viewArray.first
+        redview?.isHidden = true
+        self.viewArray.remove(at: 0)
+        
+    }
+}
+
+
+
 extension JDCourseController{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == memBerT {
@@ -401,9 +491,11 @@ extension JDCourseController{
                 self.shopingView.transform = CGAffineTransform.identity
                 self.zheBg.isHidden = true
             }
+            self.shopingCount.text = "  \(self.shopingGroups.count)  "
         }
         
         jiesuanBtn.addAction { (_) in
+            self.shopingCount.isHidden = true;
             guard self.shopingGroups.count != 0  else {
                 NHMBProgressHud.showErrorMessage(message: "请购买项目")
                 return }

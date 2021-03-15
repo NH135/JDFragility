@@ -12,6 +12,8 @@
 		1816CA2425CFBAAE001DD3BB /* JDhuanKeSaveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1816CA2225CFBAAE001DD3BB /* JDhuanKeSaveController.xib */; };
 		181A8B3225CBD64C003B890C /* JDaddCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A8B3025CBD64C003B890C /* JDaddCarController.swift */; };
 		181A8B3325CBD64C003B890C /* JDaddCarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181A8B3125CBD64C003B890C /* JDaddCarController.xib */; };
+		181C0B2025FF226700835374 /* JDwebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C0B1E25FF226700835374 /* JDwebController.swift */; };
+		181C0B2125FF226700835374 /* JDwebController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181C0B1F25FF226700835374 /* JDwebController.xib */; };
 		18219D1525D1237C00DF14A3 /* JDtuiSaveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */; };
 		1824977D25B02E5500858644 /* JDjiesuanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824977C25B02E5500858644 /* JDjiesuanModel.swift */; };
 		1825EC7F25DE57C3002B2170 /* JDshenglingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825EC7D25DE57C3002B2170 /* JDshenglingCell.swift */; };
@@ -190,6 +192,8 @@
 		1816CA2225CFBAAE001DD3BB /* JDhuanKeSaveController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDhuanKeSaveController.xib; sourceTree = "<group>"; };
 		181A8B3025CBD64C003B890C /* JDaddCarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDaddCarController.swift; sourceTree = "<group>"; };
 		181A8B3125CBD64C003B890C /* JDaddCarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDaddCarController.xib; sourceTree = "<group>"; };
+		181C0B1E25FF226700835374 /* JDwebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDwebController.swift; sourceTree = "<group>"; };
+		181C0B1F25FF226700835374 /* JDwebController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDwebController.xib; sourceTree = "<group>"; };
 		18219D1425D1237C00DF14A3 /* JDtuiSaveHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JDtuiSaveHeaderView.xib; sourceTree = "<group>"; };
 		1824977C25B02E5500858644 /* JDjiesuanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDjiesuanModel.swift; sourceTree = "<group>"; };
 		1825EC7D25DE57C3002B2170 /* JDshenglingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDshenglingCell.swift; sourceTree = "<group>"; };
@@ -799,6 +803,8 @@
 				18FD0406259C6190007FC8C8 /* JDMainController.xib */,
 				18BD698525F773B8007F4A49 /* JDMeController.swift */,
 				18BD698625F773B8007F4A49 /* JDMeController.xib */,
+				181C0B1E25FF226700835374 /* JDwebController.swift */,
+				181C0B1F25FF226700835374 /* JDwebController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -976,6 +982,7 @@
 				18EE5B1225B28C290063F871 /* JDsaveKCController.xib in Resources */,
 				18BD674825F5BFE0007F4A49 /* JDkechengYHJCell.xib in Resources */,
 				18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */,
+				181C0B2125FF226700835374 /* JDwebController.xib in Resources */,
 				180D28AC25E0B86500BEFCD4 /* JDtuiHeaderView.xib in Resources */,
 				1830E1D725EF317800683C55 /* JDorderPaytyoeCell.xib in Resources */,
 				181A8B3325CBD64C003B890C /* JDaddCarController.xib in Resources */,
@@ -1165,6 +1172,7 @@
 				18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */,
 				1830E1D025EF317800683C55 /* JDDetaileYhjCell.swift in Sources */,
 				ED0D6DAF25C30FB20081C5B6 /* SwiftQRCodeVC.swift in Sources */,
+				181C0B2025FF226700835374 /* JDwebController.swift in Sources */,
 				18B7AA4425A4743300BE4C27 /* EWDataPickerPresentAnimated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1345,10 +1353,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1372,10 +1380,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = P336AQ7M3A;
 				INFOPLIST_FILE = JDFragility/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

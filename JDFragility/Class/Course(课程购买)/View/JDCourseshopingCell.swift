@@ -20,7 +20,7 @@ class JDCourseshopingCell: UITableViewCell {
     @IBOutlet weak var detaileL: UILabel!
     @IBOutlet weak var addV: UIView!
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var numberL: UILabel!
+    @IBOutlet weak var numberL: UITextField!
     @IBOutlet weak var jianBtn: UIButton!
     @IBOutlet weak var setedBtn: UIButton!
     
@@ -36,7 +36,6 @@ class JDCourseshopingCell: UITableViewCell {
                 self.number += 1
                 self.numberL.text = String(self.number)
                 self.baocunModelT?.ifdSumNumber = self.number;
-//                self.baocunModel?.ifdRefNumber = self.number;
                 if ((self.delegate?.responds(to: Selector(("shopingaddjianCourse:")))) != nil) {
                     self.delegate?.shopingaddjianCourse(type: true, model: self.baocunModelT!)
                  }
@@ -52,18 +51,34 @@ class JDCourseshopingCell: UITableViewCell {
                 if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
                     self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
                  }
+            }else if self.kcshopingModel?.cfdCourseName?.isEmpty == false{
+                
+                
+                
+                self.number = self.kcshopingModel?.ifdSumNumber ?? 0
+                self.number += 1
+                self.numberL.text = String(self.number)
+                self.kcshopingModel?.ifdSumNumber = self.number;
+                print(self.kcshopingModel?.ifdSumNumber ?? 0 )
+      
+               
+                if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
+                    self.delegate?.huanaddjianCourse(type: true, model: self.kcshopingModel!)
+                 }
             }
             
            
         }
       
         jianBtn.addAction { (_) in
-            if self.number == 0 {
-                NHMBProgressHud.showErrorMessage(message: "不能再减了")
-                return
-            }
+          
+       
             
             if self.baocunModelT?.cfdCourseName?.isEmpty == false {
+                if self.number == 0 {
+                    NHMBProgressHud.showErrorMessage(message: "不能再减了")
+                    return
+                }
             self.number -= 1
             self.numberL.text = String(self.number)
             self.baocunModelT?.ifdSumNumber = self.number;
@@ -71,12 +86,31 @@ class JDCourseshopingCell: UITableViewCell {
                 self.delegate?.shopingaddjianCourse(type: false, model: self.baocunModelT!)
              }
             }else if self.huanModel?.cfdCourseName?.isEmpty == false{
+                if self.number == 0 {
+                    NHMBProgressHud.showErrorMessage(message: "不能再减了")
+                    return
+                }
                 self.number -= 1
                 self.numberL.text = String(self.number)
                 self.huanModel?.ifdSumNumber = self.number;
                 self.huanModel?.ifdChangeNumber = self.number;
                 if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
                     self.delegate?.huanaddjianCourse(type: true, model: self.huanModel!)
+                 }
+            }else if self.kcshopingModel?.cfdCourseName?.isEmpty == false{
+                if self.kcshopingModel?.ifdSumNumber == 1 {
+                    NHMBProgressHud.showErrorMessage(message: "不能再减了")
+                    return
+                }
+                
+                self.number = self.kcshopingModel?.ifdSumNumber ?? 0
+                self.number -= 1
+                self.numberL.text = String(self.number)
+                self.kcshopingModel?.ifdSumNumber = self.number;
+                print(self.kcshopingModel?.ifdSumNumber ?? 0 )
+      
+                if ((self.delegate?.responds(to: Selector(("huanaddjianCourse:")))) != nil) {
+                    self.delegate?.huanaddjianCourse(type: true, model: self.kcshopingModel!)
                  }
             }
         }
@@ -89,7 +123,17 @@ class JDCourseshopingCell: UITableViewCell {
             setedBtn.isHidden = true;
             nameL.text = detaileModel?.cfdCourseName
             detaileL.text = "¥\(detaileModel?.ffdPrice ?? "暂无报价")"
-            numberL.text = "0"
+            numberL.text = "\(detaileModel?.ifdSumNumber ?? 0)"
+        }
+    }
+    var kcshopingModel:JDGroupProjectModel? {
+        didSet {
+            addV.isHidden = false;
+            iconV.setCategorymageUrl(url: kcshopingModel?.cfdImgSrc ?? "")
+            setedBtn.isHidden = true;
+            nameL.text = kcshopingModel?.cfdCourseName
+            detaileL.text = "¥\(kcshopingModel?.ffdPrice ?? "暂无报价")"
+            numberL.text = "\(kcshopingModel?.ifdSumNumber ?? 0)"
         }
     }
     var huanModel:JDGroupProjectModel? {

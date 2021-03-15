@@ -26,6 +26,8 @@
                 <outlet property="tuikBtn" destination="qKc-U9-5cq" id="b9s-eJ-hQY"/>
                 <outlet property="versionL" destination="knG-Nh-f00" id="zLL-mp-x1h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="yinsiBtn" destination="13D-6i-7BI" id="EJv-md-1aF"/>
+                <outlet property="yonghuBtn" destination="U5A-s4-i5p" id="nym-1L-khh"/>
                 <outlet property="yuyueBtn" destination="6NT-vW-b79" id="UHP-2y-LnJ"/>
             </connections>
         </placeholder>
@@ -226,13 +228,31 @@
                                         <constraint firstAttribute="height" constant="0.5" id="GCf-eg-bwU"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13D-6i-7BI">
+                                    <rect key="frame" x="207" y="405.5" width="80" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="《隐私协议》"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="和" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zp6-Ni-PFa">
+                                    <rect key="frame" x="193.5" y="410" width="13.5" height="19"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5A-s4-i5p">
+                                    <rect key="frame" x="113.5" y="405.5" width="80" height="28"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="《用户协议》"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="c4Q-tM-5wv" secondAttribute="bottom" constant="60" id="1jO-q3-0Bl"/>
                                 <constraint firstAttribute="height" constant="450" id="20z-K0-wrP"/>
+                                <constraint firstItem="13D-6i-7BI" firstAttribute="centerY" secondItem="zp6-Ni-PFa" secondAttribute="centerY" id="5Hp-2n-Lnn"/>
                                 <constraint firstItem="AfR-pD-kU1" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" id="96H-TQ-2Sn"/>
                                 <constraint firstAttribute="trailing" secondItem="c4Q-tM-5wv" secondAttribute="trailing" constant="50" id="9zU-Yl-ZPz"/>
+                                <constraint firstItem="zp6-Ni-PFa" firstAttribute="top" secondItem="c4Q-tM-5wv" secondAttribute="bottom" constant="20" id="CpI-d3-1yb"/>
                                 <constraint firstItem="uED-PS-0eE" firstAttribute="top" secondItem="dRS-mQ-6Ev" secondAttribute="bottom" constant="10" id="DoH-9R-aat"/>
                                 <constraint firstItem="AfR-pD-kU1" firstAttribute="top" secondItem="Mp3-73-ebY" secondAttribute="bottom" id="FiW-ID-y5a"/>
                                 <constraint firstAttribute="width" constant="400" id="GLp-BV-okh"/>
@@ -244,19 +264,24 @@
                                 <constraint firstItem="io8-fS-0KF" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" id="PnK-Um-KFB"/>
                                 <constraint firstAttribute="trailing" secondItem="Ngr-dx-n6T" secondAttribute="trailing" id="Pxw-Gd-vJq"/>
                                 <constraint firstItem="io8-fS-0KF" firstAttribute="top" secondItem="uED-PS-0eE" secondAttribute="bottom" id="QTJ-gK-BQc"/>
+                                <constraint firstItem="zp6-Ni-PFa" firstAttribute="centerY" secondItem="U5A-s4-i5p" secondAttribute="centerY" id="QsZ-zn-K3D"/>
                                 <constraint firstItem="uED-PS-0eE" firstAttribute="leading" secondItem="dRS-mQ-6Ev" secondAttribute="leading" id="RJS-FB-Jix"/>
                                 <constraint firstItem="Mp3-73-ebY" firstAttribute="top" secondItem="TP5-al-nXj" secondAttribute="top" id="Slt-22-nlA"/>
                                 <constraint firstItem="Ngr-dx-n6T" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" id="VBM-KW-8YN"/>
                                 <constraint firstAttribute="trailing" secondItem="Mp3-73-ebY" secondAttribute="trailing" id="Yhz-it-9Y1"/>
                                 <constraint firstItem="dRS-mQ-6Ev" firstAttribute="top" secondItem="Mp3-73-ebY" secondAttribute="bottom" constant="50" id="Z0y-fH-Yyo"/>
                                 <constraint firstAttribute="trailing" secondItem="io8-fS-0KF" secondAttribute="trailing" id="adH-jN-adj"/>
+                                <constraint firstAttribute="bottom" secondItem="zp6-Ni-PFa" secondAttribute="bottom" constant="21" id="cqA-PY-bhP"/>
                                 <constraint firstItem="Mp3-73-ebY" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" id="dy6-Ka-5uE"/>
                                 <constraint firstItem="sqh-zb-QLJ" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" id="fdd-v1-dUI"/>
                                 <constraint firstItem="vmP-r0-xR5" firstAttribute="top" secondItem="TP5-al-nXj" secondAttribute="top" id="gua-FT-e3h"/>
                                 <constraint firstItem="knG-Nh-f00" firstAttribute="leading" secondItem="uED-PS-0eE" secondAttribute="leading" id="hfp-Eg-eRN"/>
                                 <constraint firstItem="knG-Nh-f00" firstAttribute="top" secondItem="uED-PS-0eE" secondAttribute="bottom" constant="10" id="ibQ-E2-3LF"/>
+                                <constraint firstItem="zp6-Ni-PFa" firstAttribute="centerX" secondItem="TP5-al-nXj" secondAttribute="centerX" id="o1t-H9-gL1"/>
                                 <constraint firstItem="Ngr-dx-n6T" firstAttribute="top" secondItem="knG-Nh-f00" secondAttribute="bottom" id="o2D-bJ-2GR"/>
                                 <constraint firstItem="c4Q-tM-5wv" firstAttribute="leading" secondItem="TP5-al-nXj" secondAttribute="leading" constant="50" id="pvh-nJ-W4S"/>
+                                <constraint firstItem="zp6-Ni-PFa" firstAttribute="leading" secondItem="U5A-s4-i5p" secondAttribute="trailing" id="y7g-cp-4Ab"/>
+                                <constraint firstItem="13D-6i-7BI" firstAttribute="leading" secondItem="zp6-Ni-PFa" secondAttribute="trailing" id="yHP-3J-R74"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

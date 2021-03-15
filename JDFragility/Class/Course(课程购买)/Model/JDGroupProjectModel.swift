@@ -63,7 +63,7 @@ class JDGroupProjectModel: Convertible {
     var cfdMemberTimeId:String?
     var ifdYnumber:String?
     var ifdLastNumber:Int?
-    var ifdSumNumber:Int?
+    var ifdSumNumber:Int = 1
     required init() {}
 }
 

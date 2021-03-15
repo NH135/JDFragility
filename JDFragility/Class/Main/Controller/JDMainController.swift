@@ -46,7 +46,9 @@ class JDMainController: JDBaseViewController {
     @IBOutlet weak var outBtn: UIButton!
     @IBOutlet weak var huankBtn: UIButton!
     @IBOutlet weak var tuikBtn: UIButton!
+    @IBOutlet weak var yinsiBtn: UIButton!
     
+    @IBOutlet weak var yonghuBtn: UIButton!
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
  
@@ -80,7 +82,19 @@ class JDMainController: JDBaseViewController {
         clickAction()
         
         setting();
-        
+        yonghuBtn.addAction { (_) in
+            let webView = JDwebController()
+            webView.url = "http://qianmeitest.feicuisoft.com/Agreement.htm"
+//            webView.titles.text = "用户协议"
+            self.navigationController?.pushViewController(webView, animated: true)
+       
+        }
+        yinsiBtn.addAction { (_) in
+            let webView = JDwebController()
+            webView.url = "http://qianmeitest.feicuisoft.com/Privacy.htm"
+//            webView.titles.text = "隐私协议"
+            self.navigationController?.pushViewController(webView, animated: true)
+        }
     }
  
 }

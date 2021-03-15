@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol courseAddDelegate:NSObjectProtocol {
-    func addjianCourse(type:Bool, model:JDGroupProjectModel)
+    func addjianCourse(cell: JDCourseCell, type:Bool, model:JDGroupProjectModel)
 }
 
 class JDCourseCell: UITableViewCell {
@@ -26,14 +26,15 @@ class JDCourseCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        addV.k_setCornerRadius(17)
-        addV.k_setBorder(color: UIColor.k_colorWith(hexStr: "429DFF"), width: 1)
+//        addV.k_setCornerRadius(17)
+//        addV.k_setBorder(color: UIColor.k_colorWith(hexStr: "429DFF"), width: 1)
+        addBtn.k_setCornerRadius(17)
         addBtn.addAction { (_) in
              
             self.number += 1
             self.numberL.text = String(self.number)
             if ((self.delegate?.responds(to: Selector(("addjianCourse:")))) != nil) {
-                self.delegate?.addjianCourse(type: true, model: self.detaileModel!)
+                self.delegate?.addjianCourse(cell:self,type: true, model: self.detaileModel!)
              }
          
         }
@@ -47,7 +48,7 @@ class JDCourseCell: UITableViewCell {
             self.number -= 1
             self.numberL.text = String(self.number)
             if ((self.delegate?.responds(to: Selector(("addjianCourse:")))) != nil) {
-                self.delegate?.addjianCourse(type: false, model: self.detaileModel!)
+                self.delegate?.addjianCourse(cell:self,type: true, model: self.detaileModel!)
              }
         }
         

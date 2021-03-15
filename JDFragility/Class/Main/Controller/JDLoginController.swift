@@ -15,10 +15,20 @@ class JDLoginController: JDBaseViewController {
     @IBOutlet weak var addUD: UIButton!
     @IBOutlet weak var yzmF: UITextField!
     
+    @IBOutlet weak var isSedtedBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var yonghuBtn: UIButton!
+    @IBOutlet weak var yinseBtn: UIButton!
+//    override func viewWillAppear(_ animated: Bool) {
+//          super.viewWillAppear(animated)
+// 
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+//  
+//      }
     override func viewDidLoad() {
         super.viewDidLoad()
 //        https://www.jianshu.com/u/1e9554bab9b3
+        navigationController?.setNavigationBarHidden(true, animated: false)
         loginBtn.layer.cornerRadius=10;
         addUD.layer.cornerRadius=10;
         loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
@@ -86,10 +96,31 @@ class JDLoginController: JDBaseViewController {
                 }
             }
         }
+        isSedtedBtn.addAction { (btn) in
+            btn.isSelected = !btn.isSelected
+        }
+        yonghuBtn.addAction { (_) in
+            let webView = JDwebController()
+            webView.url = "http://qianmeitest.feicuisoft.com/Agreement.htm"
+//            webView.titles.text = "用户协议"
+            self.navigationController?.pushViewController(webView, animated: true)
+       
+        }
+        yinseBtn.addAction { (_) in
+            let webView = JDwebController()
+            webView.url = "http://qianmeitest.feicuisoft.com/Privacy.htm"
+//            webView.titles.text = "隐私协议"
+            self.navigationController?.pushViewController(webView, animated: true)
+        }
     }
 
     @objc func loginClick()  {
  
+        if isSedtedBtn.isSelected == false {
+            NHMBProgressHud.showErrorMessage(message: "请阅读并同意用户协议和隐私协议")
+            return
+        }
+        
         if telF.text?.length==0  {
             NHMBProgressHud.showErrorMessage(message: "请输入账户")
             return
