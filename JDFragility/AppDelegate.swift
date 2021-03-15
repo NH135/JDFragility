@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
    private func setWindow() {
-  
+    IQKeyboardManager.shared().shouldResignOnTouchOutside = true
 //        sleep(2) //可以延长启动图显示时间，只能选择整数吗？？
        let window = UIWindow(frame: UIScreen.main.bounds)
     window.backgroundColor=UIColor.white

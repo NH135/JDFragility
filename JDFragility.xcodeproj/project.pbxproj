@@ -1353,15 +1353,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = P336AQ7M3A;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = E94TELHUAS;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jingdianqianmei.JDFragility;
+				PRODUCT_BUNDLE_IDENTIFIER = jingdianqianmei.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JDFragility/JDFragility-Bridging-Header.h";
@@ -1380,15 +1380,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = P336AQ7M3A;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = E94TELHUAS;
 				INFOPLIST_FILE = JDFragility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jingdianqianmei.JDFragility;
+				PRODUCT_BUNDLE_IDENTIFIER = jingdianqianmei.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/JDFragility/JDFragility-Bridging-Header.h";

@@ -43,7 +43,7 @@
                             <rect key="frame" x="280" y="0.0" width="320" height="330"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYF-ZL-K0M">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYF-ZL-K0M">
                             <rect key="frame" x="310" y="110" width="260" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="i0A-OC-mXe"/>
@@ -97,7 +97,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="《用户协议》"/>
                         </button>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="system" borderStyle="roundedRect" placeholder="账户" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0O-go-qMh">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账户" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0O-go-qMh">
                             <rect key="frame" x="310" y="30" width="260" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="ZWV-qw-wOB"/>

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>纤美</string>
+	<string>纤美科技美容</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,9 +28,14 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>纤美想访问您的相机进行扫码确认</string>
+	<string>纤美科技美容想访问您的相机进行扫码确认</string>
 	<key>NSCameraUsageDescriptionApp</key>
-	<string>saa</string>
+	<string>纤美科技美容想访问您的相机进行扫码确认</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -41,6 +46,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIStatusBarHidden~ipad</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
