@@ -32,6 +32,9 @@
 		18B7AA1625A43FB500BE4C27 /* dropdownMenu_cornerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B7AA1325A43FB500BE4C27 /* dropdownMenu_cornerIcon.png */; };
 		18B7AA1725A43FB500BE4C27 /* LMJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA1425A43FB500BE4C27 /* LMJDropdownMenu.m */; };
 		18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA1B25A4412300BE4C27 /* JSsignalert.m */; };
+		18B7AA3E25A473FA00BE4C27 /* NSDate+ACAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */; };
+		18B7AA4425A4743300BE4C27 /* EWDataPickerPresentAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA4325A4743300BE4C27 /* EWDataPickerPresentAnimated.swift */; };
+		18B7AA4925A4743700BE4C27 /* EWDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7AA4825A4743700BE4C27 /* EWDatePickerViewController.swift */; };
 		18FD02E52599A329007FC8C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E42599A329007FC8C8 /* AppDelegate.swift */; };
 		18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FD02E82599A329007FC8C8 /* ViewController.swift */; };
 		18FD02EC2599A329007FC8C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD02EA2599A329007FC8C8 /* Main.storyboard */; };
@@ -109,6 +112,10 @@
 		18B7AA1525A43FB500BE4C27 /* LMJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMJDropdownMenu.h; sourceTree = "<group>"; };
 		18B7AA1B25A4412300BE4C27 /* JSsignalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSsignalert.m; sourceTree = "<group>"; };
 		18B7AA1C25A4412300BE4C27 /* JSsignalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSsignalert.h; sourceTree = "<group>"; };
+		18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ACAdd.m"; sourceTree = "<group>"; };
+		18B7AA3D25A473FA00BE4C27 /* NSDate+ACAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ACAdd.h"; sourceTree = "<group>"; };
+		18B7AA4325A4743300BE4C27 /* EWDataPickerPresentAnimated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWDataPickerPresentAnimated.swift; sourceTree = "<group>"; };
+		18B7AA4825A4743700BE4C27 /* EWDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWDatePickerViewController.swift; sourceTree = "<group>"; };
 		18FD02E12599A329007FC8C8 /* JDFragility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDFragility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD02E42599A329007FC8C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FD02E82599A329007FC8C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +361,15 @@
 			path = LMJDropdownMenu;
 			sourceTree = "<group>";
 		};
+		18B7AA4225A4742000BE4C27 /* PickerDate */ = {
+			isa = PBXGroup;
+			children = (
+				18B7AA4825A4743700BE4C27 /* EWDatePickerViewController.swift */,
+				18B7AA4325A4743300BE4C27 /* EWDataPickerPresentAnimated.swift */,
+			);
+			path = PickerDate;
+			sourceTree = "<group>";
+		};
 		18FD02D82599A329007FC8C8 = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +449,8 @@
 				18B7AA1B25A4412300BE4C27 /* JSsignalert.m */,
 				18FD03832599D8DE007FC8C8 /* LSTTimer.h */,
 				18FD03842599D8DE007FC8C8 /* LSTTimer.m */,
+				18B7AA3D25A473FA00BE4C27 /* NSDate+ACAdd.h */,
+				18B7AA3C25A473FA00BE4C27 /* NSDate+ACAdd.m */,
 				18FD03492599D3DF007FC8C8 /* NHMBProgressHud.swift */,
 				18FD034E2599D3E0007FC8C8 /* String+Extension.swift */,
 				18FD034C2599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift */,
@@ -460,6 +478,7 @@
 		18FD03222599B5BC007FC8C8 /* UILib */ = {
 			isa = PBXGroup;
 			children = (
+				18B7AA4225A4742000BE4C27 /* PickerDate */,
 				18FD03B7259C4F11007FC8C8 /* NetWork */,
 				18FD03D6259C560A007FC8C8 /* JDWebClient.swift */,
 			);
@@ -723,6 +742,7 @@
 				18FD03852599D8DE007FC8C8 /* LSTTimer.m in Sources */,
 				18FD03432599CF4B007FC8C8 /* JDLoginController.swift in Sources */,
 				18FD02E92599A329007FC8C8 /* ViewController.swift in Sources */,
+				18B7AA3E25A473FA00BE4C27 /* NSDate+ACAdd.m in Sources */,
 				ED211CB525A189AB000F4A96 /* JDgroupCell.swift in Sources */,
 				18FD03512599D3E0007FC8C8 /* UIColor-Extention.swift in Sources */,
 				184B882C259CB73F00998BB1 /* JDReservedController.swift in Sources */,
@@ -742,6 +762,7 @@
 				18FD03D7259C560A007FC8C8 /* JDWebClient.swift in Sources */,
 				18FD0407259C6190007FC8C8 /* JDMainController.swift in Sources */,
 				18FD03532599D3E0007FC8C8 /* UIBarButtonLtem-Extension.swift in Sources */,
+				18B7AA4925A4743700BE4C27 /* EWDatePickerViewController.swift in Sources */,
 				184B884E259CB7CE00998BB1 /* JDManagementController.swift in Sources */,
 				18B7A9D125A2FD8000BE4C27 /* Array+Ext.swift in Sources */,
 				18B7AA0325A30BAE00BE4C27 /* UITextField+Ext.swift in Sources */,
@@ -756,6 +777,7 @@
 				18B7AA1D25A4412300BE4C27 /* JSsignalert.m in Sources */,
 				18FD035A2599D3FB007FC8C8 /* pch.swift in Sources */,
 				18B7A9F425A30B4D00BE4C27 /* UILabel+Ext.swift in Sources */,
+				18B7AA4425A4743300BE4C27 /* EWDataPickerPresentAnimated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

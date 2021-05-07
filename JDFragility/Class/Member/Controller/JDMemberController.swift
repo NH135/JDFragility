@@ -8,7 +8,7 @@
 import UIKit
 
 class JDMemberController: JDBaseViewController, UITextFieldDelegate {
-    
+    private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day,.hour], from: Date())
     let searchT = UITextField()
     
     override func viewDidLoad() {
@@ -118,12 +118,47 @@ extension JDMemberController{
         birthdayL.textColor=UIColor.white
         rightView.addSubview(birthdayL)
         
-        let birthdayT = UITextField(frame: CGRect(x: birthdayL.rightX, y:birthdayL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
-        birthdayT.placeholder = "请输入姓名"
-        birthdayT.borderStyle = .roundedRect
-        birthdayT.textColor=UIColor.white
-        rightView.addSubview(birthdayT)
-        
+        let birthdayB = UIButton(frame: CGRect(x: birthdayL.rightX, y:birthdayL.y, width: CGFloat(textfW), height: CGFloat(textfH)))
+//        birthdayT.placeholder = "请输入姓名"
+//        birthdayT.borderStyle = .roundedRect
+//        birthdayT.textColor=UIColor.white
+        birthdayB.setTitle("请选择生日", for: .normal)
+        birthdayB.backgroundColor=UIColor.white
+        birthdayB.cornerRadius(radius: 4)
+        birthdayB.setTitleColor(UIColor.lightText, for: .normal)
+        rightView.addSubview(birthdayB)
+
+        birthdayB.addAction { (btn:UIButton) in
+            let dataPicker = EWDatePickerViewController()
+            dataPicker.isYuyue = true
+            self.definesPresentationContext = true
+            /// 回调显示方法
+            dataPicker.backDate = {  date in
+//            dataPicker.backDate = { [weak self] date in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "YYYY-MM-dd"
+                let dateString: String = dateFormatter.string(from: date)
+//                self?.label.text = dateString
+            }
+            dataPicker.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            dataPicker.picker.reloadAllComponents()
+            /// 弹出时日期滚动到当前日期效果
+            self.present(dataPicker, animated: true) {
+                dataPicker.picker.selectRow(0, inComponent: 0, animated: true)
+                dataPicker.picker.selectRow((self.currentDateCom.month!) - 1, inComponent: 1, animated:   true)
+                dataPicker.picker.selectRow((self.currentDateCom.day!) - 1, inComponent: 2, animated: true)
+                let hours:[Int] = [10,11,12,13,14,15,16,17,18,18,19,20,21,22]
+                
+//                let findIndex = hours.firstIndex(where: { (e) -> Bool in
+//                    return e == NSDate().hour
+//                })
+    //            let index = NSDate().minute > 30 ? findIndex ?? 0 + 1 : findIndex
+    //
+                dataPicker.picker.selectRow( 0, inComponent: 3, animated: true)
+                
+                  dataPicker.picker.selectRow(1, inComponent: 4, animated: true)
+            }
+        }
         
         
         let heightL = UILabel(frame: CGRect(x: 30, y:Int(birthdayL.bottomY)+20, width: 50, height: textfH))
